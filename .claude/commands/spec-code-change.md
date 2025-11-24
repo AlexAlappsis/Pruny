@@ -5,7 +5,7 @@ Use this for **modifying existing code**: adding features, fixing bugs, refactor
 **What this command does:**
 
 1. Loads the living spec:
-   - `spec/living-architecture.md` (narrative overview)
+   - `spec/overview.md` (narrative overview)
    - `spec/invariants.json` (hard constraints)
    - `spec/glossary.md` (terminology)
 2. Determines working path from explicit parameter, IDE selection, or user input
@@ -84,7 +84,7 @@ Wait for user response before proceeding.
 
 #### 1.1 Load spec context
 
-1. Try to open `spec/living-architecture.md`
+1. Try to open `spec/overview.md`
    - If missing: explain that spec doesn't exist, suggest `/spec-overview`, then stop
 2. Try to open `spec/invariants.json`
    - If missing: continue but note invariants unavailable
@@ -113,7 +113,7 @@ Within the working path and related areas:
    - How are similar features implemented?
 
 3. **Cross-check against spec**:
-   - Does current code match `living-architecture.md`?
+   - Does current code match `overview.md`?
    - Are invariants being followed?
    - Are there discrepancies to note?
 
@@ -185,7 +185,7 @@ Ask questions ONLY when:
    - "'Update status enum' - add new values or rename existing ones?"
 
 **DO NOT ask when**:
-- The answer is in `spec/living-architecture.md` or `spec/invariants.json`
+- The answer is in `spec/overview.md` or `spec/invariants.json`
 - The answer is clear from existing code patterns
 - It's a standard convention (e.g., new properties are optional, use existing serialization)
 - There's an obvious sensible default

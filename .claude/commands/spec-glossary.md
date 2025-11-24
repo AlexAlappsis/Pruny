@@ -71,31 +71,27 @@ Create your first term: /spec-glossary add [term-name]
 
 Show specific term definition:
 
-1. **Find term (case-insensitive search)**
+1. **Find term (case-insensitive search)** in both table and concept sections
 2. **Show full definition with context:**
 
 ```
 Recipe
 ======
 
-**Definition:**
-A formulation specification that includes:
-- List of ingredients with precise quantities
-- Production parameters (temperature, time, mixing speed)
-- Expected yield and quality criteria
-- Version history for traceability
+**Table definition:**
+A formulation specification with ingredients and parameters
 
-**Related Terms:**
-- Formulation (synonym)
-- Batch (uses a Recipe)
+**Detailed concept:**
+A formulation specification that includes ingredient lists with precise quantities,
+production parameters (temperature, time, mixing speeds), expected yield, and
+version history for regulatory traceability (FDA 21 CFR Part 11). Used to create
+production Batches.
 
-**Used in:**
-- FEAT-0001: Recipe Management
-- COMP-0002: Recipe Database
-- IMPL-0003: Recipe ORM Models
+**Related terms:** Formulation (synonym), Batch
 
 ---
-Last updated: 2025-11-19
+Found in: spec/glossary.md
+Last updated: 2025-11-24
 ```
 
 If term not found:
@@ -114,35 +110,35 @@ Add it: /spec-glossary add Recipe
 Add or update a term:
 
 1. **Check if term already exists:**
-   - If exists: "Recipe is already defined. Update it?"
+   - If exists in table or concepts: "Recipe is already defined. Update it?"
    - If new: "Adding new term: Recipe"
 
-2. **Prompt for definition:**
+2. **Determine placement:**
    ```
-   Let's define "Recipe" for your glossary.
-
-   Please provide:
-   1. A concise one-line summary
-   2. Detailed definition (optional)
-   3. Related terms or synonyms (optional)
+   Is this a:
+   1. Simple term (quick definition in table)
+   2. Complex concept (detailed explanation needed)
+   3. Both (brief table entry + detailed concept section)
    ```
 
 3. **Work cooperatively:**
-   - Ask for summary
-   - Ask if more detail needed
-   - Ask about related terms, synonyms, or acronyms
-   - Show drafted entry
+   - For table entries: Ask for concise definition and related terms
+   - For concept sections: Ask which concept group it belongs to (or suggest creating one)
+   - Ask about synonyms, related terms, or notes
+   - Show drafted entry (table row and/or concept bullet)
    - Confirm before saving
 
 4. **Update glossary:**
    - If glossary doesn't exist, create from template
-   - Add term in **alphabetical order**
-   - Update `last_updated` in front matter
+   - For table entries: Add row in **alphabetical order**
+   - For concept sections: Add to appropriate section or create new concept group
+   - Update `updated` date in front matter
    - Save file
 
 5. **Report completion:**
    ```
-   ✓ Added "Recipe" to glossary
+   ✓ Added "Recipe" to glossary table
+   ✓ Added detailed concept to "Production Concepts" section
    ✓ Updated spec/glossary.md
 
    View all terms: /spec-glossary
@@ -150,26 +146,36 @@ Add or update a term:
 
 ## Glossary Format
 
-Terms should be added in alphabetical order using this format:
+The glossary uses a simple table format for quick reference terms, plus optional concept groupings for complex domain concepts:
 
 ```markdown
-### Recipe
+---
+title: Glossary
+updated: 2025-11-24
+---
 
-**Summary:** A formulation specification including ingredients, quantities, and production parameters.
+# System Glossary
 
-**Details:**
-A Recipe defines exactly how to manufacture a product, including:
-- Ingredient list with precise quantities and tolerances
-- Production parameters (temperature, time, mixing speeds, etc.)
-- Expected yield and quality criteria
-- Version history for regulatory traceability (FDA 21 CFR Part 11)
+> Define the core vocabulary of the system.
+> Keep this tight and focused on terms that matter for humans and agents.
 
-**Related Terms:**
-- Formulation (synonym)
-- Batch (a production run of a Recipe)
+| Term         | Definition | Notes / Related |
+|--------------|------------|-----------------|
+| `Batch`      | A production run of a specific recipe | Related: Recipe, SKU |
+| `Recipe`     | A formulation specification with ingredients and parameters | Synonym: Formulation |
+| `SKU`        | Stock Keeping Unit; unique product identifier | |
 
-**Acronyms:** None
+## Domain-specific concepts
+
+### Production Concepts
+
+- **Recipe:** A formulation specification that includes ingredient lists with precise quantities, production parameters (temperature, time, mixing speeds), expected yield, and version history for regulatory traceability.
+- **Batch:** A production run that executes a specific Recipe, tracked for quality control and traceability.
 ```
+
+**When to use table vs. concept sections:**
+- **Table:** Simple terms, IDs, abbreviations, quick lookups
+- **Concept sections:** Complex domain concepts that need detailed explanation
 
 ## Smart Suggestions
 
@@ -180,22 +186,10 @@ When adding a term, make smart suggestions based on domain:
 - **Healthcare:** Suggest (Patient, Encounter, Diagnosis, Treatment Plan)
 - **SaaS:** Suggest (Tenant, Subscription, User, Workspace)
 
-## Cross-Reference Discovery
-
-When adding a term, scan specs to find where it's used:
-
-1. Search `spec/charter/` for term mentions
-2. Search `spec/architecture/` for term mentions
-3. Search `spec/implementation/` for term mentions
-4. Add "Used in" section listing relevant IDs
-
-Example:
-```markdown
-**Used in:**
-- FEAT-0001: Recipe Management & Versioning
-- COMP-0003: Recipe Database Component
-- IMPL-0005: Recipe ORM Models
-```
+Ask user whether the term is:
+- A simple term (add to table)
+- A complex concept (add to concept section)
+- Both (add brief version to table, detailed version to concept section)
 
 ## Example Interaction - ADD MODE
 
@@ -204,46 +198,40 @@ User: /spec-glossary add Recipe
 
 Claude: Adding new term "Recipe" to your glossary.
 
-Let's define it. First, a concise one-line summary:
+Is this a:
+1. Simple term (quick definition in table)
+2. Complex concept (detailed explanation needed)
+3. Both (brief table entry + detailed concept section)
+
+User: Both - it's important but needs detail for FDA compliance
+
+Claude: Got it. Let me draft entries for both sections.
+
+First, the table entry - a concise definition:
 
 User: A formulation specification with ingredients and production parameters
 
-Claude: Good! Would you like to add more detailed definition, or is the summary sufficient?
+Claude: Perfect. Now for the detailed concept section, what additional context is important?
 
-User: Add more detail - needs to include version history for FDA compliance
+User: Include that it has version history for FDA compliance and is used to create Batches
 
-Claude: Got it. Here's the full entry I'll add:
+Claude: Here's what I'll add:
 
----
-### Recipe
+**Table entry:**
+| `Recipe` | A formulation specification with ingredients and parameters | Synonym: Formulation, Related: Batch |
 
-**Summary:** A formulation specification including ingredients, quantities, and production parameters.
-
-**Details:**
-A Recipe defines exactly how to manufacture a product, including:
-- Ingredient list with precise quantities
-- Production parameters (temperature, time, mixing speeds)
-- Expected yield and quality criteria
-- Version history for regulatory traceability (FDA 21 CFR Part 11)
-
-**Related Terms:**
-- Formulation (synonym)
-- Batch (a production run using this Recipe)
-
-**Used in:**
-- FEAT-0001: Recipe Management & Versioning
-- FEAT-0002: Production Cost Analysis
-- COMP-0002: Recipe Database
----
+**Concept section (under "Production Concepts"):**
+- **Recipe:** A formulation specification that includes ingredient lists with precise quantities, production parameters (temperature, time, mixing speeds), expected yield, and version history for regulatory traceability (FDA 21 CFR Part 11). Used to create production Batches.
 
 Does this look correct?
 
 [User confirms]
 
-✓ Added "Recipe" to glossary (alphabetically sorted)
+✓ Added "Recipe" to glossary table
+✓ Added detailed explanation to "Production Concepts" section
 ✓ Updated spec/glossary.md
 
-Your glossary now has 1 term. Add more: /spec-glossary add [term]
+View glossary: /spec-glossary
 ```
 
 ## Example Interaction - LIST MODE
@@ -254,19 +242,21 @@ User: /spec-glossary
 Claude: System Glossary
 ===============
 
-Found 4 terms:
+Quick Reference (4 terms):
 
-- **Batch**: A production run of a specific Recipe
-- **Formulation**: Synonym for Recipe
-- **Recipe**: A formulation specification including ingredients and production parameters
-- **SKU**: Stock Keeping Unit; unique identifier for finished product
+| Term         | Definition |
+|--------------|------------|
+| `Batch`      | A production run of a specific recipe |
+| `Recipe`     | A formulation specification with ingredients and parameters |
+| `SKU`        | Stock Keeping Unit; unique product identifier |
+| `Yield`      | Amount of finished product from a batch |
+
+Domain Concepts:
+
+**Production Concepts**
+- Recipe (detailed formulation specification)
+- Batch (production run with traceability)
 
 To see details: /spec-glossary Recipe
-To add term: /spec-glossary add Yield
+To add term: /spec-glossary add [term]
 ```
-
-## Related Commands
-
-- `/spec-plan-charter` - Plan charter (suggests glossary terms)
-- `/spec-plan-arch` - Plan architecture (suggests technical terms)
-- `/spec-plan-impl` - Plan implementation (suggests technical terms)

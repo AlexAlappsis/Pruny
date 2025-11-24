@@ -1,5 +1,5 @@
 ---
-title: Living Architecture Spec
+title: Overview Spec
 updated: 2025-11-10
 status: draft
 ---

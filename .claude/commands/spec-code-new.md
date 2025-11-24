@@ -5,7 +5,7 @@ Use this for **greenfield** work: new modules, new features, new services, etc.
 **What this command does:**
 
 1. Loads the living spec:
-   - `spec/living-architecture.md` (narrative overview)
+   - `spec/overview.md` (narrative overview)
    - `spec/invariants.json` (hard constraints)
    - `spec/glossary.md` (terminology)
 2. Determines working path from explicit parameter, IDE selection, or user input
@@ -84,7 +84,7 @@ Wait for user response before proceeding.
 
 #### 1.1 Load spec context
 
-1. Try to open `spec/living-architecture.md`
+1. Try to open `spec/overview.md`
    - If missing: explain that spec doesn't exist, suggest `/spec-overview`, then stop
 2. Try to open `spec/invariants.json`
    - If missing: continue but note invariants unavailable
@@ -182,7 +182,7 @@ Ask questions ONLY when:
    - "Should task creators be notified, or all assigned users?"
 
 **DO NOT ask when**:
-- The answer is in `spec/living-architecture.md` or `spec/invariants.json`
+- The answer is in `spec/overview.md` or `spec/invariants.json`
 - The answer is clear from existing code patterns
 - It's a standard convention (e.g., make new properties optional, use ISO dates)
 - There's an obvious sensible default

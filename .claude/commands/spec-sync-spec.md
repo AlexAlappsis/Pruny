@@ -1,11 +1,11 @@
 Synchronize the living spec with the current code for a specific module or path.
 
-This command is for **code → spec** work: you point it at part of the codebase, and it updates the living architecture, glossary, and change log to reflect what the code actually does now.
+This command is for **code → spec** work: you point it at part of the codebase, and it updates the overview, glossary, and change log to reflect what the code actually does now.
 
 **What this command does:**
 
 1. Loads:
-   - `spec/living-architecture.md`
+   - `spec/overview.md`
    - `spec/invariants.json`
    - `spec/glossary.md`
    - `spec/change-log.md` (if present)
@@ -14,7 +14,7 @@ This command is for **code → spec** work: you point it at part of the codebase
    - Public interfaces / endpoints
    - Important data models
 3. Updates **only the relevant sections** of:
-   - `spec/living-architecture.md` (module or flow description)
+   - `spec/overview.md` (module or flow description)
    - `spec/glossary.md` (new or refined terms)
    - `spec/change-log.md` (one concise entry for this sync)
 4. Keeps the spec small and narrative:
@@ -25,13 +25,13 @@ This command is for **code → spec** work: you point it at part of the codebase
 
 - You must specify `path=` or `module=`:
   - `path=`: filesystem path to code to analyze (e.g., `src/tasks`)
-  - `module=`: a module name from `living-architecture.md` (e.g., `Tasks`, `Auth API`)
+  - `module=`: a module name from `overview.md` (e.g., `Tasks`, `Auth API`)
 - The command only:
   - Updates the architecture section(s) that correspond to the given path/module
   - Touches glossary entries that are clearly related to that module/path
   - Appends **one** new entry to `change-log.md` describing this sync
 - It must **not**:
-  - Rewrite the entire `living-architecture.md` in one go
+  - Rewrite the entire `overview.md` in one go
   - Erase other modules/sections
   - Override invariants (it can note mismatches, but not silently change invariants)
 
@@ -53,7 +53,7 @@ When this command is invoked, follow these steps:
 
 ### 1. Load spec files
 
-1. Open `spec/living-architecture.md`.
+1. Open `spec/overview.md`.
    - If missing, explain that the living spec does not exist yet and suggest running `/spec-overview` first.
 2. Try to open `spec/invariants.json`.
    - If missing, continue; invariants are helpful but not required for sync.
@@ -80,7 +80,7 @@ When this command is invoked, follow these steps:
 
 **If `module` is provided:**
 
-- Use `spec/living-architecture.md` to locate the section(s) describing that module.
+- Use `spec/overview.md` to locate the section(s) describing that module.
 - If you cannot confidently map the module to code (no mention of path, or ambiguous naming):
   - Explain the ambiguity.
   - Suggest a `path=` parameter for a follow-up invocation.
@@ -98,11 +98,11 @@ Within the scoped path:
    - What responsibilities the module actually has
    - Key flows (e.g., “create task”, “update task status”, “tag tasks”)
    - Inputs/outputs at a conceptual level (don’t dump type signatures verbatim unless necessary)
-3. Keep the analysis at a **narrative level**, consistent with the tone of `living-architecture.md`.
+3. Keep the analysis at a **narrative level**, consistent with the tone of `overview.md`.
 
 ### 4. Map to the architecture document
 
-1. In `spec/living-architecture.md`, locate the section(s) that describe:
+1. In `spec/overview.md`, locate the section(s) that describe:
    - The module by name (e.g., “## Tasks” or “## Module: Tasks”)
    - Or the broader area into which this path naturally fits
 
@@ -170,7 +170,7 @@ If `spec/invariants.json` is present:
 After writing updates:
 
 1. Summarize, in natural language:
-   - Which sections of `living-architecture.md` were updated (by heading).
+   - Which sections of `overview.md` were updated (by heading).
    - Which terms were added/updated in `glossary.md`.
    - The new change-log entry that was added.
 2. Do not restate the entire documents; keep the summary short so the user can quickly decide where to inspect diffs.

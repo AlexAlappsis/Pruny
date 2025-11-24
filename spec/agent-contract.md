@@ -1,7 +1,7 @@
 # Agent Contract
 
 1. Always load `spec/invariants.json` before modifying code or specs.
-2. Always load `spec/living-architecture.md` to understand the system context.
+2. Always load `spec/overview.md` to understand the system context.
 2. Load `spec/glossary.md` to maintain consistent vocabulary.
 3. Prefer reading existing code over inventing new patterns.
 4. Respect naming conventions and glossary terms.

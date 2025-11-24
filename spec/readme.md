@@ -8,7 +8,7 @@ This document explains how the specd specification system works.
 
 Your spec lives in these files:
 
-- **`living-architecture.md`** – 1-3 page narrative overview of the system
+- **`overview.md`** – 1-3 page narrative overview of the system
 - **`invariants.json`** – machine-readable hard constraints
 - **`glossary.md`** – shared domain vocabulary
 - **`change-log.md`** – history of meaningful spec changes
@@ -32,7 +32,7 @@ Templates are used when creating new projects or initializing missing files.
 ### Specification Management
 
 **`/spec-overview [section]`**
-- Create or refine `living-architecture.md`
+- Create or refine `overview.md`
 - Work cooperatively on specific sections
 - Keep it narrative and concise (1-3 pages)
 
@@ -105,7 +105,7 @@ Templates are used when creating new projects or initializing missing files.
 
 ## Key Concepts
 
-### Living Architecture
+### Overview
 A **narrative document** (not a rigid spec) describing:
 - System purpose and scope
 - Module responsibilities
@@ -163,7 +163,7 @@ If you're an LLM agent:
 
 1. **Always read** `agent-contract.md` first
 2. **Load these files** before any code work:
-   - `living-architecture.md`
+   - `overview.md`
    - `invariants.json`
    - `glossary.md`
 3. **Follow invariants strictly** (hard rules)

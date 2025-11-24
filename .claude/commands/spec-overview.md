@@ -1,7 +1,7 @@
-Plan or edit the living architecture specification (`spec/living-architecture.md`) cooperatively.
+Plan or edit the overview specification (`spec/overview.md`) cooperatively.
 
 **What this command does:**
-1. Loads `spec/living-architecture.md` (or uses `spec/living-architecture-template.md` if missing).
+1. Loads `spec/overview.md` (or uses `spec/overview-template.md` if missing).
 2. Optionally loads `spec/invariants.json`, `spec/glossary.md`, and `spec/change-log.md` for additional context.
 3. Shows the current overview and asks what area to focus on (if not specified).
 4. Helps you draft or refine specific sections (Purpose, Modules, Flows, etc.) while staying small and narrative.
@@ -9,7 +9,7 @@ Plan or edit the living architecture specification (`spec/living-architecture.md
 
 **Usage:**
 ```text
-/spec-overview         # Create or refine the overall living architecture
+/spec-overview         # Create or refine the overall overview
 /spec-overview Modules # Focus only on the modules/components section
 /spec-overview Flows   # Focus on key flows
 ```
@@ -22,11 +22,11 @@ Plan or edit the living architecture specification (`spec/living-architecture.md
 
 1.  **Load or initialize files:**
     
-    - Try to open spec/living-architecture.md.        
+    - Try to open spec/overview.md.        
     - Try to open spec/change-log.md.
     - If not found:        
-        - Try spec/living-architecture-template.md.            
-        - If template exists, copy its contents into a new spec/living-architecture.md.            
+        - Try spec/overview-template.md.            
+        - If template exists, copy its contents into a new spec/overview.md.            
         - **If template not found:** Inform user to run `install.sh` first and exit with error message:
             ```
             Error: Templates not found. Please run the install script first:
@@ -57,12 +57,18 @@ Plan or edit the living architecture specification (`spec/living-architecture.md
         - References invariants when relevant but does not duplicate them.            
         - Uses existing terminology from spec/glossary.md when present.
             
-    - Once agreed, write the updated section back to spec/living-architecture.md.
+    - Once agreed, write the updated section back to spec/overview.md.
 
 4.  **Update change log:**
-    - If this is the first initialization of the living architecture, initialize the change-log template and save to spec/change-log.md.
+    - If this is the first initialization of the overview, initialize the change-log template and save to spec/change-log.md.
     - If this is a meaningful architectural change, suggest appending an entry to spec/change-log.md.
+
+5. **Suggest invariants and glossary updates**
+    - If new constraints or hard rules were introduced in the narrative briefly identify them.
+    - If new terms were coined or identified, briefly identify them.
+    - Suggest adding or updating entries in either spec/invariants.md or spec/glossary.md. Create them from templates if they don't exist.
+    - Remind user they can update them manually via /spec-invariants and /spec-glossary.        
         
-4.  **Suggest next steps:**    
-    - If new constraints or hard rules were introduced in the narrative, suggest adding or updating entries in spec/invariants.json via /spec-invariants.        
-    - If new terms were coined or identified, suggest updating /spec-glossary.
+6.  **Suggest next steps:**    
+    - If there are open questions from planning, suggest areas of research to explore..
+    - Suggest 2-3 concrete implementation options using /spec-code-new or /spec-code-change.
