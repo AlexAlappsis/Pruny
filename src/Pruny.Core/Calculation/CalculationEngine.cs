@@ -80,6 +80,19 @@ public class CalculationEngine : ICalculationEngine
             var outputPrice = ResolvePrice(output.MaterialId, line.OutputPriceSources, previousUnitCosts);
             var costPerUnit = totalCost / output.Quantity;
 
+            decimal? profitPerUnit = null;
+            decimal? profitPerRun = null;
+            decimal? profitPer24Hours = null;
+
+            if (outputPrice > 0)
+            {
+                profitPerUnit = outputPrice - costPerUnit;
+                profitPerRun = profitPerUnit * output.Quantity;
+
+                var runsPerDay = 24m * 60m / adjustedDuration;
+                profitPer24Hours = profitPerRun * runsPerDay;
+            }
+
             return new UnitCost
             {
                 MaterialId = output.MaterialId,
@@ -87,7 +100,11 @@ public class CalculationEngine : ICalculationEngine
                 CostPerUnit = costPerUnit,
                 WorkforceCost = workforceCost / totalOutputQuantity,
                 InputCosts = inputCosts / totalOutputQuantity,
-                OverallEfficiency = overallEfficiency
+                OverallEfficiency = overallEfficiency,
+                OutputPrice = outputPrice > 0 ? outputPrice : null,
+                ProfitPerUnit = profitPerUnit,
+                ProfitPerRun = profitPerRun,
+                ProfitPer24Hours = profitPer24Hours
             };
         }).ToList();
     }

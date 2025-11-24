@@ -8,4 +8,8 @@ public class UnitCost
     public required decimal WorkforceCost { get; init; }
     public required decimal InputCosts { get; init; }
     public required decimal OverallEfficiency { get; init; }
+    public decimal? OutputPrice { get; init; }
+    public decimal? ProfitPerUnit { get; init; }
+    public decimal? ProfitPerRun { get; init; }
+    public decimal? ProfitPer24Hours { get; init; }
 }
