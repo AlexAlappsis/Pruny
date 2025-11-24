@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "scope": "system",
+  "invariants": [
+    {
+      "id": "1",
+      "category": "architecture",
+      "summary": "Pruny.Core must not reference any I/O libraries.",
+      "details": "Core is a pure calculation engine with no I/O dependencies (System.IO, HTTP clients, etc.). This ensures Core remains portable and testable in isolation.",
+      "appliesTo": ["module:Pruny.Core"],
+      "status": "active"
+    },
+    {
+      "id": "2",
+      "category": "architecture",
+      "summary": "Dependencies flow in one direction: UI → Library → Core.",
+      "details": "UI may depend on Library, Library may depend on Core, but never in reverse. Core and Library should not know about UI layer.",
+      "appliesTo": ["module:Pruny.Core", "module:Pruny.Library", "module:Pruny.UI"],
+      "status": "active"
+    },
+    {
+      "id": "3",
+      "category": "architecture",
+      "summary": "Pruny.Library must not reference Godot APIs.",
+      "details": "Library must remain UI-agnostic to support multiple frontends (Godot, CLI, web, etc.). Only Pruny.UI may reference Godot.",
+      "appliesTo": ["module:Pruny.Library"],
+      "status": "active"
+    },
+    {
+      "id": "4",
+      "category": "performance",
+      "summary": "All data must be loadable into memory.",
+      "details": "No lazy loading or database queries during calculations. All game data, cached API data, and workspace data must fit comfortably in RAM.",
+      "appliesTo": ["module:Pruny.Core", "module:Pruny.Library"],
+      "status": "active"
+    },
+    {
+      "id": "5",
+      "category": "performance",
+      "summary": "Unit cost calculations must complete in < 100ms.",
+      "details": "To support real-time what-if scenarios, full production chain calculations must be near-instantaneous.",
+      "appliesTo": ["module:Pruny.Core"],
+      "status": "active"
+    },
+    {
+      "id": "6",
+      "category": "data",
+      "summary": "Calculation engine must detect circular production dependencies.",
+      "details": "If production chains contain cycles (A depends on B, B depends on A), the engine must detect and either reject or report the cycle gracefully.",
+      "appliesTo": ["module:Pruny.Core"],
+      "status": "active"
+    },
+    {
+      "id": "7",
+      "category": "data",
+      "summary": "All persisted data must be valid JSON.",
+      "details": "Game data, workspaces, and cached API data are stored as JSON files with proper formatting and structure.",
+      "appliesTo": ["module:Pruny.Library"],
+      "status": "active"
+    },
+    {
+      "id": "8",
+      "category": "data",
+      "summary": "Workspace files must include a schema version field.",
+      "details": "To support future compatibility and migrations, every workspace file must have a version field at the root level.",
+      "appliesTo": ["entity:Workspace"],
+      "status": "active"
+    },
+    {
+      "id": "9",
+      "category": "domain",
+      "summary": "Every price source can have adjustments applied.",
+      "details": "All inputs and outputs on a production line support optional percentage or flat modifiers, regardless of price source type (API, production line, custom).",
+      "appliesTo": ["entity:PriceSource", "entity:ProductionLine"],
+      "status": "active"
+    }
+  ]
+}
