@@ -21,7 +21,6 @@ public class DependencyResolver
             }
         }
 
-        result.Reverse();
         return result;
     }
 
