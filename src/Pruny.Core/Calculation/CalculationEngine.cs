@@ -69,7 +69,7 @@ public class CalculationEngine : ICalculationEngine
         var overallEfficiency = CalculateOverallEfficiency(workforceEfficiency, line.AdditionalEfficiencyModifiers);
         var adjustedDuration = recipe.DurationMinutes / overallEfficiency;
 
-        var workforceCost = CalculateWorkforceCost(workforce, workforceConfig, adjustedDuration);
+        var workforceCost = CalculateWorkforceCost(workforce, workforceConfig, adjustedDuration, previousUnitCosts);
         var inputCosts = CalculateInputCosts(line, recipe, previousUnitCosts);
         var totalCost = workforceCost + inputCosts;
 
@@ -119,19 +119,44 @@ public class CalculationEngine : ICalculationEngine
     private decimal CalculateWorkforceCost(
         List<WorkforceRequirement> workforce,
         WorkforceConfig config,
-        decimal durationMinutes)
+        decimal durationMinutes,
+        Dictionary<string, UnitCost> previousUnitCosts)
     {
         decimal totalCost = 0;
 
         foreach (var worker in workforce)
         {
-            if (config.CostPerWorkerTypePerMinute.TryGetValue(worker.WorkforceType, out var costPerMinute))
-            {
-                totalCost += worker.Count * costPerMinute * durationMinutes;
-            }
+            var workerTypeConfig = config.WorkforceTypes.FirstOrDefault(w => w.WorkforceType == worker.WorkforceType);
+            if (workerTypeConfig == null)
+                continue;
+
+            var costPerWorkerPerMinute = CalculateWorkerTypeCostPerMinute(workerTypeConfig, previousUnitCosts);
+            totalCost += worker.Count * costPerWorkerPerMinute * durationMinutes;
         }
 
         return totalCost;
+    }
+
+    private decimal CalculateWorkerTypeCostPerMinute(
+        WorkforceTypeConfig workerTypeConfig,
+        Dictionary<string, UnitCost> previousUnitCosts)
+    {
+        decimal totalCostPer100WorkersPer24Hours = 0;
+
+        foreach (var consumption in workerTypeConfig.MaterialConsumption)
+        {
+            var materialPrice = ResolvePrice(
+                consumption.MaterialId,
+                new Dictionary<string, PriceSource> { { consumption.MaterialId, consumption.PriceSource } },
+                previousUnitCosts);
+
+            totalCostPer100WorkersPer24Hours += consumption.QuantityPer100WorkersPer24Hours * materialPrice;
+        }
+
+        var costPerSingleWorkerPer24Hours = totalCostPer100WorkersPer24Hours / 100m;
+        var costPerSingleWorkerPerMinute = costPerSingleWorkerPer24Hours / (24m * 60m);
+
+        return costPerSingleWorkerPerMinute;
     }
 
     private decimal CalculateInputCosts(
