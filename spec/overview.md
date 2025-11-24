@@ -85,7 +85,7 @@ Currently, players resort to unwieldy spreadsheets that are tedious to update an
 
 - **Configure Production Line:** User defines a production line by selecting recipe (which determines building type), optionally overriding workforce count from building default, and choosing price sources with optional adjustments for all inputs and outputs (API, other production line, or custom value). Adjustments can be percentage or flat modifiers applied to any price source. Library validates against game data and persists to workspace file.
 
-- **Calculate Unit Costs:** User triggers or auto-triggers calculation. Core engine walks production dependencies, applies workforce costs (based on building's workforce configuration and per-line overrides), applies price source adjustments to inputs/outputs, and computes unit costs across the entire chain. UI updates instantly to show results.
+- **Calculate Unit Costs:** User triggers or auto-triggers calculation. Core engine walks production dependencies, resolves workforce material costs from price sources (making workforce costs part of the price chain), applies price source adjustments to inputs/outputs, and computes unit costs across the entire chain. Additionally calculates profit metrics (per-unit, per-run, per-24-hours) based on output price sources. UI updates instantly to show results.
 
 - **What-If Scenario:** User changes a price source, adjustment, or workforce configuration. Calculation engine immediately recomputes affected production lines and downstream dependencies. UI reflects changes in real-time.
 
@@ -97,7 +97,8 @@ Currently, players resort to unwieldy spreadsheets that are tedious to update an
 - **ProductionLine** – User-configured instance of a recipe; includes optional workforce override, price sources with adjustments for inputs/outputs, modifiers
 - **Workspace** – User's entire configuration; includes multiple production lines, custom prices, pricing choices, workforce cost configurations per planet/grouping
 - **PriceSource** – Where a material's price comes from; can be API (with cached local data), another production line's unit cost, or custom value; can have percentage or flat adjustments applied
-- **WorkforceConfig** – Defines workforce material costs for a grouping of production lines (e.g., per planet); used to calculate per-line workforce costs based on worker counts
+- **WorkforceConfig** – Defines workforce material consumption for each workforce type (materials consumed per 100 workers per 24 hours with price sources); workforce costs are calculated dynamically as part of the price chain and update when material prices change
+- **UnitCost** – Calculated result including cost per unit, workforce cost breakdown, input cost breakdown, efficiency, and profit metrics (per-unit, per-run, per-24-hours) based on output prices
 
 ---
 

@@ -15,7 +15,7 @@ VALIDATION RULES:
 
 ## Entries
 
-- 2025-11-24 – Completed initial living architecture specification for Pruny.
+- 2025-11-24 – Completed initial overview specification for Pruny.
   - Defined system purpose: production cost calculator for Prosperous Universe game
   - Established three-layer architecture: Pruny.Core (calculation engine), Pruny.Library (orchestration), Pruny.UI (Godot wrapper)
   - Documented key flows: workspace loading, market price updates, production line configuration, unit cost calculation
@@ -26,3 +26,7 @@ VALIDATION RULES:
 - 2025-11-24 – Added system invariants and glossary.
   - Created 9 invariants covering architecture (layer separation, no I/O in Core, no Godot in Library), performance (< 100ms calculations, in-memory data), data (circular dependency detection, JSON format, workspace versioning), and domain rules (universal price adjustments)
   - Established glossary with 9 core terms, domain concepts (production chains, workforce costs, efficiency), data sources (static game data, cached API data), and naming conventions
+
+- 2025-11-24 - Added profit calculation and clarified workforce costs.
+ - Added clarification on workforce costs
+ - Added UnitCost calculation, including profit per-unit, per-run,  per-24-hours
