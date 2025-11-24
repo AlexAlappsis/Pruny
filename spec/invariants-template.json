@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "scope": "system",
+  "invariants": [
+    {
+      "id": "1",
+      "category": "architecture",
+      "summary": "HTTP controllers must not access the database directly.",
+      "details": "Controllers call application/services only. All data access happens through repository or data access abstractions.",
+      "appliesTo": ["module:api", "layer:application"],
+      "status": "active"
+    },
+    {
+      "id": "2",
+      "category": "data",
+      "summary": "Task IDs are globally unique string identifiers.",
+      "details": "Task IDs are generated as UUIDv7 strings and are never reused.",
+      "appliesTo": ["entity:Task"],
+      "status": "active"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+[submodule ".specd"]
+	path = .specd
+	url = https://github.com/AlexAlappsis/specd
