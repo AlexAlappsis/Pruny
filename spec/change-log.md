@@ -1,6 +1,6 @@
 ---
 title: Change Log
-updated: 2025-11-24
+updated: 2025-11-25
 ---
 
 <!--
@@ -30,3 +30,13 @@ VALIDATION RULES:
 - 2025-11-24 - Added profit calculation and clarified workforce costs.
  - Added clarification on workforce costs
  - Added UnitCost calculation, including profit per-unit, per-run,  per-24-hours
+
+- 2025-11-25 – Resolved Godot file I/O strategy.
+  - Library will accept/return JSON strings for all file-based data (game data, workspaces, cached API data)
+  - UI layer (Godot, tests) handles actual file I/O operations
+  - Library remains UI-agnostic while still handling HTTP API calls internally
+
+- 2025-11-25 – Added event system architecture for Library-to-UI communication.
+  - Library exposes C# events for workspace changes, production line recalculations, price updates, and errors
+  - UI layer subscribes to events and wraps them as Godot signals
+  - Event-driven design enables reactive UI without polling and supports cascading calculation notifications

@@ -1,6 +1,6 @@
 ---
 title: Living Architecture Spec
-updated: 2025-11-24
+updated: 2025-11-25
 status: draft
 ---
 
@@ -74,8 +74,8 @@ Currently, players resort to unwieldy spreadsheets that are tedious to update an
 | Module / area | Responsibility | Notes |
 |---------------|----------------|-------|
 | **Pruny.Core** | Calculation engine for unit costs, production chains, and dependencies | Pure logic, no I/O; takes in-memory data and computes costs |
-| **Pruny.Library** | Orchestration layer for game data loading, API integration, and workspace management | Wraps Core; handles file system I/O, API calls, workspace persistence |
-| **Pruny.UI (Godot)** | Desktop UI for configuring production lines, viewing calculations, and running what-if scenarios | Godot-based frontend; binds to Library layer |
+| **Pruny.Library** | Orchestration layer for game data loading, API integration, and workspace management | Accepts/returns JSON strings for all file-based data; UI layer handles actual file I/O. Handles HTTP API calls internally. Exposes events for state changes (workspace modified, calculations complete, etc.). |
+| **Pruny.UI (Godot)** | Desktop UI for configuring production lines, viewing calculations, and running what-if scenarios | Godot-based frontend; handles file I/O and passes JSON strings to/from Library; subscribes to Library events and wraps them as Godot signals |
 
 ### 3.2 Key flows
 
@@ -99,6 +99,23 @@ Currently, players resort to unwieldy spreadsheets that are tedious to update an
 - **PriceSource** – Where a material's price comes from; can be API (with cached local data), another production line's unit cost, or custom value; can have percentage or flat adjustments applied
 - **WorkforceConfig** – Defines workforce material consumption for each workforce type (materials consumed per 100 workers per 24 hours with price sources); workforce costs are calculated dynamically as part of the price chain and update when material prices change
 - **UnitCost** – Calculated result including cost per unit, workforce cost breakdown, input cost breakdown, efficiency, and profit metrics (per-unit, per-run, per-24-hours) based on output prices
+
+### 3.4 Event model
+
+**Design:** Library exposes standard C# events to notify subscribers of state changes. UI layer subscribes to these events and wraps them as Godot signals for UI consumption.
+
+**Key events:**
+- `WorkspaceModified` – Fired when any change requires workspace save (production line edits, custom prices, config changes)
+- `ProductionLineRecalculated` – Fired when specific production line(s) complete recalculation; includes which lines changed
+- `PricesUpdated` – Fired when market prices refresh from API or custom prices change
+- `CalculationError` – Fired when calculation fails (circular dependencies, missing data, etc.)
+
+**Rationale:**
+- Library knows the full dependency graph and which production lines are affected by cascading calculations
+- Enables reactive UI without polling
+- Library remains UI-agnostic (C# events are framework-independent)
+- Maps cleanly to Godot's signal system
+- Supports future extensibility (logging, undo/redo, analytics)
 
 ---
 
@@ -124,14 +141,12 @@ Currently, players resort to unwieldy spreadsheets that are tedious to update an
 
 ### 5.2 Risks
 
-- **Godot file handling integration:** Godot has its own file system API (e.g., `FileAccess`, resource paths). Need to determine whether Pruny.Library uses standard .NET file I/O (which may require path translation in Godot) or whether the UI layer passes file paths/streams to Library. Could affect portability if Library becomes Godot-dependent.
 - **Circular production dependencies:** If users create production chains with circular dependencies (A depends on B, B depends on A), the calculation engine must detect and handle this gracefully (error or iterative solver).
 - **API availability:** PrUnPlanner API may be unavailable or change format. Need graceful fallback and versioning for cached data.
 - **Memory growth:** If game data expands significantly (thousands of materials/recipes), in-memory approach may need optimization or restructuring.
 
 ### 5.3 Open questions
 
-- **Godot file I/O strategy:** Should Library use standard .NET file APIs (and handle Godot path translation in UI), or should UI pass file handles/streams to Library? What's the cleanest separation?
 - **Calculation engine algorithm:** Should we use recursive dependency resolution, iterative graph traversal, or topological sort? Need to handle circular dependencies.
 - **Workspace file format:** Should workspaces be single JSON file or directory of files? How to handle versioning as schema evolves?
 - **API polling strategy:** Should we auto-refresh API data on a schedule, or always manual? If manual, how to warn when data is stale?
