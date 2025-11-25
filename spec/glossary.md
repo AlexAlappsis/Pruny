@@ -1,6 +1,6 @@
 ---
 title: Glossary
-updated: 2025-11-24
+updated: 2025-11-25
 ---
 
 <!--
@@ -49,9 +49,11 @@ VALIDATION RULES:
 
 - **Pruny.Core:** Pure calculation engine with no I/O dependencies. Takes in-memory data and computes unit costs.
 
-- **Pruny.Library:** Orchestration layer handling file I/O, API integration, and workspace management. Wraps Core.
+- **Pruny.Library:** Orchestration layer for workspace management, price source building, and calculation coordination. Defines IMarketDataProvider interface. Wraps Core.
 
-- **Pruny.UI:** Godot-based desktop UI for configuring production lines and viewing calculations. Binds to Library layer.
+- **Pruny.MarketAPIFetch:** HTTP client for fetching market prices from PrUnPlanner API. Implements IMarketDataProvider interface.
+
+- **Pruny.UI:** Godot-based desktop UI for configuring production lines and viewing calculations. Handles dependency injection setup and binds to Library layer.
 
 ## Naming conventions
 

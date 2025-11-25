@@ -45,3 +45,10 @@ VALIDATION RULES:
   - Workspace will include MarketDataFetchedAt to allow workspaces to use historical API data
   - PriceSourceRegistry in Core to manage multiple price sources per material
   - PriceSourceRegistry used in calculations to find correct price
+
+- 2025-11-25 – Separated market data fetching into dedicated IoC-based layer
+  - Created Pruny.MarketAPIFetch module for PrUnPlanner API HTTP client implementation
+  - Library now defines IMarketDataProvider interface instead of handling HTTP calls directly
+  - IMarketDataProvider injected into Library via dependency injection
+  - UI layer responsible for dependency injection setup
+  - Clarifies separation of concerns: Library orchestrates, MarketAPIFetch implements external integration

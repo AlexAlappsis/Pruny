@@ -14,8 +14,8 @@
       "id": "2",
       "category": "architecture",
       "summary": "Dependencies flow in one direction: UI → Library → Core.",
-      "details": "UI may depend on Library, Library may depend on Core, but never in reverse. Core and Library should not know about UI layer.",
-      "appliesTo": ["module:Pruny.Core", "module:Pruny.Library", "module:Pruny.UI"],
+      "details": "UI may depend on Library, Library may depend on Core, but never in reverse. Core and Library should not know about UI layer. External integration modules (MarketAPIFetch) implement interfaces defined in Library.",
+      "appliesTo": ["module:Pruny.Core", "module:Pruny.Library", "module:Pruny.UI", "module:Pruny.MarketAPIFetch"],
       "status": "active"
     },
     {
@@ -72,6 +72,14 @@
       "summary": "Every price source can have adjustments applied.",
       "details": "All inputs and outputs on a production line support optional percentage or flat modifiers, regardless of price source type (API, production line, custom).",
       "appliesTo": ["entity:PriceSource", "entity:ProductionLine"],
+      "status": "active"
+    },
+    {
+      "id": "10",
+      "category": "architecture",
+      "summary": "Library must not contain concrete implementations of external integrations.",
+      "details": "Library defines interfaces (e.g., IMarketDataProvider) for external dependencies. Concrete implementations (HTTP clients, file I/O) live in separate modules and are injected via dependency injection.",
+      "appliesTo": ["module:Pruny.Library"],
       "status": "active"
     }
   ]

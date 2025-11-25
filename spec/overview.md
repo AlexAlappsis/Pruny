@@ -1,6 +1,6 @@
 ---
 title: Living Architecture Spec
-updated: 2025-01-25
+updated: 2025-11-25
 status: draft
 ---
 
@@ -74,14 +74,15 @@ Currently, players resort to unwieldy spreadsheets that are tedious to update an
 | Module / area | Responsibility | Notes |
 |---------------|----------------|-------|
 | **Pruny.Core** | Calculation engine for unit costs, production chains, and dependencies | Pure logic, no I/O; takes in-memory data and computes costs |
-| **Pruny.Library** | Orchestration layer for game data loading, API integration, and workspace management | Accepts/returns JSON strings for all file-based data; UI layer handles actual file I/O. Handles HTTP API calls internally. Exposes events for state changes (workspace modified, calculations complete, etc.). |
-| **Pruny.UI (Godot)** | Desktop UI for configuring production lines, viewing calculations, and running what-if scenarios | Godot-based frontend; handles file I/O and passes JSON strings to/from Library; subscribes to Library events and wraps them as Godot signals |
+| **Pruny.Library** | Orchestration layer for workspace management, price source building, and calculation coordination | Accepts/returns JSON strings for all file-based data; UI layer handles actual file I/O. Defines IMarketDataProvider interface for market data fetching. Exposes events for state changes (workspace modified, calculations complete, etc.). |
+| **Pruny.MarketAPIFetch** | HTTP client implementation for fetching market prices from PrUnPlanner API | Implements IMarketDataProvider interface defined in Library. Injected into Library via IoC. |
+| **Pruny.UI (Godot)** | Desktop UI for configuring production lines, viewing calculations, and running what-if scenarios | Godot-based frontend; handles file I/O, dependency injection setup; passes JSON strings to/from Library; subscribes to Library events and wraps them as Godot signals |
 
 ### 3.2 Key flows
 
 - **Load Workspace:** User opens or creates a workspace. Library loads static game data (materials, recipes, buildings, workforce costs) from JSON files, loads market prices based on workspace's MarketDataFetchedAt timestamp (supporting historical data analysis), and loads workspace config (production lines, pricing choices). All data goes into memory. Library builds PriceSourceRegistry from market data and workspace custom prices.
 
-- **Update Market Prices:** User manually triggers API data refresh. Library fetches current market prices from PrUnPlanner API and persists them locally. Calculation engine recomputes affected production lines.
+- **Update Market Prices:** User manually triggers API data refresh. Library invokes injected IMarketDataProvider (implemented by Pruny.MarketAPIFetch) to fetch current market prices from PrUnPlanner API. UI layer persists fetched data locally. Library fires PricesUpdated event, and calculation engine recomputes affected production lines.
 
 - **Configure Production Line:** User defines a production line by selecting recipe (which determines building type), optionally overriding workforce count from building default, and choosing price sources with optional adjustments for all inputs and outputs. For each material, user selects from available price sources: API sources (exchange-specific like "IC1-AVG", "IC1-ASK", "NC1-BID"), production line outputs, or custom prices (user-defined names like "Bulk Price"). Multiple custom price sources can be defined per material. Adjustments can be percentage or flat modifiers applied to any price source. Library validates against game data and persists to workspace file.
 
