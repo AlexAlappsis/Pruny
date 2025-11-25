@@ -40,3 +40,8 @@ VALIDATION RULES:
   - Library exposes C# events for workspace changes, production line recalculations, price updates, and errors
   - UI layer subscribes to events and wraps them as Godot signals
   - Event-driven design enables reactive UI without polling and supports cascading calculation notifications
+
+- 2025-11-25 – Updated price source details and historical API data in workspace
+  - Workspace will include MarketDataFetchedAt to allow workspaces to use historical API data
+  - PriceSourceRegistry in Core to manage multiple price sources per material
+  - PriceSourceRegistry used in calculations to find correct price
