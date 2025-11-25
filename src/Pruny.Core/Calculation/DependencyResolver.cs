@@ -24,6 +24,33 @@ public class DependencyResolver
         return result;
     }
 
+    public HashSet<string> FindDependentLines(
+        string sourceLineId,
+        List<ProductionLine> productionLines,
+        Dictionary<string, Recipe> recipes)
+    {
+        var graph = BuildDependencyGraph(productionLines, recipes);
+        var dependents = new HashSet<string>();
+
+        FindDependentsRecursive(sourceLineId, graph, dependents);
+
+        return dependents;
+    }
+
+    private void FindDependentsRecursive(
+        string lineId,
+        Dictionary<string, List<string>> graph,
+        HashSet<string> dependents)
+    {
+        foreach (var (currentLineId, dependencies) in graph)
+        {
+            if (dependencies.Contains(lineId) && dependents.Add(currentLineId))
+            {
+                FindDependentsRecursive(currentLineId, graph, dependents);
+            }
+        }
+    }
+
     private Dictionary<string, List<string>> BuildDependencyGraph(
         List<ProductionLine> productionLines,
         Dictionary<string, Recipe> recipes)

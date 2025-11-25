@@ -43,6 +43,8 @@ public class CalculationEngine : ICalculationEngine
                 {
                     result.UnitCosts[unitCost.MaterialId] = unitCost;
                 }
+
+                result.RecalculatedLineIds.Add(lineId);
             }
         }
         catch (CircularDependencyException ex)
