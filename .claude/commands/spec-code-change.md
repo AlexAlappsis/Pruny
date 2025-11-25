@@ -105,6 +105,7 @@ Within the working path and related areas:
    - Services/use-cases
    - Data access (repositories/contexts)
    - Relevant tests
+ **Optimization:** Read all potentially relevant files in parallel to minimize token overhead
 
 2. **Understand current behavior**:
    - How does the code currently work?
@@ -115,7 +116,7 @@ Within the working path and related areas:
 3. **Cross-check against spec**:
    - Does current code match `overview.md`?
    - Are invariants being followed?
-   - Are there discrepancies to note?
+   - Are there discrepancies to note?   
 
 #### 1.4 Design the change
 

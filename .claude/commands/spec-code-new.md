@@ -112,6 +112,8 @@ Focus scanning on:
 2. Similar modules/areas
 3. Shared infrastructure/utilities
 
+**Optimization:** Read all potentially relevant files in parallel to minimize token overhead
+
 #### 1.4 Design the feature
 
 Based on:
