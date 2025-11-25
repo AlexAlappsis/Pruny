@@ -1,0 +1,46 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "dotnet build",
+      "group": "build",
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "rebuild",
+      "type": "shell",
+      "command": "dotnet build --no-incremental",
+      "group": "build",
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "dotnet test",
+      "group": "test",
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "test with coverage",
+      "type": "shell",
+      "command": "dotnet test /p:CollectCoverage=true /p:CoverletOutput=./TestResults/ /p:CoverletOutputFormat=cobertura",
+      "group": "test",
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "watch run (default project)",
+      "type": "shell",
+      "command": "dotnet watch run",
+      "isBackground": true,
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "restore",
+      "type": "shell",
+      "command": "dotnet restore",
+      "problemMatcher": "$msCompile"
+    }
+  ]
+}

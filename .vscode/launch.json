@@ -1,0 +1,43 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      // Debug the default startup project (configured by C# Dev Kit / launchSettings.json)
+      "name": "Debug .NET Project",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${command:dotnet.runSettingsProgram}",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    {
+      // Launch a specific DLL (e.g., web API or worker)
+      "name": "Debug specific project dll",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/bin/Debug/net9.0/YourAssembly.dll",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "stopAtEntry": false
+    },
+    {
+      // Attach to an already running .NET process
+      "name": "Attach to .NET process",
+      "type": "coreclr",
+      "request": "attach"
+    },
+    {
+      // Attach to something like a Godot C# process or a hosted worker
+      "name": "Attach by process ID",
+      "type": "coreclr",
+      "request": "attach",
+      "processId": "${command:pickProcess}"
+    }
+  ]
+}

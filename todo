@@ -1,0 +1,6 @@
+Library
+
+- Phase 3: Workspace Management (load/save, dirty tracking, events)
+  - Phase 4: API Integration (separate project or implementation)
+  - Phase 5: Calculation Orchestration (wrap Core, raise events)
+  - Phase 6: Integration & Polish (main facade, error handling, tests)
