@@ -1,7 +1,13 @@
 {
   "permissions": {
     "allow": [
-      "Bash(dotnet test:*)"
+      "Bash(dotnet test:*)",
+      "Bash(dotnet new:*)",
+      "Bash(dotnet sln:*)",
+      "Bash(dotnet add:*)",
+      "Bash(del srcPruny.LibraryClass1.cs)",
+      "Bash(rm:*)",
+      "Bash(dotnet build:*)"
     ],
     "deny": [],
     "ask": []
