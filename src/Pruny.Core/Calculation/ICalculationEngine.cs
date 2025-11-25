@@ -8,5 +8,6 @@ public interface ICalculationEngine
         List<ProductionLine> productionLines,
         Dictionary<string, Recipe> recipes,
         Dictionary<string, Building> buildings,
-        WorkforceConfig workforceConfig);
+        WorkforceConfig workforceConfig,
+        PriceSourceRegistry priceRegistry);
 }

@@ -10,6 +10,6 @@ public class Workspace
     public DateTimeOffset CreatedAt { get; init; }
     public DateTimeOffset LastModifiedAt { get; init; }
     public List<ProductionLine> ProductionLines { get; init; } = new();
-    public Dictionary<string, decimal> CustomPrices { get; init; } = new();
+    public Dictionary<string, Dictionary<string, decimal>> CustomPrices { get; init; } = new();
     public WorkforceConfig? WorkforceConfig { get; init; }
 }

@@ -37,7 +37,7 @@ public class EfficiencyCalculationTests
             InputPriceSources = new Dictionary<string, PriceSource>(),
             OutputPriceSources = new Dictionary<string, PriceSource>
             {
-                { "OUT1", new PriceSource { Type = PriceSourceType.Custom, CustomValue = 0m, Adjustments = new List<Adjustment>() } }
+                { "OUT1", new PriceSource { Type = PriceSourceType.Custom, SourceIdentifier = "custom-OUT1", Adjustments = new List<Adjustment>() } }
             },
             AdditionalEfficiencyModifiers = new List<decimal>()
         };
@@ -55,11 +55,15 @@ public class EfficiencyCalculationTests
             }
         };
 
+        var priceRegistry = new PriceSourceRegistry();
+        priceRegistry.RegisterPrice("OUT1", "custom-OUT1", 0m);
+
         var result = engine.CalculateUnitCosts(
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
-            workforceConfig
+            workforceConfig,
+            priceRegistry
         );
 
         result.IsSuccess.Should().BeTrue();
@@ -102,7 +106,7 @@ public class EfficiencyCalculationTests
             InputPriceSources = new Dictionary<string, PriceSource>(),
             OutputPriceSources = new Dictionary<string, PriceSource>
             {
-                { "OUT1", new PriceSource { Type = PriceSourceType.Custom, CustomValue = 0m, Adjustments = new List<Adjustment>() } }
+                { "OUT1", new PriceSource { Type = PriceSourceType.Custom, SourceIdentifier = "custom-OUT1", Adjustments = new List<Adjustment>() } }
             },
             AdditionalEfficiencyModifiers = new List<decimal>()
         };
@@ -120,11 +124,15 @@ public class EfficiencyCalculationTests
             }
         };
 
+        var priceRegistry = new PriceSourceRegistry();
+        priceRegistry.RegisterPrice("OUT1", "custom-OUT1", 0m);
+
         var result = engine.CalculateUnitCosts(
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
-            workforceConfig
+            workforceConfig,
+            priceRegistry
         );
 
         result.IsSuccess.Should().BeTrue();
@@ -167,7 +175,7 @@ public class EfficiencyCalculationTests
             InputPriceSources = new Dictionary<string, PriceSource>(),
             OutputPriceSources = new Dictionary<string, PriceSource>
             {
-                { "OUT1", new PriceSource { Type = PriceSourceType.Custom, CustomValue = 0m, Adjustments = new List<Adjustment>() } }
+                { "OUT1", new PriceSource { Type = PriceSourceType.Custom, SourceIdentifier = "custom-OUT1", Adjustments = new List<Adjustment>() } }
             },
             AdditionalEfficiencyModifiers = new List<decimal>()
         };
@@ -185,11 +193,15 @@ public class EfficiencyCalculationTests
             }
         };
 
+        var priceRegistry = new PriceSourceRegistry();
+        priceRegistry.RegisterPrice("OUT1", "custom-OUT1", 0m);
+
         var result = engine.CalculateUnitCosts(
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
-            workforceConfig
+            workforceConfig,
+            priceRegistry
         );
 
         result.IsSuccess.Should().BeTrue();
@@ -234,7 +246,7 @@ public class EfficiencyCalculationTests
             InputPriceSources = new Dictionary<string, PriceSource>(),
             OutputPriceSources = new Dictionary<string, PriceSource>
             {
-                { "OUT1", new PriceSource { Type = PriceSourceType.Custom, CustomValue = 0m, Adjustments = new List<Adjustment>() } }
+                { "OUT1", new PriceSource { Type = PriceSourceType.Custom, SourceIdentifier = "custom-OUT1", Adjustments = new List<Adjustment>() } }
             },
             AdditionalEfficiencyModifiers = new List<decimal>()
         };
@@ -257,11 +269,15 @@ public class EfficiencyCalculationTests
             }
         };
 
+        var priceRegistry = new PriceSourceRegistry();
+        priceRegistry.RegisterPrice("OUT1", "custom-OUT1", 0m);
+
         var result = engine.CalculateUnitCosts(
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
-            workforceConfig
+            workforceConfig,
+            priceRegistry
         );
 
         result.IsSuccess.Should().BeTrue();
@@ -302,7 +318,7 @@ public class EfficiencyCalculationTests
             InputPriceSources = new Dictionary<string, PriceSource>(),
             OutputPriceSources = new Dictionary<string, PriceSource>
             {
-                { "OUT1", new PriceSource { Type = PriceSourceType.Custom, CustomValue = 0m, Adjustments = new List<Adjustment>() } }
+                { "OUT1", new PriceSource { Type = PriceSourceType.Custom, SourceIdentifier = "custom-OUT1", Adjustments = new List<Adjustment>() } }
             },
             AdditionalEfficiencyModifiers = new List<decimal> { 1.5m }
         };
@@ -320,11 +336,15 @@ public class EfficiencyCalculationTests
             }
         };
 
+        var priceRegistry = new PriceSourceRegistry();
+        priceRegistry.RegisterPrice("OUT1", "custom-OUT1", 0m);
+
         var result = engine.CalculateUnitCosts(
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
-            workforceConfig
+            workforceConfig,
+            priceRegistry
         );
 
         result.IsSuccess.Should().BeTrue();
@@ -367,7 +387,7 @@ public class EfficiencyCalculationTests
             InputPriceSources = new Dictionary<string, PriceSource>(),
             OutputPriceSources = new Dictionary<string, PriceSource>
             {
-                { "OUT1", new PriceSource { Type = PriceSourceType.Custom, CustomValue = 0m, Adjustments = new List<Adjustment>() } }
+                { "OUT1", new PriceSource { Type = PriceSourceType.Custom, SourceIdentifier = "custom-OUT1", Adjustments = new List<Adjustment>() } }
             },
             AdditionalEfficiencyModifiers = new List<decimal> { 2.0m }
         };
@@ -385,11 +405,15 @@ public class EfficiencyCalculationTests
             }
         };
 
+        var priceRegistry = new PriceSourceRegistry();
+        priceRegistry.RegisterPrice("OUT1", "custom-OUT1", 0m);
+
         var result = engine.CalculateUnitCosts(
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
-            workforceConfig
+            workforceConfig,
+            priceRegistry
         );
 
         result.IsSuccess.Should().BeTrue();
@@ -434,7 +458,7 @@ public class EfficiencyCalculationTests
             InputPriceSources = new Dictionary<string, PriceSource>(),
             OutputPriceSources = new Dictionary<string, PriceSource>
             {
-                { "OUT1", new PriceSource { Type = PriceSourceType.Custom, CustomValue = 0m, Adjustments = new List<Adjustment>() } }
+                { "OUT1", new PriceSource { Type = PriceSourceType.Custom, SourceIdentifier = "custom-OUT1", Adjustments = new List<Adjustment>() } }
             },
             AdditionalEfficiencyModifiers = new List<decimal> { 1.5m, 1.2m, 0.9m }
         };
@@ -452,11 +476,15 @@ public class EfficiencyCalculationTests
             }
         };
 
+        var priceRegistry = new PriceSourceRegistry();
+        priceRegistry.RegisterPrice("OUT1", "custom-OUT1", 0m);
+
         var result = engine.CalculateUnitCosts(
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
-            workforceConfig
+            workforceConfig,
+            priceRegistry
         );
 
         result.IsSuccess.Should().BeTrue();

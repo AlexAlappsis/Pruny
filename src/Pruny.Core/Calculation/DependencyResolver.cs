@@ -79,10 +79,9 @@ public class DependencyResolver
             foreach (var input in recipe.Inputs)
             {
                 if (line.InputPriceSources.TryGetValue(input.MaterialId, out var priceSource) &&
-                    priceSource.Type == PriceSourceType.ProductionLine &&
-                    priceSource.ProductionLineId != null)
+                    priceSource.Type == PriceSourceType.ProductionLine)
                 {
-                    graph[line.Id].Add(priceSource.ProductionLineId);
+                    graph[line.Id].Add(priceSource.SourceIdentifier);
                 }
             }
         }

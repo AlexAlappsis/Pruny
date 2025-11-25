@@ -95,7 +95,7 @@ public class DependencyResolverTests
             RecipeId = "RCP2",
             InputPriceSources = new Dictionary<string, PriceSource>
             {
-                { "MAT1", new PriceSource { Type = PriceSourceType.ProductionLine, ProductionLineId = "LINE1", Adjustments = new List<Adjustment>() } }
+                { "MAT1", new PriceSource { Type = PriceSourceType.ProductionLine, SourceIdentifier = "LINE1", Adjustments = new List<Adjustment>() } }
             },
             OutputPriceSources = new Dictionary<string, PriceSource>(),
             AdditionalEfficiencyModifiers = new List<decimal>()
@@ -167,8 +167,8 @@ public class DependencyResolverTests
             RecipeId = "RCP3",
             InputPriceSources = new Dictionary<string, PriceSource>
             {
-                { "A", new PriceSource { Type = PriceSourceType.ProductionLine, ProductionLineId = "LINE1", Adjustments = new List<Adjustment>() } },
-                { "B", new PriceSource { Type = PriceSourceType.ProductionLine, ProductionLineId = "LINE2", Adjustments = new List<Adjustment>() } }
+                { "A", new PriceSource { Type = PriceSourceType.ProductionLine, SourceIdentifier = "LINE1", Adjustments = new List<Adjustment>() } },
+                { "B", new PriceSource { Type = PriceSourceType.ProductionLine, SourceIdentifier = "LINE2", Adjustments = new List<Adjustment>() } }
             },
             OutputPriceSources = new Dictionary<string, PriceSource>(),
             AdditionalEfficiencyModifiers = new List<decimal>()
@@ -213,7 +213,7 @@ public class DependencyResolverTests
             RecipeId = "RCP1",
             InputPriceSources = new Dictionary<string, PriceSource>
             {
-                { "B", new PriceSource { Type = PriceSourceType.ProductionLine, ProductionLineId = "LINE2", Adjustments = new List<Adjustment>() } }
+                { "B", new PriceSource { Type = PriceSourceType.ProductionLine, SourceIdentifier = "LINE2", Adjustments = new List<Adjustment>() } }
             },
             OutputPriceSources = new Dictionary<string, PriceSource>(),
             AdditionalEfficiencyModifiers = new List<decimal>()
@@ -225,7 +225,7 @@ public class DependencyResolverTests
             RecipeId = "RCP2",
             InputPriceSources = new Dictionary<string, PriceSource>
             {
-                { "A", new PriceSource { Type = PriceSourceType.ProductionLine, ProductionLineId = "LINE1", Adjustments = new List<Adjustment>() } }
+                { "A", new PriceSource { Type = PriceSourceType.ProductionLine, SourceIdentifier = "LINE1", Adjustments = new List<Adjustment>() } }
             },
             OutputPriceSources = new Dictionary<string, PriceSource>(),
             AdditionalEfficiencyModifiers = new List<decimal>()
@@ -260,7 +260,7 @@ public class DependencyResolverTests
             RecipeId = "RCP1",
             InputPriceSources = new Dictionary<string, PriceSource>
             {
-                { "A", new PriceSource { Type = PriceSourceType.ProductionLine, ProductionLineId = "LINE1", Adjustments = new List<Adjustment>() } }
+                { "A", new PriceSource { Type = PriceSourceType.ProductionLine, SourceIdentifier = "LINE1", Adjustments = new List<Adjustment>() } }
             },
             OutputPriceSources = new Dictionary<string, PriceSource>(),
             AdditionalEfficiencyModifiers = new List<decimal>()

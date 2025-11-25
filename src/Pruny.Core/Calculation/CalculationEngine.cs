@@ -8,7 +8,8 @@ public class CalculationEngine : ICalculationEngine
         List<ProductionLine> productionLines,
         Dictionary<string, Recipe> recipes,
         Dictionary<string, Building> buildings,
-        WorkforceConfig workforceConfig)
+        WorkforceConfig workforceConfig,
+        PriceSourceRegistry priceRegistry)
     {
         var result = new CalculationResult();
 
@@ -37,7 +38,7 @@ public class CalculationEngine : ICalculationEngine
                 }
 
                 var unitCosts = CalculateProductionLineUnitCosts(
-                    line, recipe, building, workforceConfig, result.UnitCosts);
+                    line, recipe, building, workforceConfig, priceRegistry, result.UnitCosts);
 
                 foreach (var unitCost in unitCosts)
                 {
@@ -64,6 +65,7 @@ public class CalculationEngine : ICalculationEngine
         Recipe recipe,
         Building building,
         WorkforceConfig workforceConfig,
+        PriceSourceRegistry priceRegistry,
         Dictionary<string, UnitCost> previousUnitCosts)
     {
         var workforce = line.WorkforceOverride ?? building.DefaultWorkforce;
@@ -71,15 +73,15 @@ public class CalculationEngine : ICalculationEngine
         var overallEfficiency = CalculateOverallEfficiency(workforceEfficiency, line.AdditionalEfficiencyModifiers);
         var adjustedDuration = recipe.DurationMinutes / overallEfficiency;
 
-        var workforceCost = CalculateWorkforceCost(workforce, workforceConfig, adjustedDuration, previousUnitCosts);
-        var inputCosts = CalculateInputCosts(line, recipe, previousUnitCosts);
+        var workforceCost = CalculateWorkforceCost(workforce, workforceConfig, adjustedDuration, priceRegistry, previousUnitCosts);
+        var inputCosts = CalculateInputCosts(line, recipe, priceRegistry, previousUnitCosts);
         var totalCost = workforceCost + inputCosts;
 
         var totalOutputQuantity = recipe.Outputs.Sum(o => o.Quantity);
 
         return recipe.Outputs.Select(output =>
         {
-            var outputPrice = ResolvePrice(output.MaterialId, line.OutputPriceSources, previousUnitCosts);
+            var outputPrice = ResolvePrice(output.MaterialId, line.OutputPriceSources, priceRegistry, previousUnitCosts);
             var costPerUnit = totalCost / output.Quantity;
 
             decimal? profitPerUnit = null;
@@ -139,6 +141,7 @@ public class CalculationEngine : ICalculationEngine
         List<WorkforceRequirement> workforce,
         WorkforceConfig config,
         decimal durationMinutes,
+        PriceSourceRegistry priceRegistry,
         Dictionary<string, UnitCost> previousUnitCosts)
     {
         decimal totalCost = 0;
@@ -149,7 +152,7 @@ public class CalculationEngine : ICalculationEngine
             if (workerTypeConfig == null)
                 continue;
 
-            var costPerWorkerPerMinute = CalculateWorkerTypeCostPerMinute(workerTypeConfig, previousUnitCosts);
+            var costPerWorkerPerMinute = CalculateWorkerTypeCostPerMinute(workerTypeConfig, priceRegistry, previousUnitCosts);
             totalCost += worker.Count * costPerWorkerPerMinute * durationMinutes;
         }
 
@@ -158,6 +161,7 @@ public class CalculationEngine : ICalculationEngine
 
     private decimal CalculateWorkerTypeCostPerMinute(
         WorkforceTypeConfig workerTypeConfig,
+        PriceSourceRegistry priceRegistry,
         Dictionary<string, UnitCost> previousUnitCosts)
     {
         decimal totalCostPer100WorkersPer24Hours = 0;
@@ -167,6 +171,7 @@ public class CalculationEngine : ICalculationEngine
             var materialPrice = ResolvePrice(
                 consumption.MaterialId,
                 new Dictionary<string, PriceSource> { { consumption.MaterialId, consumption.PriceSource } },
+                priceRegistry,
                 previousUnitCosts);
 
             totalCostPer100WorkersPer24Hours += consumption.QuantityPer100WorkersPer24Hours * materialPrice;
@@ -181,13 +186,14 @@ public class CalculationEngine : ICalculationEngine
     private decimal CalculateInputCosts(
         ProductionLine line,
         Recipe recipe,
+        PriceSourceRegistry priceRegistry,
         Dictionary<string, UnitCost> previousUnitCosts)
     {
         decimal totalInputCost = 0;
 
         foreach (var input in recipe.Inputs)
         {
-            var price = ResolvePrice(input.MaterialId, line.InputPriceSources, previousUnitCosts);
+            var price = ResolvePrice(input.MaterialId, line.InputPriceSources, priceRegistry, previousUnitCosts);
             totalInputCost += input.Quantity * price;
         }
 
@@ -197,40 +203,18 @@ public class CalculationEngine : ICalculationEngine
     private decimal ResolvePrice(
         string materialId,
         Dictionary<string, PriceSource> priceSources,
+        PriceSourceRegistry priceRegistry,
         Dictionary<string, UnitCost> previousUnitCosts)
     {
         if (!priceSources.TryGetValue(materialId, out var priceSource))
             return 0m;
 
-        decimal basePrice = priceSource.Type switch
+        if (priceSource.Type == PriceSourceType.ProductionLine &&
+            previousUnitCosts.TryGetValue(materialId, out var unitCost))
         {
-            PriceSourceType.Api => priceSource.ApiPrice ?? 0m,
-            PriceSourceType.Custom => priceSource.CustomValue ?? 0m,
-            PriceSourceType.ProductionLine =>
-                priceSource.ProductionLineId != null &&
-                previousUnitCosts.TryGetValue(materialId, out var unitCost)
-                    ? unitCost.CostPerUnit
-                    : 0m,
-            _ => 0m
-        };
-
-        return ApplyAdjustments(basePrice, priceSource.Adjustments);
-    }
-
-    private decimal ApplyAdjustments(decimal basePrice, List<Adjustment> adjustments)
-    {
-        var price = basePrice;
-
-        foreach (var adjustment in adjustments)
-        {
-            price = adjustment.Type switch
-            {
-                AdjustmentType.Percentage => price * adjustment.Value,
-                AdjustmentType.Flat => price + adjustment.Value,
-                _ => price
-            };
+            return unitCost.CostPerUnit;
         }
 
-        return price;
+        return priceRegistry.GetPrice(materialId, priceSource);
     }
 }
