@@ -4,13 +4,13 @@ using Pruny.Core.Models;
 
 public class Workspace
 {
-    public required int Version { get; init; } = 1;
-    public required string Id { get; init; }
-    public required string Name { get; init; }
-    public DateTimeOffset CreatedAt { get; init; }
-    public DateTimeOffset LastModifiedAt { get; init; }
-    public DateTimeOffset? MarketDataFetchedAt { get; init; }
-    public List<ProductionLine> ProductionLines { get; init; } = new();
-    public Dictionary<string, Dictionary<string, decimal>> CustomPrices { get; init; } = new();
-    public WorkforceConfig? WorkforceConfig { get; init; }
+    public required int Version { get; set; } = 1;
+    public required string Id { get; set; }
+    public required string Name { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+    public DateTimeOffset LastModifiedAt { get; set; }
+    public DateTimeOffset? MarketDataFetchedAt { get; set; }
+    public List<ProductionLine> ProductionLines { get; set; } = new();
+    public Dictionary<string, Dictionary<string, decimal>> CustomPrices { get; set; } = new();
+    public WorkforceConfig? WorkforceConfig { get; set; }
 }
