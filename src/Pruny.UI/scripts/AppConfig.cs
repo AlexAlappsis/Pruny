@@ -16,7 +16,7 @@ public class AppConfig
     public string PrUnPlannerApiUrl { get; set; } = "https://rest.fnar.net";
     public string PrUnPlannerApiKey { get; set; } = "placeholder-api-key";
 
-    public string GameDataPath { get; set; } = "user://pruny/data/game-data.json";
+    public string GameDataPath { get; set; } = "res://data/game-data.json";
     public string WorkspacesPath { get; set; } = "user://pruny/data/workspaces";
     public string MarketCachePath { get; set; } = "user://pruny/data/market-cache";
 

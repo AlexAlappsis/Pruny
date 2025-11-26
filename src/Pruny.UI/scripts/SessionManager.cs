@@ -11,6 +11,7 @@ public partial class SessionManager : Node
 {
     private WorkspaceSession? _session;
     private System.Net.Http.HttpClient? _httpClient;
+    private DataManager? _dataManager;
 
     [Signal]
     public delegate void MarketDataRequestedSignalEventHandler(string timestamp, string workspaceId);
@@ -28,6 +29,7 @@ public partial class SessionManager : Node
     public delegate void CalculationErrorSignalEventHandler(string errorMessage);
 
     public WorkspaceSession? Session => _session;
+    public DataManager? DataManager => _dataManager;
 
     public override void _Ready()
     {
@@ -72,7 +74,24 @@ public partial class SessionManager : Node
 
         SubscribeToSessionEvents();
 
+        _dataManager = new DataManager(_session);
+
         GD.Print($"SessionManager: Session created with API URL: {config.PrUnPlannerApiUrl}");
+
+        LoadGameDataOnStartup();
+    }
+
+    private void LoadGameDataOnStartup()
+    {
+        try
+        {
+            _dataManager?.LoadGameData();
+            GD.Print("SessionManager: Game data loaded on startup");
+        }
+        catch (Exception ex)
+        {
+            GD.PrintErr($"SessionManager: Failed to load game data on startup - {ex.Message}");
+        }
     }
 
     private void SubscribeToSessionEvents()
@@ -104,6 +123,9 @@ public partial class SessionManager : Node
     private void CleanupSession()
     {
         UnsubscribeFromSessionEvents();
+
+        _dataManager?.Cleanup();
+        _dataManager = null;
 
         _session?.Close();
         _session = null;
