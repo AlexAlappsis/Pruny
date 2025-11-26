@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dfxqy7h8vmwxqv" path="res://scenes/UI/Dashboard.tscn" id="3_dashboard"]
 [ext_resource type="PackedScene" uid="uid://bfxqy7h8vmwxqv" path="res://scenes/UI/Footer.tscn" id="4_footer"]
 [ext_resource type="PackedScene" uid="uid://cgxqy7h8vmwxqv" path="res://scenes/UI/WorkspaceManager.tscn" id="5_workspace"]
-[ext_resource type="PackedScene" uid="uid://dhxqy7h8vmwxqv" path="res://scenes/UI/Settings.tscn" id="6_settings"]
+[ext_resource type="PackedScene" uid="uid://d0wkrpq6voas8" path="res://scenes/UI/Settings.tscn" id="6_settings"]
 
 [node name="MainUI" type="Control"]
 layout_mode = 3

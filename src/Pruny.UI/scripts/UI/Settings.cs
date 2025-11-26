@@ -15,20 +15,39 @@ public partial class Settings : CenterContainer
 
     public override void _Ready()
     {
+        GD.Print("Settings: _Ready called");
         _mainUI = GetParent()?.GetParent()?.GetParent() as MainUI;
 
-        _apiUrlInput = GetNode<LineEdit>("VBoxContainer/ScrollContainer/SettingsContainer/ApiUrlInput");
-        _apiKeyInput = GetNode<LineEdit>("VBoxContainer/ScrollContainer/SettingsContainer/ApiKeyInput");
-        _timeoutInput = GetNode<SpinBox>("VBoxContainer/ScrollContainer/SettingsContainer/TimeoutInput");
-        _retriesInput = GetNode<SpinBox>("VBoxContainer/ScrollContainer/SettingsContainer/RetriesInput");
-        _saveButton = GetNode<Button>("VBoxContainer/ButtonsContainer/SaveButton");
-        _cancelButton = GetNode<Button>("VBoxContainer/ButtonsContainer/CancelButton");
-        _statusLabel = GetNode<Label>("VBoxContainer/StatusLabel");
+        if (_mainUI == null)
+        {
+            GD.PrintErr("Settings: Could not find MainUI in parent chain");
+        }
+        else
+        {
+            GD.Print("Settings: Successfully found MainUI");
+        }
 
-        _saveButton.Pressed += OnSavePressed;
-        _cancelButton.Pressed += OnCancelPressed;
+        try
+        {
+            _apiUrlInput = GetNode<LineEdit>("VBoxContainer/ScrollContainer/SettingsContainer/ApiUrlInput");
+            _apiKeyInput = GetNode<LineEdit>("VBoxContainer/ScrollContainer/SettingsContainer/ApiKeyInput");
+            _timeoutInput = GetNode<SpinBox>("VBoxContainer/ScrollContainer/SettingsContainer/TimeoutInput");
+            _retriesInput = GetNode<SpinBox>("VBoxContainer/ScrollContainer/SettingsContainer/RetriesInput");
+            _saveButton = GetNode<Button>("VBoxContainer/ButtonsContainer/SaveButton");
+            _cancelButton = GetNode<Button>("VBoxContainer/ButtonsContainer/CancelButton");
+            _statusLabel = GetNode<Label>("VBoxContainer/StatusLabel");
 
-        LoadSettings();
+            _saveButton.Pressed += OnSavePressed;
+            _cancelButton.Pressed += OnCancelPressed;
+
+            LoadSettings();
+            GD.Print("Settings: Initialization complete");
+        }
+        catch (Exception ex)
+        {
+            GD.PrintErr($"Settings: Error during initialization - {ex.Message}");
+            GD.PrintErr($"Settings: Stack trace - {ex.StackTrace}");
+        }
     }
 
     private void LoadSettings()
