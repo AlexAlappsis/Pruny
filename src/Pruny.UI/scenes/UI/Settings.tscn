@@ -67,6 +67,13 @@ layout_mode = 2
 max_value = 10.0
 value = 3.0
 
+[node name="DefaultWorkspaceLabel" type="Label" parent="VBoxContainer/ScrollContainer/SettingsContainer"]
+layout_mode = 2
+text = "Default Workspace:"
+
+[node name="DefaultWorkspaceDropdown" type="OptionButton" parent="VBoxContainer/ScrollContainer/SettingsContainer"]
+layout_mode = 2
+
 [node name="StatusLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 horizontal_alignment = 1

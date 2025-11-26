@@ -23,6 +23,8 @@ public class AppConfig
     public string WorkspacesPath { get; set; } = "user://pruny/data/workspaces";
     public string MarketCachePath { get; set; } = "user://pruny/data/market-cache";
 
+    public string? DefaultWorkspace { get; set; }
+
     public TimeSpan ApiTimeout { get; set; } = TimeSpan.FromSeconds(30);
     public int ApiMaxRetries { get; set; } = 3;
 
@@ -56,6 +58,7 @@ public class AppConfig
                 GameDataPath = config.GameDataPath ?? GameDataPath;
                 WorkspacesPath = config.WorkspacesPath ?? WorkspacesPath;
                 MarketCachePath = config.MarketCachePath ?? MarketCachePath;
+                DefaultWorkspace = config.DefaultWorkspace;
                 ApiTimeout = TimeSpan.FromSeconds(config.ApiTimeoutSeconds);
                 ApiMaxRetries = config.ApiMaxRetries;
 
@@ -94,6 +97,7 @@ public class AppConfig
                 GameDataPath = GameDataPath,
                 WorkspacesPath = WorkspacesPath,
                 MarketCachePath = MarketCachePath,
+                DefaultWorkspace = DefaultWorkspace,
                 ApiTimeoutSeconds = (int)ApiTimeout.TotalSeconds,
                 ApiMaxRetries = ApiMaxRetries
             };
@@ -139,6 +143,7 @@ public class AppConfigData
     public string? GameDataPath { get; set; }
     public string? WorkspacesPath { get; set; }
     public string? MarketCachePath { get; set; }
+    public string? DefaultWorkspace { get; set; }
     public int ApiTimeoutSeconds { get; set; } = 30;
     public int ApiMaxRetries { get; set; } = 3;
 }

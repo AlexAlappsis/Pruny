@@ -9,6 +9,7 @@ public partial class Settings : CenterContainer
     private LineEdit? _apiKeyInput;
     private SpinBox? _timeoutInput;
     private SpinBox? _retriesInput;
+    private OptionButton? _defaultWorkspaceDropdown;
     private Button? _saveButton;
     private Button? _cancelButton;
     private Label? _statusLabel;
@@ -33,6 +34,7 @@ public partial class Settings : CenterContainer
             _apiKeyInput = GetNode<LineEdit>("VBoxContainer/ScrollContainer/SettingsContainer/ApiKeyInput");
             _timeoutInput = GetNode<SpinBox>("VBoxContainer/ScrollContainer/SettingsContainer/TimeoutInput");
             _retriesInput = GetNode<SpinBox>("VBoxContainer/ScrollContainer/SettingsContainer/RetriesInput");
+            _defaultWorkspaceDropdown = GetNode<OptionButton>("VBoxContainer/ScrollContainer/SettingsContainer/DefaultWorkspaceDropdown");
             _saveButton = GetNode<Button>("VBoxContainer/ButtonsContainer/SaveButton");
             _cancelButton = GetNode<Button>("VBoxContainer/ButtonsContainer/CancelButton");
             _statusLabel = GetNode<Label>("VBoxContainer/StatusLabel");
@@ -40,6 +42,7 @@ public partial class Settings : CenterContainer
             _saveButton.Pressed += OnSavePressed;
             _cancelButton.Pressed += OnCancelPressed;
 
+            PopulateWorkspaceDropdown();
             LoadSettings();
             GD.Print("Settings: Initialization complete");
         }
@@ -47,6 +50,29 @@ public partial class Settings : CenterContainer
         {
             GD.PrintErr($"Settings: Error during initialization - {ex.Message}");
             GD.PrintErr($"Settings: Stack trace - {ex.StackTrace}");
+        }
+    }
+
+    private void PopulateWorkspaceDropdown()
+    {
+        if (_defaultWorkspaceDropdown == null)
+            return;
+
+        _defaultWorkspaceDropdown.Clear();
+        _defaultWorkspaceDropdown.AddItem("(None)", 0);
+
+        var sessionManager = GetNode<SessionManager>("/root/SessionManager");
+        if (sessionManager?.DataManager == null)
+        {
+            GD.PrintErr("Settings: SessionManager or DataManager not available");
+            return;
+        }
+
+        var workspaces = sessionManager.DataManager.ListWorkspaces();
+        for (int i = 0; i < workspaces.Length; i++)
+        {
+            var displayName = workspaces[i].Replace(".workspace.json", "");
+            _defaultWorkspaceDropdown.AddItem(displayName, i + 1);
         }
     }
 
@@ -66,6 +92,24 @@ public partial class Settings : CenterContainer
         if (_retriesInput != null)
             _retriesInput.Value = config.ApiMaxRetries;
 
+        if (_defaultWorkspaceDropdown != null)
+        {
+            if (string.IsNullOrWhiteSpace(config.DefaultWorkspace))
+            {
+                _defaultWorkspaceDropdown.Selected = 0;
+            }
+            else
+            {
+                var sessionManager = GetNode<SessionManager>("/root/SessionManager");
+                if (sessionManager?.DataManager != null)
+                {
+                    var workspaces = sessionManager.DataManager.ListWorkspaces();
+                    var index = System.Array.FindIndex(workspaces, w => w == config.DefaultWorkspace);
+                    _defaultWorkspaceDropdown.Selected = index >= 0 ? index + 1 : 0;
+                }
+            }
+        }
+
         SetStatus("");
     }
 
@@ -84,6 +128,27 @@ public partial class Settings : CenterContainer
             config.PrUnPlannerApiKey = _apiKeyInput?.Text ?? config.PrUnPlannerApiKey;
             config.ApiTimeout = TimeSpan.FromSeconds(_timeoutInput?.Value ?? 30);
             config.ApiMaxRetries = (int)(_retriesInput?.Value ?? 3);
+
+            if (_defaultWorkspaceDropdown != null)
+            {
+                var selectedIndex = _defaultWorkspaceDropdown.Selected;
+                if (selectedIndex == 0)
+                {
+                    config.DefaultWorkspace = null;
+                }
+                else
+                {
+                    var sessionManager = GetNode<SessionManager>("/root/SessionManager");
+                    if (sessionManager?.DataManager != null)
+                    {
+                        var workspaces = sessionManager.DataManager.ListWorkspaces();
+                        if (selectedIndex - 1 < workspaces.Length)
+                        {
+                            config.DefaultWorkspace = workspaces[selectedIndex - 1];
+                        }
+                    }
+                }
+            }
 
             config.Save();
 
