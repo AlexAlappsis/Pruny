@@ -1,0 +1,20 @@
+# Godot 4+ specific ignores
+.godot/
+.mono/
+
+# Godot-specific
+*.translation
+*.import
+
+# C# / Visual Studio cache/options
+.vs/
+*.csproj.user
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+bin/
+obj/
+
+# Mono-specific ignores
+mono_crash.*
