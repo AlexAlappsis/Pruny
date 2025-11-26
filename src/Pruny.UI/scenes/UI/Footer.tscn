@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfxqy7h8vmwxqv"]
+
+[ext_resource type="Script" path="res://scripts/UI/Footer.cs" id="1_footer"]
+
+[node name="Footer" type="HBoxContainer" groups=["footer"]]
+offset_top = 670.0
+offset_right = 1280.0
+offset_bottom = 720.0
+script = ExtResource("1_footer")
+
+[node name="StatusLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ready"
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+show_percentage = false
+indeterminate = true

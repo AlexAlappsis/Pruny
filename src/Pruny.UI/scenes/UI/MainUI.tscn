@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8vwxqxqxqxab"]
+
+[ext_resource type="Script" path="res://scripts/UI/MainUI.cs" id="1_mainui"]
+[ext_resource type="PackedScene" uid="uid://cxqy7h8vmwxqv" path="res://scenes/UI/Header.tscn" id="2_header"]
+[ext_resource type="PackedScene" uid="uid://dfxqy7h8vmwxqv" path="res://scenes/UI/Dashboard.tscn" id="3_dashboard"]
+[ext_resource type="PackedScene" uid="uid://bfxqy7h8vmwxqv" path="res://scenes/UI/Footer.tscn" id="4_footer"]
+[ext_resource type="PackedScene" uid="uid://cgxqy7h8vmwxqv" path="res://scenes/UI/WorkspaceManager.tscn" id="5_workspace"]
+
+[node name="MainUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mainui")
+DashboardScene = ExtResource("3_dashboard")
+WorkspaceManagerScene = ExtResource("5_workspace")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" parent="VBoxContainer" instance=ExtResource("2_header")]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ContentContainer" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Footer" parent="VBoxContainer" instance=ExtResource("4_footer")]
+layout_mode = 2

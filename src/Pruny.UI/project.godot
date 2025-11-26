@@ -12,13 +12,18 @@ config_version=5
 
 config/name="Pruny"
 config/description="Production cost calculator for Prosperous Universe"
-run/main_scene="res://scenes/Main.tscn"
+run/main_scene="res://scenes/UI/MainUI.tscn"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 SessionManager="*res://scripts/SessionManager.cs"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
 
 [dotnet]
 
