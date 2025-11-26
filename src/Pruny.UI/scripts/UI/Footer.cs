@@ -6,11 +6,18 @@ public partial class Footer : HBoxContainer
 {
     private Label? _statusLabel;
     private ProgressBar? _progressBar;
+    private Godot.Timer? _errorTimer;
 
     public override void _Ready()
     {
         _statusLabel = GetNode<Label>("StatusLabel");
         _progressBar = GetNode<ProgressBar>("ProgressBar");
+
+        _errorTimer = new Godot.Timer();
+        _errorTimer.WaitTime = 5.0;
+        _errorTimer.OneShot = true;
+        _errorTimer.Timeout += OnErrorTimeout;
+        AddChild(_errorTimer);
 
         var sessionManager = GetNode<SessionManager>("/root/SessionManager");
         if (sessionManager != null)
@@ -51,12 +58,18 @@ public partial class Footer : HBoxContainer
 
     private void OnCalculationError(string errorMessage)
     {
-        SetStatus($"Error: {errorMessage}");
+        SetStatusError($"Error: {errorMessage}");
+        _errorTimer?.Start();
     }
 
     private void OnPricesUpdated(int materialCount, string timestamp, string source)
     {
-        SetStatus($"Prices updated: {materialCount} materials from {source}");
+        SetStatusSuccess($"Prices updated: {materialCount} materials from {source}");
+    }
+
+    private void OnErrorTimeout()
+    {
+        SetStatus("Ready");
     }
 
     public void SetStatus(string message)
@@ -64,6 +77,25 @@ public partial class Footer : HBoxContainer
         if (_statusLabel != null)
         {
             _statusLabel.Text = message;
+            _statusLabel.AddThemeColorOverride("font_color", new Color(1, 1, 1));
+        }
+    }
+
+    public void SetStatusError(string message)
+    {
+        if (_statusLabel != null)
+        {
+            _statusLabel.Text = message;
+            _statusLabel.AddThemeColorOverride("font_color", new Color(1, 0.3f, 0.3f));
+        }
+    }
+
+    public void SetStatusSuccess(string message)
+    {
+        if (_statusLabel != null)
+        {
+            _statusLabel.Text = message;
+            _statusLabel.AddThemeColorOverride("font_color", new Color(0.3f, 1, 0.3f));
         }
     }
 

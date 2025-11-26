@@ -53,6 +53,9 @@ public partial class Dashboard : CenterContainer
         if (sessionManager?.Session == null)
         {
             GD.PrintErr("Dashboard: No session available");
+            Dialogs.ErrorDialog.Show(this, "No Session",
+                "Cannot refresh market data because no session is available.",
+                null);
             return;
         }
 
@@ -62,9 +65,26 @@ public partial class Dashboard : CenterContainer
             await sessionManager.Session.RefreshMarketDataFromApiAsync();
             GD.Print("Dashboard: Market data refresh complete");
         }
+        catch (HttpRequestException ex)
+        {
+            GD.PrintErr($"Dashboard: Network error while refreshing market data - {ex.Message}");
+            Dialogs.ErrorDialog.Show(this, "Network Error",
+                "Failed to connect to the market data API. Please check your internet connection.",
+                $"{ex.GetType().Name}: {ex.Message}");
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            GD.PrintErr($"Dashboard: Authentication error - {ex.Message}");
+            Dialogs.ErrorDialog.Show(this, "Authentication Failed",
+                "Failed to authenticate with the market data API. Please check your API key in settings.",
+                ex.Message);
+        }
         catch (Exception ex)
         {
             GD.PrintErr($"Dashboard: Failed to refresh market data - {ex.Message}");
+            Dialogs.ErrorDialog.Show(this, "Market Data Refresh Failed",
+                "An unexpected error occurred while refreshing market data.",
+                $"{ex.GetType().Name}: {ex.Message}");
         }
     }
 

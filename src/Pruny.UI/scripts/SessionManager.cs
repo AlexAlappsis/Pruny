@@ -88,9 +88,35 @@ public partial class SessionManager : Node
             _dataManager?.LoadGameData();
             GD.Print("SessionManager: Game data loaded on startup");
         }
+        catch (FileNotFoundException ex)
+        {
+            GD.PrintErr($"SessionManager: Game data file not found - {ex.Message}");
+            CallDeferred(nameof(ShowGameDataError), "Game Data Not Found",
+                "The game data file could not be found. The application cannot continue without it.",
+                ex.Message);
+        }
+        catch (InvalidDataException ex)
+        {
+            GD.PrintErr($"SessionManager: Game data file is corrupt - {ex.Message}");
+            CallDeferred(nameof(ShowGameDataError), "Corrupt Game Data",
+                "The game data file is corrupted or invalid. The application cannot continue without valid game data.",
+                ex.Message);
+        }
         catch (Exception ex)
         {
             GD.PrintErr($"SessionManager: Failed to load game data on startup - {ex.Message}");
+            CallDeferred(nameof(ShowGameDataError), "Failed to Load Game Data",
+                "An unexpected error occurred while loading game data. The application cannot continue.",
+                $"{ex.GetType().Name}: {ex.Message}");
+        }
+    }
+
+    private void ShowGameDataError(string title, string message, string details)
+    {
+        var mainUI = GetTree().Root.GetNode<Control>("MainUI");
+        if (mainUI != null)
+        {
+            Dialogs.ErrorDialog.Show(mainUI, title, message, details);
         }
     }
 

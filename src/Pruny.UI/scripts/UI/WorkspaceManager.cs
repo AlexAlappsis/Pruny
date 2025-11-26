@@ -109,6 +109,9 @@ public partial class WorkspaceManager : CenterContainer
         catch (Exception ex)
         {
             GD.PrintErr($"WorkspaceManager: Failed to create workspace - {ex.Message}");
+            Dialogs.ErrorDialog.Show(this, "Failed to Create Workspace",
+                "An error occurred while creating the workspace.",
+                $"{ex.GetType().Name}: {ex.Message}");
         }
     }
 
@@ -134,9 +137,27 @@ public partial class WorkspaceManager : CenterContainer
 
             _mainUI?.LoadDashboard();
         }
+        catch (FileNotFoundException ex)
+        {
+            GD.PrintErr($"WorkspaceManager: Workspace file not found - {ex.Message}");
+            Dialogs.ErrorDialog.Show(this, "Workspace Not Found",
+                $"The workspace file '{filename}' could not be found.",
+                ex.Message);
+        }
+        catch (InvalidDataException ex)
+        {
+            GD.PrintErr($"WorkspaceManager: Workspace file is corrupt - {ex.Message}");
+            Dialogs.ErrorDialog.Show(this, "Corrupt Workspace File",
+                $"The workspace file '{filename}' is corrupted or invalid. You may need to create a new workspace.",
+                ex.Message);
+            RefreshWorkspaceList();
+        }
         catch (Exception ex)
         {
             GD.PrintErr($"WorkspaceManager: Failed to load workspace - {ex.Message}");
+            Dialogs.ErrorDialog.Show(this, "Failed to Load Workspace",
+                "An unexpected error occurred while loading the workspace.",
+                $"{ex.GetType().Name}: {ex.Message}");
         }
     }
 
