@@ -16,6 +16,10 @@ run/main_scene="res://scenes/Main.tscn"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SessionManager="*res://scripts/SessionManager.cs"
+
 [dotnet]
 
 project/assembly_name="Pruny.UI"
