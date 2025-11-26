@@ -1,0 +1,89 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0wkrpq6voas8"]
+
+[ext_resource type="Script" path="res://scripts/UI/Settings.cs" id="1_settings"]
+
+[node name="Settings" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_settings")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+custom_minimum_size = Vector2(600, 0)
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SettingsContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ApiUrlLabel" type="Label" parent="VBoxContainer/ScrollContainer/SettingsContainer"]
+layout_mode = 2
+text = "PrUnPlanner API URL:"
+
+[node name="ApiUrlInput" type="LineEdit" parent="VBoxContainer/ScrollContainer/SettingsContainer"]
+layout_mode = 2
+placeholder_text = "https://rest.fnar.net"
+
+[node name="ApiKeyLabel" type="Label" parent="VBoxContainer/ScrollContainer/SettingsContainer"]
+layout_mode = 2
+text = "PrUnPlanner API Key:"
+
+[node name="ApiKeyInput" type="LineEdit" parent="VBoxContainer/ScrollContainer/SettingsContainer"]
+layout_mode = 2
+secret = true
+placeholder_text = "Enter your API key"
+
+[node name="TimeoutLabel" type="Label" parent="VBoxContainer/ScrollContainer/SettingsContainer"]
+layout_mode = 2
+text = "API Timeout (seconds):"
+
+[node name="TimeoutInput" type="SpinBox" parent="VBoxContainer/ScrollContainer/SettingsContainer"]
+layout_mode = 2
+min_value = 1.0
+max_value = 300.0
+value = 30.0
+
+[node name="RetriesLabel" type="Label" parent="VBoxContainer/ScrollContainer/SettingsContainer"]
+layout_mode = 2
+text = "Max API Retries:"
+
+[node name="RetriesInput" type="SpinBox" parent="VBoxContainer/ScrollContainer/SettingsContainer"]
+layout_mode = 2
+max_value = 10.0
+value = 3.0
+
+[node name="StatusLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="SaveButton" type="Button" parent="VBoxContainer/ButtonsContainer"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+text = "Save"
+
+[node name="CancelButton" type="Button" parent="VBoxContainer/ButtonsContainer"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+text = "Cancel"

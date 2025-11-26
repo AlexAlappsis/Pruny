@@ -13,6 +13,9 @@ public partial class MainUI : Control
     [Export]
     public PackedScene? WorkspaceManagerScene { get; set; }
 
+    [Export]
+    public PackedScene? SettingsScene { get; set; }
+
     public override void _Ready()
     {
         _contentContainer = GetNode<Control>("VBoxContainer/ContentContainer");
@@ -40,6 +43,17 @@ public partial class MainUI : Control
         }
 
         LoadContent(WorkspaceManagerScene);
+    }
+
+    public void LoadSettings()
+    {
+        if (SettingsScene == null)
+        {
+            GD.PrintErr("MainUI: Settings scene not assigned");
+            return;
+        }
+
+        LoadContent(SettingsScene);
     }
 
     private void LoadContent(PackedScene scene)

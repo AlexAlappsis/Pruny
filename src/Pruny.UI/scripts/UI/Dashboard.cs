@@ -90,6 +90,6 @@ public partial class Dashboard : CenterContainer
 
     private void OnSettingsPressed()
     {
-        GD.Print("Settings - Coming soon!");
+        _mainUI?.LoadSettings();
     }
 }
