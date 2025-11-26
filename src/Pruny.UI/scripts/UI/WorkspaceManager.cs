@@ -13,7 +13,16 @@ public partial class WorkspaceManager : CenterContainer
 
     public override void _Ready()
     {
-        _mainUI = GetParent()?.GetParent() as MainUI;
+        _mainUI = GetParent()?.GetParent()?.GetParent() as MainUI;
+
+        if (_mainUI == null)
+        {
+            GD.PrintErr("WorkspaceManager: Could not find MainUI in parent chain");
+        }
+        else
+        {
+            GD.Print("WorkspaceManager: Successfully found MainUI");
+        }
 
         _workspaceList = GetNode<VBoxContainer>("VBoxContainer/ScrollContainer/WorkspaceList");
         _createButton = GetNode<Button>("VBoxContainer/ButtonsContainer/CreateButton");

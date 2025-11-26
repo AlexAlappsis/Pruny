@@ -8,7 +8,16 @@ public partial class Dashboard : CenterContainer
 
     public override void _Ready()
     {
-        _mainUI = GetParent()?.GetParent() as MainUI;
+        _mainUI = GetParent()?.GetParent()?.GetParent() as MainUI;
+
+        if (_mainUI == null)
+        {
+            GD.PrintErr("Dashboard: Could not find MainUI in parent chain");
+        }
+        else
+        {
+            GD.Print("Dashboard: Successfully found MainUI");
+        }
 
         var workspacesButton = GetNode<Button>("VBoxContainer/WorkspacesButton");
         var productionLinesButton = GetNode<Button>("VBoxContainer/ProductionLinesButton");
