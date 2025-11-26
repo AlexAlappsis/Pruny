@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0wkrpq6voas8"]
+[gd_scene load_steps=2 format=3 uid="uid://tmydagu0ar8u"]
 
-[ext_resource type="Script" path="res://scripts/UI/Settings.cs" id="1_settings"]
+[ext_resource type="Script" uid="uid://bynrxcvyw1tqy" path="res://scripts/UI/Settings.cs" id="1_settings"]
 
 [node name="Settings" type="CenterContainer"]
 anchors_preset = 15
@@ -11,8 +11,8 @@ grow_vertical = 2
 script = ExtResource("1_settings")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 2
 custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
 
 [node name="TitleLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -23,6 +23,7 @@ horizontal_alignment = 1
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -45,7 +46,6 @@ text = "PrUnPlanner API Key:"
 
 [node name="ApiKeyInput" type="LineEdit" parent="VBoxContainer/ScrollContainer/SettingsContainer"]
 layout_mode = 2
-secret = true
 placeholder_text = "Enter your API key"
 
 [node name="TimeoutLabel" type="Label" parent="VBoxContainer/ScrollContainer/SettingsContainer"]
