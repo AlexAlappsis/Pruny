@@ -302,8 +302,7 @@ static Dictionary<string, WorkforceTypeOutput> BuildWorkforceTypes(Dictionary<st
             set[worker.WorkforceType] = new WorkforceTypeOutput
             {
                 Id = worker.WorkforceType,
-                Name = worker.WorkforceType,
-                Tier = 0
+                Name = worker.WorkforceType
             };
         }
     }
@@ -455,5 +454,4 @@ internal class WorkforceTypeOutput
 {
     public required string Id { get; init; }
     public required string Name { get; init; }
-    public int Tier { get; init; }
 }
