@@ -2,7 +2,7 @@
   "Materials": {
     "AAR": {
       "Id": "AAR",
-      "Name": "antennaArray",
+      "Name": "Antenna Array",
       "Ticker": "AAR",
       "CategoryId": "19d621bb3f297c0425e34cdf0b138ece",
       "CategoryName": "electronic devices",
@@ -11,7 +11,7 @@
     },
     "ABH": {
       "Id": "ABH",
-      "Name": "advancedBulkhead",
+      "Name": "Advanced Bulkhead",
       "Ticker": "ABH",
       "CategoryId": "ef423f673d9e8c82043b4c5c63f6b55e",
       "CategoryName": "construction prefabs",
@@ -20,7 +20,7 @@
     },
     "ACS": {
       "Id": "ACS",
-      "Name": "automatedCoolingSystem",
+      "Name": "Automated Cooling System",
       "Ticker": "ACS",
       "CategoryId": "1e1a3a579c46d5f9c4e9959650c6b7a3",
       "CategoryName": "electronic systems",
@@ -29,7 +29,7 @@
     },
     "ADE": {
       "Id": "ADE",
-      "Name": "advancedDeckElements",
+      "Name": "Advanced Deck Elements",
       "Ticker": "ADE",
       "CategoryId": "ef423f673d9e8c82043b4c5c63f6b55e",
       "CategoryName": "construction prefabs",
@@ -38,7 +38,7 @@
     },
     "ADR": {
       "Id": "ADR",
-      "Name": "autoDoc",
+      "Name": "Auto Doc",
       "Ticker": "ADR",
       "CategoryId": "ef05c6b81cf109f142dd415ce6d36e67",
       "CategoryName": "medical equipment",
@@ -47,7 +47,7 @@
     },
     "ADS": {
       "Id": "ADS",
-      "Name": "audioDistributionSystem",
+      "Name": "Audio Distribution System",
       "Ticker": "ADS",
       "CategoryId": "1e1a3a579c46d5f9c4e9959650c6b7a3",
       "CategoryName": "electronic systems",
@@ -56,7 +56,7 @@
     },
     "AEF": {
       "Id": "AEF",
-      "Name": "aerostatFoundation",
+      "Name": "Aerostat Foundation",
       "Ticker": "AEF",
       "CategoryId": "f8aebc7dd84ce14fae131aa0203d4498",
       "CategoryName": "construction parts",
@@ -65,7 +65,7 @@
     },
     "AEN": {
       "Id": "AEN",
-      "Name": "advancedEngine",
+      "Name": "Advanced Engine",
       "Ticker": "AEN",
       "CategoryId": "16b943147bb16fe84c0d62de8a4316a7",
       "CategoryName": "ship engines",
@@ -74,7 +74,7 @@
     },
     "AFP": {
       "Id": "AFP",
-      "Name": "advancedFuelPump",
+      "Name": "Advanced Fuel Pump",
       "Ticker": "AFP",
       "CategoryId": "16b943147bb16fe84c0d62de8a4316a7",
       "CategoryName": "ship engines",
@@ -83,7 +83,7 @@
     },
     "AFR": {
       "Id": "AFR",
-      "Name": "advancedFuelRod",
+      "Name": "Advanced Fuel Rod",
       "Ticker": "AFR",
       "CategoryId": "16b943147bb16fe84c0d62de8a4316a7",
       "CategoryName": "ship engines",
@@ -92,7 +92,7 @@
     },
     "AGS": {
       "Id": "AGS",
-      "Name": "advancedHighgSeats",
+      "Name": "Advanced Highg Seats",
       "Ticker": "AGS",
       "CategoryId": "d23b9225010ad7978e5496e55359e19b",
       "CategoryName": "ship parts",
@@ -101,7 +101,7 @@
     },
     "AHP": {
       "Id": "AHP",
-      "Name": "advancedHullPlate",
+      "Name": "Advanced Hull Plate",
       "Ticker": "AHP",
       "CategoryId": "d23b9225010ad7978e5496e55359e19b",
       "CategoryName": "ship parts",
@@ -110,7 +110,7 @@
     },
     "AIR": {
       "Id": "AIR",
-      "Name": "airScrubber",
+      "Name": "Air Scrubber",
       "Ticker": "AIR",
       "CategoryId": "f8aebc7dd84ce14fae131aa0203d4498",
       "CategoryName": "construction parts",
@@ -119,7 +119,7 @@
     },
     "AL": {
       "Id": "AL",
-      "Name": "aluminium",
+      "Name": "Aluminium",
       "Ticker": "AL",
       "CategoryId": "cae48680d4c4e6f98d593a8c3778cb56",
       "CategoryName": "metals",
@@ -128,7 +128,7 @@
     },
     "ALE": {
       "Id": "ALE",
-      "Name": "technicianLuxuryDrink",
+      "Name": "Technician Luxury Drink",
       "Ticker": "ALE",
       "CategoryId": "8a0bd8b6a329c3d632da9da63c818b3d",
       "CategoryName": "consumables (luxury)",
@@ -137,7 +137,7 @@
     },
     "ALG": {
       "Id": "ALG",
-      "Name": "proteinAlgae",
+      "Name": "Protein Algae",
       "Ticker": "ALG",
       "CategoryId": "510e7751c0eb6a51fd0fa73565365d1c",
       "CategoryName": "agricultural products",
@@ -146,7 +146,7 @@
     },
     "ALO": {
       "Id": "ALO",
-      "Name": "aluminiumOre",
+      "Name": "Aluminium Ore",
       "Ticker": "ALO",
       "CategoryId": "4c0430b40fbf7fa175ed4a5a13682c6f",
       "CategoryName": "ores",
@@ -155,7 +155,7 @@
     },
     "ALR": {
       "Id": "ALR",
-      "Name": "alurhenium",
+      "Name": "Alurhenium",
       "Ticker": "ALR",
       "CategoryId": "37e95782d80aa1c1ded89f2c4b834dd0",
       "CategoryName": "alloys",
@@ -164,7 +164,7 @@
     },
     "AMM": {
       "Id": "AMM",
-      "Name": "ammonia",
+      "Name": "Ammonia",
       "Ticker": "AMM",
       "CategoryId": "54dec1e42eba44dda423dd774393326a",
       "CategoryName": "gases",
@@ -173,7 +173,7 @@
     },
     "ANZ": {
       "Id": "ANZ",
-      "Name": "advancedNozzle",
+      "Name": "Advanced Nozzle",
       "Ticker": "ANZ",
       "CategoryId": "16b943147bb16fe84c0d62de8a4316a7",
       "CategoryName": "ship engines",
@@ -182,7 +182,7 @@
     },
     "APT": {
       "Id": "APT",
-      "Name": "advancedHeatShield",
+      "Name": "Advanced Heat Shield",
       "Ticker": "APT",
       "CategoryId": "a8e32e7e16219394989aea62fc0cd943",
       "CategoryName": "ship shields",
@@ -191,7 +191,7 @@
     },
     "AR": {
       "Id": "AR",
-      "Name": "argon",
+      "Name": "Argon",
       "Ticker": "AR",
       "CategoryId": "54dec1e42eba44dda423dd774393326a",
       "CategoryName": "gases",
@@ -200,7 +200,7 @@
     },
     "ARP": {
       "Id": "ARP",
-      "Name": "advancedRadiationShielding",
+      "Name": "Advanced Radiation Shielding",
       "Ticker": "ARP",
       "CategoryId": "a8e32e7e16219394989aea62fc0cd943",
       "CategoryName": "ship shields",
@@ -209,7 +209,7 @@
     },
     "ASE": {
       "Id": "ASE",
-      "Name": "advancedStructuralElements",
+      "Name": "Advanced Structural Elements",
       "Ticker": "ASE",
       "CategoryId": "ef423f673d9e8c82043b4c5c63f6b55e",
       "CategoryName": "construction prefabs",
@@ -218,7 +218,7 @@
     },
     "AST": {
       "Id": "AST",
-      "Name": "aluminiumTitaniumAlloy",
+      "Name": "Aluminium Titanium Alloy",
       "Ticker": "AST",
       "CategoryId": "37e95782d80aa1c1ded89f2c4b834dd0",
       "CategoryName": "alloys",
@@ -227,7 +227,7 @@
     },
     "ATA": {
       "Id": "ATA",
-      "Name": "advancedWindow",
+      "Name": "Advanced Window",
       "Ticker": "ATA",
       "CategoryId": "ef423f673d9e8c82043b4c5c63f6b55e",
       "CategoryName": "construction prefabs",
@@ -236,7 +236,7 @@
     },
     "ATP": {
       "Id": "ATP",
-      "Name": "advancedThermalProtectionMaterial",
+      "Name": "Advanced Thermal Protection Material",
       "Ticker": "ATP",
       "CategoryId": "d23b9225010ad7978e5496e55359e19b",
       "CategoryName": "ship parts",
@@ -245,7 +245,7 @@
     },
     "AU": {
       "Id": "AU",
-      "Name": "gold",
+      "Name": "Gold",
       "Ticker": "AU",
       "CategoryId": "cae48680d4c4e6f98d593a8c3778cb56",
       "CategoryName": "metals",
@@ -254,7 +254,7 @@
     },
     "AUO": {
       "Id": "AUO",
-      "Name": "goldOre",
+      "Name": "Gold Ore",
       "Ticker": "AUO",
       "CategoryId": "4c0430b40fbf7fa175ed4a5a13682c6f",
       "CategoryName": "ores",
@@ -263,7 +263,7 @@
     },
     "AWF": {
       "Id": "AWF",
-      "Name": "waterFilter",
+      "Name": "Water Filter",
       "Ticker": "AWF",
       "CategoryId": "19d621bb3f297c0425e34cdf0b138ece",
       "CategoryName": "electronic devices",
@@ -272,7 +272,7 @@
     },
     "AWH": {
       "Id": "AWH",
-      "Name": "advancedWhippleShielding",
+      "Name": "Advanced Whipple Shielding",
       "Ticker": "AWH",
       "CategoryId": "a8e32e7e16219394989aea62fc0cd943",
       "CategoryName": "ship shields",
@@ -281,7 +281,7 @@
     },
     "BAC": {
       "Id": "BAC",
-      "Name": "bacteria",
+      "Name": "Bacteria",
       "Ticker": "BAC",
       "CategoryId": "9b32ea2333917ee2632ba7ae7675643f",
       "CategoryName": "chemicals",
@@ -290,7 +290,7 @@
     },
     "BAI": {
       "Id": "BAI",
-      "Name": "basicAiFramework",
+      "Name": "Basic Ai Framework",
       "Ticker": "BAI",
       "CategoryId": "ebec0c297d5b499a84dd051fa6f7c8ec",
       "CategoryName": "software components",
@@ -299,7 +299,7 @@
     },
     "BBH": {
       "Id": "BBH",
-      "Name": "basicBulkhead",
+      "Name": "Basic Bulkhead",
       "Ticker": "BBH",
       "CategoryId": "ef423f673d9e8c82043b4c5c63f6b55e",
       "CategoryName": "construction prefabs",
@@ -308,7 +308,7 @@
     },
     "BCO": {
       "Id": "BCO",
-      "Name": "copperConnectors",
+      "Name": "Copper Connectors",
       "Ticker": "BCO",
       "CategoryId": "5e022d8f199de1c70f8de4dfd2fdef64",
       "CategoryName": "electronic pieces",
@@ -317,7 +317,7 @@
     },
     "BDE": {
       "Id": "BDE",
-      "Name": "basicDeckElements",
+      "Name": "Basic Deck Elements",
       "Ticker": "BDE",
       "CategoryId": "ef423f673d9e8c82043b4c5c63f6b55e",
       "CategoryName": "construction prefabs",
@@ -326,7 +326,7 @@
     },
     "BE": {
       "Id": "BE",
-      "Name": "beryllium",
+      "Name": "Beryllium",
       "Ticker": "BE",
       "CategoryId": "ef1d03e7ef924395c2173fc4e4ee8a6f",
       "CategoryName": "elements",
@@ -335,7 +335,7 @@
     },
     "BEA": {
       "Id": "BEA",
-      "Name": "proteinBeans",
+      "Name": "Protein Beans",
       "Ticker": "BEA",
       "CategoryId": "510e7751c0eb6a51fd0fa73565365d1c",
       "CategoryName": "agricultural products",
@@ -344,7 +344,7 @@
     },
     "BER": {
       "Id": "BER",
-      "Name": "beryl",
+      "Name": "Beryl",
       "Ticker": "BER",
       "CategoryId": "79f3917448cc4f6034ece865c41aea34",
       "CategoryName": "minerals",
@@ -353,7 +353,7 @@
     },
     "BFP": {
       "Id": "BFP",
-      "Name": "basicFuelPump",
+      "Name": "Basic Fuel Pump",
       "Ticker": "BFP",
       "CategoryId": "16b943147bb16fe84c0d62de8a4316a7",
       "CategoryName": "ship engines",
@@ -362,7 +362,7 @@
     },
     "BFR": {
       "Id": "BFR",
-      "Name": "basicFuelRod",
+      "Name": "Basic Fuel Rod",
       "Ticker": "BFR",
       "CategoryId": "16b943147bb16fe84c0d62de8a4316a7",
       "CategoryName": "ship engines",
@@ -371,7 +371,7 @@
     },
     "BGC": {
       "Id": "BGC",
-      "Name": "blueGoldConnectors",
+      "Name": "Blue Gold Connectors",
       "Ticker": "BGC",
       "CategoryId": "5e022d8f199de1c70f8de4dfd2fdef64",
       "CategoryName": "electronic pieces",
@@ -380,7 +380,7 @@
     },
     "BGO": {
       "Id": "BGO",
-      "Name": "goldIronAlloy",
+      "Name": "Gold Iron Alloy",
       "Ticker": "BGO",
       "CategoryId": "37e95782d80aa1c1ded89f2c4b834dd0",
       "CategoryName": "alloys",
@@ -389,7 +389,7 @@
     },
     "BGS": {
       "Id": "BGS",
-      "Name": "basicHighgSeats",
+      "Name": "Basic Highg Seats",
       "Ticker": "BGS",
       "CategoryId": "d23b9225010ad7978e5496e55359e19b",
       "CategoryName": "ship parts",
@@ -398,7 +398,7 @@
     },
     "BHP": {
       "Id": "BHP",
-      "Name": "basicHullPlate",
+      "Name": "Basic Hull Plate",
       "Ticker": "BHP",
       "CategoryId": "d23b9225010ad7978e5496e55359e19b",
       "CategoryName": "ship parts",
@@ -407,7 +407,7 @@
     },
     "BID": {
       "Id": "BID",
-      "Name": "fullBodyInteractionDevice",
+      "Name": "Full Body Interaction Device",
       "Ticker": "BID",
       "CategoryId": "19d621bb3f297c0425e34cdf0b138ece",
       "CategoryName": "electronic devices",
@@ -416,7 +416,7 @@
     },
     "BL": {
       "Id": "BL",
-      "Name": "breathableLiquid",
+      "Name": "Breathable Liquid",
       "Ticker": "BL",
       "CategoryId": "9b32ea2333917ee2632ba7ae7675643f",
       "CategoryName": "chemicals",
@@ -425,7 +425,7 @@
     },
     "BLE": {
       "Id": "BLE",
-      "Name": "bleach",
+      "Name": "Bleach",
       "Ticker": "BLE",
       "CategoryId": "9b32ea2333917ee2632ba7ae7675643f",
       "CategoryName": "chemicals",
@@ -434,7 +434,7 @@
     },
     "BMF": {
       "Id": "BMF",
-      "Name": "mainFrameBlank",
+      "Name": "Main Frame Blank",
       "Ticker": "BMF",
       "CategoryId": "19d621bb3f297c0425e34cdf0b138ece",
       "CategoryName": "electronic devices",
@@ -443,7 +443,7 @@
     },
     "BND": {
       "Id": "BND",
-      "Name": "bandages",
+      "Name": "Bandages",
       "Ticker": "BND",
       "CategoryId": "ef05c6b81cf109f142dd415ce6d36e67",
       "CategoryName": "medical equipment",
@@ -452,7 +452,7 @@
     },
     "BOR": {
       "Id": "BOR",
-      "Name": "boronCrystals",
+      "Name": "Boron Crystals",
       "Ticker": "BOR",
       "CategoryId": "79f3917448cc4f6034ece865c41aea34",
       "CategoryName": "minerals",
@@ -461,7 +461,7 @@
     },
     "BOS": {
       "Id": "BOS",
-      "Name": "borosilicate",
+      "Name": "Borosilicate",
       "Ticker": "BOS",
       "CategoryId": "37e95782d80aa1c1ded89f2c4b834dd0",
       "CategoryName": "alloys",
@@ -470,7 +470,7 @@
     },
     "BPT": {
       "Id": "BPT",
-      "Name": "basicHeatShield",
+      "Name": "Basic Heat Shield",
       "Ticker": "BPT",
       "CategoryId": "a8e32e7e16219394989aea62fc0cd943",
       "CategoryName": "ship shields",
@@ -479,7 +479,7 @@
     },
     "BR1": {
       "Id": "BR1",
-      "Name": "commandBridge1",
+      "Name": "Command Bridge 1",
       "Ticker": "BR1",
       "CategoryId": "2c6ca18d24e03fc9250d8ca7d577568b",
       "CategoryName": "unit prefabs",
@@ -488,7 +488,7 @@
     },
     "BR2": {
       "Id": "BR2",
-      "Name": "commandBridge2",
+      "Name": "Command Bridge 2",
       "Ticker": "BR2",
       "CategoryId": "2c6ca18d24e03fc9250d8ca7d577568b",
       "CategoryName": "unit prefabs",
@@ -497,7 +497,7 @@
     },
     "BRM": {
       "Id": "BRM",
-      "Name": "bioreactiveMineral",
+      "Name": "Bioreactive Mineral",
       "Ticker": "BRM",
       "CategoryId": "79f3917448cc4f6034ece865c41aea34",
       "CategoryName": "minerals",
@@ -506,7 +506,7 @@
     },
     "BRO": {
       "Id": "BRO",
-      "Name": "copperAluminiumAlloy",
+      "Name": "Copper Aluminium Alloy",
       "Ticker": "BRO",
       "CategoryId": "37e95782d80aa1c1ded89f2c4b834dd0",
       "CategoryName": "alloys",
@@ -515,7 +515,7 @@
     },
     "BRP": {
       "Id": "BRP",
-      "Name": "basicRadiationShielding",
+      "Name": "Basic Radiation Shielding",
       "Ticker": "BRP",
       "CategoryId": "a8e32e7e16219394989aea62fc0cd943",
       "CategoryName": "ship shields",
@@ -524,7 +524,7 @@
     },
     "BRS": {
       "Id": "BRS",
-      "Name": "commandBridgeShort",
+      "Name": "Command Bridge Short",
       "Ticker": "BRS",
       "CategoryId": "2c6ca18d24e03fc9250d8ca7d577568b",
       "CategoryName": "unit prefabs",
@@ -533,7 +533,7 @@
     },
     "BSC": {
       "Id": "BSC",
-      "Name": "bodyScanner",
+      "Name": "Body Scanner",
       "Ticker": "BSC",
       "CategoryId": "19d621bb3f297c0425e34cdf0b138ece",
       "CategoryName": "electronic devices",
@@ -542,7 +542,7 @@
     },
     "BSE": {
       "Id": "BSE",
-      "Name": "basicStructuralElements",
+      "Name": "Basic Structural Elements",
       "Ticker": "BSE",
       "CategoryId": "ef423f673d9e8c82043b4c5c63f6b55e",
       "CategoryName": "construction prefabs",
@@ -551,7 +551,7 @@
     },
     "BSU": {
       "Id": "BSU",
-      "Name": "biosphereUnit",
+      "Name": "Biosphere Unit",
       "Ticker": "BSU",
       "CategoryId": "2c6ca18d24e03fc9250d8ca7d577568b",
       "CategoryName": "unit prefabs",
@@ -560,7 +560,7 @@
     },
     "BTA": {
       "Id": "BTA",
-      "Name": "basicWindow",
+      "Name": "Basic Window",
       "Ticker": "BTA",
       "CategoryId": "ef423f673d9e8c82043b4c5c63f6b55e",
       "CategoryName": "construction prefabs",
@@ -569,7 +569,7 @@
     },
     "BTS": {
       "Id": "BTS",
-      "Name": "tungstenResource",
+      "Name": "Tungsten Resource",
       "Ticker": "BTS",
       "CategoryId": "473218d3618453bf25d2cd0b5616a72f",
       "CategoryName": "liquids",
@@ -578,7 +578,7 @@
     },
     "BWH": {
       "Id": "BWH",
-      "Name": "basicWhippleShielding",
+      "Name": "Basic Whipple Shielding",
       "Ticker": "BWH",
       "CategoryId": "a8e32e7e16219394989aea62fc0cd943",
       "CategoryName": "ship shields",
@@ -587,7 +587,7 @@
     },
     "BWS": {
       "Id": "BWS",
-      "Name": "workstationBlank",
+      "Name": "Workstation Blank",
       "Ticker": "BWS",
       "CategoryId": "19d621bb3f297c0425e34cdf0b138ece",
       "CategoryName": "electronic devices",
@@ -596,7 +596,7 @@
     },
     "C": {
       "Id": "C",
-      "Name": "carbon",
+      "Name": "Carbon",
       "Ticker": "C",
       "CategoryId": "ef1d03e7ef924395c2173fc4e4ee8a6f",
       "CategoryName": "elements",
@@ -605,7 +605,7 @@
     },
     "CA": {
       "Id": "CA",
-      "Name": "calcium",
+      "Name": "Calcium",
       "Ticker": "CA",
       "CategoryId": "ef1d03e7ef924395c2173fc4e4ee8a6f",
       "CategoryName": "elements",
@@ -614,7 +614,7 @@
     },
     "CAF": {
       "Id": "CAF",
-      "Name": "caffeinatedBeans",
+      "Name": "Caffeinated Beans",
       "Ticker": "CAF",
       "CategoryId": "510e7751c0eb6a51fd0fa73565365d1c",
       "CategoryName": "agricultural products",
@@ -623,7 +623,7 @@
     },
     "CAP": {
       "Id": "CAP",
-      "Name": "capacitor",
+      "Name": "Capacitor",
       "Ticker": "CAP",
       "CategoryId": "5e022d8f199de1c70f8de4dfd2fdef64",
       "CategoryName": "electronic pieces",
@@ -632,7 +632,7 @@
     },
     "CBL": {
       "Id": "CBL",
-      "Name": "largeCapacitorBank",
+      "Name": "Large Capacitor Bank",
       "Ticker": "CBL",
       "CategoryId": "0509ed0a396f5a004d24ef08e33786fb",
       "CategoryName": "energy systems",
@@ -641,7 +641,7 @@
     },
     "CBM": {
       "Id": "CBM",
-      "Name": "mediumCapacitorBank",
+      "Name": "Medium Capacitor Bank",
       "Ticker": "CBM",
       "CategoryId": "0509ed0a396f5a004d24ef08e33786fb",
       "CategoryName": "energy systems",
@@ -650,7 +650,7 @@
     },
     "CBS": {
       "Id": "CBS",
-      "Name": "smallCapacitorBank",
+      "Name": "Small Capacitor Bank",
       "Ticker": "CBS",
       "CategoryId": "0509ed0a396f5a004d24ef08e33786fb",
       "CategoryName": "energy systems",
@@ -659,7 +659,7 @@
     },
     "CBU": {
       "Id": "CBU",
-      "Name": "scientistBundle",
+      "Name": "Scientist Bundle",
       "Ticker": "CBU",
       "CategoryId": "1237e1d7ac57367e39b6a2406ca4dadc",
       "CategoryName": "consumable bundles",
@@ -668,7 +668,7 @@
     },
     "CC": {
       "Id": "CC",
-      "Name": "climateController",
+      "Name": "Climate Controller",
       "Ticker": "CC",
       "CategoryId": "1e1a3a579c46d5f9c4e9959650c6b7a3",
       "CategoryName": "electronic systems",
@@ -677,7 +677,7 @@
     },
     "CCD": {
       "Id": "CCD",
-      "Name": "crowdControlDrone",
+      "Name": "Crowd Control Drone",
       "Ticker": "CCD",
       "CategoryId": "6eb09f14ed9fec3d0407114be8bc8882",
       "CategoryName": "drones",
@@ -686,7 +686,7 @@
     },
     "CD": {
       "Id": "CD",
-      "Name": "touchScreen",
+      "Name": "Touch Screen",
       "Ticker": "CD",
       "CategoryId": "8e15000dfbda2f46ce73458deaeeb358",
       "CategoryName": "electronic parts",
@@ -695,7 +695,7 @@
     },
     "CF": {
       "Id": "CF",
-      "Name": "ceramicFabric",
+      "Name": "Ceramic Fabric",
       "Ticker": "CF",
       "CategoryId": "7028d7d532ccd4c6c878b069e7bbb634",
       "CategoryName": "textiles",
@@ -704,7 +704,7 @@
     },
     "CHA": {
       "Id": "CHA",
-      "Name": "combustionChamber",
+      "Name": "Combustion Chamber",
       "Ticker": "CHA",
       "CategoryId": "16b943147bb16fe84c0d62de8a4316a7",
       "CategoryName": "ship engines",
@@ -713,7 +713,7 @@
     },
     "CL": {
       "Id": "CL",
-      "Name": "chlorine",
+      "Name": "Chlorine",
       "Ticker": "CL",
       "CategoryId": "ef1d03e7ef924395c2173fc4e4ee8a6f",
       "CategoryName": "elements",
@@ -722,7 +722,7 @@
     },
     "CLI": {
       "Id": "CLI",
-      "Name": "caliche",
+      "Name": "Caliche",
       "Ticker": "CLI",
       "CategoryId": "79f3917448cc4f6034ece865c41aea34",
       "CategoryName": "minerals",
@@ -731,7 +731,7 @@
     },
     "CMK": {
       "Id": "CMK",
-      "Name": "coreModuleKit",
+      "Name": "Core Module Kit",
       "Ticker": "CMK",
       "CategoryId": "156bbcce730fba6169338d560f05fd26",
       "CategoryName": "construction materials",
@@ -740,7 +740,7 @@
     },
     "COF": {
       "Id": "COF",
-      "Name": "pioneerLuxuryDrink",
+      "Name": "Pioneer Luxury Drink",
       "Ticker": "COF",
       "CategoryId": "8a0bd8b6a329c3d632da9da63c818b3d",
       "CategoryName": "consumables (luxury)",
@@ -749,7 +749,7 @@
     },
     "COM": {
       "Id": "COM",
-      "Name": "communicationSystem",
+      "Name": "Communication System",
       "Ticker": "COM",
       "CategoryId": "1e1a3a579c46d5f9c4e9959650c6b7a3",
       "CategoryName": "electronic systems",
@@ -758,7 +758,7 @@
     },
     "COT": {
       "Id": "COT",
-      "Name": "cottonProcessed",
+      "Name": "Cotton Processed",
       "Ticker": "COT",
       "CategoryId": "7028d7d532ccd4c6c878b069e7bbb634",
       "CategoryName": "textiles",
@@ -767,7 +767,7 @@
     },
     "CPU": {
       "Id": "CPU",
-      "Name": "cryopreservationUnit",
+      "Name": "Cryopreservation Unit",
       "Ticker": "CPU",
       "CategoryId": "2c6ca18d24e03fc9250d8ca7d577568b",
       "CategoryName": "unit prefabs",
@@ -776,7 +776,7 @@
     },
     "CQL": {
       "Id": "CQL",
-      "Name": "crewQuarters",
+      "Name": "Crew Quarters",
       "Ticker": "CQL",
       "CategoryId": "2c6ca18d24e03fc9250d8ca7d577568b",
       "CategoryName": "unit prefabs",
@@ -785,7 +785,7 @@
     },
     "CQM": {
       "Id": "CQM",
-      "Name": "crewQuartersMed",
+      "Name": "Crew Quarters Med",
       "Ticker": "CQM",
       "CategoryId": "2c6ca18d24e03fc9250d8ca7d577568b",
       "CategoryName": "unit prefabs",
@@ -794,7 +794,7 @@
     },
     "CQS": {
       "Id": "CQS",
-      "Name": "crewQuartersSmall",
+      "Name": "Crew Quarters Small",
       "Ticker": "CQS",
       "CategoryId": "2c6ca18d24e03fc9250d8ca7d577568b",
       "CategoryName": "unit prefabs",
@@ -803,7 +803,7 @@
     },
     "CQT": {
       "Id": "CQT",
-      "Name": "crewQuartersTiny",
+      "Name": "Crew Quarters Tiny",
       "Ticker": "CQT",
       "CategoryId": "2c6ca18d24e03fc9250d8ca7d577568b",
       "CategoryName": "unit prefabs",
@@ -812,7 +812,7 @@
     },
     "CRU": {
       "Id": "CRU",
-      "Name": "cryoUnit",
+      "Name": "Cryo Unit",
       "Ticker": "CRU",
       "CategoryId": "1e1a3a579c46d5f9c4e9959650c6b7a3",
       "CategoryName": "electronic systems",
@@ -821,7 +821,7 @@
     },
     "CST": {
       "Id": "CST",
-      "Name": "cryogenicFluid",
+      "Name": "Cryogenic Fluid",
       "Ticker": "CST",
       "CategoryId": "9b32ea2333917ee2632ba7ae7675643f",
       "CategoryName": "chemicals",
@@ -830,7 +830,7 @@
     },
     "CTF": {
       "Id": "CTF",
-      "Name": "ceramicTungstenFabric",
+      "Name": "Ceramic Tungsten Fabric",
       "Ticker": "CTF",
       "CategoryId": "7028d7d532ccd4c6c878b069e7bbb634",
       "CategoryName": "textiles",
@@ -839,7 +839,7 @@
     },
     "CU": {
       "Id": "CU",
-      "Name": "copper",
+      "Name": "Copper",
       "Ticker": "CU",
       "CategoryId": "cae48680d4c4e6f98d593a8c3778cb56",
       "CategoryName": "metals",
@@ -848,7 +848,7 @@
     },
     "CUO": {
       "Id": "CUO",
-      "Name": "copperOre",
+      "Name": "Copper Ore",
       "Ticker": "CUO",
       "CategoryId": "4c0430b40fbf7fa175ed4a5a13682c6f",
       "CategoryName": "ores",
@@ -857,7 +857,7 @@
     },
     "DA": {
       "Id": "DA",
-      "Name": "dataAnalyzer",
+      "Name": "Data Analyzer",
       "Ticker": "DA",
       "CategoryId": "1dfe943824ceb52d332b4650ce457218",
       "CategoryName": "software tools",
@@ -866,7 +866,7 @@
     },
     "DCH": {
       "Id": "DCH",
-      "Name": "droneChassis",
+      "Name": "Drone Chassis",
       "Ticker": "DCH",
       "CategoryId": "6eb09f14ed9fec3d0407114be8bc8882",
       "CategoryName": "drones",
@@ -875,7 +875,7 @@
     },
     "DCL": {
       "Id": "DCL",
-      "Name": "largeDeviceCover",
+      "Name": "Large Device Cover",
       "Ticker": "DCL",
       "CategoryId": "6316282906a9f68b0c7bb4396a26aa95",
       "CategoryName": "plastics",
@@ -884,7 +884,7 @@
     },
     "DCM": {
       "Id": "DCM",
-      "Name": "mediumDeviceCover",
+      "Name": "Medium Device Cover",
       "Ticker": "DCM",
       "CategoryId": "6316282906a9f68b0c7bb4396a26aa95",
       "CategoryName": "plastics",
@@ -893,7 +893,7 @@
     },
     "DCS": {
       "Id": "DCS",
-      "Name": "smallDeviceCover",
+      "Name": "Small Device Cover",
       "Ticker": "DCS",
       "CategoryId": "6316282906a9f68b0c7bb4396a26aa95",
       "CategoryName": "plastics",
@@ -902,7 +902,7 @@
     },
     "DD": {
       "Id": "DD",
-      "Name": "distributedDatabase",
+      "Name": "Distributed Database",
       "Ticker": "DD",
       "CategoryId": "1dfe943824ceb52d332b4650ce457218",
       "CategoryName": "software tools",
@@ -911,7 +911,7 @@
     },
     "DDT": {
       "Id": "DDT",
-      "Name": "pesticides",
+      "Name": "Pesticides",
       "Ticker": "DDT",
       "CategoryId": "9b32ea2333917ee2632ba7ae7675643f",
       "CategoryName": "chemicals",
@@ -920,7 +920,7 @@
     },
     "DEC": {
       "Id": "DEC",
-      "Name": "decorativeElements",
+      "Name": "Decorative Elements",
       "Ticker": "DEC",
       "CategoryId": "f8aebc7dd84ce14fae131aa0203d4498",
       "CategoryName": "construction parts",
@@ -929,7 +929,7 @@
     },
     "DIS": {
       "Id": "DIS",
-      "Name": "twoDimensionalDisplay",
+      "Name": "Two Dimensional Display",
       "Ticker": "DIS",
       "CategoryId": "8e15000dfbda2f46ce73458deaeeb358",
       "CategoryName": "electronic parts",
@@ -938,7 +938,7 @@
     },
     "DOU": {
       "Id": "DOU",
-      "Name": "droneOperationsUnit",
+      "Name": "Drone Operations Unit",
       "Ticker": "DOU",
       "CategoryId": "2c6ca18d24e03fc9250d8ca7d577568b",
       "CategoryName": "unit prefabs",
@@ -947,7 +947,7 @@
     },
     "DRF": {
       "Id": "DRF",
-      "Name": "droneFrame",
+      "Name": "Drone Frame",
       "Ticker": "DRF",
       "CategoryId": "6eb09f14ed9fec3d0407114be8bc8882",
       "CategoryName": "drones",
@@ -956,7 +956,7 @@
     },
     "DV": {
       "Id": "DV",
-      "Name": "dataVisualizer",
+      "Name": "Data Visualizer",
       "Ticker": "DV",
       "CategoryId": "1dfe943824ceb52d332b4650ce457218",
       "CategoryName": "software tools",
@@ -965,7 +965,7 @@
     },
     "DW": {
       "Id": "DW",
-      "Name": "drinkingWater",
+      "Name": "Drinking Water",
       "Ticker": "DW",
       "CategoryId": "3f047ec3043bdd795fd7272d6be98799",
       "CategoryName": "consumables (basic)",
@@ -974,7 +974,7 @@
     },
     "EBU": {
       "Id": "EBU",
-      "Name": "engineerBundle",
+      "Name": "Engineer Bundle",
       "Ticker": "EBU",
       "CategoryId": "1237e1d7ac57367e39b6a2406ca4dadc",
       "CategoryName": "consumable bundles",
@@ -983,7 +983,7 @@
     },
     "EDC": {
       "Id": "EDC",
-      "Name": "entertainmentDataCore",
+      "Name": "Entertainment Data Core",
       "Ticker": "EDC",
       "CategoryId": "1dfe943824ceb52d332b4650ce457218",
       "CategoryName": "software tools",
@@ -992,7 +992,7 @@
     },
     "EES": {
       "Id": "EES",
-      "Name": "enrichedEinsteinium",
+      "Name": "Enriched Einsteinium",
       "Ticker": "EES",
       "CategoryId": "9b32ea2333917ee2632ba7ae7675643f",
       "CategoryName": "chemicals",
@@ -1001,7 +1001,7 @@
     },
     "ENG": {
       "Id": "ENG",
-      "Name": "standardEngine",
+      "Name": "Standard Engine",
       "Ticker": "ENG",
       "CategoryId": "16b943147bb16fe84c0d62de8a4316a7",
       "CategoryName": "ship engines",
@@ -1010,7 +1010,7 @@
     },
     "EPO": {
       "Id": "EPO",
-      "Name": "epoxy",
+      "Name": "Epoxy",
       "Ticker": "EPO",
       "CategoryId": "156bbcce730fba6169338d560f05fd26",
       "CategoryName": "construction materials",
@@ -1019,7 +1019,7 @@
     },
     "ES": {
       "Id": "ES",
-      "Name": "einsteinium",
+      "Name": "Einsteinium",
       "Ticker": "ES",
       "CategoryId": "ef1d03e7ef924395c2173fc4e4ee8a6f",
       "CategoryName": "elements",
@@ -1028,7 +1028,7 @@
     },
     "ETC": {
       "Id": "ETC",
-      "Name": "enrichedTechnetium",
+      "Name": "Enriched Technetium",
       "Ticker": "ETC",
       "CategoryId": "9b32ea2333917ee2632ba7ae7675643f",
       "CategoryName": "chemicals",
@@ -1037,7 +1037,7 @@
     },
     "EXO": {
       "Id": "EXO",
-      "Name": "settlerClothing",
+      "Name": "Settler Clothing",
       "Ticker": "EXO",
       "CategoryId": "3f047ec3043bdd795fd7272d6be98799",
       "CategoryName": "consumables (basic)",
@@ -1046,7 +1046,7 @@
     },
     "F": {
       "Id": "F",
-      "Name": "fluorine",
+      "Name": "Fluorine",
       "Ticker": "F",
       "CategoryId": "54dec1e42eba44dda423dd774393326a",
       "CategoryName": "gases",
@@ -1055,7 +1055,7 @@
     },
     "FAL": {
       "Id": "FAL",
-      "Name": "aluminiumIronAlloy",
+      "Name": "Aluminium Iron Alloy",
       "Ticker": "FAL",
       "CategoryId": "37e95782d80aa1c1ded89f2c4b834dd0",
       "CategoryName": "alloys",
@@ -1064,7 +1064,7 @@
     },
     "FAN": {
       "Id": "FAN",
-      "Name": "coolingFan",
+      "Name": "Cooling Fan",
       "Ticker": "FAN",
       "CategoryId": "8e15000dfbda2f46ce73458deaeeb358",
       "CategoryName": "electronic parts",
@@ -1073,7 +1073,7 @@
     },
     "FC": {
       "Id": "FC",
-      "Name": "flowControl",
+      "Name": "Flow Control",
       "Ticker": "FC",
       "CategoryId": "f8aebc7dd84ce14fae131aa0203d4498",
       "CategoryName": "construction parts",
@@ -1082,7 +1082,7 @@
     },
     "FE": {
       "Id": "FE",
-      "Name": "iron",
+      "Name": "Iron",
       "Ticker": "FE",
       "CategoryId": "cae48680d4c4e6f98d593a8c3778cb56",
       "CategoryName": "metals",
@@ -1091,7 +1091,7 @@
     },
     "FEO": {
       "Id": "FEO",
-      "Name": "ironOre",
+      "Name": "Iron Ore",
       "Ticker": "FEO",
       "CategoryId": "4c0430b40fbf7fa175ed4a5a13682c6f",
       "CategoryName": "ores",
@@ -1100,7 +1100,7 @@
     },
     "FET": {
       "Id": "FET",
-      "Name": "ironTitaniumAlloy",
+      "Name": "Iron Titanium Alloy",
       "Ticker": "FET",
       "CategoryId": "37e95782d80aa1c1ded89f2c4b834dd0",
       "CategoryName": "alloys",
@@ -1109,7 +1109,7 @@
     },
     "FF": {
       "Id": "FF",
-      "Name": "ftlFuel",
+      "Name": "Ftl Fuel",
       "Ticker": "FF",
       "CategoryId": "ba98fa0cf77040a96cd8a608ad0d08e9",
       "CategoryName": "fuels",
@@ -1118,7 +1118,7 @@
     },
     "FFC": {
       "Id": "FFC",
-      "Name": "ftlFieldController",
+      "Name": "Ftl Field Controller",
       "Ticker": "FFC",
       "CategoryId": "1e1a3a579c46d5f9c4e9959650c6b7a3",
       "CategoryName": "electronic systems",
@@ -1127,7 +1127,7 @@
     },
     "FIM": {
       "Id": "FIM",
-      "Name": "engineerFood",
+      "Name": "Engineer Food",
       "Ticker": "FIM",
       "CategoryId": "3f047ec3043bdd795fd7272d6be98799",
       "CategoryName": "consumables (basic)",
@@ -1136,7 +1136,7 @@
     },
     "FIR": {
       "Id": "FIR",
-      "Name": "fissionReactor",
+      "Name": "Fission Reactor",
       "Ticker": "FIR",
       "CategoryId": "16b943147bb16fe84c0d62de8a4316a7",
       "CategoryName": "ship engines",
@@ -1145,7 +1145,7 @@
     },
     "FLO": {
       "Id": "FLO",
-      "Name": "floatingTank",
+      "Name": "Floating Tank",
       "Ticker": "FLO",
       "CategoryId": "f8aebc7dd84ce14fae131aa0203d4498",
       "CategoryName": "construction parts",
@@ -1154,7 +1154,7 @@
     },
     "FLP": {
       "Id": "FLP",
-      "Name": "fluidPiping",
+      "Name": "Fluid Piping",
       "Ticker": "FLP",
       "CategoryId": "f8aebc7dd84ce14fae131aa0203d4498",
       "CategoryName": "construction parts",
@@ -1163,7 +1163,7 @@
     },
     "FLX": {
       "Id": "FLX",
-      "Name": "flux",
+      "Name": "Flux",
       "Ticker": "FLX",
       "CategoryId": "9b32ea2333917ee2632ba7ae7675643f",
       "CategoryName": "chemicals",
@@ -1172,7 +1172,7 @@
     },
     "FOD": {
       "Id": "FOD",
-      "Name": "allPurposeFodder",
+      "Name": "All Purpose Fodder",
       "Ticker": "FOD",
       "CategoryId": "510e7751c0eb6a51fd0fa73565365d1c",
       "CategoryName": "agricultural products",
@@ -1181,7 +1181,7 @@
     },
     "FSE": {
       "Id": "FSE",
-      "Name": "fuelSavingEngine",
+      "Name": "Fuel Saving Engine",
       "Ticker": "FSE",
       "CategoryId": "16b943147bb16fe84c0d62de8a4316a7",
       "CategoryName": "ship engines",
@@ -1190,7 +1190,7 @@
     },
     "FUN": {
       "Id": "FUN",
-      "Name": "entertainmentUnit",
+      "Name": "Entertainment Unit",
       "Ticker": "FUN",
       "CategoryId": "2c6ca18d24e03fc9250d8ca7d577568b",
       "CategoryName": "unit prefabs",
@@ -1199,7 +1199,7 @@
     },
     "GAL": {
       "Id": "GAL",
-      "Name": "galerite",
+      "Name": "Galerite",
       "Ticker": "GAL",
       "CategoryId": "79f3917448cc4f6034ece865c41aea34",
       "CategoryName": "minerals",
@@ -1208,7 +1208,7 @@
     },
     "GC": {
       "Id": "GC",
-      "Name": "gasContainer",
+      "Name": "Gas Container",
       "Ticker": "GC",
       "CategoryId": "f8aebc7dd84ce14fae131aa0203d4498",
       "CategoryName": "construction parts",
@@ -1217,7 +1217,7 @@
     },
     "GCH": {
       "Id": "GCH",
-      "Name": "glassCombustionChamber",
+      "Name": "Glass Combustion Chamber",
       "Ticker": "GCH",
       "CategoryId": "16b943147bb16fe84c0d62de8a4316a7",
       "CategoryName": "ship engines",
@@ -1226,7 +1226,7 @@
     },
     "GEN": {
       "Id": "GEN",
-      "Name": "glassEngine",
+      "Name": "Glass Engine",
       "Ticker": "GEN",
       "CategoryId": "16b943147bb16fe84c0d62de8a4316a7",
       "CategoryName": "ship engines",
@@ -1235,7 +1235,7 @@
     },
     "GIN": {
       "Id": "GIN",
-      "Name": "engineerLuxuryDrink",
+      "Name": "Engineer Luxury Drink",
       "Ticker": "GIN",
       "CategoryId": "8a0bd8b6a329c3d632da9da63c818b3d",
       "CategoryName": "consumables (luxury)",
@@ -1244,7 +1244,7 @@
     },
     "GL": {
       "Id": "GL",
-      "Name": "translucentMaterial",
+      "Name": "Translucent Material",
       "Ticker": "GL",
       "CategoryId": "156bbcce730fba6169338d560f05fd26",
       "CategoryName": "construction materials",
@@ -1253,7 +1253,7 @@
     },
     "GNZ": {
       "Id": "GNZ",
-      "Name": "glassNozzle",
+      "Name": "Glass Nozzle",
       "Ticker": "GNZ",
       "CategoryId": "16b943147bb16fe84c0d62de8a4316a7",
       "CategoryName": "ship engines",
@@ -1262,7 +1262,7 @@
     },
     "GRA": {
       "Id": "GRA",
-      "Name": "grapes",
+      "Name": "Grapes",
       "Ticker": "GRA",
       "CategoryId": "510e7751c0eb6a51fd0fa73565365d1c",
       "CategoryName": "agricultural products",
@@ -1271,7 +1271,7 @@
     },
     "GRN": {
       "Id": "GRN",
-      "Name": "carbohydrateGrains",
+      "Name": "Carbohydrate Grains",
       "Ticker": "GRN",
       "CategoryId": "510e7751c0eb6a51fd0fa73565365d1c",
       "CategoryName": "agricultural products",
@@ -1280,7 +1280,7 @@
     },
     "GV": {
       "Id": "GV",
-      "Name": "gasVent",
+      "Name": "Gas Vent",
       "Ticker": "GV",
       "CategoryId": "f8aebc7dd84ce14fae131aa0203d4498",
       "CategoryName": "construction parts",
@@ -1289,7 +1289,7 @@
     },
     "GWS": {
       "Id": "GWS",
-      "Name": "gatewaySegment",
+      "Name": "Gateway Segment",
       "Ticker": "GWS",
       "CategoryId": "5aac3f26a7e93c5999cfa593dcddd4e1",
       "CategoryName": "infrastructure",
@@ -1298,7 +1298,7 @@
     },
     "H": {
       "Id": "H",
-      "Name": "hydrogen",
+      "Name": "Hydrogen",
       "Ticker": "H",
       "CategoryId": "54dec1e42eba44dda423dd774393326a",
       "CategoryName": "gases",
@@ -1307,7 +1307,7 @@
     },
     "H2O": {
       "Id": "H2O",
-      "Name": "water",
+      "Name": "Water",
       "Ticker": "H2O",
       "CategoryId": "473218d3618453bf25d2cd0b5616a72f",
       "CategoryName": "liquids",
@@ -1316,7 +1316,7 @@
     },
     "HAB": {
       "Id": "HAB",
-      "Name": "habitatUnit",
+      "Name": "Habitat Unit",
       "Ticker": "HAB",
       "CategoryId": "2c6ca18d24e03fc9250d8ca7d577568b",
       "CategoryName": "unit prefabs",
@@ -1325,7 +1325,7 @@
     },
     "HAL": {
       "Id": "HAL",
-      "Name": "halite",
+      "Name": "Halite",
       "Ticker": "HAL",
       "CategoryId": "79f3917448cc4f6034ece865c41aea34",
       "CategoryName": "minerals",
@@ -1334,7 +1334,7 @@
     },
     "HAM": {
       "Id": "HAM",
-      "Name": "habitationModule",
+      "Name": "Habitation Module",
       "Ticker": "HAM",
       "CategoryId": "d23b9225010ad7978e5496e55359e19b",
       "CategoryName": "ship parts",
@@ -1343,7 +1343,7 @@
     },
     "HCB": {
       "Id": "HCB",
-      "Name": "hugeCargoBay",
+      "Name": "Huge Cargo Bay",
       "Ticker": "HCB",
       "CategoryId": "b7102e43e58120a254cf161c226d4177",
       "CategoryName": "ship kits",
@@ -1352,7 +1352,7 @@
     },
     "HCC": {
       "Id": "HCC",
-      "Name": "redGoldConnectors",
+      "Name": "Red Gold Connectors",
       "Ticker": "HCC",
       "CategoryId": "5e022d8f199de1c70f8de4dfd2fdef64",
       "CategoryName": "electronic pieces",
@@ -1361,7 +1361,7 @@
     },
     "HCP": {
       "Id": "HCP",
-      "Name": "hydrocarbonPlants",
+      "Name": "Hydrocarbon Plants",
       "Ticker": "HCP",
       "CategoryId": "510e7751c0eb6a51fd0fa73565365d1c",
       "CategoryName": "agricultural products",
@@ -1370,7 +1370,7 @@
     },
     "HD": {
       "Id": "HD",
-      "Name": "holographicDisplay",
+      "Name": "Holographic Display",
       "Ticker": "HD",
       "CategoryId": "19d621bb3f297c0425e34cdf0b138ece",
       "CategoryName": "electronic devices",
@@ -1379,7 +1379,7 @@
     },
     "HE": {
       "Id": "HE",
-      "Name": "helium",
+      "Name": "Helium",
       "Ticker": "HE",
       "CategoryId": "54dec1e42eba44dda423dd774393326a",
       "CategoryName": "gases",
@@ -1388,7 +1388,7 @@
     },
     "HE3": {
       "Id": "HE3",
-      "Name": "helium3",
+      "Name": "Helium 3",
       "Ticker": "HE3",
       "CategoryId": "54dec1e42eba44dda423dd774393326a",
       "CategoryName": "gases",
@@ -1397,7 +1397,7 @@
     },
     "HER": {
       "Id": "HER",
-      "Name": "herbs",
+      "Name": "Herbs",
       "Ticker": "HER",
       "CategoryId": "510e7751c0eb6a51fd0fa73565365d1c",
       "CategoryName": "agricultural products",
@@ -1406,7 +1406,7 @@
     },
     "HEX": {
       "Id": "HEX",
-      "Name": "heliotropeExtract",
+      "Name": "Heliotrope Extract",
       "Ticker": "HEX",
       "CategoryId": "473218d3618453bf25d2cd0b5616a72f",
       "CategoryName": "liquids",
@@ -1415,7 +1415,7 @@
     },
     "HHP": {
       "Id": "HHP",
-      "Name": "hardenedHullPlate",
+      "Name": "Hardened Hull Plate",
       "Ticker": "HHP",
       "CategoryId": "d23b9225010ad7978e5496e55359e19b",
       "CategoryName": "ship parts",
@@ -1424,7 +1424,7 @@
     },
     "HMS": {
       "Id": "HMS",
-      "Name": "technicianClothing",
+      "Name": "Technician Clothing",
       "Ticker": "HMS",
       "CategoryId": "3f047ec3043bdd795fd7272d6be98799",
       "CategoryName": "consumables (basic)",
@@ -1433,7 +1433,7 @@
     },
     "HNZ": {
       "Id": "HNZ",
-      "Name": "hyperthrustNozzle",
+      "Name": "Hyperthrust Nozzle",
       "Ticker": "HNZ",
       "CategoryId": "16b943147bb16fe84c0d62de8a4316a7",
       "CategoryName": "ship engines",
@@ -1442,7 +1442,7 @@
     },
     "HOG": {
       "Id": "HOG",
-      "Name": "holographicGlasses",
+      "Name": "Holographic Glasses",
       "Ticker": "HOG",
       "CategoryId": "19d621bb3f297c0425e34cdf0b138ece",
       "CategoryName": "electronic devices",
@@ -1451,7 +1451,7 @@
     },
     "HOP": {
       "Id": "HOP",
-      "Name": "antibacterialTreeFlowers",
+      "Name": "Antibacterial Tree Flowers",
       "Ticker": "HOP",
       "CategoryId": "510e7751c0eb6a51fd0fa73565365d1c",
       "CategoryName": "agricultural products",
@@ -1460,7 +1460,7 @@
     },
     "HPC": {
       "Id": "HPC",
-      "Name": "touchDeviceBlank",
+      "Name": "Touch Device Blank",
       "Ticker": "HPC",
       "CategoryId": "19d621bb3f297c0425e34cdf0b138ece",
       "CategoryName": "electronic devices",
@@ -1469,7 +1469,7 @@
     },
     "HPR": {
       "Id": "HPR",
-      "Name": "highPowerReactor",
+      "Name": "High Power Reactor",
       "Ticker": "HPR",
       "CategoryId": "16b943147bb16fe84c0d62de8a4316a7",
       "CategoryName": "ship engines",
@@ -1478,7 +1478,7 @@
     },
     "HSE": {
       "Id": "HSE",
-      "Name": "hardenedStructuralElements",
+      "Name": "Hardened Structural Elements",
       "Ticker": "HSE",
       "CategoryId": "ef423f673d9e8c82043b4c5c63f6b55e",
       "CategoryName": "construction prefabs",
@@ -1487,7 +1487,7 @@
     },
     "HSS": {
       "Id": "HSS",
-      "Name": "engineerClothing",
+      "Name": "Engineer Clothing",
       "Ticker": "HSS",
       "CategoryId": "3f047ec3043bdd795fd7272d6be98799",
       "CategoryName": "consumables (basic)",
@@ -1496,7 +1496,7 @@
     },
     "HTE": {
       "Id": "HTE",
-      "Name": "hyperthrustEngine",
+      "Name": "Hyperthrust Engine",
       "Ticker": "HTE",
       "CategoryId": "16b943147bb16fe84c0d62de8a4316a7",
       "CategoryName": "ship engines",
@@ -1505,7 +1505,7 @@
     },
     "HYR": {
       "Id": "HYR",
-      "Name": "hyperPowerReactor",
+      "Name": "Hyper Power Reactor",
       "Ticker": "HYR",
       "CategoryId": "16b943147bb16fe84c0d62de8a4316a7",
       "CategoryName": "ship engines",
@@ -1514,7 +1514,7 @@
     },
     "I": {
       "Id": "I",
-      "Name": "iodine",
+      "Name": "Iodine",
       "Ticker": "I",
       "CategoryId": "ef1d03e7ef924395c2173fc4e4ee8a6f",
       "CategoryName": "elements",
@@ -1523,7 +1523,7 @@
     },
     "IDC": {
       "Id": "IDC",
-      "Name": "informationDataCore",
+      "Name": "Information Data Core",
       "Ticker": "IDC",
       "CategoryId": "9e8bc2a092cc3361b6949eca3e95921a",
       "CategoryName": "software systems",
@@ -1532,7 +1532,7 @@
     },
     "IMM": {
       "Id": "IMM",
-      "Name": "informationManagementSystem",
+      "Name": "Information Management System",
       "Ticker": "IMM",
       "CategoryId": "9e8bc2a092cc3361b6949eca3e95921a",
       "CategoryName": "software systems",
@@ -1541,7 +1541,7 @@
     },
     "IND": {
       "Id": "IND",
-      "Name": "indigo",
+      "Name": "Indigo",
       "Ticker": "IND",
       "CategoryId": "9b32ea2333917ee2632ba7ae7675643f",
       "CategoryName": "chemicals",
@@ -1550,7 +1550,7 @@
     },
     "INS": {
       "Id": "INS",
-      "Name": "insuFoam",
+      "Name": "Insu Foam",
       "Ticker": "INS",
       "CategoryId": "156bbcce730fba6169338d560f05fd26",
       "CategoryName": "construction materials",
@@ -1559,7 +1559,7 @@
     },
     "JUI": {
       "Id": "JUI",
-      "Name": "sedativeSubstance",
+      "Name": "Sedative Substance",
       "Ticker": "JUI",
       "CategoryId": "9b32ea2333917ee2632ba7ae7675643f",
       "CategoryName": "chemicals",
@@ -1568,7 +1568,7 @@
     },
     "KOM": {
       "Id": "KOM",
-      "Name": "settlerLuxuryDrink",
+      "Name": "Settler Luxury Drink",
       "Ticker": "KOM",
       "CategoryId": "8a0bd8b6a329c3d632da9da63c818b3d",
       "CategoryName": "consumables (luxury)",
@@ -1577,7 +1577,7 @@
     },
     "KR": {
       "Id": "KR",
-      "Name": "krypton",
+      "Name": "Krypton",
       "Ticker": "KR",
       "CategoryId": "54dec1e42eba44dda423dd774393326a",
       "CategoryName": "gases",
@@ -1586,7 +1586,7 @@
     },
     "KRE": {
       "Id": "KRE",
-      "Name": "kryptonium",
+      "Name": "Kryptonium",
       "Ticker": "KRE",
       "CategoryId": "9b32ea2333917ee2632ba7ae7675643f",
       "CategoryName": "chemicals",
@@ -1595,7 +1595,7 @@
     },
     "KV": {
       "Id": "KV",
-      "Name": "kevlar",
+      "Name": "Kevlar",
       "Ticker": "KV",
       "CategoryId": "7028d7d532ccd4c6c878b069e7bbb634",
       "CategoryName": "textiles",
@@ -1604,7 +1604,7 @@
     },
     "LBH": {
       "Id": "LBH",
-      "Name": "lightweightBulkhead",
+      "Name": "Lightweight Bulkhead",
       "Ticker": "LBH",
       "CategoryId": "ef423f673d9e8c82043b4c5c63f6b55e",
       "CategoryName": "construction prefabs",
@@ -1613,7 +1613,7 @@
     },
     "LC": {
       "Id": "LC",
-      "Name": "scientistClothing",
+      "Name": "Scientist Clothing",
       "Ticker": "LC",
       "CategoryId": "3f047ec3043bdd795fd7272d6be98799",
       "CategoryName": "consumables (basic)",
@@ -1622,7 +1622,7 @@
     },
     "LCB": {
       "Id": "LCB",
-      "Name": "largeCargoBay",
+      "Name": "Large Cargo Bay",
       "Ticker": "LCB",
       "CategoryId": "b7102e43e58120a254cf161c226d4177",
       "CategoryName": "ship kits",
@@ -1631,7 +1631,7 @@
     },
     "LCR": {
       "Id": "LCR",
-      "Name": "liquidCrystals",
+      "Name": "Liquid Crystals",
       "Ticker": "LCR",
       "CategoryId": "9b32ea2333917ee2632ba7ae7675643f",
       "CategoryName": "chemicals",
@@ -1640,7 +1640,7 @@
     },
     "LD": {
       "Id": "LD",
-      "Name": "localDatabase",
+      "Name": "Local Database",
       "Ticker": "LD",
       "CategoryId": "ebec0c297d5b499a84dd051fa6f7c8ec",
       "CategoryName": "software components",
@@ -1649,7 +1649,7 @@
     },
     "LDE": {
       "Id": "LDE",
-      "Name": "lightweightDeckElements",
+      "Name": "Lightweight Deck Elements",
       "Ticker": "LDE",
       "CategoryId": "ef423f673d9e8c82043b4c5c63f6b55e",
       "CategoryName": "construction prefabs",
@@ -1658,7 +1658,7 @@
     },
     "LDI": {
       "Id": "LDI",
-      "Name": "laserDiode",
+      "Name": "Laser Diode",
       "Ticker": "LDI",
       "CategoryId": "5e022d8f199de1c70f8de4dfd2fdef64",
       "CategoryName": "electronic pieces",
@@ -1667,7 +1667,7 @@
     },
     "LES": {
       "Id": "LES",
-      "Name": "liquidEinsteinium",
+      "Name": "Liquid Einsteinium",
       "Ticker": "LES",
       "CategoryId": "473218d3618453bf25d2cd0b5616a72f",
       "CategoryName": "liquids",
@@ -1676,7 +1676,7 @@
     },
     "LFE": {
       "Id": "LFE",
-      "Name": "largeEmitter",
+      "Name": "Large Emitter",
       "Ticker": "LFE",
       "CategoryId": "16b943147bb16fe84c0d62de8a4316a7",
       "CategoryName": "ship engines",
@@ -1685,7 +1685,7 @@
     },
     "LFL": {
       "Id": "LFL",
-      "Name": "largeFtlTank",
+      "Name": "Large Ftl Tank",
       "Ticker": "LFL",
       "CategoryId": "b7102e43e58120a254cf161c226d4177",
       "CategoryName": "ship kits",
@@ -1694,7 +1694,7 @@
     },
     "LFP": {
       "Id": "LFP",
-      "Name": "lowHeatFuelPump",
+      "Name": "Low Heat Fuel Pump",
       "Ticker": "LFP",
       "CategoryId": "16b943147bb16fe84c0d62de8a4316a7",
       "CategoryName": "ship engines",
@@ -1703,7 +1703,7 @@
     },
     "LHP": {
       "Id": "LHP",
-      "Name": "lightweightHullPlate",
+      "Name": "Lightweight Hull Plate",
       "Ticker": "LHP",
       "CategoryId": "d23b9225010ad7978e5496e55359e19b",
       "CategoryName": "ship parts",
@@ -1712,7 +1712,7 @@
     },
     "LI": {
       "Id": "LI",
-      "Name": "lithium",
+      "Name": "Lithium",
       "Ticker": "LI",
       "CategoryId": "cae48680d4c4e6f98d593a8c3778cb56",
       "CategoryName": "metals",
@@ -1721,7 +1721,7 @@
     },
     "LIO": {
       "Id": "LIO",
-      "Name": "lithiumOre",
+      "Name": "Lithium Ore",
       "Ticker": "LIO",
       "CategoryId": "4c0430b40fbf7fa175ed4a5a13682c6f",
       "CategoryName": "ores",
@@ -1730,7 +1730,7 @@
     },
     "LIS": {
       "Id": "LIS",
-      "Name": "lifeSupportSystem",
+      "Name": "Life Support System",
       "Ticker": "LIS",
       "CategoryId": "1e1a3a579c46d5f9c4e9959650c6b7a3",
       "CategoryName": "electronic systems",
@@ -1739,7 +1739,7 @@
     },
     "LIT": {
       "Id": "LIT",
-      "Name": "neonLightingSystem",
+      "Name": "Neon Lighting System",
       "Ticker": "LIT",
       "CategoryId": "f8aebc7dd84ce14fae131aa0203d4498",
       "CategoryName": "construction parts",
@@ -1748,7 +1748,7 @@
     },
     "LOG": {
       "Id": "LOG",
-      "Name": "logisticsSystem",
+      "Name": "Logistics System",
       "Ticker": "LOG",
       "CategoryId": "1e1a3a579c46d5f9c4e9959650c6b7a3",
       "CategoryName": "electronic systems",
@@ -1757,7 +1757,7 @@
     },
     "LSE": {
       "Id": "LSE",
-      "Name": "lightweightStructuralElements",
+      "Name": "Lightweight Structural Elements",
       "Ticker": "LSE",
       "CategoryId": "ef423f673d9e8c82043b4c5c63f6b55e",
       "CategoryName": "construction prefabs",
@@ -1766,7 +1766,7 @@
     },
     "LSL": {
       "Id": "LSL",
-      "Name": "largeStlTank",
+      "Name": "Large Stl Tank",
       "Ticker": "LSL",
       "CategoryId": "b7102e43e58120a254cf161c226d4177",
       "CategoryName": "ship kits",
@@ -1775,7 +1775,7 @@
     },
     "LST": {
       "Id": "LST",
-      "Name": "limestone",
+      "Name": "Limestone",
       "Ticker": "LST",
       "CategoryId": "79f3917448cc4f6034ece865c41aea34",
       "CategoryName": "minerals",
@@ -1784,7 +1784,7 @@
     },
     "LTA": {
       "Id": "LTA",
-      "Name": "lightweightWindow",
+      "Name": "Lightweight Window",
       "Ticker": "LTA",
       "CategoryId": "ef423f673d9e8c82043b4c5c63f6b55e",
       "CategoryName": "construction prefabs",
@@ -1793,7 +1793,7 @@
     },
     "LU": {
       "Id": "LU",
-      "Name": "laboratoryUnit",
+      "Name": "Laboratory Unit",
       "Ticker": "LU",
       "CategoryId": "2c6ca18d24e03fc9250d8ca7d577568b",
       "CategoryName": "unit prefabs",
@@ -1802,7 +1802,7 @@
     },
     "MAG": {
       "Id": "MAG",
-      "Name": "magnetite",
+      "Name": "Magnetite",
       "Ticker": "MAG",
       "CategoryId": "79f3917448cc4f6034ece865c41aea34",
       "CategoryName": "minerals",
@@ -1811,7 +1811,7 @@
     },
     "MAI": {
       "Id": "MAI",
-      "Name": "carbohydrateMaize",
+      "Name": "Carbohydrate Maize",
       "Ticker": "MAI",
       "CategoryId": "510e7751c0eb6a51fd0fa73565365d1c",
       "CategoryName": "agricultural products",
@@ -1820,7 +1820,7 @@
     },
     "MB": {
       "Id": "MB",
-      "Name": "motherBoard",
+      "Name": "Mother Board",
       "Ticker": "MB",
       "CategoryId": "8e15000dfbda2f46ce73458deaeeb358",
       "CategoryName": "electronic parts",
@@ -1829,7 +1829,7 @@
     },
     "MCB": {
       "Id": "MCB",
-      "Name": "mediumCargoBay",
+      "Name": "Medium Cargo Bay",
       "Ticker": "MCB",
       "CategoryId": "b7102e43e58120a254cf161c226d4177",
       "CategoryName": "ship kits",
@@ -1838,7 +1838,7 @@
     },
     "MCG": {
       "Id": "MCG",
-      "Name": "mineralConstructionGranulate",
+      "Name": "Mineral Construction Granulate",
       "Ticker": "MCG",
       "CategoryId": "156bbcce730fba6169338d560f05fd26",
       "CategoryName": "construction materials",
@@ -1847,7 +1847,7 @@
     },
     "MEA": {
       "Id": "MEA",
-      "Name": "scientistFood",
+      "Name": "Scientist Food",
       "Ticker": "MEA",
       "CategoryId": "3f047ec3043bdd795fd7272d6be98799",
       "CategoryName": "consumables (basic)",
@@ -1856,7 +1856,7 @@
     },
     "MED": {
       "Id": "MED",
-      "Name": "technicianHealth",
+      "Name": "Technician Health",
       "Ticker": "MED",
       "CategoryId": "3f047ec3043bdd795fd7272d6be98799",
       "CategoryName": "consumables (basic)",
@@ -1865,7 +1865,7 @@
     },
     "MFE": {
       "Id": "MFE",
-      "Name": "mediumEmitter",
+      "Name": "Medium Emitter",
       "Ticker": "MFE",
       "CategoryId": "16b943147bb16fe84c0d62de8a4316a7",
       "CategoryName": "ship engines",
@@ -1874,7 +1874,7 @@
     },
     "MFK": {
       "Id": "MFK",
-      "Name": "fastenerKitMedium",
+      "Name": "Fastener Kit Medium",
       "Ticker": "MFK",
       "CategoryId": "5e022d8f199de1c70f8de4dfd2fdef64",
       "CategoryName": "electronic pieces",
@@ -1883,7 +1883,7 @@
     },
     "MFL": {
       "Id": "MFL",
-      "Name": "mediumFtlTank",
+      "Name": "Medium Ftl Tank",
       "Ticker": "MFL",
       "CategoryId": "b7102e43e58120a254cf161c226d4177",
       "CategoryName": "ship kits",
@@ -1892,7 +1892,7 @@
     },
     "MG": {
       "Id": "MG",
-      "Name": "magnesium",
+      "Name": "Magnesium",
       "Ticker": "MG",
       "CategoryId": "ef1d03e7ef924395c2173fc4e4ee8a6f",
       "CategoryName": "elements",
@@ -1901,7 +1901,7 @@
     },
     "MGC": {
       "Id": "MGC",
-      "Name": "magneticFloor",
+      "Name": "Magnetic Floor",
       "Ticker": "MGC",
       "CategoryId": "f8aebc7dd84ce14fae131aa0203d4498",
       "CategoryName": "construction parts",
@@ -1910,7 +1910,7 @@
     },
     "MGS": {
       "Id": "MGS",
-      "Name": "magnesite",
+      "Name": "Magnesite",
       "Ticker": "MGS",
       "CategoryId": "79f3917448cc4f6034ece865c41aea34",
       "CategoryName": "minerals",
@@ -1919,7 +1919,7 @@
     },
     "MHL": {
       "Id": "MHL",
-      "Name": "metalHalideLamp",
+      "Name": "Metal Halide Lamp",
       "Ticker": "MHL",
       "CategoryId": "f8aebc7dd84ce14fae131aa0203d4498",
       "CategoryName": "construction parts",
@@ -1928,7 +1928,7 @@
     },
     "MHP": {
       "Id": "MHP",
-      "Name": "microHeadphones",
+      "Name": "Micro Headphones",
       "Ticker": "MHP",
       "CategoryId": "19d621bb3f297c0425e34cdf0b138ece",
       "CategoryName": "electronic devices",
@@ -1937,7 +1937,7 @@
     },
     "MLI": {
       "Id": "MLI",
-      "Name": "machineLearningInterface",
+      "Name": "Machine Learning Interface",
       "Ticker": "MLI",
       "CategoryId": "ebec0c297d5b499a84dd051fa6f7c8ec",
       "CategoryName": "software components",
@@ -1946,7 +1946,7 @@
     },
     "MPC": {
       "Id": "MPC",
-      "Name": "microProcessor",
+      "Name": "Micro Processor",
       "Ticker": "MPC",
       "CategoryId": "8e15000dfbda2f46ce73458deaeeb358",
       "CategoryName": "electronic parts",
@@ -1955,7 +1955,7 @@
     },
     "MSL": {
       "Id": "MSL",
-      "Name": "mediumStlTank",
+      "Name": "Medium Stl Tank",
       "Ticker": "MSL",
       "CategoryId": "b7102e43e58120a254cf161c226d4177",
       "CategoryName": "ship kits",
@@ -1964,7 +1964,7 @@
     },
     "MTC": {
       "Id": "MTC",
-      "Name": "megaTubeCoating",
+      "Name": "Mega Tube Coating",
       "Ticker": "MTC",
       "CategoryId": "156bbcce730fba6169338d560f05fd26",
       "CategoryName": "construction materials",
@@ -1973,7 +1973,7 @@
     },
     "MTP": {
       "Id": "MTP",
-      "Name": "meat",
+      "Name": "Meat",
       "Ticker": "MTP",
       "CategoryId": "510e7751c0eb6a51fd0fa73565365d1c",
       "CategoryName": "agricultural products",
@@ -1982,7 +1982,7 @@
     },
     "MUS": {
       "Id": "MUS",
-      "Name": "mushrooms",
+      "Name": "Mushrooms",
       "Ticker": "MUS",
       "CategoryId": "510e7751c0eb6a51fd0fa73565365d1c",
       "CategoryName": "agricultural products",
@@ -1991,7 +1991,7 @@
     },
     "MWF": {
       "Id": "MWF",
-      "Name": "waferMedium",
+      "Name": "Wafer Medium",
       "Ticker": "MWF",
       "CategoryId": "5e022d8f199de1c70f8de4dfd2fdef64",
       "CategoryName": "electronic pieces",
@@ -2000,7 +2000,7 @@
     },
     "N": {
       "Id": "N",
-      "Name": "nitrogen",
+      "Name": "Nitrogen",
       "Ticker": "N",
       "CategoryId": "54dec1e42eba44dda423dd774393326a",
       "CategoryName": "gases",
@@ -2009,7 +2009,7 @@
     },
     "NA": {
       "Id": "NA",
-      "Name": "sodium",
+      "Name": "Sodium",
       "Ticker": "NA",
       "CategoryId": "ef1d03e7ef924395c2173fc4e4ee8a6f",
       "CategoryName": "elements",
@@ -2018,7 +2018,7 @@
     },
     "NAB": {
       "Id": "NAB",
-      "Name": "sodiumBorohydride",
+      "Name": "Sodium Borohydride",
       "Ticker": "NAB",
       "CategoryId": "9b32ea2333917ee2632ba7ae7675643f",
       "CategoryName": "chemicals",
@@ -2027,7 +2027,7 @@
     },
     "NCS": {
       "Id": "NCS",
-      "Name": "nanoCarbonSheeting",
+      "Name": "Nano Carbon Sheeting",
       "Ticker": "NCS",
       "CategoryId": "156bbcce730fba6169338d560f05fd26",
       "CategoryName": "construction materials",
@@ -2036,7 +2036,7 @@
     },
     "NE": {
       "Id": "NE",
-      "Name": "neon",
+      "Name": "Neon",
       "Ticker": "NE",
       "CategoryId": "54dec1e42eba44dda423dd774393326a",
       "CategoryName": "gases",
@@ -2045,7 +2045,7 @@
     },
     "NF": {
       "Id": "NF",
-      "Name": "networkingFramework",
+      "Name": "Networking Framework",
       "Ticker": "NF",
       "CategoryId": "ebec0c297d5b499a84dd051fa6f7c8ec",
       "CategoryName": "software components",
@@ -2054,7 +2054,7 @@
     },
     "NFI": {
       "Id": "NFI",
-      "Name": "nanoFiber",
+      "Name": "Nano Fiber",
       "Ticker": "NFI",
       "CategoryId": "156bbcce730fba6169338d560f05fd26",
       "CategoryName": "construction materials",
@@ -2063,7 +2063,7 @@
     },
     "NG": {
       "Id": "NG",
-      "Name": "nanoGlass",
+      "Name": "Nano Glass",
       "Ticker": "NG",
       "CategoryId": "156bbcce730fba6169338d560f05fd26",
       "CategoryName": "construction materials",
@@ -2072,7 +2072,7 @@
     },
     "NL": {
       "Id": "NL",
-      "Name": "nylon",
+      "Name": "Nylon",
       "Ticker": "NL",
       "CategoryId": "7028d7d532ccd4c6c878b069e7bbb634",
       "CategoryName": "textiles",
@@ -2081,7 +2081,7 @@
     },
     "NN": {
       "Id": "NN",
-      "Name": "neuralNetwork",
+      "Name": "Neural Network",
       "Ticker": "NN",
       "CategoryId": "1dfe943824ceb52d332b4650ce457218",
       "CategoryName": "software tools",
@@ -2090,7 +2090,7 @@
     },
     "NOZ": {
       "Id": "NOZ",
-      "Name": "basicNozzle",
+      "Name": "Basic Nozzle",
       "Ticker": "NOZ",
       "CategoryId": "16b943147bb16fe84c0d62de8a4316a7",
       "CategoryName": "ship engines",
@@ -2099,7 +2099,7 @@
     },
     "NR": {
       "Id": "NR",
-      "Name": "nanoResin",
+      "Name": "Nano Resin",
       "Ticker": "NR",
       "CategoryId": "9b32ea2333917ee2632ba7ae7675643f",
       "CategoryName": "chemicals",
@@ -2108,7 +2108,7 @@
     },
     "NS": {
       "Id": "NS",
-      "Name": "nutrientSolution",
+      "Name": "Nutrient Solution",
       "Ticker": "NS",
       "CategoryId": "9b32ea2333917ee2632ba7ae7675643f",
       "CategoryName": "chemicals",
@@ -2117,7 +2117,7 @@
     },
     "NST": {
       "Id": "NST",
-      "Name": "scientistLuxuryHealth",
+      "Name": "Scientist Luxury Health",
       "Ticker": "NST",
       "CategoryId": "8a0bd8b6a329c3d632da9da63c818b3d",
       "CategoryName": "consumables (luxury)",
@@ -2126,7 +2126,7 @@
     },
     "NUT": {
       "Id": "NUT",
-      "Name": "fattyNuts",
+      "Name": "Fatty Nuts",
       "Ticker": "NUT",
       "CategoryId": "510e7751c0eb6a51fd0fa73565365d1c",
       "CategoryName": "agricultural products",
@@ -2135,7 +2135,7 @@
     },
     "NV1": {
       "Id": "NV1",
-      "Name": "navigation1",
+      "Name": "Navigation 1",
       "Ticker": "NV1",
       "CategoryId": "d23b9225010ad7978e5496e55359e19b",
       "CategoryName": "ship parts",
@@ -2144,7 +2144,7 @@
     },
     "NV2": {
       "Id": "NV2",
-      "Name": "navigation2",
+      "Name": "Navigation 2",
       "Ticker": "NV2",
       "CategoryId": "d23b9225010ad7978e5496e55359e19b",
       "CategoryName": "ship parts",
@@ -2153,7 +2153,7 @@
     },
     "O": {
       "Id": "O",
-      "Name": "oxygen",
+      "Name": "Oxygen",
       "Ticker": "O",
       "CategoryId": "54dec1e42eba44dda423dd774393326a",
       "CategoryName": "gases",
@@ -2162,7 +2162,7 @@
     },
     "OFF": {
       "Id": "OFF",
-      "Name": "officeSupplies",
+      "Name": "Office Supplies",
       "Ticker": "OFF",
       "CategoryId": "4eb124000ee0e38af1daf5aced313823",
       "CategoryName": "utility",
@@ -2171,7 +2171,7 @@
     },
     "OLF": {
       "Id": "OLF",
-      "Name": "olfactorySubstances",
+      "Name": "Olfactory Substances",
       "Ticker": "OLF",
       "CategoryId": "9b32ea2333917ee2632ba7ae7675643f",
       "CategoryName": "chemicals",
@@ -2180,7 +2180,7 @@
     },
     "OS": {
       "Id": "OS",
-      "Name": "operatingSystem",
+      "Name": "Operating System",
       "Ticker": "OS",
       "CategoryId": "1dfe943824ceb52d332b4650ce457218",
       "CategoryName": "software tools",
@@ -2189,7 +2189,7 @@
     },
     "OVE": {
       "Id": "OVE",
-      "Name": "pioneerClothing",
+      "Name": "Pioneer Clothing",
       "Ticker": "OVE",
       "CategoryId": "3f047ec3043bdd795fd7272d6be98799",
       "CategoryName": "consumables (basic)",
@@ -2198,7 +2198,7 @@
     },
     "PBU": {
       "Id": "PBU",
-      "Name": "pioneerBundle",
+      "Name": "Pioneer Bundle",
       "Ticker": "PBU",
       "CategoryId": "1237e1d7ac57367e39b6a2406ca4dadc",
       "CategoryName": "consumable bundles",
@@ -2207,7 +2207,7 @@
     },
     "PCB": {
       "Id": "PCB",
-      "Name": "printedCircuitBoard",
+      "Name": "Printed Circuit Board",
       "Ticker": "PCB",
       "CategoryId": "8e15000dfbda2f46ce73458deaeeb358",
       "CategoryName": "electronic parts",
@@ -2216,7 +2216,7 @@
     },
     "PDA": {
       "Id": "PDA",
-      "Name": "engineerTools",
+      "Name": "Engineer Tools",
       "Ticker": "PDA",
       "CategoryId": "3f047ec3043bdd795fd7272d6be98799",
       "CategoryName": "consumables (basic)",
@@ -2225,7 +2225,7 @@
     },
     "PE": {
       "Id": "PE",
-      "Name": "polyEthylene",
+      "Name": "Poly Ethylene",
       "Ticker": "PE",
       "CategoryId": "6316282906a9f68b0c7bb4396a26aa95",
       "CategoryName": "plastics",
@@ -2234,7 +2234,7 @@
     },
     "PFE": {
       "Id": "PFE",
-      "Name": "premiumFertilizer",
+      "Name": "Premium Fertilizer",
       "Ticker": "PFE",
       "CategoryId": "9b32ea2333917ee2632ba7ae7675643f",
       "CategoryName": "chemicals",
@@ -2243,7 +2243,7 @@
     },
     "PFG": {
       "Id": "PFG",
-      "Name": "polarityFieldGenerator",
+      "Name": "Polarity Field Generator",
       "Ticker": "PFG",
       "CategoryId": "5aac3f26a7e93c5999cfa593dcddd4e1",
       "CategoryName": "infrastructure",
@@ -2252,7 +2252,7 @@
     },
     "PG": {
       "Id": "PG",
-      "Name": "polymerGranulate",
+      "Name": "Polymer Granulate",
       "Ticker": "PG",
       "CategoryId": "6316282906a9f68b0c7bb4396a26aa95",
       "CategoryName": "plastics",
@@ -2261,7 +2261,7 @@
     },
     "PIB": {
       "Id": "PIB",
-      "Name": "pineberries",
+      "Name": "Pineberries",
       "Ticker": "PIB",
       "CategoryId": "510e7751c0eb6a51fd0fa73565365d1c",
       "CategoryName": "agricultural products",
@@ -2270,7 +2270,7 @@
     },
     "PK": {
       "Id": "PK",
-      "Name": "painkillers",
+      "Name": "Painkillers",
       "Ticker": "PK",
       "CategoryId": "ef05c6b81cf109f142dd415ce6d36e67",
       "CategoryName": "medical equipment",
@@ -2279,7 +2279,7 @@
     },
     "POW": {
       "Id": "POW",
-      "Name": "powerCell",
+      "Name": "Power Cell",
       "Ticker": "POW",
       "CategoryId": "0509ed0a396f5a004d24ef08e33786fb",
       "CategoryName": "energy systems",
@@ -2288,7 +2288,7 @@
     },
     "PPA": {
       "Id": "PPA",
-      "Name": "proteinPaste",
+      "Name": "Protein Paste",
       "Ticker": "PPA",
       "CategoryId": "510e7751c0eb6a51fd0fa73565365d1c",
       "CategoryName": "agricultural products",
@@ -2297,7 +2297,7 @@
     },
     "PSH": {
       "Id": "PSH",
-      "Name": "pressureShielding",
+      "Name": "Pressure Shielding",
       "Ticker": "PSH",
       "CategoryId": "f8aebc7dd84ce14fae131aa0203d4498",
       "CategoryName": "construction parts",
@@ -2306,7 +2306,7 @@
     },
     "PSL": {
       "Id": "PSL",
-      "Name": "largePlasticsBoard",
+      "Name": "Large Plastics Board",
       "Ticker": "PSL",
       "CategoryId": "6316282906a9f68b0c7bb4396a26aa95",
       "CategoryName": "plastics",
@@ -2315,7 +2315,7 @@
     },
     "PSM": {
       "Id": "PSM",
-      "Name": "mediumPlasticsBoard",
+      "Name": "Medium Plastics Board",
       "Ticker": "PSM",
       "CategoryId": "6316282906a9f68b0c7bb4396a26aa95",
       "CategoryName": "plastics",
@@ -2324,7 +2324,7 @@
     },
     "PSS": {
       "Id": "PSS",
-      "Name": "smallPlasticsBoard",
+      "Name": "Small Plastics Board",
       "Ticker": "PSS",
       "CategoryId": "6316282906a9f68b0c7bb4396a26aa95",
       "CategoryName": "plastics",
@@ -2333,7 +2333,7 @@
     },
     "PT": {
       "Id": "PT",
-      "Name": "settlerTools",
+      "Name": "Settler Tools",
       "Ticker": "PT",
       "CategoryId": "3f047ec3043bdd795fd7272d6be98799",
       "CategoryName": "consumables (basic)",
@@ -2342,7 +2342,7 @@
     },
     "PWO": {
       "Id": "PWO",
-      "Name": "pioneerLuxuryClothing",
+      "Name": "Pioneer Luxury Clothing",
       "Ticker": "PWO",
       "CategoryId": "8a0bd8b6a329c3d632da9da63c818b3d",
       "CategoryName": "consumables (luxury)",
@@ -2351,7 +2351,7 @@
     },
     "QCR": {
       "Id": "QCR",
-      "Name": "quickChargeReactor",
+      "Name": "Quick Charge Reactor",
       "Ticker": "QCR",
       "CategoryId": "16b943147bb16fe84c0d62de8a4316a7",
       "CategoryName": "ship engines",
@@ -2360,7 +2360,7 @@
     },
     "RAD": {
       "Id": "RAD",
-      "Name": "radioDevice",
+      "Name": "Radio Device",
       "Ticker": "RAD",
       "CategoryId": "19d621bb3f297c0425e34cdf0b138ece",
       "CategoryName": "electronic devices",
@@ -2369,7 +2369,7 @@
     },
     "RAG": {
       "Id": "RAG",
-      "Name": "radioisotopeGenerator",
+      "Name": "Radioisotope Generator",
       "Ticker": "RAG",
       "CategoryId": "16b943147bb16fe84c0d62de8a4316a7",
       "CategoryName": "ship engines",
@@ -2378,7 +2378,7 @@
     },
     "RAM": {
       "Id": "RAM",
-      "Name": "memoryBank",
+      "Name": "Memory Bank",
       "Ticker": "RAM",
       "CategoryId": "8e15000dfbda2f46ce73458deaeeb358",
       "CategoryName": "electronic parts",
@@ -2387,7 +2387,7 @@
     },
     "RAT": {
       "Id": "RAT",
-      "Name": "rations",
+      "Name": "Rations",
       "Ticker": "RAT",
       "CategoryId": "3f047ec3043bdd795fd7272d6be98799",
       "CategoryName": "consumables (basic)",
@@ -2396,7 +2396,7 @@
     },
     "RBH": {
       "Id": "RBH",
-      "Name": "reinforcedBulkhead",
+      "Name": "Reinforced Bulkhead",
       "Ticker": "RBH",
       "CategoryId": "ef423f673d9e8c82043b4c5c63f6b55e",
       "CategoryName": "construction prefabs",
@@ -2405,7 +2405,7 @@
     },
     "RCO": {
       "Id": "RCO",
-      "Name": "cottonRaw",
+      "Name": "Cotton Raw",
       "Ticker": "RCO",
       "CategoryId": "510e7751c0eb6a51fd0fa73565365d1c",
       "CategoryName": "agricultural products",
@@ -2414,7 +2414,7 @@
     },
     "RCS": {
       "Id": "RCS",
-      "Name": "reactorControlSystem",
+      "Name": "Reactor Control System",
       "Ticker": "RCS",
       "CategoryId": "16b943147bb16fe84c0d62de8a4316a7",
       "CategoryName": "ship engines",
@@ -2423,7 +2423,7 @@
     },
     "RCT": {
       "Id": "RCT",
-      "Name": "standardReactor",
+      "Name": "Standard Reactor",
       "Ticker": "RCT",
       "CategoryId": "16b943147bb16fe84c0d62de8a4316a7",
       "CategoryName": "ship engines",
@@ -2432,7 +2432,7 @@
     },
     "RDE": {
       "Id": "RDE",
-      "Name": "reinforcedDeckElements",
+      "Name": "Reinforced Deck Elements",
       "Ticker": "RDE",
       "CategoryId": "ef423f673d9e8c82043b4c5c63f6b55e",
       "CategoryName": "construction prefabs",
@@ -2441,7 +2441,7 @@
     },
     "RDL": {
       "Id": "RDL",
-      "Name": "largeShipRepairDroneUnit",
+      "Name": "Large Ship Repair Drone Unit",
       "Ticker": "RDL",
       "CategoryId": "2c6ca18d24e03fc9250d8ca7d577568b",
       "CategoryName": "unit prefabs",
@@ -2450,7 +2450,7 @@
     },
     "RDS": {
       "Id": "RDS",
-      "Name": "smallShipRepairDroneUnit",
+      "Name": "Small Ship Repair Drone Unit",
       "Ticker": "RDS",
       "CategoryId": "2c6ca18d24e03fc9250d8ca7d577568b",
       "CategoryName": "unit prefabs",
@@ -2459,7 +2459,7 @@
     },
     "RE": {
       "Id": "RE",
-      "Name": "rhenium",
+      "Name": "Rhenium",
       "Ticker": "RE",
       "CategoryId": "cae48680d4c4e6f98d593a8c3778cb56",
       "CategoryName": "metals",
@@ -2468,7 +2468,7 @@
     },
     "REA": {
       "Id": "REA",
-      "Name": "chemicalReagents",
+      "Name": "Chemical Reagents",
       "Ticker": "REA",
       "CategoryId": "9b32ea2333917ee2632ba7ae7675643f",
       "CategoryName": "chemicals",
@@ -2477,7 +2477,7 @@
     },
     "RED": {
       "Id": "RED",
-      "Name": "rescueDrone",
+      "Name": "Rescue Drone",
       "Ticker": "RED",
       "CategoryId": "6eb09f14ed9fec3d0407114be8bc8882",
       "CategoryName": "drones",
@@ -2486,7 +2486,7 @@
     },
     "REO": {
       "Id": "REO",
-      "Name": "rheniumOre",
+      "Name": "Rhenium Ore",
       "Ticker": "REO",
       "CategoryId": "4c0430b40fbf7fa175ed4a5a13682c6f",
       "CategoryName": "ores",
@@ -2495,7 +2495,7 @@
     },
     "REP": {
       "Id": "REP",
-      "Name": "settlerLuxuryTools",
+      "Name": "Settler Luxury Tools",
       "Ticker": "REP",
       "CategoryId": "8a0bd8b6a329c3d632da9da63c818b3d",
       "CategoryName": "consumables (luxury)",
@@ -2504,7 +2504,7 @@
     },
     "RG": {
       "Id": "RG",
-      "Name": "reinforcedTranslucentMaterial",
+      "Name": "Reinforced Translucent Material",
       "Ticker": "RG",
       "CategoryId": "156bbcce730fba6169338d560f05fd26",
       "CategoryName": "construction materials",
@@ -2513,7 +2513,7 @@
     },
     "RGO": {
       "Id": "RGO",
-      "Name": "goldCopperAlloy",
+      "Name": "Gold Copper Alloy",
       "Ticker": "RGO",
       "CategoryId": "37e95782d80aa1c1ded89f2c4b834dd0",
       "CategoryName": "alloys",
@@ -2522,7 +2522,7 @@
     },
     "RHP": {
       "Id": "RHP",
-      "Name": "reinforcedHullPlate",
+      "Name": "Reinforced Hull Plate",
       "Ticker": "RHP",
       "CategoryId": "d23b9225010ad7978e5496e55359e19b",
       "CategoryName": "ship parts",
@@ -2531,7 +2531,7 @@
     },
     "ROM": {
       "Id": "ROM",
-      "Name": "nonVolatileMemory",
+      "Name": "Non Volatile Memory",
       "Ticker": "ROM",
       "CategoryId": "8e15000dfbda2f46ce73458deaeeb358",
       "CategoryName": "electronic parts",
@@ -2540,7 +2540,7 @@
     },
     "RSE": {
       "Id": "RSE",
-      "Name": "reinforcedStructuralElements",
+      "Name": "Reinforced Structural Elements",
       "Ticker": "RSE",
       "CategoryId": "ef423f673d9e8c82043b4c5c63f6b55e",
       "CategoryName": "construction prefabs",
@@ -2549,7 +2549,7 @@
     },
     "RSH": {
       "Id": "RSH",
-      "Name": "radiationShielding",
+      "Name": "Radiation Shielding",
       "Ticker": "RSH",
       "CategoryId": "f8aebc7dd84ce14fae131aa0203d4498",
       "CategoryName": "construction parts",
@@ -2558,7 +2558,7 @@
     },
     "RSI": {
       "Id": "RSI",
-      "Name": "silkRaw",
+      "Name": "Silk Raw",
       "Ticker": "RSI",
       "CategoryId": "510e7751c0eb6a51fd0fa73565365d1c",
       "CategoryName": "agricultural products",
@@ -2567,7 +2567,7 @@
     },
     "RTA": {
       "Id": "RTA",
-      "Name": "reinforcedWindow",
+      "Name": "Reinforced Window",
       "Ticker": "RTA",
       "CategoryId": "ef423f673d9e8c82043b4c5c63f6b55e",
       "CategoryName": "construction prefabs",
@@ -2576,7 +2576,7 @@
     },
     "S": {
       "Id": "S",
-      "Name": "sulfur",
+      "Name": "Sulfur",
       "Ticker": "S",
       "CategoryId": "ef1d03e7ef924395c2173fc4e4ee8a6f",
       "CategoryName": "elements",
@@ -2585,7 +2585,7 @@
     },
     "SA": {
       "Id": "SA",
-      "Name": "searchAlgorithm",
+      "Name": "Search Algorithm",
       "Ticker": "SA",
       "CategoryId": "ebec0c297d5b499a84dd051fa6f7c8ec",
       "CategoryName": "software components",
@@ -2594,7 +2594,7 @@
     },
     "SAL": {
       "Id": "SAL",
-      "Name": "sortingAlgorithm",
+      "Name": "Sorting Algorithm",
       "Ticker": "SAL",
       "CategoryId": "ebec0c297d5b499a84dd051fa6f7c8ec",
       "CategoryName": "software components",
@@ -2603,7 +2603,7 @@
     },
     "SAR": {
       "Id": "SAR",
-      "Name": "sensorArray",
+      "Name": "Sensor Array",
       "Ticker": "SAR",
       "CategoryId": "19d621bb3f297c0425e34cdf0b138ece",
       "CategoryName": "electronic devices",
@@ -2612,7 +2612,7 @@
     },
     "SBU": {
       "Id": "SBU",
-      "Name": "settlerBundle",
+      "Name": "Settler Bundle",
       "Ticker": "SBU",
       "CategoryId": "1237e1d7ac57367e39b6a2406ca4dadc",
       "CategoryName": "consumable bundles",
@@ -2621,7 +2621,7 @@
     },
     "SC": {
       "Id": "SC",
-      "Name": "technicianLuxuryHealth",
+      "Name": "Technician Luxury Health",
       "Ticker": "SC",
       "CategoryId": "8a0bd8b6a329c3d632da9da63c818b3d",
       "CategoryName": "consumables (luxury)",
@@ -2630,7 +2630,7 @@
     },
     "SCB": {
       "Id": "SCB",
-      "Name": "smallCargoBay",
+      "Name": "Small Cargo Bay",
       "Ticker": "SCB",
       "CategoryId": "b7102e43e58120a254cf161c226d4177",
       "CategoryName": "ship kits",
@@ -2639,7 +2639,7 @@
     },
     "SCN": {
       "Id": "SCN",
-      "Name": "technicianTools",
+      "Name": "Technician Tools",
       "Ticker": "SCN",
       "CategoryId": "3f047ec3043bdd795fd7272d6be98799",
       "CategoryName": "consumables (basic)",
@@ -2648,7 +2648,7 @@
     },
     "SCR": {
       "Id": "SCR",
-      "Name": "sulfurCrystals",
+      "Name": "Sulfur Crystals",
       "Ticker": "SCR",
       "CategoryId": "79f3917448cc4f6034ece865c41aea34",
       "CategoryName": "minerals",
@@ -2657,7 +2657,7 @@
     },
     "SDM": {
       "Id": "SDM",
-      "Name": "shockwaveDampeningModule",
+      "Name": "Shockwave Dampening Module",
       "Ticker": "SDM",
       "CategoryId": "5aac3f26a7e93c5999cfa593dcddd4e1",
       "CategoryName": "infrastructure",
@@ -2666,7 +2666,7 @@
     },
     "SDR": {
       "Id": "SDR",
-      "Name": "surgicalDrone",
+      "Name": "Surgical Drone",
       "Ticker": "SDR",
       "CategoryId": "6eb09f14ed9fec3d0407114be8bc8882",
       "CategoryName": "drones",
@@ -2675,7 +2675,7 @@
     },
     "SEA": {
       "Id": "SEA",
-      "Name": "sealant",
+      "Name": "Sealant",
       "Ticker": "SEA",
       "CategoryId": "156bbcce730fba6169338d560f05fd26",
       "CategoryName": "construction materials",
@@ -2684,7 +2684,7 @@
     },
     "SEN": {
       "Id": "SEN",
-      "Name": "sensor",
+      "Name": "Sensor",
       "Ticker": "SEN",
       "CategoryId": "8e15000dfbda2f46ce73458deaeeb358",
       "CategoryName": "electronic parts",
@@ -2693,7 +2693,7 @@
     },
     "SEQ": {
       "Id": "SEQ",
-      "Name": "surgicalEquipment",
+      "Name": "Surgical Equipment",
       "Ticker": "SEQ",
       "CategoryId": "ef05c6b81cf109f142dd415ce6d36e67",
       "CategoryName": "medical equipment",
@@ -2702,7 +2702,7 @@
     },
     "SF": {
       "Id": "SF",
-      "Name": "stlFuel",
+      "Name": "Stl Fuel",
       "Ticker": "SF",
       "CategoryId": "ba98fa0cf77040a96cd8a608ad0d08e9",
       "CategoryName": "fuels",
@@ -2711,7 +2711,7 @@
     },
     "SFE": {
       "Id": "SFE",
-      "Name": "smallEmitter",
+      "Name": "Small Emitter",
       "Ticker": "SFE",
       "CategoryId": "16b943147bb16fe84c0d62de8a4316a7",
       "CategoryName": "ship engines",
@@ -2720,7 +2720,7 @@
     },
     "SFK": {
       "Id": "SFK",
-      "Name": "fastenerKitSmall",
+      "Name": "Fastener Kit Small",
       "Ticker": "SFK",
       "CategoryId": "5e022d8f199de1c70f8de4dfd2fdef64",
       "CategoryName": "electronic pieces",
@@ -2729,7 +2729,7 @@
     },
     "SFL": {
       "Id": "SFL",
-      "Name": "smallFtlTank",
+      "Name": "Small Ftl Tank",
       "Ticker": "SFL",
       "CategoryId": "b7102e43e58120a254cf161c226d4177",
       "CategoryName": "ship kits",
@@ -2738,7 +2738,7 @@
     },
     "SI": {
       "Id": "SI",
-      "Name": "silicon",
+      "Name": "Silicon",
       "Ticker": "SI",
       "CategoryId": "cae48680d4c4e6f98d593a8c3778cb56",
       "CategoryName": "metals",
@@ -2747,7 +2747,7 @@
     },
     "SIL": {
       "Id": "SIL",
-      "Name": "silkProcessed",
+      "Name": "Silk Processed",
       "Ticker": "SIL",
       "CategoryId": "7028d7d532ccd4c6c878b069e7bbb634",
       "CategoryName": "textiles",
@@ -2756,7 +2756,7 @@
     },
     "SIO": {
       "Id": "SIO",
-      "Name": "siliconOre",
+      "Name": "Silicon Ore",
       "Ticker": "SIO",
       "CategoryId": "4c0430b40fbf7fa175ed4a5a13682c6f",
       "CategoryName": "ores",
@@ -2765,7 +2765,7 @@
     },
     "SNM": {
       "Id": "SNM",
-      "Name": "universeMap",
+      "Name": "Universe Map",
       "Ticker": "SNM",
       "CategoryId": "9e8bc2a092cc3361b6949eca3e95921a",
       "CategoryName": "software systems",
@@ -2774,7 +2774,7 @@
     },
     "SOI": {
       "Id": "SOI",
-      "Name": "artificialSoil",
+      "Name": "Artificial Soil",
       "Ticker": "SOI",
       "CategoryId": "9b32ea2333917ee2632ba7ae7675643f",
       "CategoryName": "chemicals",
@@ -2783,7 +2783,7 @@
     },
     "SOL": {
       "Id": "SOL",
-      "Name": "solarCell",
+      "Name": "Solar Cell",
       "Ticker": "SOL",
       "CategoryId": "0509ed0a396f5a004d24ef08e33786fb",
       "CategoryName": "energy systems",
@@ -2792,7 +2792,7 @@
     },
     "SP": {
       "Id": "SP",
-      "Name": "solarPanel",
+      "Name": "Solar Panel",
       "Ticker": "SP",
       "CategoryId": "0509ed0a396f5a004d24ef08e33786fb",
       "CategoryName": "energy systems",
@@ -2801,7 +2801,7 @@
     },
     "SPT": {
       "Id": "SPT",
-      "Name": "spaceTether",
+      "Name": "Space Tether",
       "Ticker": "SPT",
       "CategoryId": "5aac3f26a7e93c5999cfa593dcddd4e1",
       "CategoryName": "infrastructure",
@@ -2810,7 +2810,7 @@
     },
     "SRD": {
       "Id": "SRD",
-      "Name": "shipRepairDrone",
+      "Name": "Ship Repair Drone",
       "Ticker": "SRD",
       "CategoryId": "6eb09f14ed9fec3d0407114be8bc8882",
       "CategoryName": "drones",
@@ -2819,7 +2819,7 @@
     },
     "SRP": {
       "Id": "SRP",
-      "Name": "specializedRadiationShielding",
+      "Name": "Specialized Radiation Shielding",
       "Ticker": "SRP",
       "CategoryId": "a8e32e7e16219394989aea62fc0cd943",
       "CategoryName": "ship shields",
@@ -2828,7 +2828,7 @@
     },
     "SSC": {
       "Id": "SSC",
-      "Name": "structuralSpacecraftComponent",
+      "Name": "Structural Spacecraft Component",
       "Ticker": "SSC",
       "CategoryId": "d23b9225010ad7978e5496e55359e19b",
       "CategoryName": "ship parts",
@@ -2837,7 +2837,7 @@
     },
     "SSL": {
       "Id": "SSL",
-      "Name": "smallStlTank",
+      "Name": "Small Stl Tank",
       "Ticker": "SSL",
       "CategoryId": "b7102e43e58120a254cf161c226d4177",
       "CategoryName": "ship kits",
@@ -2846,7 +2846,7 @@
     },
     "SST": {
       "Id": "SST",
-      "Name": "singularityStabilizer",
+      "Name": "Singularity Stabilizer",
       "Ticker": "SST",
       "CategoryId": "5aac3f26a7e93c5999cfa593dcddd4e1",
       "CategoryName": "infrastructure",
@@ -2855,7 +2855,7 @@
     },
     "STL": {
       "Id": "STL",
-      "Name": "steel",
+      "Name": "Steel",
       "Ticker": "STL",
       "CategoryId": "cae48680d4c4e6f98d593a8c3778cb56",
       "CategoryName": "metals",
@@ -2864,7 +2864,7 @@
     },
     "STR": {
       "Id": "STR",
-      "Name": "medicalStretcher",
+      "Name": "Medical Stretcher",
       "Ticker": "STR",
       "CategoryId": "ef05c6b81cf109f142dd415ce6d36e67",
       "CategoryName": "medical equipment",
@@ -2873,7 +2873,7 @@
     },
     "STS": {
       "Id": "STS",
-      "Name": "stabilitySupportSystem",
+      "Name": "Stability Support System",
       "Ticker": "STS",
       "CategoryId": "1e1a3a579c46d5f9c4e9959650c6b7a3",
       "CategoryName": "electronic systems",
@@ -2882,7 +2882,7 @@
     },
     "SU": {
       "Id": "SU",
-      "Name": "surgeryUnit",
+      "Name": "Surgery Unit",
       "Ticker": "SU",
       "CategoryId": "2c6ca18d24e03fc9250d8ca7d577568b",
       "CategoryName": "unit prefabs",
@@ -2891,7 +2891,7 @@
     },
     "SUD": {
       "Id": "SUD",
-      "Name": "surveillanceDrone",
+      "Name": "Surveillance Drone",
       "Ticker": "SUD",
       "CategoryId": "6eb09f14ed9fec3d0407114be8bc8882",
       "CategoryName": "drones",
@@ -2900,7 +2900,7 @@
     },
     "SUN": {
       "Id": "SUN",
-      "Name": "safetyUniform",
+      "Name": "Safety Uniform",
       "Ticker": "SUN",
       "CategoryId": "4eb124000ee0e38af1daf5aced313823",
       "CategoryName": "utility",
@@ -2909,7 +2909,7 @@
     },
     "SWF": {
       "Id": "SWF",
-      "Name": "waferSmall",
+      "Name": "Wafer Small",
       "Ticker": "SWF",
       "CategoryId": "5e022d8f199de1c70f8de4dfd2fdef64",
       "CategoryName": "electronic pieces",
@@ -2918,7 +2918,7 @@
     },
     "TA": {
       "Id": "TA",
-      "Name": "tantalum",
+      "Name": "Tantalum",
       "Ticker": "TA",
       "CategoryId": "ef1d03e7ef924395c2173fc4e4ee8a6f",
       "CategoryName": "elements",
@@ -2927,7 +2927,7 @@
     },
     "TAC": {
       "Id": "TAC",
-      "Name": "targetingComputer",
+      "Name": "Targeting Computer",
       "Ticker": "TAC",
       "CategoryId": "1e1a3a579c46d5f9c4e9959650c6b7a3",
       "CategoryName": "electronic systems",
@@ -2936,7 +2936,7 @@
     },
     "TAI": {
       "Id": "TAI",
-      "Name": "tantalite",
+      "Name": "Tantalite",
       "Ticker": "TAI",
       "CategoryId": "79f3917448cc4f6034ece865c41aea34",
       "CategoryName": "minerals",
@@ -2945,7 +2945,7 @@
     },
     "TBU": {
       "Id": "TBU",
-      "Name": "technicianBundle",
+      "Name": "Technician Bundle",
       "Ticker": "TBU",
       "CategoryId": "1237e1d7ac57367e39b6a2406ca4dadc",
       "CategoryName": "consumable bundles",
@@ -2954,7 +2954,7 @@
     },
     "TC": {
       "Id": "TC",
-      "Name": "technetium",
+      "Name": "Technetium",
       "Ticker": "TC",
       "CategoryId": "ef1d03e7ef924395c2173fc4e4ee8a6f",
       "CategoryName": "elements",
@@ -2963,7 +2963,7 @@
     },
     "TCB": {
       "Id": "TCB",
-      "Name": "tinyCargoBay",
+      "Name": "Tiny Cargo Bay",
       "Ticker": "TCB",
       "CategoryId": "b7102e43e58120a254cf161c226d4177",
       "CategoryName": "ship kits",
@@ -2972,7 +2972,7 @@
     },
     "TCL": {
       "Id": "TCL",
-      "Name": "tclAcid",
+      "Name": "Tcl Acid",
       "Ticker": "TCL",
       "CategoryId": "9b32ea2333917ee2632ba7ae7675643f",
       "CategoryName": "chemicals",
@@ -2981,7 +2981,7 @@
     },
     "TCO": {
       "Id": "TCO",
-      "Name": "technetiumOxide",
+      "Name": "Technetium Oxide",
       "Ticker": "TCO",
       "CategoryId": "79f3917448cc4f6034ece865c41aea34",
       "CategoryName": "minerals",
@@ -2990,7 +2990,7 @@
     },
     "TCS": {
       "Id": "TCS",
-      "Name": "technetiumStabilizers",
+      "Name": "Technetium Stabilizers",
       "Ticker": "TCS",
       "CategoryId": "f8aebc7dd84ce14fae131aa0203d4498",
       "CategoryName": "construction parts",
@@ -2999,7 +2999,7 @@
     },
     "TCU": {
       "Id": "TCU",
-      "Name": "traumaCareUnit",
+      "Name": "Trauma Care Unit",
       "Ticker": "TCU",
       "CategoryId": "2c6ca18d24e03fc9250d8ca7d577568b",
       "CategoryName": "unit prefabs",
@@ -3008,7 +3008,7 @@
     },
     "THF": {
       "Id": "THF",
-      "Name": "thermoFluid",
+      "Name": "Thermo Fluid",
       "Ticker": "THF",
       "CategoryId": "9b32ea2333917ee2632ba7ae7675643f",
       "CategoryName": "chemicals",
@@ -3017,7 +3017,7 @@
     },
     "THP": {
       "Id": "THP",
-      "Name": "basicThermalProtectionMaterial",
+      "Name": "Basic Thermal Protection Material",
       "Ticker": "THP",
       "CategoryId": "d23b9225010ad7978e5496e55359e19b",
       "CategoryName": "ship parts",
@@ -3026,7 +3026,7 @@
     },
     "TI": {
       "Id": "TI",
-      "Name": "titanium",
+      "Name": "Titanium",
       "Ticker": "TI",
       "CategoryId": "cae48680d4c4e6f98d593a8c3778cb56",
       "CategoryName": "metals",
@@ -3035,7 +3035,7 @@
     },
     "TIO": {
       "Id": "TIO",
-      "Name": "titaniumOre",
+      "Name": "Titanium Ore",
       "Ticker": "TIO",
       "CategoryId": "4c0430b40fbf7fa175ed4a5a13682c6f",
       "CategoryName": "ores",
@@ -3044,7 +3044,7 @@
     },
     "TK": {
       "Id": "TK",
-      "Name": "technoKevlar",
+      "Name": "Techno Kevlar",
       "Ticker": "TK",
       "CategoryId": "7028d7d532ccd4c6c878b069e7bbb634",
       "CategoryName": "textiles",
@@ -3053,7 +3053,7 @@
     },
     "TOR": {
       "Id": "TOR",
-      "Name": "torusSegment",
+      "Name": "Torus Segment",
       "Ticker": "TOR",
       "CategoryId": "5aac3f26a7e93c5999cfa593dcddd4e1",
       "CategoryName": "infrastructure",
@@ -3062,7 +3062,7 @@
     },
     "TPU": {
       "Id": "TPU",
-      "Name": "tensorProcessingUnit",
+      "Name": "Tensor Processing Unit",
       "Ticker": "TPU",
       "CategoryId": "8e15000dfbda2f46ce73458deaeeb358",
       "CategoryName": "electronic parts",
@@ -3071,7 +3071,7 @@
     },
     "TRA": {
       "Id": "TRA",
-      "Name": "audioTransmitter",
+      "Name": "Audio Transmitter",
       "Ticker": "TRA",
       "CategoryId": "8e15000dfbda2f46ce73458deaeeb358",
       "CategoryName": "electronic parts",
@@ -3080,7 +3080,7 @@
     },
     "TRN": {
       "Id": "TRN",
-      "Name": "transistor",
+      "Name": "Transistor",
       "Ticker": "TRN",
       "CategoryId": "5e022d8f199de1c70f8de4dfd2fdef64",
       "CategoryName": "electronic pieces",
@@ -3089,7 +3089,7 @@
     },
     "TRS": {
       "Id": "TRS",
-      "Name": "tensionReliefStructure",
+      "Name": "Tension Relief Structure",
       "Ticker": "TRS",
       "CategoryId": "5aac3f26a7e93c5999cfa593dcddd4e1",
       "CategoryName": "infrastructure",
@@ -3098,7 +3098,7 @@
     },
     "TRU": {
       "Id": "TRU",
-      "Name": "truss",
+      "Name": "Truss",
       "Ticker": "TRU",
       "CategoryId": "f8aebc7dd84ce14fae131aa0203d4498",
       "CategoryName": "construction parts",
@@ -3107,7 +3107,7 @@
     },
     "TS": {
       "Id": "TS",
-      "Name": "tectosilisite",
+      "Name": "Tectosilisite",
       "Ticker": "TS",
       "CategoryId": "79f3917448cc4f6034ece865c41aea34",
       "CategoryName": "minerals",
@@ -3116,7 +3116,7 @@
     },
     "TSH": {
       "Id": "TSH",
-      "Name": "thermalShielding",
+      "Name": "Thermal Shielding",
       "Ticker": "TSH",
       "CategoryId": "f8aebc7dd84ce14fae131aa0203d4498",
       "CategoryName": "construction parts",
@@ -3125,7 +3125,7 @@
     },
     "TUB": {
       "Id": "TUB",
-      "Name": "testTubes",
+      "Name": "Test Tubes",
       "Ticker": "TUB",
       "CategoryId": "ef05c6b81cf109f142dd415ce6d36e67",
       "CategoryName": "medical equipment",
@@ -3134,7 +3134,7 @@
     },
     "UTS": {
       "Id": "UTS",
-      "Name": "universalToolset",
+      "Name": "Universal Toolset",
       "Ticker": "UTS",
       "CategoryId": "4eb124000ee0e38af1daf5aced313823",
       "CategoryName": "utility",
@@ -3143,7 +3143,7 @@
     },
     "VCB": {
       "Id": "VCB",
-      "Name": "highVolumeCargoBay",
+      "Name": "High Volume Cargo Bay",
       "Ticker": "VCB",
       "CategoryId": "b7102e43e58120a254cf161c226d4177",
       "CategoryName": "ship kits",
@@ -3152,7 +3152,7 @@
     },
     "VEG": {
       "Id": "VEG",
-      "Name": "fattyVegetables",
+      "Name": "Fatty Vegetables",
       "Ticker": "VEG",
       "CategoryId": "510e7751c0eb6a51fd0fa73565365d1c",
       "CategoryName": "agricultural products",
@@ -3161,7 +3161,7 @@
     },
     "VF": {
       "Id": "VF",
-      "Name": "vortexStimulationFuel",
+      "Name": "Vortex Stimulation Fuel",
       "Ticker": "VF",
       "CategoryId": "ba98fa0cf77040a96cd8a608ad0d08e9",
       "CategoryName": "fuels",
@@ -3170,7 +3170,7 @@
     },
     "VFT": {
       "Id": "VFT",
-      "Name": "vortexFuelTank",
+      "Name": "Vortex Fuel Tank",
       "Ticker": "VFT",
       "CategoryId": "b7102e43e58120a254cf161c226d4177",
       "CategoryName": "ship kits",
@@ -3179,7 +3179,7 @@
     },
     "VG": {
       "Id": "VG",
-      "Name": "engineerLuxuryHealth",
+      "Name": "Engineer Luxury Health",
       "Ticker": "VG",
       "CategoryId": "8a0bd8b6a329c3d632da9da63c818b3d",
       "CategoryName": "consumables (luxury)",
@@ -3188,7 +3188,7 @@
     },
     "VIT": {
       "Id": "VIT",
-      "Name": "vitaEssence",
+      "Name": "Vita Essence",
       "Ticker": "VIT",
       "CategoryId": "510e7751c0eb6a51fd0fa73565365d1c",
       "CategoryName": "agricultural products",
@@ -3197,7 +3197,7 @@
     },
     "VOE": {
       "Id": "VOE",
-      "Name": "vortexEngine",
+      "Name": "Vortex Engine",
       "Ticker": "VOE",
       "CategoryId": "16b943147bb16fe84c0d62de8a4316a7",
       "CategoryName": "ship engines",
@@ -3206,7 +3206,7 @@
     },
     "VOR": {
       "Id": "VOR",
-      "Name": "vortexReactor",
+      "Name": "Vortex Reactor",
       "Ticker": "VOR",
       "CategoryId": "16b943147bb16fe84c0d62de8a4316a7",
       "CategoryName": "ship engines",
@@ -3215,7 +3215,7 @@
     },
     "VSC": {
       "Id": "VSC",
-      "Name": "verySmallCargoBay",
+      "Name": "Very Small Cargo Bay",
       "Ticker": "VSC",
       "CategoryId": "b7102e43e58120a254cf161c226d4177",
       "CategoryName": "ship kits",
@@ -3224,7 +3224,7 @@
     },
     "W": {
       "Id": "W",
-      "Name": "wolfram",
+      "Name": "Wolfram",
       "Ticker": "W",
       "CategoryId": "cae48680d4c4e6f98d593a8c3778cb56",
       "CategoryName": "metals",
@@ -3233,7 +3233,7 @@
     },
     "WAI": {
       "Id": "WAI",
-      "Name": "weakArtificalIntelligence",
+      "Name": "Weak Artifical Intelligence",
       "Ticker": "WAI",
       "CategoryId": "9e8bc2a092cc3361b6949eca3e95921a",
       "CategoryName": "software systems",
@@ -3242,7 +3242,7 @@
     },
     "WAL": {
       "Id": "WAL",
-      "Name": "tungstenAluminiumAlloy",
+      "Name": "Tungsten Aluminium Alloy",
       "Ticker": "WAL",
       "CategoryId": "37e95782d80aa1c1ded89f2c4b834dd0",
       "CategoryName": "alloys",
@@ -3251,7 +3251,7 @@
     },
     "WCB": {
       "Id": "WCB",
-      "Name": "highLoadCargoBay",
+      "Name": "High Load Cargo Bay",
       "Ticker": "WCB",
       "CategoryId": "b7102e43e58120a254cf161c226d4177",
       "CategoryName": "ship kits",
@@ -3260,7 +3260,7 @@
     },
     "WIN": {
       "Id": "WIN",
-      "Name": "scientistLuxuryDrink",
+      "Name": "Scientist Luxury Drink",
       "Ticker": "WIN",
       "CategoryId": "8a0bd8b6a329c3d632da9da63c818b3d",
       "CategoryName": "consumables (luxury)",
@@ -3269,7 +3269,7 @@
     },
     "WM": {
       "Id": "WM",
-      "Name": "windowManager",
+      "Name": "Window Manager",
       "Ticker": "WM",
       "CategoryId": "ebec0c297d5b499a84dd051fa6f7c8ec",
       "CategoryName": "software components",
@@ -3278,7 +3278,7 @@
     },
     "WOR": {
       "Id": "WOR",
-      "Name": "handcraftWorkshopUnit",
+      "Name": "Handcraft Workshop Unit",
       "Ticker": "WOR",
       "CategoryId": "2c6ca18d24e03fc9250d8ca7d577568b",
       "CategoryName": "unit prefabs",
@@ -3287,7 +3287,7 @@
     },
     "WR": {
       "Id": "WR",
-      "Name": "waterRecycler",
+      "Name": "Water Recycler",
       "Ticker": "WR",
       "CategoryId": "1e1a3a579c46d5f9c4e9959650c6b7a3",
       "CategoryName": "electronic systems",
@@ -3296,7 +3296,7 @@
     },
     "WRH": {
       "Id": "WRH",
-      "Name": "wolfrhenium",
+      "Name": "Wolfrhenium",
       "Ticker": "WRH",
       "CategoryId": "37e95782d80aa1c1ded89f2c4b834dd0",
       "CategoryName": "alloys",
@@ -3305,7 +3305,7 @@
     },
     "WS": {
       "Id": "WS",
-      "Name": "scientistTools",
+      "Name": "Scientist Tools",
       "Ticker": "WS",
       "CategoryId": "3f047ec3043bdd795fd7272d6be98799",
       "CategoryName": "consumables (basic)",
@@ -3314,7 +3314,7 @@
     },
     "ZIR": {
       "Id": "ZIR",
-      "Name": "zircon",
+      "Name": "Zircon",
       "Ticker": "ZIR",
       "CategoryId": "79f3917448cc4f6034ece865c41aea34",
       "CategoryName": "minerals",
@@ -3323,7 +3323,7 @@
     },
     "ZR": {
       "Id": "ZR",
-      "Name": "zirconium",
+      "Name": "Zirconium",
       "Ticker": "ZR",
       "CategoryId": "ef1d03e7ef924395c2173fc4e4ee8a6f",
       "CategoryName": "elements",
@@ -12890,14 +12890,14 @@
   "Buildings": {
     "4DA": {
       "Id": "4DA",
-      "Name": "planetaryProjectComfortBig",
+      "Name": "Planetary Project Comfort Big",
       "DefaultWorkforce": [],
       "Area": 1000,
       "Expertise": ""
     },
     "AAF": {
       "Id": "AAF",
-      "Name": "advancedAppliancesFactory",
+      "Name": "Advanced Appliances Factory",
       "DefaultWorkforce": [
         {
           "WorkforceType": "ENGINEER",
@@ -12913,21 +12913,21 @@
     },
     "ACA": {
       "Id": "ACA",
-      "Name": "planetaryProjectComfortCulture",
+      "Name": "Planetary Project Comfort Culture",
       "DefaultWorkforce": [],
       "Area": 1000,
       "Expertise": ""
     },
     "ADM": {
       "Id": "ADM",
-      "Name": "planetaryProjectAdminCenter",
+      "Name": "Planetary Project Admin Center",
       "DefaultWorkforce": [],
       "Area": 400,
       "Expertise": ""
     },
     "AML": {
       "Id": "AML",
-      "Name": "advancedMaterialLab",
+      "Name": "Advanced Material Lab",
       "DefaultWorkforce": [
         {
           "WorkforceType": "ENGINEER",
@@ -12943,7 +12943,7 @@
     },
     "APF": {
       "Id": "APF",
-      "Name": "appliancesFactory",
+      "Name": "Appliances Factory",
       "DefaultWorkforce": [
         {
           "WorkforceType": "ENGINEER",
@@ -12959,14 +12959,14 @@
     },
     "ART": {
       "Id": "ART",
-      "Name": "planetaryProjectCultureSmall",
+      "Name": "Planetary Project Culture Small",
       "DefaultWorkforce": [],
       "Area": 500,
       "Expertise": ""
     },
     "ASM": {
       "Id": "ASM",
-      "Name": "advancedSmelter",
+      "Name": "Advanced Smelter",
       "DefaultWorkforce": [
         {
           "WorkforceType": "ENGINEER",
@@ -12982,7 +12982,7 @@
     },
     "BMP": {
       "Id": "BMP",
-      "Name": "basicMaterialsPlant",
+      "Name": "Basic Materials Plant",
       "DefaultWorkforce": [
         {
           "WorkforceType": "PIONEER",
@@ -12994,14 +12994,14 @@
     },
     "CFL": {
       "Id": "CFL",
-      "Name": "corporationProjectFTLLaboratory",
+      "Name": "Corporation Project FTL Laboratory",
       "DefaultWorkforce": [],
       "Area": 100,
       "Expertise": ""
     },
     "CHP": {
       "Id": "CHP",
-      "Name": "chemPlant",
+      "Name": "Chem Plant",
       "DefaultWorkforce": [
         {
           "WorkforceType": "PIONEER",
@@ -13017,14 +13017,14 @@
     },
     "CIM": {
       "Id": "CIM",
-      "Name": "corporationProjectImmortality",
+      "Name": "Corporation Project Immortality",
       "DefaultWorkforce": [],
       "Area": 100,
       "Expertise": ""
     },
     "CLF": {
       "Id": "CLF",
-      "Name": "clothingFactory",
+      "Name": "Clothing Factory",
       "DefaultWorkforce": [
         {
           "WorkforceType": "SETTLER",
@@ -13036,7 +13036,7 @@
     },
     "CLR": {
       "Id": "CLR",
-      "Name": "cleanRoom",
+      "Name": "Clean Room",
       "DefaultWorkforce": [
         {
           "WorkforceType": "SETTLER",
@@ -13052,21 +13052,21 @@
     },
     "CM": {
       "Id": "CM",
-      "Name": "coreModule",
+      "Name": "Core Module",
       "DefaultWorkforce": [],
       "Area": 25,
       "Expertise": ""
     },
     "COG": {
       "Id": "COG",
-      "Name": "planetaryProjectCogc",
+      "Name": "Planetary Project Cogc",
       "DefaultWorkforce": [],
       "Area": 1000,
       "Expertise": ""
     },
     "COL": {
       "Id": "COL",
-      "Name": "collector",
+      "Name": "Collector",
       "DefaultWorkforce": [
         {
           "WorkforceType": "PIONEER",
@@ -13078,28 +13078,28 @@
     },
     "COR": {
       "Id": "COR",
-      "Name": "corporationProjectHeadquarters",
+      "Name": "Corporation Project Headquarters",
       "DefaultWorkforce": [],
       "Area": 100,
       "Expertise": ""
     },
     "CRC": {
       "Id": "CRC",
-      "Name": "corporationProjectRepresentationCenter",
+      "Name": "Corporation Project Representation Center",
       "DefaultWorkforce": [],
       "Area": 100,
       "Expertise": ""
     },
     "CTE": {
       "Id": "CTE",
-      "Name": "corporationProjectTerraforming",
+      "Name": "Corporation Project Terraforming",
       "DefaultWorkforce": [],
       "Area": 100,
       "Expertise": ""
     },
     "DRS": {
       "Id": "DRS",
-      "Name": "droneShop",
+      "Name": "Drone Shop",
       "DefaultWorkforce": [
         {
           "WorkforceType": "ENGINEER",
@@ -13115,7 +13115,7 @@
     },
     "ECA": {
       "Id": "ECA",
-      "Name": "energyComponentAssembly",
+      "Name": "Energy Component Assembly",
       "DefaultWorkforce": [
         {
           "WorkforceType": "SETTLER",
@@ -13131,7 +13131,7 @@
     },
     "EDM": {
       "Id": "EDM",
-      "Name": "electronicDeviceManufactory",
+      "Name": "Electronic Device Manufactory",
       "DefaultWorkforce": [
         {
           "WorkforceType": "SETTLER",
@@ -13143,7 +13143,7 @@
     },
     "EEP": {
       "Id": "EEP",
-      "Name": "einsteiniumEnrichmentPlant",
+      "Name": "Einsteinium Enrichment Plant",
       "DefaultWorkforce": [
         {
           "WorkforceType": "ENGINEER",
@@ -13159,7 +13159,7 @@
     },
     "ELP": {
       "Id": "ELP",
-      "Name": "electronicsPlant",
+      "Name": "Electronics Plant",
       "DefaultWorkforce": [
         {
           "WorkforceType": "TECHNICIAN",
@@ -13171,14 +13171,14 @@
     },
     "EMC": {
       "Id": "EMC",
-      "Name": "planetaryProjectSafetyHealth",
+      "Name": "Planetary Project Safety Health",
       "DefaultWorkforce": [],
       "Area": 1000,
       "Expertise": ""
     },
     "EXT": {
       "Id": "EXT",
-      "Name": "extractor",
+      "Name": "Extractor",
       "DefaultWorkforce": [
         {
           "WorkforceType": "PIONEER",
@@ -13190,7 +13190,7 @@
     },
     "FER": {
       "Id": "FER",
-      "Name": "fermentationFacility",
+      "Name": "Fermentation Facility",
       "DefaultWorkforce": [
         {
           "WorkforceType": "SETTLER",
@@ -13202,7 +13202,7 @@
     },
     "FP": {
       "Id": "FP",
-      "Name": "foodProcessor",
+      "Name": "Food Processor",
       "DefaultWorkforce": [
         {
           "WorkforceType": "PIONEER",
@@ -13214,7 +13214,7 @@
     },
     "FRM": {
       "Id": "FRM",
-      "Name": "farm",
+      "Name": "Farm",
       "DefaultWorkforce": [
         {
           "WorkforceType": "PIONEER",
@@ -13226,7 +13226,7 @@
     },
     "FS": {
       "Id": "FS",
-      "Name": "fineSmithy",
+      "Name": "Fine Smithy",
       "DefaultWorkforce": [
         {
           "WorkforceType": "SETTLER",
@@ -13238,7 +13238,7 @@
     },
     "GF": {
       "Id": "GF",
-      "Name": "glassFurnace",
+      "Name": "Glass Furnace",
       "DefaultWorkforce": [
         {
           "WorkforceType": "SETTLER",
@@ -13250,77 +13250,77 @@
     },
     "HB1": {
       "Id": "HB1",
-      "Name": "habitationPioneer",
+      "Name": "Habitation Pioneer",
       "DefaultWorkforce": [],
       "Area": 10,
       "Expertise": ""
     },
     "HB2": {
       "Id": "HB2",
-      "Name": "habitationSettler",
+      "Name": "Habitation Settler",
       "DefaultWorkforce": [],
       "Area": 12,
       "Expertise": ""
     },
     "HB3": {
       "Id": "HB3",
-      "Name": "habitationTechnician",
+      "Name": "Habitation Technician",
       "DefaultWorkforce": [],
       "Area": 14,
       "Expertise": ""
     },
     "HB4": {
       "Id": "HB4",
-      "Name": "habitationEngineer",
+      "Name": "Habitation Engineer",
       "DefaultWorkforce": [],
       "Area": 16,
       "Expertise": ""
     },
     "HB5": {
       "Id": "HB5",
-      "Name": "habitationScientist",
+      "Name": "Habitation Scientist",
       "DefaultWorkforce": [],
       "Area": 18,
       "Expertise": ""
     },
     "HBB": {
       "Id": "HBB",
-      "Name": "habitationBarracks",
+      "Name": "Habitation Barracks",
       "DefaultWorkforce": [],
       "Area": 14,
       "Expertise": ""
     },
     "HBC": {
       "Id": "HBC",
-      "Name": "habitationCommune",
+      "Name": "Habitation Commune",
       "DefaultWorkforce": [],
       "Area": 17,
       "Expertise": ""
     },
     "HBL": {
       "Id": "HBL",
-      "Name": "habitationLuxury",
+      "Name": "Habitation Luxury",
       "DefaultWorkforce": [],
       "Area": 22,
       "Expertise": ""
     },
     "HBM": {
       "Id": "HBM",
-      "Name": "habitationManagers",
+      "Name": "Habitation Managers",
       "DefaultWorkforce": [],
       "Area": 20,
       "Expertise": ""
     },
     "HOS": {
       "Id": "HOS",
-      "Name": "planetaryProjectHealthBig",
+      "Name": "Planetary Project Health Big",
       "DefaultWorkforce": [],
       "Area": 1000,
       "Expertise": ""
     },
     "HWP": {
       "Id": "HWP",
-      "Name": "hullWeldingPlant",
+      "Name": "Hull Welding Plant",
       "DefaultWorkforce": [
         {
           "WorkforceType": "SETTLER",
@@ -13336,7 +13336,7 @@
     },
     "HYF": {
       "Id": "HYF",
-      "Name": "hydroponicsFarm",
+      "Name": "Hydroponics Farm",
       "DefaultWorkforce": [
         {
           "WorkforceType": "PIONEER",
@@ -13352,7 +13352,7 @@
     },
     "INC": {
       "Id": "INC",
-      "Name": "incinerator",
+      "Name": "Incinerator",
       "DefaultWorkforce": [
         {
           "WorkforceType": "PIONEER",
@@ -13364,14 +13364,14 @@
     },
     "INF": {
       "Id": "INF",
-      "Name": "planetaryProjectHealthSmall",
+      "Name": "Planetary Project Health Small",
       "DefaultWorkforce": [],
       "Area": 500,
       "Expertise": ""
     },
     "IVP": {
       "Id": "IVP",
-      "Name": "inVitroPlant",
+      "Name": "In Vitro Plant",
       "DefaultWorkforce": [
         {
           "WorkforceType": "TECHNICIAN",
@@ -13383,7 +13383,7 @@
     },
     "LAB": {
       "Id": "LAB",
-      "Name": "laboratory",
+      "Name": "Laboratory",
       "DefaultWorkforce": [
         {
           "WorkforceType": "SETTLER",
@@ -13399,21 +13399,21 @@
     },
     "LIB": {
       "Id": "LIB",
-      "Name": "planetaryProjectEducationSmall",
+      "Name": "Planetary Project Education Small",
       "DefaultWorkforce": [],
       "Area": 500,
       "Expertise": ""
     },
     "LM": {
       "Id": "LM",
-      "Name": "planetaryProjectLocalMarket",
+      "Name": "Planetary Project Local Market",
       "DefaultWorkforce": [],
       "Area": 500,
       "Expertise": ""
     },
     "MCA": {
       "Id": "MCA",
-      "Name": "mediumComponentsAssembly",
+      "Name": "Medium Components Assembly",
       "DefaultWorkforce": [
         {
           "WorkforceType": "SETTLER",
@@ -13429,7 +13429,7 @@
     },
     "ORC": {
       "Id": "ORC",
-      "Name": "orchard",
+      "Name": "Orchard",
       "DefaultWorkforce": [
         {
           "WorkforceType": "SETTLER",
@@ -13445,7 +13445,7 @@
     },
     "PAC": {
       "Id": "PAC",
-      "Name": "packagingCenter",
+      "Name": "Packaging Center",
       "DefaultWorkforce": [
         {
           "WorkforceType": "PIONEER",
@@ -13461,21 +13461,21 @@
     },
     "PAR": {
       "Id": "PAR",
-      "Name": "planetaryProjectComfortSmall",
+      "Name": "Planetary Project Comfort Small",
       "DefaultWorkforce": [],
       "Area": 500,
       "Expertise": ""
     },
     "PBH": {
       "Id": "PBH",
-      "Name": "planetaryProjectCultureEducation",
+      "Name": "Planetary Project Culture Education",
       "DefaultWorkforce": [],
       "Area": 1000,
       "Expertise": ""
     },
     "PHF": {
       "Id": "PHF",
-      "Name": "pharmaFactory",
+      "Name": "Pharma Factory",
       "DefaultWorkforce": [
         {
           "WorkforceType": "SETTLER",
@@ -13491,7 +13491,7 @@
     },
     "POL": {
       "Id": "POL",
-      "Name": "polymerPlant",
+      "Name": "Polymer Plant",
       "DefaultWorkforce": [
         {
           "WorkforceType": "PIONEER",
@@ -13507,7 +13507,7 @@
     },
     "PP1": {
       "Id": "PP1",
-      "Name": "prefabPlant1",
+      "Name": "Prefab Plant 1",
       "DefaultWorkforce": [
         {
           "WorkforceType": "PIONEER",
@@ -13519,7 +13519,7 @@
     },
     "PP2": {
       "Id": "PP2",
-      "Name": "prefabPlant2",
+      "Name": "Prefab Plant 2",
       "DefaultWorkforce": [
         {
           "WorkforceType": "PIONEER",
@@ -13535,7 +13535,7 @@
     },
     "PP3": {
       "Id": "PP3",
-      "Name": "prefabPlant3",
+      "Name": "Prefab Plant 3",
       "DefaultWorkforce": [
         {
           "WorkforceType": "SETTLER",
@@ -13551,7 +13551,7 @@
     },
     "PP4": {
       "Id": "PP4",
-      "Name": "prefabPlant4",
+      "Name": "Prefab Plant 4",
       "DefaultWorkforce": [
         {
           "WorkforceType": "ENGINEER",
@@ -13567,7 +13567,7 @@
     },
     "PPF": {
       "Id": "PPF",
-      "Name": "plasticsPrinterFacility",
+      "Name": "Plastics Printer Facility",
       "DefaultWorkforce": [
         {
           "WorkforceType": "SETTLER",
@@ -13579,21 +13579,21 @@
     },
     "PSY": {
       "Id": "PSY",
-      "Name": "planetaryProjectShipyard",
+      "Name": "Planetary Project Shipyard",
       "DefaultWorkforce": [],
       "Area": 1000,
       "Expertise": ""
     },
     "PWH": {
       "Id": "PWH",
-      "Name": "planetaryProjectWarehouse",
+      "Name": "Planetary Project Warehouse",
       "DefaultWorkforce": [],
       "Area": 1000,
       "Expertise": ""
     },
     "REF": {
       "Id": "REF",
-      "Name": "refinery",
+      "Name": "Refinery",
       "DefaultWorkforce": [
         {
           "WorkforceType": "PIONEER",
@@ -13609,7 +13609,7 @@
     },
     "RIG": {
       "Id": "RIG",
-      "Name": "rig",
+      "Name": "Rig",
       "DefaultWorkforce": [
         {
           "WorkforceType": "PIONEER",
@@ -13621,7 +13621,7 @@
     },
     "SCA": {
       "Id": "SCA",
-      "Name": "smallComponentsAssembly",
+      "Name": "Small Components Assembly",
       "DefaultWorkforce": [
         {
           "WorkforceType": "TECHNICIAN",
@@ -13633,7 +13633,7 @@
     },
     "SD": {
       "Id": "SD",
-      "Name": "softwareDevelopment",
+      "Name": "Software Development",
       "DefaultWorkforce": [
         {
           "WorkforceType": "TECHNICIAN",
@@ -13645,14 +13645,14 @@
     },
     "SDP": {
       "Id": "SDP",
-      "Name": "planetaryProjectSafetyBig",
+      "Name": "Planetary Project Safety Big",
       "DefaultWorkforce": [],
       "Area": 1000,
       "Expertise": ""
     },
     "SE": {
       "Id": "SE",
-      "Name": "softwareEngineering",
+      "Name": "Software Engineering",
       "DefaultWorkforce": [
         {
           "WorkforceType": "ENGINEER",
@@ -13664,7 +13664,7 @@
     },
     "SKF": {
       "Id": "SKF",
-      "Name": "shipKitFactory",
+      "Name": "Ship Kit Factory",
       "DefaultWorkforce": [
         {
           "WorkforceType": "SETTLER",
@@ -13680,7 +13680,7 @@
     },
     "SL": {
       "Id": "SL",
-      "Name": "softwareLabs",
+      "Name": "Software Labs",
       "DefaultWorkforce": [
         {
           "WorkforceType": "SCIENTIST",
@@ -13692,7 +13692,7 @@
     },
     "SME": {
       "Id": "SME",
-      "Name": "smelter",
+      "Name": "Smelter",
       "DefaultWorkforce": [
         {
           "WorkforceType": "PIONEER",
@@ -13704,7 +13704,7 @@
     },
     "SPF": {
       "Id": "SPF",
-      "Name": "spacecraftPropulsionFactory",
+      "Name": "Spacecraft Propulsion Factory",
       "DefaultWorkforce": [
         {
           "WorkforceType": "ENGINEER",
@@ -13720,7 +13720,7 @@
     },
     "SPP": {
       "Id": "SPP",
-      "Name": "spacecraftPrefabPlant",
+      "Name": "Spacecraft Prefab Plant",
       "DefaultWorkforce": [
         {
           "WorkforceType": "ENGINEER",
@@ -13736,21 +13736,21 @@
     },
     "SST": {
       "Id": "SST",
-      "Name": "planetaryProjectSafetySmall",
+      "Name": "Planetary Project Safety Small",
       "DefaultWorkforce": [],
       "Area": 500,
       "Expertise": ""
     },
     "STO": {
       "Id": "STO",
-      "Name": "storageFacility",
+      "Name": "Storage Facility",
       "DefaultWorkforce": [],
       "Area": 15,
       "Expertise": ""
     },
     "TNP": {
       "Id": "TNP",
-      "Name": "technetiumProcessing",
+      "Name": "Technetium Processing",
       "DefaultWorkforce": [
         {
           "WorkforceType": "TECHNICIAN",
@@ -13762,14 +13762,14 @@
     },
     "UNI": {
       "Id": "UNI",
-      "Name": "planetaryProjectEducationBig",
+      "Name": "Planetary Project Education Big",
       "DefaultWorkforce": [],
       "Area": 1000,
       "Expertise": ""
     },
     "UPF": {
       "Id": "UPF",
-      "Name": "unitPrefabPlant",
+      "Name": "Unit Prefab Plant",
       "DefaultWorkforce": [
         {
           "WorkforceType": "PIONEER",
@@ -13785,21 +13785,21 @@
     },
     "VRT": {
       "Id": "VRT",
-      "Name": "planetaryProjectCultureBig",
+      "Name": "Planetary Project Culture Big",
       "DefaultWorkforce": [],
       "Area": 1000,
       "Expertise": ""
     },
     "WCE": {
       "Id": "WCE",
-      "Name": "planetaryProjectHealthComfort",
+      "Name": "Planetary Project Health Comfort",
       "DefaultWorkforce": [],
       "Area": 1000,
       "Expertise": ""
     },
     "WEL": {
       "Id": "WEL",
-      "Name": "weldingPlant",
+      "Name": "Welding Plant",
       "DefaultWorkforce": [
         {
           "WorkforceType": "PIONEER",
@@ -13811,7 +13811,7 @@
     },
     "WPL": {
       "Id": "WPL",
-      "Name": "weavingPlant",
+      "Name": "Weaving Plant",
       "DefaultWorkforce": [
         {
           "WorkforceType": "SETTLER",
@@ -13825,30 +13825,25 @@
   "WorkforceTypes": {
     "ENGINEER": {
       "Id": "ENGINEER",
-      "Name": "ENGINEER",
-      "Tier": 0
+      "Name": "ENGINEER"
     },
     "SCIENTIST": {
       "Id": "SCIENTIST",
-      "Name": "SCIENTIST",
-      "Tier": 0
+      "Name": "SCIENTIST"
     },
     "TECHNICIAN": {
       "Id": "TECHNICIAN",
-      "Name": "TECHNICIAN",
-      "Tier": 0
+      "Name": "TECHNICIAN"
     },
     "PIONEER": {
       "Id": "PIONEER",
-      "Name": "PIONEER",
-      "Tier": 0
+      "Name": "PIONEER"
     },
     "SETTLER": {
       "Id": "SETTLER",
-      "Name": "SETTLER",
-      "Tier": 0
+      "Name": "SETTLER"
     }
   },
   "Version": "apidata-import",
-  "LoadedAt": "2025-11-27T01:04:09.7817793+00:00"
+  "LoadedAt": "2025-11-27T02:35:07.0588754+00:00"
 }
