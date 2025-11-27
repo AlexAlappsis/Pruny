@@ -1,0 +1,226 @@
+using Godot;
+using Pruny.Core.Models;
+
+namespace Pruny.UI;
+
+public partial class WorkforceConfigManager : CenterContainer
+{
+    private MainUI? _mainUI;
+    private SessionManager? _sessionManager;
+
+    private VBoxContainer? _mainContainer;
+    private Label? _titleLabel;
+    private ScrollContainer? _scrollContainer;
+    private VBoxContainer? _workforceTypesContainer;
+    private Button? _addWorkforceTypeButton;
+    private HBoxContainer? _buttonContainer;
+    private Button? _saveButton;
+    private Button? _cancelButton;
+    private Label? _statusLabel;
+
+    private List<Components.WorkforceTypeEditor> _workforceTypeEditors = new();
+
+    public override void _Ready()
+    {
+        _mainUI = GetParent()?.GetParent()?.GetParent() as MainUI;
+        _sessionManager = GetNode<SessionManager>("/root/SessionManager");
+
+        if (_mainUI == null)
+        {
+            GD.PrintErr("WorkforceConfigManager: Could not find MainUI in parent chain");
+        }
+
+        if (_sessionManager?.Session == null)
+        {
+            GD.PrintErr("WorkforceConfigManager: SessionManager or Session not available");
+            return;
+        }
+
+        SetupUI();
+        LoadWorkforceConfig();
+    }
+
+    private void SetupUI()
+    {
+        _mainContainer = GetNode<VBoxContainer>("MainContainer");
+        _titleLabel = GetNode<Label>("MainContainer/TitleLabel");
+        _scrollContainer = GetNode<ScrollContainer>("MainContainer/ScrollContainer");
+        _workforceTypesContainer = GetNode<VBoxContainer>("MainContainer/ScrollContainer/WorkforceTypesContainer");
+        _addWorkforceTypeButton = GetNode<Button>("MainContainer/AddWorkforceTypeButton");
+        _buttonContainer = GetNode<HBoxContainer>("MainContainer/ButtonContainer");
+        _saveButton = GetNode<Button>("MainContainer/ButtonContainer/SaveButton");
+        _cancelButton = GetNode<Button>("MainContainer/ButtonContainer/CancelButton");
+        _statusLabel = GetNode<Label>("MainContainer/StatusLabel");
+
+        _addWorkforceTypeButton.Pressed += OnAddWorkforceTypePressed;
+        _saveButton.Pressed += OnSavePressed;
+        _cancelButton.Pressed += OnCancelPressed;
+    }
+
+    private void LoadWorkforceConfig()
+    {
+        if (_sessionManager?.Session?.CurrentWorkspace == null)
+        {
+            SetStatus("No workspace loaded", new Color(1, 0.3f, 0.3f));
+            return;
+        }
+
+        ClearWorkforceTypes();
+
+        var workforceConfig = _sessionManager.Session.CurrentWorkspace.WorkforceConfig;
+
+        if (workforceConfig == null)
+        {
+            SetStatus("No workforce configuration found. Add workforce types to get started.", new Color(1, 1, 0.3f));
+            return;
+        }
+
+        foreach (var workforceType in workforceConfig.WorkforceTypes)
+        {
+            var editor = CreateWorkforceTypeEditor();
+            editor.SetWorkforceTypeConfig(workforceType);
+            _workforceTypeEditors.Add(editor);
+            _workforceTypesContainer?.AddChild(editor);
+        }
+
+        SetStatus("");
+    }
+
+    private void OnAddWorkforceTypePressed()
+    {
+        var editor = CreateWorkforceTypeEditor();
+        _workforceTypeEditors.Add(editor);
+        _workforceTypesContainer?.AddChild(editor);
+    }
+
+    private Components.WorkforceTypeEditor CreateWorkforceTypeEditor()
+    {
+        var scene = GD.Load<PackedScene>("res://scenes/UI/Components/WorkforceTypeEditor.tscn");
+        var editor = scene.Instantiate<Components.WorkforceTypeEditor>();
+
+        editor.DeleteRequested += () =>
+        {
+            _workforceTypeEditors.Remove(editor);
+            editor.QueueFree();
+        };
+
+        return editor;
+    }
+
+    private void ClearWorkforceTypes()
+    {
+        foreach (var editor in _workforceTypeEditors)
+            editor.QueueFree();
+        _workforceTypeEditors.Clear();
+    }
+
+    private void OnSavePressed()
+    {
+        if (_sessionManager?.Session?.CurrentWorkspace == null)
+        {
+            SetStatus("No workspace loaded", new Color(1, 0.3f, 0.3f));
+            return;
+        }
+
+        if (!ValidateWorkforceConfig())
+        {
+            return;
+        }
+
+        try
+        {
+            var workforceConfig = new WorkforceConfig
+            {
+                Id = _sessionManager.Session.CurrentWorkspace.WorkforceConfig?.Id ?? "default",
+                WorkforceTypes = _workforceTypeEditors.Select(e => e.GetWorkforceTypeConfig()).ToList()
+            };
+
+            _sessionManager.Session.WorkspaceManager.ApplyChanges(
+                ws => ws.WorkforceConfig = workforceConfig,
+                "Workforce configuration updated");
+
+            if (_sessionManager.DataManager != null && _sessionManager.Session.CurrentWorkspace != null)
+            {
+                var workspaceName = _sessionManager.Session.CurrentWorkspace.Name;
+                _sessionManager.DataManager.SaveWorkspace(workspaceName);
+            }
+
+            SetStatus("Workforce configuration saved successfully!", new Color(0.3f, 1, 0.3f));
+            GD.Print("WorkforceConfigManager: Configuration saved");
+
+            GetTree().CreateTimer(1.5).Timeout += () => _mainUI?.LoadDashboard();
+        }
+        catch (Exception ex)
+        {
+            GD.PrintErr($"WorkforceConfigManager: Failed to save - {ex.Message}");
+            SetStatus($"Failed to save configuration: {ex.Message}", new Color(1, 0.3f, 0.3f));
+            Dialogs.ErrorDialog.Show(this, "Failed to Save Configuration",
+                "An error occurred while saving the workforce configuration.",
+                $"{ex.GetType().Name}: {ex.Message}");
+        }
+    }
+
+    private void OnCancelPressed()
+    {
+        _mainUI?.LoadDashboard();
+    }
+
+    private bool ValidateWorkforceConfig()
+    {
+        if (_workforceTypeEditors.Count == 0)
+        {
+            SetStatus("Add at least one workforce type", new Color(1, 0.3f, 0.3f));
+            return false;
+        }
+
+        var workforceTypes = _workforceTypeEditors.Select(e => e.GetWorkforceTypeConfig()).ToList();
+
+        foreach (var workforceType in workforceTypes)
+        {
+            if (string.IsNullOrWhiteSpace(workforceType.WorkforceType))
+            {
+                SetStatus("All workforce types must have a name", new Color(1, 0.3f, 0.3f));
+                return false;
+            }
+
+            if (workforceType.MaterialConsumption.Count == 0)
+            {
+                SetStatus($"Workforce type '{workforceType.WorkforceType}' must have at least one material", new Color(1, 0.3f, 0.3f));
+                return false;
+            }
+        }
+
+        var duplicateTypes = workforceTypes
+            .GroupBy(wt => wt.WorkforceType)
+            .Where(g => g.Count() > 1)
+            .Select(g => g.Key)
+            .ToList();
+
+        if (duplicateTypes.Any())
+        {
+            SetStatus($"Duplicate workforce type: {duplicateTypes.First()}", new Color(1, 0.3f, 0.3f));
+            return false;
+        }
+
+        return true;
+    }
+
+    private void SetStatus(string message, Color? color = null)
+    {
+        if (_statusLabel != null)
+        {
+            _statusLabel.Text = message;
+            _statusLabel.AddThemeColorOverride("font_color", color ?? new Color(1, 1, 1));
+        }
+    }
+
+    public override void _ExitTree()
+    {
+        if (_addWorkforceTypeButton != null)
+            _addWorkforceTypeButton.Pressed -= OnAddWorkforceTypePressed;
+        if (_saveButton != null)
+            _saveButton.Pressed -= OnSavePressed;
+        if (_cancelButton != null)
+            _cancelButton.Pressed -= OnCancelPressed;
+    }
+}

@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://e3l0o4sp9klop"]
+
+[ext_resource type="Script" path="res://scripts/UI/Components/WorkforceTypeEditor.cs" id="1_workforce_type_editor"]
+
+[node name="WorkforceTypeEditor" type="VBoxContainer"]
+script = ExtResource("1_workforce_type_editor")
+
+[node name="HeaderContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="WorkforceTypeLabel" type="Label" parent="HeaderContainer"]
+layout_mode = 2
+text = "Workforce Type:"
+
+[node name="WorkforceTypeInput" type="LineEdit" parent="HeaderContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "e.g., PIONEER, SETTLER, TECHNICIAN"
+
+[node name="AddMaterialButton" type="Button" parent="HeaderContainer"]
+layout_mode = 2
+text = "Add Material"
+
+[node name="DeleteButton" type="Button" parent="HeaderContainer"]
+layout_mode = 2
+text = "Delete Type"
+
+[node name="MaterialsContainer" type="VBoxContainer" parent="."]
+layout_mode = 2

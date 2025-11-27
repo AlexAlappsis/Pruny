@@ -50,6 +50,8 @@ public class WorkspaceSession
 
     public bool IsDirty => WorkspaceManager.IsDirty;
 
+    public MarketDataAnalyzer MarketDataAnalyzer => new MarketDataAnalyzer(_marketData);
+
     public void LoadGameData(string gameDataJson)
     {
         if (string.IsNullOrWhiteSpace(gameDataJson))

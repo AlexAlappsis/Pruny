@@ -14,6 +14,9 @@ public partial class MainUI : Control
     public PackedScene? WorkspaceManagerScene { get; set; }
 
     [Export]
+    public PackedScene? WorkforceConfigManagerScene { get; set; }
+
+    [Export]
     public PackedScene? SettingsScene { get; set; }
 
     public override void _Ready()
@@ -43,6 +46,17 @@ public partial class MainUI : Control
         }
 
         LoadContent(WorkspaceManagerScene);
+    }
+
+    public void LoadWorkforceConfigManager()
+    {
+        if (WorkforceConfigManagerScene == null)
+        {
+            GD.PrintErr("MainUI: WorkforceConfigManager scene not assigned");
+            return;
+        }
+
+        LoadContent(WorkforceConfigManagerScene);
     }
 
     public void LoadSettings()

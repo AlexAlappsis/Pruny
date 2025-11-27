@@ -20,12 +20,14 @@ public partial class Dashboard : CenterContainer
         }
 
         var workspacesButton = GetNode<Button>("VBoxContainer/WorkspacesButton");
+        var workforceConfigButton = GetNode<Button>("VBoxContainer/WorkforceConfigButton");
         var productionLinesButton = GetNode<Button>("VBoxContainer/ProductionLinesButton");
         var calculationsButton = GetNode<Button>("VBoxContainer/CalculationsButton");
         var refreshMarketButton = GetNode<Button>("VBoxContainer/RefreshMarketButton");
         var settingsButton = GetNode<Button>("VBoxContainer/SettingsButton");
 
         workspacesButton.Pressed += OnWorkspacesPressed;
+        workforceConfigButton.Pressed += OnWorkforceConfigPressed;
         productionLinesButton.Pressed += OnProductionLinesPressed;
         calculationsButton.Pressed += OnCalculationsPressed;
         refreshMarketButton.Pressed += OnRefreshMarketPressed;
@@ -35,6 +37,11 @@ public partial class Dashboard : CenterContainer
     private void OnWorkspacesPressed()
     {
         _mainUI?.LoadWorkspaceManager();
+    }
+
+    private void OnWorkforceConfigPressed()
+    {
+        _mainUI?.LoadWorkforceConfigManager();
     }
 
     private void OnProductionLinesPressed()

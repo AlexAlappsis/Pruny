@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxm8n2qp7hjkl"]
+
+[ext_resource type="Script" path="res://scripts/UI/Components/AdjustmentEditor.cs" id="1_adjustment_editor"]
+
+[node name="AdjustmentEditor" type="HBoxContainer"]
+script = ExtResource("1_adjustment_editor")
+
+[node name="TypeDropdown" type="OptionButton" parent="."]
+layout_mode = 2
+custom_minimum_size = Vector2(120, 0)
+
+[node name="ValueInput" type="SpinBox" parent="."]
+layout_mode = 2
+custom_minimum_size = Vector2(120, 0)
+
+[node name="DeleteButton" type="Button" parent="."]
+layout_mode = 2
+text = "Delete"

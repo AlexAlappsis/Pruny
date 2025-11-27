@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2k9n3rp8ijmn"]
+
+[ext_resource type="Script" path="res://scripts/UI/Components/MaterialConsumptionEditor.cs" id="1_material_consumption_editor"]
+[ext_resource type="PackedScene" uid="uid://c1v0qxkp6xfcf" path="res://scenes/UI/Components/PriceSourceSelector.tscn" id="2_price_source_selector"]
+
+[node name="MaterialConsumptionEditor" type="GridContainer"]
+columns = 4
+script = ExtResource("1_material_consumption_editor")
+
+[node name="MaterialDropdown" type="OptionButton" parent="."]
+layout_mode = 2
+custom_minimum_size = Vector2(200, 0)
+
+[node name="QuantityInput" type="SpinBox" parent="."]
+layout_mode = 2
+custom_minimum_size = Vector2(120, 0)
+
+[node name="PriceSourceSelector" parent="." instance=ExtResource("2_price_source_selector")]
+layout_mode = 2
+
+[node name="DeleteButton" type="Button" parent="."]
+layout_mode = 2
+text = "Delete"

@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1v0qxkp6xfcf"]
+
+[ext_resource type="Script" path="res://scripts/UI/Components/PriceSourceSelector.cs" id="1_price_source_selector"]
+
+[node name="PriceSourceSelector" type="GridContainer"]
+columns = 3
+script = ExtResource("1_price_source_selector")
+
+[node name="TypeDropdown" type="OptionButton" parent="."]
+layout_mode = 2
+
+[node name="SourceInputContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AdjustmentsButton" type="Button" parent="."]
+layout_mode = 2
+text = "Adjustments (0)"
+
+[node name="AdjustmentsContainer" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 2
