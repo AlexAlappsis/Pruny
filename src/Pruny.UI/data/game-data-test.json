@@ -1,0 +1,84 @@
+{
+  "Materials": {
+	"FE": {
+	  "Id": "FE",
+	  "Name": "Iron",
+	  "Ticker": "FE",
+	  "Category": "Metal"
+	},
+	"H2O": {
+	  "Id": "H2O",
+	  "Name": "Water",
+	  "Ticker": "H2O",
+	  "Category": "Liquid"
+	},
+	"RAT": {
+	  "Id": "RAT",
+	  "Name": "Rations",
+	  "Ticker": "RAT",
+	  "Category": "Consumable"
+	},
+	"FEO": {
+	  "Id": "FEO",
+	  "Name": "Iron Ore",
+	  "Ticker": "FEO",
+	  "Category": "Ore"
+	},
+	"LST": {
+	  "Id": "LST",
+	  "Name": "Limestone",
+	  "Ticker": "LST",
+	  "Category": "Ore"
+	}
+  },
+  "Recipes": {
+	"FE-from-FEO": {
+	  "Id": "FE-from-FEO",
+	  "Name": "Smelt Iron",
+	  "BuildingId": "SME",
+	  "Inputs": [
+		{
+		  "MaterialId": "FEO",
+		  "Quantity": 2
+		},
+		{
+		  "MaterialId": "LST",
+		  "Quantity": 1
+		}
+	  ],
+	  "Outputs": [
+		{
+		  "MaterialId": "FE",
+		  "Quantity": 1
+		}
+	  ],
+	  "DurationMinutes": 43.2
+	}
+  },
+  "Buildings": {
+	"SME": {
+	  "Id": "SME",
+	  "Name": "Smelter",
+	  "BuildingType": "SME",
+	  "DefaultWorkforce": [
+		{
+		  "WorkforceType": "PIONEER",
+		  "Count": 40
+		}
+	  ],
+	  "UpkeepCosts": []
+	}
+  },
+  "WorkforceTypes": {
+	"PIONEER": {
+	  "Id": "PIONEER",
+	  "Name": "Pioneer",
+	  "Tier": 1
+	},
+	"SETTLER": {
+	  "Id": "SETTLER",
+	  "Name": "Settler",
+	  "Tier": 2
+	}
+  }
+}
