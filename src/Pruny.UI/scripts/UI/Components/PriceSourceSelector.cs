@@ -77,6 +77,8 @@ public partial class PriceSourceSelector : GridContainer
         _typeDropdown?.AddItem("API Price", (int)PriceSourceType.Api);
         _typeDropdown?.AddItem("Production Line", (int)PriceSourceType.ProductionLine);
         _typeDropdown?.AddItem("Custom Price", (int)PriceSourceType.Custom);
+        _typeDropdown?.Select(0);
+        SetPriceSource(new PriceSource { Type = PriceSourceType.Api, SourceIdentifier = "CI1-ASK" });
     }
 
     private void SetupAdjustmentsButton()
