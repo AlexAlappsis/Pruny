@@ -89,7 +89,7 @@ static Dictionary<string, MaterialOutput> LoadMaterials(string path, List<string
             continue;
         }
 
-        var name = row.GetValueOrDefault("NAME") ?? ticker;
+        var name = ToDisplayName(row.GetValueOrDefault("NAME") ?? ticker);
         var material = new MaterialOutput
         {
             Id = ticker,
@@ -124,7 +124,7 @@ static Dictionary<string, BuildingOutput> LoadBuildings(string buildingsPath, st
             continue;
         }
 
-        var name = row.GetValueOrDefault("Name") ?? ticker;
+        var name = ToDisplayName(row.GetValueOrDefault("Name") ?? ticker);
 
         var building = new BuildingOutput
         {
@@ -326,6 +326,35 @@ static string SanitizeId(string key)
     sanitized = sanitized.Replace(":", "-", StringComparison.Ordinal);
     sanitized = sanitized.Replace("--", "-", StringComparison.Ordinal);
     return sanitized;
+}
+
+static string ToDisplayName(string raw)
+{
+    if (string.IsNullOrWhiteSpace(raw))
+        return raw;
+
+    var sb = new StringBuilder();
+    char? prev = null;
+
+    for (var i = 0; i < raw.Length; i++)
+    {
+        var c = raw[i];
+        var next = i + 1 < raw.Length ? raw[i + 1] : (char?)null;
+
+        var isBoundary =
+            (prev.HasValue && char.IsLower(prev.Value) && char.IsUpper(c)) ||
+            (prev.HasValue && char.IsLetter(prev.Value) && char.IsDigit(c)) ||
+            (prev.HasValue && char.IsDigit(prev.Value) && char.IsLetter(c)) ||
+            (prev.HasValue && char.IsUpper(prev.Value) && char.IsUpper(c) && next.HasValue && char.IsLower(next.Value));
+
+        if (isBoundary)
+            sb.Append(' ');
+
+        sb.Append(i == 0 ? char.ToUpperInvariant(c) : c);
+        prev = c;
+    }
+
+    return sb.ToString().Trim();
 }
 
 internal static class CsvReader
