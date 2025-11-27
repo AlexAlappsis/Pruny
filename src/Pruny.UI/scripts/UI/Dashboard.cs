@@ -84,7 +84,7 @@ public partial class Dashboard : CenterContainer
             GD.PrintErr($"Dashboard: Failed to refresh market data - {ex.Message}");
             Dialogs.ErrorDialog.Show(this, "Market Data Refresh Failed",
                 "An unexpected error occurred while refreshing market data.",
-                $"{ex.GetType().Name}: {ex.Message}");
+                $"{ex.GetType().Name}: {ex.Message} \n, {ex.InnerException?.Message}");
         }
     }
 

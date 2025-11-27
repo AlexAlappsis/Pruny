@@ -120,9 +120,9 @@ public class PrUnPlannerClient : IMarketDataProvider
                 Ask = r.Ask,
                 Bid = r.Bid,
                 Average = r.Avg,
-                Supply = r.Supply,
-                Demand = r.Demand,
-                Traded = r.Traded
+                Supply = (int?)r.Supply,
+                Demand = (int?)r.Demand,
+                Traded = (int?)r.Traded
             }).ToList();
         }
         catch (CsvHelperException ex)

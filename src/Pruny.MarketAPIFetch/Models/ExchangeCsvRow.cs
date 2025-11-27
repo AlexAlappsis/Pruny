@@ -20,11 +20,11 @@ internal class ExchangeCsvRow
     public decimal? Avg { get; init; }
 
     [Name("SUPPLY")]
-    public int? Supply { get; init; }
+    public decimal? Supply { get; init; }
 
     [Name("DEMAND")]
-    public int? Demand { get; init; }
+    public decimal? Demand { get; init; }
 
     [Name("TRADED")]
-    public int? Traded { get; init; }
+    public decimal? Traded { get; init; }
 }
