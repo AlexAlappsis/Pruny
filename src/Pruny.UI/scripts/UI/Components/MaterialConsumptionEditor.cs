@@ -10,7 +10,7 @@ public partial class MaterialConsumptionEditor : GridContainer
     [Signal]
     public delegate void DeleteRequestedEventHandler();
 
-    private OptionButton? _materialDropdown;
+    private SearchableDropdown? _materialDropdown;
     private SpinBox? _quantityInput;
     private PriceSourceSelector? _priceSourceSelector;
     private Button? _deleteButton;
@@ -23,7 +23,7 @@ public partial class MaterialConsumptionEditor : GridContainer
 
         _sessionManager = GetNode<SessionManager>("/root/SessionManager");
 
-        _materialDropdown = GetNode<OptionButton>("MaterialDropdown");
+        _materialDropdown = GetNode<SearchableDropdown>("MaterialDropdown");
         _quantityInput = GetNode<SpinBox>("QuantityInput");
         _priceSourceSelector = GetNode<PriceSourceSelector>("PriceSourceSelector");
         _deleteButton = GetNode<Button>("DeleteButton");
@@ -52,18 +52,16 @@ public partial class MaterialConsumptionEditor : GridContainer
         if (_materialDropdown == null || _sessionManager?.Session?.GameData == null)
             return;
 
-        _materialDropdown.Clear();
-
         var materials = _sessionManager.Session.GameData.Materials.Values
-            .OrderBy(m => m.Name)
+            .OrderBy(m => m.Id)
+            .Select(m => new DropdownItem
+            {
+                Value = m.Id,
+                DisplayText = $"{m.Id} ({m.Name})"
+            })
             .ToList();
 
-        for (int i = 0; i < materials.Count; i++)
-        {
-            var material = materials[i];
-            _materialDropdown.AddItem($"{material.Name} ({material.Id})", i);
-            _materialDropdown.SetItemMetadata(i, material.Id);
-        }
+        _materialDropdown.SetItems(materials);
     }
 
     public void SetConsumption(WorkforceMaterialConsumption consumption)
@@ -93,27 +91,15 @@ public partial class MaterialConsumptionEditor : GridContainer
 
     private string GetSelectedMaterialId()
     {
-        if (_materialDropdown == null || _materialDropdown.Selected < 0)
-            return "";
-
-        return _materialDropdown.GetItemMetadata(_materialDropdown.Selected).AsString();
+        return _materialDropdown?.GetSelectedValue() ?? "";
     }
 
     private void SelectMaterial(string materialId)
     {
-        if (_materialDropdown == null) return;
-
-        for (int i = 0; i < _materialDropdown.ItemCount; i++)
-        {
-            if (_materialDropdown.GetItemMetadata(i).AsString() == materialId)
-            {
-                _materialDropdown.Select(i);
-                return;
-            }
-        }
+        _materialDropdown?.SetSelectedValue(materialId);
     }
 
-    private void OnMaterialSelected(long index)
+    private void OnMaterialSelected(string materialId)
     {
         EmitConsumptionChanged();
     }

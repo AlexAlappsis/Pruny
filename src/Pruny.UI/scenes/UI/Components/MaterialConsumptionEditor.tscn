@@ -1,13 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2k9n3rp8ijmn"]
+[gd_scene load_steps=4 format=3 uid="uid://d2k9n3rp8ijmn"]
 
 [ext_resource type="Script" path="res://scripts/UI/Components/MaterialConsumptionEditor.cs" id="1_material_consumption_editor"]
 [ext_resource type="PackedScene" uid="uid://c1v0qxkp6xfcf" path="res://scenes/UI/Components/PriceSourceSelector.tscn" id="2_price_source_selector"]
+[ext_resource type="PackedScene" uid="uid://g5n2q6sp1mnop" path="res://scenes/UI/Components/SearchableDropdown.tscn" id="3_searchable_dropdown"]
 
 [node name="MaterialConsumptionEditor" type="GridContainer"]
 columns = 4
 script = ExtResource("1_material_consumption_editor")
 
-[node name="MaterialDropdown" type="OptionButton" parent="."]
+[node name="MaterialDropdown" parent="." instance=ExtResource("3_searchable_dropdown")]
 layout_mode = 2
 custom_minimum_size = Vector2(200, 0)
 
