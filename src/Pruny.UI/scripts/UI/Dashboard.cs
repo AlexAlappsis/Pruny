@@ -50,9 +50,9 @@ public partial class Dashboard : CenterContainer
     private async void OnRefreshMarketPressed()
     {
         var sessionManager = GetNode<SessionManager>("/root/SessionManager");
-        if (sessionManager?.Session == null)
+        if (sessionManager?.Session == null || sessionManager.DataManager == null)
         {
-            GD.PrintErr("Dashboard: No session available");
+            GD.PrintErr("Dashboard: No session or DataManager available");
             Dialogs.ErrorDialog.Show(this, "No Session",
                 "Cannot refresh market data because no session is available.",
                 null);
@@ -64,6 +64,12 @@ public partial class Dashboard : CenterContainer
             GD.Print("Dashboard: Refreshing market data...");
             await sessionManager.Session.RefreshMarketDataFromApiAsync();
             GD.Print("Dashboard: Market data refresh complete");
+
+            if (sessionManager.Session.MarketData != null)
+            {
+                sessionManager.DataManager.SaveMarketData(sessionManager.Session.MarketData);
+                GD.Print("Dashboard: Market data saved to disk");
+            }
         }
         catch (HttpRequestException ex)
         {
