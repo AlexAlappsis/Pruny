@@ -20,4 +20,11 @@ text = "Adjustments (0)"
 
 [node name="AdjustmentsContainer" type="VBoxContainer" parent="."]
 visible = false
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AddAdjustmentButton" type="Button" parent="AdjustmentsContainer"]
+layout_mode = 2
+text = "Add Adjustment"

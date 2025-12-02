@@ -16,6 +16,7 @@ public partial class PriceSourceSelector : GridContainer
     private OptionButton? _productionLineDropdown;
     private Button? _adjustmentsButton;
     private VBoxContainer? _adjustmentsContainer;
+    private Button? _addAdjustmentButton;
 
     private SessionManager? _sessionManager;
     private PriceSource? _currentPriceSource;
@@ -31,6 +32,7 @@ public partial class PriceSourceSelector : GridContainer
         _sourceInputContainer = GetNode<Control>("SourceInputContainer");
         _adjustmentsButton = GetNode<Button>("AdjustmentsButton");
         _adjustmentsContainer = GetNode<VBoxContainer>("AdjustmentsContainer");
+        _addAdjustmentButton = GetNode<Button>("AdjustmentsContainer/AddAdjustmentButton");
 
         SetupSourceInputContainers();
         SetupTypeDropdown();
@@ -87,6 +89,9 @@ public partial class PriceSourceSelector : GridContainer
 
         _adjustmentsButton.Text = "Adjustments (0)";
         _adjustmentsButton.Pressed += OnAdjustmentsButtonPressed;
+
+        if (_addAdjustmentButton != null)
+            _addAdjustmentButton.Pressed += AddAdjustment;
     }
 
     public void SetPriceSource(PriceSource priceSource)
@@ -297,7 +302,8 @@ public partial class PriceSourceSelector : GridContainer
 
     private AdjustmentEditor CreateAdjustmentEditor()
     {
-        var editor = new AdjustmentEditor();
+        var scene = GD.Load<PackedScene>("res://scenes/UI/Components/AdjustmentEditor.tscn");
+        var editor = scene.Instantiate<AdjustmentEditor>();
         editor.AdjustmentChanged += (_) => EmitPriceSourceChanged();
         editor.DeleteRequested += () =>
         {
