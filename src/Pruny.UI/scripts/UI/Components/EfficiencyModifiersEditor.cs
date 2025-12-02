@@ -32,7 +32,7 @@ public partial class EfficiencyModifiersEditor : VBoxContainer
         var spinBox = new SpinBox
         {
             MinValue = -100,
-            MaxValue = 100,
+            MaxValue = 500,
             Step = 0.01,
             Value = (double)value,
             CustomMinimumSize = new Vector2(150, 0)
