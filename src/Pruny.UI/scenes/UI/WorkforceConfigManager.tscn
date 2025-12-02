@@ -12,7 +12,7 @@ script = ExtResource("1_workforce_config_manager")
 
 [node name="MainContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
-custom_minimum_size = Vector2(800, 600)
+custom_minimum_size = Vector2(1200, 600)
 
 [node name="TitleLabel" type="Label" parent="MainContainer"]
 layout_mode = 2
