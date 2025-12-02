@@ -1,0 +1,84 @@
+[gd_scene load_steps=2 format=3 uid="uid://d7k2p4qr8mnop"]
+
+[ext_resource type="Script" path="res://scripts/UI/Components/ProductionLineEditor.cs" id="1_production_line_editor"]
+
+[node name="ProductionLineEditor" type="VBoxContainer"]
+script = ExtResource("1_production_line_editor")
+
+[node name="HeaderContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="RecipeLabel" type="Label" parent="HeaderContainer"]
+layout_mode = 2
+text = "Recipe:"
+
+[node name="RecipeSelectorContainer" type="Control" parent="HeaderContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DeleteButton" type="Button" parent="HeaderContainer"]
+layout_mode = 2
+text = "Delete Line"
+
+[node name="LineIdLabel" type="Label" parent="."]
+layout_mode = 2
+text = "ID: "
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="EfficiencyContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ToggleButton" type="Button" parent="EfficiencyContainer"]
+layout_mode = 2
+text = "▶ Efficiency Modifiers"
+
+[node name="Content" type="VBoxContainer" parent="EfficiencyContainer"]
+visible = false
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="InputPricesContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ToggleButton" type="Button" parent="InputPricesContainer"]
+layout_mode = 2
+text = "▶ Input Price Sources"
+
+[node name="Content" type="VBoxContainer" parent="InputPricesContainer"]
+visible = false
+layout_mode = 2
+
+[node name="HSeparator3" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="OutputPricesContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ToggleButton" type="Button" parent="OutputPricesContainer"]
+layout_mode = 2
+text = "▶ Output Price Sources"
+
+[node name="Content" type="VBoxContainer" parent="OutputPricesContainer"]
+visible = false
+layout_mode = 2
+
+[node name="HSeparator4" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="WorkforceOverrideContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ToggleButton" type="Button" parent="WorkforceOverrideContainer"]
+layout_mode = 2
+text = "▶ Workforce Override (Not Implemented)"
+
+[node name="Content" type="VBoxContainer" parent="WorkforceOverrideContainer"]
+visible = false
+layout_mode = 2
+
+[node name="HSeparator5" type="HSeparator" parent="."]
+layout_mode = 2

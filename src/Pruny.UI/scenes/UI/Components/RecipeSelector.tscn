@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5m7n8qr3pqrs"]
+
+[ext_resource type="Script" path="res://scripts/UI/Components/RecipeSelector.cs" id="1_recipe_selector"]
+
+[node name="RecipeSelector" type="HBoxContainer"]
+script = ExtResource("1_recipe_selector")
+
+[node name="RecipeDropdown" type="OptionButton" parent="."]
+layout_mode = 2
+custom_minimum_size = Vector2(300, 0)
+
+[node name="BuildingLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Building: "

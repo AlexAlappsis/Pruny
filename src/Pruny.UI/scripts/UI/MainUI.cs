@@ -19,6 +19,9 @@ public partial class MainUI : Control
     [Export]
     public PackedScene? SettingsScene { get; set; }
 
+    [Export]
+    public PackedScene? ProductionLineManagerScene { get; set; }
+
     public override void _Ready()
     {
         _contentContainer = GetNode<Control>("VBoxContainer/ContentContainer");
@@ -68,6 +71,17 @@ public partial class MainUI : Control
         }
 
         LoadContent(SettingsScene);
+    }
+
+    public void LoadProductionLineManager()
+    {
+        if (ProductionLineManagerScene == null)
+        {
+            GD.PrintErr("MainUI: ProductionLineManager scene not assigned");
+            return;
+        }
+
+        LoadContent(ProductionLineManagerScene);
     }
 
     private void LoadContent(PackedScene scene)

@@ -46,7 +46,7 @@ public partial class Dashboard : CenterContainer
 
     private void OnProductionLinesPressed()
     {
-        GD.Print("Production Lines - Coming soon!");
+        _mainUI?.LoadProductionLineManager();
     }
 
     private void OnCalculationsPressed()

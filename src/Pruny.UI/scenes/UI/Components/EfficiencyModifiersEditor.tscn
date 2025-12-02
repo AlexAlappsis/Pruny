@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c9k4m6pr5stuv"]
+
+[ext_resource type="Script" path="res://scripts/UI/Components/EfficiencyModifiersEditor.cs" id="1_efficiency_modifiers_editor"]
+
+[node name="EfficiencyModifiersEditor" type="VBoxContainer"]
+script = ExtResource("1_efficiency_modifiers_editor")
+
+[node name="ModifiersContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="AddModifierButton" type="Button" parent="."]
+layout_mode = 2
+text = "Add Efficiency Modifier"
