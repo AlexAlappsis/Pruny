@@ -18,6 +18,7 @@ public partial class WorkforceTypeEditor : VBoxContainer
     private VBoxContainer? _materialsContainer;
 
     private List<MaterialConsumptionEditor> _materialEditors = new();
+    private WorkforceTypeConfig? _pendingConfig;
 
     public override void _Ready()
     {
@@ -31,12 +32,24 @@ public partial class WorkforceTypeEditor : VBoxContainer
         _workforceTypeInput.TextChanged += OnWorkforceTypeChanged;
         _addMaterialButton.Pressed += OnAddMaterialPressed;
         _deleteButton.Pressed += OnDeletePressed;
+
+        if (_pendingConfig != null)
+        {
+            var config = _pendingConfig;
+            _pendingConfig = null;
+            SetWorkforceTypeConfig(config);
+        }
     }
 
     public void SetWorkforceTypeConfig(WorkforceTypeConfig config)
     {
-        if (_workforceTypeInput != null)
-            _workforceTypeInput.Text = config.WorkforceType;
+        if (_workforceTypeInput == null)
+        {
+            _pendingConfig = config;
+            return;
+        }
+
+        _workforceTypeInput.Text = config.WorkforceType;
 
         ClearMaterials();
 

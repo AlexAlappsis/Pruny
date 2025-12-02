@@ -39,6 +39,8 @@ public partial class ProductionLineEditor : VBoxContainer
     private Dictionary<string, PriceSourceSelector> _inputPriceSelectors = new();
     private Dictionary<string, PriceSourceSelector> _outputPriceSelectors = new();
 
+    private ProductionLine? _pendingLineToLoad;
+
     public override void _Ready()
     {
         _sessionManager = GetNode<SessionManager>("/root/SessionManager");
@@ -73,6 +75,13 @@ public partial class ProductionLineEditor : VBoxContainer
         _deleteButton.Pressed += OnDeletePressed;
 
         _lineIdLabel.Text = $"ID: {_lineId}";
+
+        if (_pendingLineToLoad != null)
+        {
+            var pendingLine = _pendingLineToLoad;
+            _pendingLineToLoad = null;
+            SetProductionLine(pendingLine);
+        }
     }
 
     private void SetupRecipeSelector()
@@ -115,6 +124,11 @@ public partial class ProductionLineEditor : VBoxContainer
 
         RebuildInputPriceSelectors(recipe.Inputs);
         RebuildOutputPriceSelectors(recipe.Outputs);
+
+        if (_pendingLineToLoad != null)
+        {
+            ApplyPendingLineData();
+        }
     }
 
     private void RebuildInputPriceSelectors(List<RecipeItem> inputs)
@@ -167,23 +181,39 @@ public partial class ProductionLineEditor : VBoxContainer
     public void SetProductionLine(ProductionLine line)
     {
         _lineId = line.Id;
-        _lineIdLabel!.Text = $"ID: {_lineId}";
 
-        _recipeSelector?.SelectRecipe(line.RecipeId);
+        if (_lineIdLabel != null)
+        {
+            _lineIdLabel.Text = $"ID: {_lineId}";
+        }
 
-        _efficiencyEditor?.SetModifiers(line.AdditionalEfficiencyModifiers);
+        _pendingLineToLoad = line;
 
-        foreach (var kvp in line.InputPriceSources)
+        if (_recipeSelector != null)
+        {
+            _recipeSelector.SelectRecipe(line.RecipeId);
+            _efficiencyEditor?.SetModifiers(line.AdditionalEfficiencyModifiers);
+        }
+    }
+
+    private void ApplyPendingLineData()
+    {
+        if (_pendingLineToLoad == null)
+            return;
+
+        foreach (var kvp in _pendingLineToLoad.InputPriceSources)
         {
             if (_inputPriceSelectors.TryGetValue(kvp.Key, out var selector))
                 selector.SetPriceSource(kvp.Value);
         }
 
-        foreach (var kvp in line.OutputPriceSources)
+        foreach (var kvp in _pendingLineToLoad.OutputPriceSources)
         {
             if (_outputPriceSelectors.TryGetValue(kvp.Key, out var selector))
                 selector.SetPriceSource(kvp.Value);
         }
+
+        _pendingLineToLoad = null;
     }
 
     public ProductionLine GetProductionLine()

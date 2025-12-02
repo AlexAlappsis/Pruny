@@ -16,6 +16,7 @@ public partial class MaterialConsumptionEditor : GridContainer
     private Button? _deleteButton;
 
     private SessionManager? _sessionManager;
+    private WorkforceMaterialConsumption? _pendingConsumption;
 
     public override void _Ready()
     {
@@ -35,6 +36,13 @@ public partial class MaterialConsumptionEditor : GridContainer
         _quantityInput.ValueChanged += OnQuantityChanged;
         _priceSourceSelector.PriceSourceChanged += OnPriceSourceChanged;
         _deleteButton.Pressed += OnDeletePressed;
+
+        if (_pendingConsumption != null)
+        {
+            var consumption = _pendingConsumption;
+            _pendingConsumption = null;
+            SetConsumption(consumption);
+        }
     }
 
     private void SetupQuantityInput()
@@ -66,12 +74,15 @@ public partial class MaterialConsumptionEditor : GridContainer
 
     public void SetConsumption(WorkforceMaterialConsumption consumption)
     {
+        if (_materialDropdown == null || _quantityInput == null || _priceSourceSelector == null)
+        {
+            _pendingConsumption = consumption;
+            return;
+        }
+
         SelectMaterial(consumption.MaterialId);
-
-        if (_quantityInput != null)
-            _quantityInput.Value = (double)consumption.QuantityPer100WorkersPer24Hours;
-
-        _priceSourceSelector?.SetPriceSource(consumption.PriceSource);
+        _quantityInput.Value = (double)consumption.QuantityPer100WorkersPer24Hours;
+        _priceSourceSelector.SetPriceSource(consumption.PriceSource);
     }
 
     public WorkforceMaterialConsumption GetConsumption()
