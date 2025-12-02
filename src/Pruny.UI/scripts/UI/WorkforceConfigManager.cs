@@ -139,23 +139,19 @@ public partial class WorkforceConfigManager : CenterContainer
                 ws => ws.WorkforceConfig = workforceConfig,
                 "Workforce configuration updated");
 
-            if (_sessionManager.DataManager != null && _sessionManager.Session.CurrentWorkspace != null)
-            {
-                var workspaceName = _sessionManager.Session.CurrentWorkspace.Name;
-                _sessionManager.DataManager.SaveWorkspace(workspaceName);
-            }
+            _sessionManager.Session.RecalculateAll();
 
-            SetStatus("Workforce configuration saved successfully!", new Color(0.3f, 1, 0.3f));
-            GD.Print("WorkforceConfigManager: Configuration saved");
+            SetStatus("Workforce configuration applied successfully!", new Color(0.3f, 1, 0.3f));
+            GD.Print("WorkforceConfigManager: Configuration applied and recalculated");
 
             GetTree().CreateTimer(1.5).Timeout += () => _mainUI?.LoadDashboard();
         }
         catch (Exception ex)
         {
-            GD.PrintErr($"WorkforceConfigManager: Failed to save - {ex.Message}");
-            SetStatus($"Failed to save configuration: {ex.Message}", new Color(1, 0.3f, 0.3f));
-            Dialogs.ErrorDialog.Show(this, "Failed to Save Configuration",
-                "An error occurred while saving the workforce configuration.",
+            GD.PrintErr($"WorkforceConfigManager: Failed to apply - {ex.Message}");
+            SetStatus($"Failed to apply configuration: {ex.Message}", new Color(1, 0.3f, 0.3f));
+            Dialogs.ErrorDialog.Show(this, "Failed to Apply Configuration",
+                "An error occurred while applying the workforce configuration.",
                 $"{ex.GetType().Name}: {ex.Message}");
         }
     }

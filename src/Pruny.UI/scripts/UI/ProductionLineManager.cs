@@ -135,23 +135,19 @@ public partial class ProductionLineManager : CenterContainer
                 ws => ws.ProductionLines = productionLines,
                 "Production lines updated");
 
-            if (_sessionManager.DataManager != null && _sessionManager.Session.CurrentWorkspace != null)
-            {
-                var workspaceName = _sessionManager.Session.CurrentWorkspace.Name;
-                _sessionManager.DataManager.SaveWorkspace(workspaceName);
-            }
+            _sessionManager.Session.RecalculateAll();
 
-            SetStatus("Production lines saved successfully!", new Color(0.3f, 1, 0.3f));
-            GD.Print("ProductionLineManager: Configuration saved");
+            SetStatus("Production lines applied successfully!", new Color(0.3f, 1, 0.3f));
+            GD.Print("ProductionLineManager: Configuration applied and recalculated");
 
             GetTree().CreateTimer(1.5).Timeout += () => _mainUI?.LoadDashboard();
         }
         catch (Exception ex)
         {
-            GD.PrintErr($"ProductionLineManager: Failed to save - {ex.Message}");
-            SetStatus($"Failed to save configuration: {ex.Message}", new Color(1, 0.3f, 0.3f));
-            Dialogs.ErrorDialog.Show(this, "Failed to Save Configuration",
-                "An error occurred while saving the production lines.",
+            GD.PrintErr($"ProductionLineManager: Failed to apply - {ex.Message}");
+            SetStatus($"Failed to apply configuration: {ex.Message}", new Color(1, 0.3f, 0.3f));
+            Dialogs.ErrorDialog.Show(this, "Failed to Apply Configuration",
+                "An error occurred while applying the production lines.",
                 $"{ex.GetType().Name}: {ex.Message}");
         }
     }
