@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8h3n5qp9klmn"]
+[gd_scene load_steps=2 format=3 uid="uid://c8h3n5qqaklmn"]
 
 [ext_resource type="Script" path="res://scripts/UI/ProductionLineManager.cs" id="1_production_line_manager"]
 
