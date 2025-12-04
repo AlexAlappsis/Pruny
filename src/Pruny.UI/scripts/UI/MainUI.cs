@@ -22,6 +22,9 @@ public partial class MainUI : Control
     [Export]
     public PackedScene? ProductionLineManagerScene { get; set; }
 
+    [Export]
+    public PackedScene? CalculationsViewScene { get; set; }
+
     public override void _Ready()
     {
         _contentContainer = GetNode<Control>("VBoxContainer/ContentContainer");
@@ -82,6 +85,17 @@ public partial class MainUI : Control
         }
 
         LoadContent(ProductionLineManagerScene);
+    }
+
+    public void LoadCalculationsView()
+    {
+        if (CalculationsViewScene == null)
+        {
+            GD.PrintErr("MainUI: CalculationsView scene not assigned");
+            return;
+        }
+
+        LoadContent(CalculationsViewScene);
     }
 
     private void LoadContent(PackedScene scene)

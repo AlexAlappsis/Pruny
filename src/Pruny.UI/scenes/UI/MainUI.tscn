@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b8vwxqxqxqxab"]
+[gd_scene load_steps=9 format=3 uid="uid://b8vwxqxqxqxab"]
 
 [ext_resource type="Script" uid="uid://bhvssy47bb1ii" path="res://scripts/UI/MainUI.cs" id="1_mainui"]
 [ext_resource type="PackedScene" uid="uid://cxqy7h8vmwxqv" path="res://scenes/UI/Header.tscn" id="2_header"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bi0g0fr3v3cdd" path="res://scenes/UI/WorkspaceManager.tscn" id="5_workspace"]
 [ext_resource type="PackedScene" uid="uid://tmydagu0ar8u" path="res://scenes/UI/Settings.tscn" id="6_settings"]
 [ext_resource type="PackedScene" uid="uid://c8h3n5qp9klmn" path="res://scenes/UI/ProductionLineManager.tscn" id="7_production_line_manager"]
+[ext_resource type="PackedScene" uid="uid://bvqx8j5n4h2pk" path="res://scenes/UI/CalculationsView.tscn" id="8_calculations_view"]
 
 [node name="MainUI" type="Control"]
 layout_mode = 3
@@ -22,6 +23,7 @@ WorkspaceManagerScene = ExtResource("5_workspace")
 WorkforceConfigManagerScene = ExtResource("4_xaukj")
 SettingsScene = ExtResource("6_settings")
 ProductionLineManagerScene = ExtResource("7_production_line_manager")
+CalculationsViewScene = ExtResource("8_calculations_view")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1

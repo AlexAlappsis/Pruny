@@ -51,7 +51,7 @@ public partial class Dashboard : CenterContainer
 
     private void OnCalculationsPressed()
     {
-        GD.Print("Calculations View - Coming soon!");
+        _mainUI?.LoadCalculationsView();
     }
 
     private async void OnRefreshMarketPressed()

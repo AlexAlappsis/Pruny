@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvqx8j5n4h2pk"]
+
+[ext_resource type="Script" path="res://scripts/UI/CalculationsView.cs" id="1_calculations_view"]
+
+[node name="CalculationsView" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_calculations_view")
+
+[node name="MainContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+custom_minimum_size = Vector2(1200, 600)
+
+[node name="TitleLabel" type="Label" parent="MainContainer"]
+layout_mode = 2
+text = "Production Line Calculations"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CalculationsContainer" type="VBoxContainer" parent="MainContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BackButton" type="Button" parent="MainContainer"]
+layout_mode = 2
+text = "Back to Dashboard"
+
+[node name="StatusLabel" type="Label" parent="MainContainer"]
+layout_mode = 2
+horizontal_alignment = 1
