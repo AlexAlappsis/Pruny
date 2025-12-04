@@ -82,3 +82,17 @@ layout_mode = 2
 
 [node name="HSeparator5" type="HSeparator" parent="."]
 layout_mode = 2
+
+[node name="OutputOverridesContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ToggleButton" type="Button" parent="OutputOverridesContainer"]
+layout_mode = 2
+text = "▶ Output Overrides"
+
+[node name="Content" type="VBoxContainer" parent="OutputOverridesContainer"]
+visible = false
+layout_mode = 2
+
+[node name="HSeparator6" type="HSeparator" parent="."]
+layout_mode = 2

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnv8ht3r5dmqk"]
+
+[ext_resource type="Script" path="res://scripts/UI/Components/MaterialQuantityEditor.cs" id="1_material_quantity_editor"]
+
+[node name="MaterialQuantityEditor" type="VBoxContainer"]
+script = ExtResource("1_material_quantity_editor")
+
+[node name="ItemsContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="AddButton" type="Button" parent="."]
+layout_mode = 2
+text = "Add Material"

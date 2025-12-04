@@ -77,9 +77,10 @@ public class CalculationEngine : ICalculationEngine
         var inputCosts = CalculateInputCosts(line, recipe, priceRegistry, previousUnitCosts);
         var totalCost = workforceCost + inputCosts;
 
-        var totalOutputQuantity = recipe.Outputs.Sum(o => o.Quantity);
+        var effectiveOutputs = line.OutputOverrides ?? recipe.Outputs;
+        var totalOutputQuantity = effectiveOutputs.Sum(o => o.Quantity);
 
-        return recipe.Outputs.Select(output =>
+        return effectiveOutputs.Select(output =>
         {
             var outputPrice = ResolvePrice(output.MaterialId, line.OutputPriceSources, priceRegistry, previousUnitCosts);
             var costPerUnit = totalCost / output.Quantity;

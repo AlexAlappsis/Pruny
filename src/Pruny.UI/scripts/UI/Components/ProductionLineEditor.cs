@@ -35,6 +35,11 @@ public partial class ProductionLineEditor : VBoxContainer
     private Button? _workforceToggleButton;
     private VBoxContainer? _workforceContent;
 
+    private VBoxContainer? _outputOverridesContainer;
+    private Button? _outputOverridesToggleButton;
+    private VBoxContainer? _outputOverridesContent;
+    private MaterialQuantityEditor? _outputOverridesEditor;
+
     private string _lineId = Guid.NewGuid().ToString();
     private Dictionary<string, PriceSourceSelector> _inputPriceSelectors = new();
     private Dictionary<string, PriceSourceSelector> _outputPriceSelectors = new();
@@ -68,8 +73,13 @@ public partial class ProductionLineEditor : VBoxContainer
         _workforceToggleButton = GetNode<Button>("WorkforceOverrideContainer/ToggleButton");
         _workforceContent = GetNode<VBoxContainer>("WorkforceOverrideContainer/Content");
 
+        _outputOverridesContainer = GetNode<VBoxContainer>("OutputOverridesContainer");
+        _outputOverridesToggleButton = GetNode<Button>("OutputOverridesContainer/ToggleButton");
+        _outputOverridesContent = GetNode<VBoxContainer>("OutputOverridesContainer/Content");
+
         SetupRecipeSelector();
         SetupEfficiencyEditor();
+        SetupOutputOverridesEditor();
         SetupToggleButtons();
 
         _deleteButton.Pressed += OnDeletePressed;
@@ -100,12 +110,21 @@ public partial class ProductionLineEditor : VBoxContainer
         _efficiencyContent?.AddChild(_efficiencyEditor);
     }
 
+    private void SetupOutputOverridesEditor()
+    {
+        var scene = GD.Load<PackedScene>("res://scenes/UI/Components/MaterialQuantityEditor.tscn");
+        _outputOverridesEditor = scene.Instantiate<MaterialQuantityEditor>();
+        _outputOverridesEditor.ItemsChanged += OnOutputOverridesChanged;
+        _outputOverridesContent?.AddChild(_outputOverridesEditor);
+    }
+
     private void SetupToggleButtons()
     {
         _efficiencyToggleButton!.Pressed += () => ToggleSection(_efficiencyContent!, _efficiencyToggleButton!);
         _inputPricesToggleButton!.Pressed += () => ToggleSection(_inputPricesContent!, _inputPricesToggleButton!);
         _outputPricesToggleButton!.Pressed += () => ToggleSection(_outputPricesContent!, _outputPricesToggleButton!);
         _workforceToggleButton!.Pressed += () => ToggleSection(_workforceContent!, _workforceToggleButton!);
+        _outputOverridesToggleButton!.Pressed += () => ToggleSection(_outputOverridesContent!, _outputOverridesToggleButton!);
     }
 
     private void ToggleSection(Control content, Button button)
@@ -123,12 +142,52 @@ public partial class ProductionLineEditor : VBoxContainer
             return;
 
         RebuildInputPriceSelectors(recipe.Inputs);
-        RebuildOutputPriceSelectors(recipe.Outputs);
+        UpdateOutputPriceSelectors();
+
+        if (recipe.Outputs.Count == 0)
+        {
+            _outputOverridesToggleButton?.AddThemeColorOverride("font_color", new Color(1, 1, 0.3f));
+            if (_outputOverridesContent != null && !_outputOverridesContent.Visible)
+            {
+                ToggleSection(_outputOverridesContent, _outputOverridesToggleButton!);
+            }
+        }
+        else
+        {
+            _outputOverridesToggleButton?.RemoveThemeColorOverride("font_color");
+        }
 
         if (_pendingLineToLoad != null)
         {
             ApplyPendingLineData();
         }
+    }
+
+    private void OnOutputOverridesChanged()
+    {
+        UpdateOutputPriceSelectors();
+    }
+
+    private void UpdateOutputPriceSelectors()
+    {
+        var effectiveOutputs = GetEffectiveOutputs();
+        RebuildOutputPriceSelectors(effectiveOutputs);
+    }
+
+    private List<RecipeItem> GetEffectiveOutputs()
+    {
+        var overrides = _outputOverridesEditor?.GetItems();
+        if (overrides != null && overrides.Count > 0)
+            return overrides;
+
+        var recipeId = _recipeSelector?.GetSelectedRecipeId();
+        if (string.IsNullOrEmpty(recipeId) || _sessionManager?.Session?.GameData == null)
+            return new List<RecipeItem>();
+
+        if (_sessionManager.Session.GameData.Recipes.TryGetValue(recipeId, out var recipe))
+            return recipe.Outputs;
+
+        return new List<RecipeItem>();
     }
 
     private void RebuildInputPriceSelectors(List<RecipeItem> inputs)
@@ -213,6 +272,8 @@ public partial class ProductionLineEditor : VBoxContainer
                 selector.SetPriceSource(kvp.Value);
         }
 
+        _outputOverridesEditor?.SetItems(_pendingLineToLoad.OutputOverrides);
+
         _pendingLineToLoad = null;
     }
 
@@ -233,11 +294,16 @@ public partial class ProductionLineEditor : VBoxContainer
         foreach (var kvp in _outputPriceSelectors)
             outputPriceSources[kvp.Key] = kvp.Value.GetPriceSource();
 
+        var outputOverrides = _outputOverridesEditor?.GetItems();
+        if (outputOverrides?.Count == 0)
+            outputOverrides = null;
+
         return new ProductionLine
         {
             Id = _lineId,
             RecipeId = recipeId,
             WorkforceOverride = null,
+            OutputOverrides = outputOverrides,
             InputPriceSources = inputPriceSources,
             OutputPriceSources = outputPriceSources,
             AdditionalEfficiencyModifiers = _efficiencyEditor?.GetModifiers() ?? new List<decimal>()
