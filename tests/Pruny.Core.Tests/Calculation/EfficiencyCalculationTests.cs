@@ -17,7 +17,7 @@ public class EfficiencyCalculationTests
             Name = "Building 1",
             DefaultWorkforce = new List<WorkforceRequirement>
             {
-                new() { WorkforceType = "Pioneer", Count = 10 }
+                new() { WorkforceType = WorkforceType.PIONEER, Count = 10 }
             }
         };
 
@@ -42,14 +42,14 @@ public class EfficiencyCalculationTests
             AdditionalEfficiencyModifiers = new List<decimal>()
         };
 
-        var workforceConfig = new WorkforceConfig
+        var workforceConfigs = new Dictionary<string, WorkforceTypeConfig>
         {
-            Id = "WFC1",
-            WorkforceTypes = new List<WorkforceTypeConfig>
             {
+                "pioneer-basic",
                 new()
                 {
-                    WorkforceType = "Pioneer",
+                    Name = "pioneer-basic",
+                    WorkforceType = WorkforceType.PIONEER,
                     MaterialConsumption = new List<WorkforceMaterialConsumption>()
                 }
             }
@@ -62,7 +62,7 @@ public class EfficiencyCalculationTests
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
-            workforceConfig,
+            workforceConfigs,
             priceRegistry
         );
 
@@ -82,7 +82,7 @@ public class EfficiencyCalculationTests
             Name = "Building 1",
             DefaultWorkforce = new List<WorkforceRequirement>
             {
-                new() { WorkforceType = "Pioneer", Count = 10 }
+                new() { WorkforceType = WorkforceType.PIONEER, Count = 10 }
             }
         };
 
@@ -101,7 +101,7 @@ public class EfficiencyCalculationTests
             RecipeId = "RCP1",
             WorkforceOverride = new List<WorkforceRequirement>
             {
-                new() { WorkforceType = "Pioneer", Count = 5 }
+                new() { WorkforceType = WorkforceType.PIONEER, Count = 5 }
             },
             InputPriceSources = new Dictionary<string, PriceSource>(),
             OutputPriceSources = new Dictionary<string, PriceSource>
@@ -111,14 +111,14 @@ public class EfficiencyCalculationTests
             AdditionalEfficiencyModifiers = new List<decimal>()
         };
 
-        var workforceConfig = new WorkforceConfig
+        var workforceConfigs = new Dictionary<string, WorkforceTypeConfig>
         {
-            Id = "WFC1",
-            WorkforceTypes = new List<WorkforceTypeConfig>
             {
+                "pioneer-basic",
                 new()
                 {
-                    WorkforceType = "Pioneer",
+                    Name = "pioneer-basic",
+                    WorkforceType = WorkforceType.PIONEER,
                     MaterialConsumption = new List<WorkforceMaterialConsumption>()
                 }
             }
@@ -131,7 +131,7 @@ public class EfficiencyCalculationTests
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
-            workforceConfig,
+            workforceConfigs,
             priceRegistry
         );
 
@@ -151,7 +151,7 @@ public class EfficiencyCalculationTests
             Name = "Building 1",
             DefaultWorkforce = new List<WorkforceRequirement>
             {
-                new() { WorkforceType = "Pioneer", Count = 20 }
+                new() { WorkforceType = WorkforceType.PIONEER, Count = 20 }
             }
         };
 
@@ -170,7 +170,7 @@ public class EfficiencyCalculationTests
             RecipeId = "RCP1",
             WorkforceOverride = new List<WorkforceRequirement>
             {
-                new() { WorkforceType = "Pioneer", Count = 5 }
+                new() { WorkforceType = WorkforceType.PIONEER, Count = 5 }
             },
             InputPriceSources = new Dictionary<string, PriceSource>(),
             OutputPriceSources = new Dictionary<string, PriceSource>
@@ -180,14 +180,14 @@ public class EfficiencyCalculationTests
             AdditionalEfficiencyModifiers = new List<decimal>()
         };
 
-        var workforceConfig = new WorkforceConfig
+        var workforceConfigs = new Dictionary<string, WorkforceTypeConfig>
         {
-            Id = "WFC1",
-            WorkforceTypes = new List<WorkforceTypeConfig>
             {
+                "pioneer-basic",
                 new()
                 {
-                    WorkforceType = "Pioneer",
+                    Name = "pioneer-basic",
+                    WorkforceType = WorkforceType.PIONEER,
                     MaterialConsumption = new List<WorkforceMaterialConsumption>()
                 }
             }
@@ -200,7 +200,7 @@ public class EfficiencyCalculationTests
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
-            workforceConfig,
+            workforceConfigs,
             priceRegistry
         );
 
@@ -220,8 +220,8 @@ public class EfficiencyCalculationTests
             Name = "Building 1",
             DefaultWorkforce = new List<WorkforceRequirement>
             {
-                new() { WorkforceType = "Pioneer", Count = 10 },
-                new() { WorkforceType = "Settler", Count = 5 }
+                new() { WorkforceType = WorkforceType.PIONEER, Count = 10 },
+                new() { WorkforceType = WorkforceType.SETTLER, Count = 5 }
             }
         };
 
@@ -240,8 +240,8 @@ public class EfficiencyCalculationTests
             RecipeId = "RCP1",
             WorkforceOverride = new List<WorkforceRequirement>
             {
-                new() { WorkforceType = "Pioneer", Count = 10 },
-                new() { WorkforceType = "Settler", Count = 2 }
+                new() { WorkforceType = WorkforceType.PIONEER, Count = 10 },
+                new() { WorkforceType = WorkforceType.SETTLER, Count = 2 }
             },
             InputPriceSources = new Dictionary<string, PriceSource>(),
             OutputPriceSources = new Dictionary<string, PriceSource>
@@ -251,19 +251,23 @@ public class EfficiencyCalculationTests
             AdditionalEfficiencyModifiers = new List<decimal>()
         };
 
-        var workforceConfig = new WorkforceConfig
+        var workforceConfigs = new Dictionary<string, WorkforceTypeConfig>
         {
-            Id = "WFC1",
-            WorkforceTypes = new List<WorkforceTypeConfig>
             {
+                "pioneer-basic",
                 new()
                 {
-                    WorkforceType = "Pioneer",
+                    Name = "pioneer-basic",
+                    WorkforceType = WorkforceType.PIONEER,
                     MaterialConsumption = new List<WorkforceMaterialConsumption>()
-                },
+                }
+            },
+            {
+                "settler-basic",
                 new()
                 {
-                    WorkforceType = "Settler",
+                    Name = "settler-basic",
+                    WorkforceType = WorkforceType.SETTLER,
                     MaterialConsumption = new List<WorkforceMaterialConsumption>()
                 }
             }
@@ -276,7 +280,7 @@ public class EfficiencyCalculationTests
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
-            workforceConfig,
+            workforceConfigs,
             priceRegistry
         );
 
@@ -298,7 +302,7 @@ public class EfficiencyCalculationTests
             Name = "Building 1",
             DefaultWorkforce = new List<WorkforceRequirement>
             {
-                new() { WorkforceType = "Pioneer", Count = 10 }
+                new() { WorkforceType = WorkforceType.PIONEER, Count = 10 }
             }
         };
 
@@ -323,14 +327,14 @@ public class EfficiencyCalculationTests
             AdditionalEfficiencyModifiers = new List<decimal> { 1.5m }
         };
 
-        var workforceConfig = new WorkforceConfig
+        var workforceConfigs = new Dictionary<string, WorkforceTypeConfig>
         {
-            Id = "WFC1",
-            WorkforceTypes = new List<WorkforceTypeConfig>
             {
+                "pioneer-basic",
                 new()
                 {
-                    WorkforceType = "Pioneer",
+                    Name = "pioneer-basic",
+                    WorkforceType = WorkforceType.PIONEER,
                     MaterialConsumption = new List<WorkforceMaterialConsumption>()
                 }
             }
@@ -343,7 +347,7 @@ public class EfficiencyCalculationTests
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
-            workforceConfig,
+            workforceConfigs,
             priceRegistry
         );
 
@@ -363,7 +367,7 @@ public class EfficiencyCalculationTests
             Name = "Building 1",
             DefaultWorkforce = new List<WorkforceRequirement>
             {
-                new() { WorkforceType = "Pioneer", Count = 10 }
+                new() { WorkforceType = WorkforceType.PIONEER, Count = 10 }
             }
         };
 
@@ -382,7 +386,7 @@ public class EfficiencyCalculationTests
             RecipeId = "RCP1",
             WorkforceOverride = new List<WorkforceRequirement>
             {
-                new() { WorkforceType = "Pioneer", Count = 5 }
+                new() { WorkforceType = WorkforceType.PIONEER, Count = 5 }
             },
             InputPriceSources = new Dictionary<string, PriceSource>(),
             OutputPriceSources = new Dictionary<string, PriceSource>
@@ -392,14 +396,14 @@ public class EfficiencyCalculationTests
             AdditionalEfficiencyModifiers = new List<decimal> { 2.0m }
         };
 
-        var workforceConfig = new WorkforceConfig
+        var workforceConfigs = new Dictionary<string, WorkforceTypeConfig>
         {
-            Id = "WFC1",
-            WorkforceTypes = new List<WorkforceTypeConfig>
             {
+                "pioneer-basic",
                 new()
                 {
-                    WorkforceType = "Pioneer",
+                    Name = "pioneer-basic",
+                    WorkforceType = WorkforceType.PIONEER,
                     MaterialConsumption = new List<WorkforceMaterialConsumption>()
                 }
             }
@@ -412,7 +416,7 @@ public class EfficiencyCalculationTests
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
-            workforceConfig,
+            workforceConfigs,
             priceRegistry
         );
 
@@ -434,7 +438,7 @@ public class EfficiencyCalculationTests
             Name = "Building 1",
             DefaultWorkforce = new List<WorkforceRequirement>
             {
-                new() { WorkforceType = "Pioneer", Count = 10 }
+                new() { WorkforceType = WorkforceType.PIONEER, Count = 10 }
             }
         };
 
@@ -453,7 +457,7 @@ public class EfficiencyCalculationTests
             RecipeId = "RCP1",
             WorkforceOverride = new List<WorkforceRequirement>
             {
-                new() { WorkforceType = "Pioneer", Count = 8 }
+                new() { WorkforceType = WorkforceType.PIONEER, Count = 8 }
             },
             InputPriceSources = new Dictionary<string, PriceSource>(),
             OutputPriceSources = new Dictionary<string, PriceSource>
@@ -463,14 +467,14 @@ public class EfficiencyCalculationTests
             AdditionalEfficiencyModifiers = new List<decimal> { 1.5m, 1.2m, 0.9m }
         };
 
-        var workforceConfig = new WorkforceConfig
+        var workforceConfigs = new Dictionary<string, WorkforceTypeConfig>
         {
-            Id = "WFC1",
-            WorkforceTypes = new List<WorkforceTypeConfig>
             {
+                "pioneer-basic",
                 new()
                 {
-                    WorkforceType = "Pioneer",
+                    Name = "pioneer-basic",
+                    WorkforceType = WorkforceType.PIONEER,
                     MaterialConsumption = new List<WorkforceMaterialConsumption>()
                 }
             }
@@ -483,7 +487,7 @@ public class EfficiencyCalculationTests
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
-            workforceConfig,
+            workforceConfigs,
             priceRegistry
         );
 

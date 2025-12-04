@@ -42,11 +42,7 @@ public class ProfitCalculationTests
             AdditionalEfficiencyModifiers = new List<decimal>()
         };
 
-        var workforceConfig = new WorkforceConfig
-        {
-            Id = "WFC1",
-            WorkforceTypes = new List<WorkforceTypeConfig>()
-        };
+        var workforceConfigs = new Dictionary<string, WorkforceTypeConfig>();
 
         var priceRegistry = new PriceSourceRegistry();
         priceRegistry.RegisterPrice("MAT1", "custom-MAT1", 100m);
@@ -56,7 +52,7 @@ public class ProfitCalculationTests
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
-            workforceConfig,
+            workforceConfigs,
             priceRegistry
         );
 
@@ -104,11 +100,7 @@ public class ProfitCalculationTests
             AdditionalEfficiencyModifiers = new List<decimal>()
         };
 
-        var workforceConfig = new WorkforceConfig
-        {
-            Id = "WFC1",
-            WorkforceTypes = new List<WorkforceTypeConfig>()
-        };
+        var workforceConfigs = new Dictionary<string, WorkforceTypeConfig>();
 
         var priceRegistry = new PriceSourceRegistry();
         priceRegistry.RegisterPrice("MAT1", "custom-MAT1", 100m);
@@ -118,7 +110,7 @@ public class ProfitCalculationTests
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
-            workforceConfig,
+            workforceConfigs,
             priceRegistry
         );
 
@@ -167,11 +159,7 @@ public class ProfitCalculationTests
             AdditionalEfficiencyModifiers = new List<decimal>()
         };
 
-        var workforceConfig = new WorkforceConfig
-        {
-            Id = "WFC1",
-            WorkforceTypes = new List<WorkforceTypeConfig>()
-        };
+        var workforceConfigs = new Dictionary<string, WorkforceTypeConfig>();
 
         var priceRegistry = new PriceSourceRegistry();
         priceRegistry.RegisterPrice("MAT1", "custom-MAT1", 100m);
@@ -181,7 +169,7 @@ public class ProfitCalculationTests
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
-            workforceConfig,
+            workforceConfigs,
             priceRegistry
         );
 
@@ -233,11 +221,7 @@ public class ProfitCalculationTests
             AdditionalEfficiencyModifiers = new List<decimal> { 2.0m }
         };
 
-        var workforceConfig = new WorkforceConfig
-        {
-            Id = "WFC1",
-            WorkforceTypes = new List<WorkforceTypeConfig>()
-        };
+        var workforceConfigs = new Dictionary<string, WorkforceTypeConfig>();
 
         var priceRegistry = new PriceSourceRegistry();
         priceRegistry.RegisterPrice("MAT1", "custom-MAT1", 100m);
@@ -247,7 +231,7 @@ public class ProfitCalculationTests
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
-            workforceConfig,
+            workforceConfigs,
             priceRegistry
         );
 
@@ -296,11 +280,7 @@ public class ProfitCalculationTests
             AdditionalEfficiencyModifiers = new List<decimal>()
         };
 
-        var workforceConfig = new WorkforceConfig
-        {
-            Id = "WFC1",
-            WorkforceTypes = new List<WorkforceTypeConfig>()
-        };
+        var workforceConfigs = new Dictionary<string, WorkforceTypeConfig>();
 
         var priceRegistry = new PriceSourceRegistry();
         priceRegistry.RegisterPrice("OUT1", "custom-OUT1", 0m);
@@ -309,7 +289,7 @@ public class ProfitCalculationTests
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
-            workforceConfig,
+            workforceConfigs,
             priceRegistry
         );
 
@@ -358,11 +338,7 @@ public class ProfitCalculationTests
             AdditionalEfficiencyModifiers = new List<decimal>()
         };
 
-        var workforceConfig = new WorkforceConfig
-        {
-            Id = "WFC1",
-            WorkforceTypes = new List<WorkforceTypeConfig>()
-        };
+        var workforceConfigs = new Dictionary<string, WorkforceTypeConfig>();
 
         var priceRegistry = new PriceSourceRegistry();
         priceRegistry.RegisterPrice("MAT1", "custom-MAT1", 100m);
@@ -372,7 +348,7 @@ public class ProfitCalculationTests
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
-            workforceConfig,
+            workforceConfigs,
             priceRegistry
         );
 

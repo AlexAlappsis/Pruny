@@ -11,8 +11,10 @@ public partial class WorkforceTypeEditor : VBoxContainer
     public delegate void DeleteRequestedEventHandler();
 
     private HBoxContainer? _headerContainer;
+    private Label? _nameLabel;
+    private LineEdit? _nameInput;
     private Label? _workforceTypeLabel;
-    private LineEdit? _workforceTypeInput;
+    private OptionButton? _workforceTypeDropdown;
     private Button? _addMaterialButton;
     private Button? _deleteButton;
     private VBoxContainer? _materialsContainer;
@@ -23,13 +25,18 @@ public partial class WorkforceTypeEditor : VBoxContainer
     public override void _Ready()
     {
         _headerContainer = GetNode<HBoxContainer>("HeaderContainer");
+        _nameLabel = GetNode<Label>("HeaderContainer/NameLabel");
+        _nameInput = GetNode<LineEdit>("HeaderContainer/NameInput");
         _workforceTypeLabel = GetNode<Label>("HeaderContainer/WorkforceTypeLabel");
-        _workforceTypeInput = GetNode<LineEdit>("HeaderContainer/WorkforceTypeInput");
+        _workforceTypeDropdown = GetNode<OptionButton>("HeaderContainer/WorkforceTypeDropdown");
         _addMaterialButton = GetNode<Button>("HeaderContainer/AddMaterialButton");
         _deleteButton = GetNode<Button>("HeaderContainer/DeleteButton");
         _materialsContainer = GetNode<VBoxContainer>("MaterialsContainer");
 
-        _workforceTypeInput.TextChanged += OnWorkforceTypeChanged;
+        SetupWorkforceTypeDropdown();
+
+        _nameInput.TextChanged += OnNameChanged;
+        _workforceTypeDropdown.ItemSelected += OnWorkforceTypeSelected;
         _addMaterialButton.Pressed += OnAddMaterialPressed;
         _deleteButton.Pressed += OnDeletePressed;
 
@@ -41,15 +48,33 @@ public partial class WorkforceTypeEditor : VBoxContainer
         }
     }
 
+    private void SetupWorkforceTypeDropdown()
+    {
+        if (_workforceTypeDropdown == null)
+            return;
+
+        _workforceTypeDropdown.Clear();
+        foreach (WorkforceType type in System.Enum.GetValues(typeof(WorkforceType)))
+        {
+            _workforceTypeDropdown.AddItem(type.ToString());
+        }
+    }
+
     public void SetWorkforceTypeConfig(WorkforceTypeConfig config)
     {
-        if (_workforceTypeInput == null)
+        if (_nameInput == null || _workforceTypeDropdown == null)
         {
             _pendingConfig = config;
             return;
         }
 
-        _workforceTypeInput.Text = config.WorkforceType;
+        _nameInput.Text = config.Name;
+
+        var typeIndex = (int)config.WorkforceType;
+        if (typeIndex >= 0 && typeIndex < _workforceTypeDropdown.ItemCount)
+        {
+            _workforceTypeDropdown.Selected = typeIndex;
+        }
 
         ClearMaterials();
 
@@ -64,17 +89,26 @@ public partial class WorkforceTypeEditor : VBoxContainer
 
     public WorkforceTypeConfig GetWorkforceTypeConfig()
     {
-        if (_workforceTypeInput == null)
+        if (_nameInput == null || _workforceTypeDropdown == null)
             throw new InvalidOperationException("WorkforceTypeEditor not initialized");
+
+        var selectedIndex = _workforceTypeDropdown.Selected;
+        var workforceType = (WorkforceType)selectedIndex;
 
         return new WorkforceTypeConfig
         {
-            WorkforceType = _workforceTypeInput.Text,
+            Name = _nameInput.Text,
+            WorkforceType = workforceType,
             MaterialConsumption = _materialEditors.Select(e => e.GetConsumption()).ToList()
         };
     }
 
-    private void OnWorkforceTypeChanged(string newText)
+    private void OnNameChanged(string newText)
+    {
+        EmitWorkforceTypeChanged();
+    }
+
+    private void OnWorkforceTypeSelected(long index)
     {
         EmitWorkforceTypeChanged();
     }
@@ -122,8 +156,10 @@ public partial class WorkforceTypeEditor : VBoxContainer
 
     public override void _ExitTree()
     {
-        if (_workforceTypeInput != null)
-            _workforceTypeInput.TextChanged -= OnWorkforceTypeChanged;
+        if (_nameInput != null)
+            _nameInput.TextChanged -= OnNameChanged;
+        if (_workforceTypeDropdown != null)
+            _workforceTypeDropdown.ItemSelected -= OnWorkforceTypeSelected;
         if (_addMaterialButton != null)
             _addMaterialButton.Pressed -= OnAddMaterialPressed;
         if (_deleteButton != null)

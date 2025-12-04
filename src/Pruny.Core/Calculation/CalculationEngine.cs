@@ -8,7 +8,7 @@ public class CalculationEngine : ICalculationEngine
         List<ProductionLine> productionLines,
         Dictionary<string, Recipe> recipes,
         Dictionary<string, Building> buildings,
-        WorkforceConfig workforceConfig,
+        Dictionary<string, WorkforceTypeConfig> workforceConfigs,
         PriceSourceRegistry priceRegistry)
     {
         var result = new CalculationResult();
@@ -38,7 +38,7 @@ public class CalculationEngine : ICalculationEngine
                 }
 
                 var unitCosts = CalculateProductionLineUnitCosts(
-                    line, recipe, building, workforceConfig, priceRegistry, result.UnitCosts);
+                    line, recipe, building, workforceConfigs, priceRegistry, result.UnitCosts);
 
                 foreach (var unitCost in unitCosts)
                 {
@@ -64,7 +64,7 @@ public class CalculationEngine : ICalculationEngine
         ProductionLine line,
         Recipe recipe,
         Building building,
-        WorkforceConfig workforceConfig,
+        Dictionary<string, WorkforceTypeConfig> workforceConfigs,
         PriceSourceRegistry priceRegistry,
         Dictionary<string, UnitCost> previousUnitCosts)
     {
@@ -73,7 +73,7 @@ public class CalculationEngine : ICalculationEngine
         var overallEfficiency = CalculateOverallEfficiency(workforceEfficiency, line.AdditionalEfficiencyModifiers);
         var adjustedDuration = recipe.DurationMinutes / overallEfficiency;
 
-        var workforceCost = CalculateWorkforceCost(workforce, workforceConfig, adjustedDuration, priceRegistry, previousUnitCosts);
+        var workforceCost = CalculateWorkforceCost(workforce, line.WorkforceConfigMapping, workforceConfigs, adjustedDuration, priceRegistry, previousUnitCosts);
         var inputCosts = CalculateInputCosts(line, recipe, priceRegistry, previousUnitCosts);
         var totalCost = workforceCost + inputCosts;
 
@@ -140,7 +140,8 @@ public class CalculationEngine : ICalculationEngine
 
     private decimal CalculateWorkforceCost(
         List<WorkforceRequirement> workforce,
-        WorkforceConfig config,
+        Dictionary<WorkforceType, string>? workforceConfigMapping,
+        Dictionary<string, WorkforceTypeConfig> workforceConfigs,
         decimal durationMinutes,
         PriceSourceRegistry priceRegistry,
         Dictionary<string, UnitCost> previousUnitCosts)
@@ -149,7 +150,19 @@ public class CalculationEngine : ICalculationEngine
 
         foreach (var worker in workforce)
         {
-            var workerTypeConfig = config.WorkforceTypes.FirstOrDefault(w => w.WorkforceType == worker.WorkforceType);
+            WorkforceTypeConfig? workerTypeConfig = null;
+
+            if (workforceConfigMapping != null &&
+                workforceConfigMapping.TryGetValue(worker.WorkforceType, out var configName) &&
+                workforceConfigs.TryGetValue(configName, out workerTypeConfig))
+            {
+            }
+            else
+            {
+                workerTypeConfig = workforceConfigs.Values
+                    .FirstOrDefault(c => c.WorkforceType == worker.WorkforceType);
+            }
+
             if (workerTypeConfig == null)
                 continue;
 

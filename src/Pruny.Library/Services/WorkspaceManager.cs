@@ -41,7 +41,7 @@ public class WorkspaceManager
             MarketDataFetchedAt = null,
             ProductionLines = new(),
             CustomPrices = new(),
-            WorkforceConfig = null,
+            WorkforceConfigs = new(),
         };
 
         _currentWorkspace = workspace;

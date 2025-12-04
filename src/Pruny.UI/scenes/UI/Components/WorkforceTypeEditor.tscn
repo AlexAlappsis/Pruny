@@ -8,14 +8,21 @@ script = ExtResource("1_workforce_type_editor")
 [node name="HeaderContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="WorkforceTypeLabel" type="Label" parent="HeaderContainer"]
+[node name="NameLabel" type="Label" parent="HeaderContainer"]
 layout_mode = 2
-text = "Workforce Type:"
+text = "Name:"
 
-[node name="WorkforceTypeInput" type="LineEdit" parent="HeaderContainer"]
+[node name="NameInput" type="LineEdit" parent="HeaderContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-placeholder_text = "e.g., PIONEER, SETTLER, TECHNICIAN"
+placeholder_text = "e.g., pioneer-basic, settler-luxury"
+
+[node name="WorkforceTypeLabel" type="Label" parent="HeaderContainer"]
+layout_mode = 2
+text = "Type:"
+
+[node name="WorkforceTypeDropdown" type="OptionButton" parent="HeaderContainer"]
+layout_mode = 2
 
 [node name="AddMaterialButton" type="Button" parent="HeaderContainer"]
 layout_mode = 2

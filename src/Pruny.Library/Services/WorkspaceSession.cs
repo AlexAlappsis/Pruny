@@ -266,17 +266,13 @@ public class WorkspaceSession
 
         try
         {
-            var workforceConfig = WorkspaceManager.CurrentWorkspace.WorkforceConfig ?? new WorkforceConfig
-            {
-                Id = "default",
-                WorkforceTypes = new()
-            };
+            var workforceConfigs = WorkspaceManager.CurrentWorkspace.WorkforceConfigs ?? new();
 
             var result = _calculationEngine.CalculateUnitCosts(
                 WorkspaceManager.CurrentWorkspace.ProductionLines,
                 _gameData.Recipes,
                 _gameData.Buildings,
-                workforceConfig,
+                workforceConfigs,
                 _priceRegistry);
 
             _calculations = result.UnitCosts;

@@ -20,7 +20,7 @@ public class CalculationEngineTests
             Name = "Building 1",
             DefaultWorkforce = new List<WorkforceRequirement>
             {
-                new() { WorkforceType = "Pioneer", Count = 10 }
+                new() { WorkforceType = WorkforceType.PIONEER, Count = 10 }
             }
         };
 
@@ -64,14 +64,14 @@ public class CalculationEngineTests
             AdditionalEfficiencyModifiers = new List<decimal>()
         };
 
-        var workforceConfig = new WorkforceConfig
+        var workforceConfigs = new Dictionary<string, WorkforceTypeConfig>
         {
-            Id = "WFC1",
-            WorkforceTypes = new List<WorkforceTypeConfig>
             {
+                "pioneer-basic",
                 new()
                 {
-                    WorkforceType = "Pioneer",
+                    Name = "pioneer-basic",
+                    WorkforceType = WorkforceType.PIONEER,
                     MaterialConsumption = new List<WorkforceMaterialConsumption>
                     {
                         new()
@@ -99,7 +99,7 @@ public class CalculationEngineTests
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
-            workforceConfig,
+            workforceConfigs,
             priceRegistry
         );
 
@@ -132,7 +132,7 @@ public class CalculationEngineTests
             Name = "Building 1",
             DefaultWorkforce = new List<WorkforceRequirement>
             {
-                new() { WorkforceType = "Pioneer", Count = 10 }
+                new() { WorkforceType = WorkforceType.PIONEER, Count = 10 }
             }
         };
 
@@ -160,14 +160,14 @@ public class CalculationEngineTests
             AdditionalEfficiencyModifiers = new List<decimal> { 2.0m }
         };
 
-        var workforceConfig = new WorkforceConfig
+        var workforceConfigs = new Dictionary<string, WorkforceTypeConfig>
         {
-            Id = "WFC1",
-            WorkforceTypes = new List<WorkforceTypeConfig>
             {
+                "pioneer-basic",
                 new()
                 {
-                    WorkforceType = "Pioneer",
+                    Name = "pioneer-basic",
+                    WorkforceType = WorkforceType.PIONEER,
                     MaterialConsumption = new List<WorkforceMaterialConsumption>()
                 }
             }
@@ -181,7 +181,7 @@ public class CalculationEngineTests
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
-            workforceConfig,
+            workforceConfigs,
             priceRegistry
         );
 
@@ -201,7 +201,7 @@ public class CalculationEngineTests
             Name = "Building 1",
             DefaultWorkforce = new List<WorkforceRequirement>
             {
-                new() { WorkforceType = "Pioneer", Count = 10 }
+                new() { WorkforceType = WorkforceType.PIONEER, Count = 10 }
             }
         };
 
@@ -220,7 +220,7 @@ public class CalculationEngineTests
             RecipeId = "RCP1",
             WorkforceOverride = new List<WorkforceRequirement>
             {
-                new() { WorkforceType = "Pioneer", Count = 5 }
+                new() { WorkforceType = WorkforceType.PIONEER, Count = 5 }
             },
             InputPriceSources = new Dictionary<string, PriceSource>(),
             OutputPriceSources = new Dictionary<string, PriceSource>
@@ -230,14 +230,14 @@ public class CalculationEngineTests
             AdditionalEfficiencyModifiers = new List<decimal>()
         };
 
-        var workforceConfig = new WorkforceConfig
+        var workforceConfigs = new Dictionary<string, WorkforceTypeConfig>
         {
-            Id = "WFC1",
-            WorkforceTypes = new List<WorkforceTypeConfig>
             {
+                "pioneer-basic",
                 new()
                 {
-                    WorkforceType = "Pioneer",
+                    Name = "pioneer-basic",
+                    WorkforceType = WorkforceType.PIONEER,
                     MaterialConsumption = new List<WorkforceMaterialConsumption>()
                 }
             }
@@ -250,7 +250,7 @@ public class CalculationEngineTests
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
-            workforceConfig,
+            workforceConfigs,
             priceRegistry
         );
 
@@ -307,11 +307,7 @@ public class CalculationEngineTests
             AdditionalEfficiencyModifiers = new List<decimal>()
         };
 
-        var workforceConfig = new WorkforceConfig
-        {
-            Id = "WFC1",
-            WorkforceTypes = new List<WorkforceTypeConfig>()
-        };
+        var workforceConfigs = new Dictionary<string, WorkforceTypeConfig>();
 
         var priceRegistry = new PriceSourceRegistry();
         priceRegistry.RegisterPrice("MAT1", "custom-MAT1", 100m);
@@ -321,7 +317,7 @@ public class CalculationEngineTests
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
-            workforceConfig,
+            workforceConfigs,
             priceRegistry
         );
 
@@ -368,11 +364,7 @@ public class CalculationEngineTests
             AdditionalEfficiencyModifiers = new List<decimal>()
         };
 
-        var workforceConfig = new WorkforceConfig
-        {
-            Id = "WFC1",
-            WorkforceTypes = new List<WorkforceTypeConfig>()
-        };
+        var workforceConfigs = new Dictionary<string, WorkforceTypeConfig>();
 
         var priceRegistry = new PriceSourceRegistry();
         priceRegistry.RegisterPrice("MAT1", "custom-MAT1", 100m);
@@ -382,7 +374,7 @@ public class CalculationEngineTests
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
-            workforceConfig,
+            workforceConfigs,
             priceRegistry
         );
 
@@ -430,11 +422,7 @@ public class CalculationEngineTests
             AdditionalEfficiencyModifiers = new List<decimal>()
         };
 
-        var workforceConfig = new WorkforceConfig
-        {
-            Id = "WFC1",
-            WorkforceTypes = new List<WorkforceTypeConfig>()
-        };
+        var workforceConfigs = new Dictionary<string, WorkforceTypeConfig>();
 
         var priceRegistry = new PriceSourceRegistry();
         priceRegistry.RegisterPrice("OUT1", "custom-OUT1", 0m);
@@ -443,7 +431,7 @@ public class CalculationEngineTests
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
-            workforceConfig,
+            workforceConfigs,
             priceRegistry
         );
 
@@ -516,11 +504,7 @@ public class CalculationEngineTests
             AdditionalEfficiencyModifiers = new List<decimal>()
         };
 
-        var workforceConfig = new WorkforceConfig
-        {
-            Id = "WFC1",
-            WorkforceTypes = new List<WorkforceTypeConfig>()
-        };
+        var workforceConfigs = new Dictionary<string, WorkforceTypeConfig>();
 
         var priceRegistry = new PriceSourceRegistry();
         priceRegistry.RegisterPrice("BASE", "custom-BASE", 100m);
@@ -531,7 +515,7 @@ public class CalculationEngineTests
             new List<ProductionLine> { line2, line1 },
             new Dictionary<string, Recipe> { { "RCP1", recipe1 }, { "RCP2", recipe2 } },
             new Dictionary<string, Building> { { "BLD1", building } },
-            workforceConfig,
+            workforceConfigs,
             priceRegistry
         );
 

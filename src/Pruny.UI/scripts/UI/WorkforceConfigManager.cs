@@ -67,18 +67,18 @@ public partial class WorkforceConfigManager : CenterContainer
 
         ClearWorkforceTypes();
 
-        var workforceConfig = _sessionManager.Session.CurrentWorkspace.WorkforceConfig;
+        var workforceConfigs = _sessionManager.Session.CurrentWorkspace.WorkforceConfigs;
 
-        if (workforceConfig == null)
+        if (workforceConfigs == null || workforceConfigs.Count == 0)
         {
             SetStatus("No workforce configuration found. Add workforce types to get started.", new Color(1, 1, 0.3f));
             return;
         }
 
-        foreach (var workforceType in workforceConfig.WorkforceTypes)
+        foreach (var workforceTypeConfig in workforceConfigs.Values)
         {
             var editor = CreateWorkforceTypeEditor();
-            editor.SetWorkforceTypeConfig(workforceType);
+            editor.SetWorkforceTypeConfig(workforceTypeConfig);
             _workforceTypeEditors.Add(editor);
             _workforceTypesContainer?.AddChild(editor);
         }
@@ -129,14 +129,15 @@ public partial class WorkforceConfigManager : CenterContainer
 
         try
         {
-            var workforceConfig = new WorkforceConfig
+            var workforceConfigs = new Dictionary<string, WorkforceTypeConfig>();
+            foreach (var editor in _workforceTypeEditors)
             {
-                Id = _sessionManager.Session.CurrentWorkspace.WorkforceConfig?.Id ?? "default",
-                WorkforceTypes = _workforceTypeEditors.Select(e => e.GetWorkforceTypeConfig()).ToList()
-            };
+                var config = editor.GetWorkforceTypeConfig();
+                workforceConfigs[config.Name] = config;
+            }
 
             _sessionManager.Session.WorkspaceManager.ApplyChanges(
-                ws => ws.WorkforceConfig = workforceConfig,
+                ws => ws.WorkforceConfigs = workforceConfigs,
                 "Workforce configuration updated");
 
             _sessionManager.Session.RecalculateAll();
@@ -165,36 +166,36 @@ public partial class WorkforceConfigManager : CenterContainer
     {
         if (_workforceTypeEditors.Count == 0)
         {
-            SetStatus("Add at least one workforce type", new Color(1, 0.3f, 0.3f));
+            SetStatus("Add at least one workforce configuration", new Color(1, 0.3f, 0.3f));
             return false;
         }
 
-        var workforceTypes = _workforceTypeEditors.Select(e => e.GetWorkforceTypeConfig()).ToList();
+        var workforceConfigs = _workforceTypeEditors.Select(e => e.GetWorkforceTypeConfig()).ToList();
 
-        foreach (var workforceType in workforceTypes)
+        foreach (var config in workforceConfigs)
         {
-            if (string.IsNullOrWhiteSpace(workforceType.WorkforceType))
+            if (string.IsNullOrWhiteSpace(config.Name))
             {
-                SetStatus("All workforce types must have a name", new Color(1, 0.3f, 0.3f));
+                SetStatus("All workforce configurations must have a name", new Color(1, 0.3f, 0.3f));
                 return false;
             }
 
-            if (workforceType.MaterialConsumption.Count == 0)
+            if (config.MaterialConsumption.Count == 0)
             {
-                SetStatus($"Workforce type '{workforceType.WorkforceType}' must have at least one material", new Color(1, 0.3f, 0.3f));
+                SetStatus($"Workforce config '{config.Name}' must have at least one material", new Color(1, 0.3f, 0.3f));
                 return false;
             }
         }
 
-        var duplicateTypes = workforceTypes
-            .GroupBy(wt => wt.WorkforceType)
+        var duplicateNames = workforceConfigs
+            .GroupBy(wt => wt.Name)
             .Where(g => g.Count() > 1)
             .Select(g => g.Key)
             .ToList();
 
-        if (duplicateTypes.Any())
+        if (duplicateNames.Any())
         {
-            SetStatus($"Duplicate workforce type: {duplicateTypes.First()}", new Color(1, 0.3f, 0.3f));
+            SetStatus($"Duplicate configuration name: {duplicateNames.First()}", new Color(1, 0.3f, 0.3f));
             return false;
         }
 
