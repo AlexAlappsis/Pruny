@@ -12900,11 +12900,11 @@
       "Name": "Advanced Appliances Factory",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "ENGINEER",
+          "WorkforceType": 3,
           "Count": 40
         },
         {
-          "WorkforceType": "SCIENTIST",
+          "WorkforceType": 4,
           "Count": 20
         }
       ],
@@ -12930,11 +12930,11 @@
       "Name": "Advanced Material Lab",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "ENGINEER",
+          "WorkforceType": 3,
           "Count": 30
         },
         {
-          "WorkforceType": "TECHNICIAN",
+          "WorkforceType": 2,
           "Count": 20
         }
       ],
@@ -12946,11 +12946,11 @@
       "Name": "Appliances Factory",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "ENGINEER",
+          "WorkforceType": 3,
           "Count": 20
         },
         {
-          "WorkforceType": "TECHNICIAN",
+          "WorkforceType": 2,
           "Count": 60
         }
       ],
@@ -12969,11 +12969,11 @@
       "Name": "Advanced Smelter",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "ENGINEER",
+          "WorkforceType": 3,
           "Count": 20
         },
         {
-          "WorkforceType": "TECHNICIAN",
+          "WorkforceType": 2,
           "Count": 50
         }
       ],
@@ -12985,7 +12985,7 @@
       "Name": "Basic Materials Plant",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "PIONEER",
+          "WorkforceType": 0,
           "Count": 100
         }
       ],
@@ -13004,11 +13004,11 @@
       "Name": "Chem Plant",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "PIONEER",
+          "WorkforceType": 0,
           "Count": 20
         },
         {
-          "WorkforceType": "SETTLER",
+          "WorkforceType": 1,
           "Count": 60
         }
       ],
@@ -13027,7 +13027,7 @@
       "Name": "Clothing Factory",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "SETTLER",
+          "WorkforceType": 1,
           "Count": 40
         }
       ],
@@ -13039,11 +13039,11 @@
       "Name": "Clean Room",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "SETTLER",
+          "WorkforceType": 1,
           "Count": 25
         },
         {
-          "WorkforceType": "TECHNICIAN",
+          "WorkforceType": 2,
           "Count": 15
         }
       ],
@@ -13069,7 +13069,7 @@
       "Name": "Collector",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "PIONEER",
+          "WorkforceType": 0,
           "Count": 50
         }
       ],
@@ -13102,11 +13102,11 @@
       "Name": "Drone Shop",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "ENGINEER",
+          "WorkforceType": 3,
           "Count": 20
         },
         {
-          "WorkforceType": "TECHNICIAN",
+          "WorkforceType": 2,
           "Count": 40
         }
       ],
@@ -13118,11 +13118,11 @@
       "Name": "Energy Component Assembly",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "SETTLER",
+          "WorkforceType": 1,
           "Count": 20
         },
         {
-          "WorkforceType": "TECHNICIAN",
+          "WorkforceType": 2,
           "Count": 20
         }
       ],
@@ -13134,7 +13134,7 @@
       "Name": "Electronic Device Manufactory",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "SETTLER",
+          "WorkforceType": 1,
           "Count": 50
         }
       ],
@@ -13146,11 +13146,11 @@
       "Name": "Einsteinium Enrichment Plant",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "ENGINEER",
+          "WorkforceType": 3,
           "Count": 60
         },
         {
-          "WorkforceType": "SCIENTIST",
+          "WorkforceType": 4,
           "Count": 40
         }
       ],
@@ -13162,7 +13162,7 @@
       "Name": "Electronics Plant",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "TECHNICIAN",
+          "WorkforceType": 2,
           "Count": 40
         }
       ],
@@ -13181,7 +13181,7 @@
       "Name": "Extractor",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "PIONEER",
+          "WorkforceType": 0,
           "Count": 60
         }
       ],
@@ -13193,7 +13193,7 @@
       "Name": "Fermentation Facility",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "SETTLER",
+          "WorkforceType": 1,
           "Count": 60
         }
       ],
@@ -13205,7 +13205,7 @@
       "Name": "Food Processor",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "PIONEER",
+          "WorkforceType": 0,
           "Count": 40
         }
       ],
@@ -13217,7 +13217,7 @@
       "Name": "Farm",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "PIONEER",
+          "WorkforceType": 0,
           "Count": 50
         }
       ],
@@ -13229,7 +13229,7 @@
       "Name": "Fine Smithy",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "SETTLER",
+          "WorkforceType": 1,
           "Count": 50
         }
       ],
@@ -13241,7 +13241,7 @@
       "Name": "Glass Furnace",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "SETTLER",
+          "WorkforceType": 1,
           "Count": 80
         }
       ],
@@ -13323,11 +13323,11 @@
       "Name": "Hull Welding Plant",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "SETTLER",
+          "WorkforceType": 1,
           "Count": 40
         },
         {
-          "WorkforceType": "TECHNICIAN",
+          "WorkforceType": 2,
           "Count": 10
         }
       ],
@@ -13339,11 +13339,11 @@
       "Name": "Hydroponics Farm",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "PIONEER",
+          "WorkforceType": 0,
           "Count": 40
         },
         {
-          "WorkforceType": "SETTLER",
+          "WorkforceType": 1,
           "Count": 20
         }
       ],
@@ -13355,7 +13355,7 @@
       "Name": "Incinerator",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "PIONEER",
+          "WorkforceType": 0,
           "Count": 40
         }
       ],
@@ -13374,7 +13374,7 @@
       "Name": "In Vitro Plant",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "TECHNICIAN",
+          "WorkforceType": 2,
           "Count": 70
         }
       ],
@@ -13386,11 +13386,11 @@
       "Name": "Laboratory",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "SETTLER",
+          "WorkforceType": 1,
           "Count": 20
         },
         {
-          "WorkforceType": "TECHNICIAN",
+          "WorkforceType": 2,
           "Count": 70
         }
       ],
@@ -13416,11 +13416,11 @@
       "Name": "Medium Components Assembly",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "SETTLER",
+          "WorkforceType": 1,
           "Count": 20
         },
         {
-          "WorkforceType": "TECHNICIAN",
+          "WorkforceType": 2,
           "Count": 20
         }
       ],
@@ -13432,11 +13432,11 @@
       "Name": "Orchard",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "SETTLER",
+          "WorkforceType": 1,
           "Count": 70
         },
         {
-          "WorkforceType": "TECHNICIAN",
+          "WorkforceType": 2,
           "Count": 10
         }
       ],
@@ -13448,11 +13448,11 @@
       "Name": "Packaging Center",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "PIONEER",
+          "WorkforceType": 0,
           "Count": 20
         },
         {
-          "WorkforceType": "SETTLER",
+          "WorkforceType": 1,
           "Count": 40
         }
       ],
@@ -13478,11 +13478,11 @@
       "Name": "Pharma Factory",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "SETTLER",
+          "WorkforceType": 1,
           "Count": 25
         },
         {
-          "WorkforceType": "TECHNICIAN",
+          "WorkforceType": 2,
           "Count": 25
         }
       ],
@@ -13494,11 +13494,11 @@
       "Name": "Polymer Plant",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "PIONEER",
+          "WorkforceType": 0,
           "Count": 10
         },
         {
-          "WorkforceType": "SETTLER",
+          "WorkforceType": 1,
           "Count": 25
         }
       ],
@@ -13510,7 +13510,7 @@
       "Name": "Prefab Plant 1",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "PIONEER",
+          "WorkforceType": 0,
           "Count": 80
         }
       ],
@@ -13522,11 +13522,11 @@
       "Name": "Prefab Plant 2",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "PIONEER",
+          "WorkforceType": 0,
           "Count": 25
         },
         {
-          "WorkforceType": "SETTLER",
+          "WorkforceType": 1,
           "Count": 25
         }
       ],
@@ -13538,11 +13538,11 @@
       "Name": "Prefab Plant 3",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "SETTLER",
+          "WorkforceType": 1,
           "Count": 20
         },
         {
-          "WorkforceType": "TECHNICIAN",
+          "WorkforceType": 2,
           "Count": 40
         }
       ],
@@ -13554,11 +13554,11 @@
       "Name": "Prefab Plant 4",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "ENGINEER",
+          "WorkforceType": 3,
           "Count": 30
         },
         {
-          "WorkforceType": "TECHNICIAN",
+          "WorkforceType": 2,
           "Count": 40
         }
       ],
@@ -13570,7 +13570,7 @@
       "Name": "Plastics Printer Facility",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "SETTLER",
+          "WorkforceType": 1,
           "Count": 50
         }
       ],
@@ -13596,11 +13596,11 @@
       "Name": "Refinery",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "PIONEER",
+          "WorkforceType": 0,
           "Count": 60
         },
         {
-          "WorkforceType": "SETTLER",
+          "WorkforceType": 1,
           "Count": 20
         }
       ],
@@ -13612,7 +13612,7 @@
       "Name": "Rig",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "PIONEER",
+          "WorkforceType": 0,
           "Count": 30
         }
       ],
@@ -13624,7 +13624,7 @@
       "Name": "Small Components Assembly",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "TECHNICIAN",
+          "WorkforceType": 2,
           "Count": 30
         }
       ],
@@ -13636,7 +13636,7 @@
       "Name": "Software Development",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "TECHNICIAN",
+          "WorkforceType": 2,
           "Count": 50
         }
       ],
@@ -13655,7 +13655,7 @@
       "Name": "Software Engineering",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "ENGINEER",
+          "WorkforceType": 3,
           "Count": 30
         }
       ],
@@ -13667,11 +13667,11 @@
       "Name": "Ship Kit Factory",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "SETTLER",
+          "WorkforceType": 1,
           "Count": 40
         },
         {
-          "WorkforceType": "TECHNICIAN",
+          "WorkforceType": 2,
           "Count": 10
         }
       ],
@@ -13683,7 +13683,7 @@
       "Name": "Software Labs",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "SCIENTIST",
+          "WorkforceType": 4,
           "Count": 20
         }
       ],
@@ -13695,7 +13695,7 @@
       "Name": "Smelter",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "PIONEER",
+          "WorkforceType": 0,
           "Count": 50
         }
       ],
@@ -13707,11 +13707,11 @@
       "Name": "Spacecraft Propulsion Factory",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "ENGINEER",
+          "WorkforceType": 3,
           "Count": 50
         },
         {
-          "WorkforceType": "SCIENTIST",
+          "WorkforceType": 4,
           "Count": 20
         }
       ],
@@ -13723,11 +13723,11 @@
       "Name": "Spacecraft Prefab Plant",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "ENGINEER",
+          "WorkforceType": 3,
           "Count": 30
         },
         {
-          "WorkforceType": "TECHNICIAN",
+          "WorkforceType": 2,
           "Count": 50
         }
       ],
@@ -13753,7 +13753,7 @@
       "Name": "Technetium Processing",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "TECHNICIAN",
+          "WorkforceType": 2,
           "Count": 80
         }
       ],
@@ -13772,11 +13772,11 @@
       "Name": "Unit Prefab Plant",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "PIONEER",
+          "WorkforceType": 0,
           "Count": 20
         },
         {
-          "WorkforceType": "SETTLER",
+          "WorkforceType": 1,
           "Count": 50
         }
       ],
@@ -13802,7 +13802,7 @@
       "Name": "Welding Plant",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "PIONEER",
+          "WorkforceType": 0,
           "Count": 70
         }
       ],
@@ -13814,34 +13814,12 @@
       "Name": "Weaving Plant",
       "DefaultWorkforce": [
         {
-          "WorkforceType": "SETTLER",
+          "WorkforceType": 1,
           "Count": 70
         }
       ],
       "Area": 40,
       "Expertise": "MANUFACTURING"
-    }
-  },
-  "WorkforceTypes": {
-    "ENGINEER": {
-      "Id": "ENGINEER",
-      "Name": "ENGINEER"
-    },
-    "SCIENTIST": {
-      "Id": "SCIENTIST",
-      "Name": "SCIENTIST"
-    },
-    "TECHNICIAN": {
-      "Id": "TECHNICIAN",
-      "Name": "TECHNICIAN"
-    },
-    "PIONEER": {
-      "Id": "PIONEER",
-      "Name": "PIONEER"
-    },
-    "SETTLER": {
-      "Id": "SETTLER",
-      "Name": "SETTLER"
     }
   },
   "Version": "apidata-import",

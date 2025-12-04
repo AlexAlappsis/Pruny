@@ -59,7 +59,10 @@ public class WorkspaceSession
 
         try
         {
-            var gameData = JsonSerializer.Deserialize<GameData>(gameDataJson);
+            var options = new JsonSerializerOptions();
+            options.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter(allowIntegerValues: true));
+
+            var gameData = JsonSerializer.Deserialize<GameData>(gameDataJson, options);
             if (gameData == null)
                 throw new InvalidDataException("Game data JSON could not be deserialized.");
 
