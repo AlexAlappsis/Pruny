@@ -90,6 +90,9 @@ Wait for user response before proceeding.
    - If missing: continue but note invariants unavailable
 3. Try to open `spec/glossary.md`
    - If missing: continue without terminology guidance
+4. Check `spec/overview.md` for notes links related to target module
+   - If notes exist (e.g., `spec/notes/authentication.md`), load them
+   - Follow patterns and constraints documented in notes
 
 #### 1.2 Understand the request
 
@@ -290,6 +293,14 @@ Produce a summary with:
    Noted:
    - Invariant #2 specifies UUIDs, but existing code uses int IDs (followed existing pattern)
    ```
+
+6. **Suggest notes update** (if significant decisions were made):
+   - Review changes for note-worthy decisions
+   - If architectural choice, new pattern, or constraint was established, suggest:
+     ```
+     Should I document [decision] in spec/notes/[module].md? (y/n)
+     Example: "Tags stored as JSON arrays to match existing pattern for list properties"
+     ```
 
 Do NOT run git commands. Let user review and commit.
 

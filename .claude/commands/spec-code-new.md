@@ -90,6 +90,9 @@ Wait for user response before proceeding.
    - If missing: continue but note invariants unavailable
 3. Try to open `spec/glossary.md`
    - If missing: continue without terminology guidance
+4. Check `spec/overview.md` for notes links related to target module
+   - If notes exist (e.g., `spec/notes/authentication.md`), load them
+   - Follow patterns and constraints documented in notes
 
 #### 1.2 Understand the request
 
@@ -304,6 +307,14 @@ Produce a summary with:
    - Invariant #1: Controllers don't access DB directly (used service layer)
    - Invariant #4: All IDs are UUIDv7 strings
    ```
+
+6. **Suggest notes update** (if significant decisions were made):
+   - Review changes for note-worthy decisions
+   - If architectural choice, new pattern, or constraint was established, suggest:
+     ```
+     Should I document [decision] in spec/notes/[module].md? (y/n)
+     Example: "Used JWT over sessions for stateless API"
+     ```
 
 Do NOT run git commands. Let user review and commit.
 
