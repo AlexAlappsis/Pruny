@@ -48,6 +48,8 @@ public class WorkspaceSession
 
     public IReadOnlyDictionary<string, UnitCost> Calculations => _calculations;
 
+    public PriceSourceRegistry? PriceRegistry => _priceRegistry;
+
     public bool IsDirty => WorkspaceManager.IsDirty;
 
     public MarketDataAnalyzer MarketDataAnalyzer => new MarketDataAnalyzer(_marketData);

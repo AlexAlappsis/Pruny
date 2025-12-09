@@ -368,17 +368,28 @@ public partial class CalculationsView : CenterContainer
 
     private decimal ResolveWorkforceMaterialPrice(WorkforceMaterialConsumption consumption)
     {
-        if (_sessionManager?.Session == null)
-            return 0;
-
-        var calculations = _sessionManager.Session.Calculations;
-
-        if (calculations.TryGetValue(consumption.MaterialId, out var unitCost))
+        if (_sessionManager?.Session?.PriceRegistry == null)
         {
-            return unitCost.CostPerUnit;
+            GD.Print($"ResolveWorkforceMaterialPrice: PriceRegistry is null for {consumption.MaterialId}");
+            return 0;
         }
 
-        return 0;
+        var priceRegistry = _sessionManager.Session.PriceRegistry;
+        GD.Print($"ResolveWorkforceMaterialPrice: Looking up {consumption.MaterialId}");
+        GD.Print($"  PriceSource Type: {consumption.PriceSource.Type}");
+        GD.Print($"  PriceSource SourceIdentifier: {consumption.PriceSource.SourceIdentifier}");
+
+        try
+        {
+            var price = priceRegistry.GetPrice(consumption.MaterialId, consumption.PriceSource);
+            GD.Print($"  Found price: {price}");
+            return price;
+        }
+        catch (Exception ex)
+        {
+            GD.Print($"  Error getting price: {ex.Message}");
+            return 0;
+        }
     }
 
     private void AddWorkforceDetails(VBoxContainer detailsBox, ProductionLine productionLine, Building? building)
