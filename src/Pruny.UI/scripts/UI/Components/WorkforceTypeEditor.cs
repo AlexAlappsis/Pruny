@@ -19,6 +19,8 @@ public partial class WorkforceTypeEditor : VBoxContainer
     private Button? _deleteButton;
     private VBoxContainer? _materialsContainer;
 
+    private Button? _collapseToggleButton;
+
     private List<MaterialConsumptionEditor> _materialEditors = new();
     private WorkforceTypeConfig? _pendingConfig;
 
@@ -40,6 +42,8 @@ public partial class WorkforceTypeEditor : VBoxContainer
         _addMaterialButton.Pressed += OnAddMaterialPressed;
         _deleteButton.Pressed += OnDeletePressed;
 
+        SetupCollapseButton();
+
         if (_pendingConfig != null)
         {
             var config = _pendingConfig;
@@ -58,6 +62,35 @@ public partial class WorkforceTypeEditor : VBoxContainer
         {
             _workforceTypeDropdown.AddItem(type.ToString());
         }
+    }
+
+    private void SetupCollapseButton()
+    {
+        _collapseToggleButton = new Button
+        {
+            Text = "▶ Expand Materials",
+            CustomMinimumSize = new Vector2(0, 30)
+        };
+        _collapseToggleButton.Pressed += OnCollapseTogglePressed;
+
+        var index = _headerContainer?.GetIndex() ?? 0;
+        AddChild(_collapseToggleButton);
+        MoveChild(_collapseToggleButton, (int)index + 1);
+
+        if (_materialsContainer != null)
+        {
+            _materialsContainer.Visible = false;
+        }
+    }
+
+    private void OnCollapseTogglePressed()
+    {
+        if (_materialsContainer == null || _collapseToggleButton == null)
+            return;
+
+        var newVisibility = !_materialsContainer.Visible;
+        _materialsContainer.Visible = newVisibility;
+        _collapseToggleButton.Text = newVisibility ? "▼ Collapse Materials" : "▶ Expand Materials";
     }
 
     public void SetWorkforceTypeConfig(WorkforceTypeConfig config)
@@ -156,6 +189,8 @@ public partial class WorkforceTypeEditor : VBoxContainer
 
     public override void _ExitTree()
     {
+        if (_collapseToggleButton != null)
+            _collapseToggleButton.Pressed -= OnCollapseTogglePressed;
         if (_nameInput != null)
             _nameInput.TextChanged -= OnNameChanged;
         if (_workforceTypeDropdown != null)
