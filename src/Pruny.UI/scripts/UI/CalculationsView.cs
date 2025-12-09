@@ -74,6 +74,8 @@ public partial class CalculationsView : CenterContainer
 
         GD.Print($"CalculationsView: Found {calculations.Count} calculations");
 
+        LoadWorkforceConfigs();
+
         if (calculations.Count == 0)
         {
             SetStatus("No calculations available. Add production lines to see calculations.", new Color(1, 1, 0.3f));
@@ -108,7 +110,7 @@ public partial class CalculationsView : CenterContainer
             gameData?.Buildings.TryGetValue(recipe.BuildingId, out building);
 
             GD.Print($"CalculationsView: Creating item for {material.Name}");
-            var calculationItem = CreateCalculationItem(unitCost.ProductionLineId, unitCost, material!, recipe!, building);
+            var calculationItem = CreateCalculationItem(productionLine, unitCost, material!, recipe!, building);
             _calculationsContainer?.AddChild(calculationItem);
             itemsAdded++;
             GD.Print($"CalculationsView: Item added, total: {itemsAdded}");
@@ -118,7 +120,7 @@ public partial class CalculationsView : CenterContainer
         SetStatus("");
     }
 
-    private Control CreateCalculationItem(string lineId, UnitCost unitCost, Core.Models.Material material, Recipe recipe, Building? building)
+    private Control CreateCalculationItem(ProductionLine productionLine, UnitCost unitCost, Core.Models.Material material, Recipe recipe, Building? building)
     {
         var container = new VBoxContainer();
         container.AddThemeConstantOverride("separation", 0);
@@ -188,7 +190,7 @@ public partial class CalculationsView : CenterContainer
         var detailsBox = new VBoxContainer();
         detailsPanel.AddChild(detailsBox);
 
-        detailsBox.AddChild(CreateDetailLabel($"Production Line ID: {lineId}"));
+        detailsBox.AddChild(CreateDetailLabel($"Production Line ID: {productionLine.Id}"));
         detailsBox.AddChild(CreateDetailLabel($"Material: {material.Name} ({material.Id})"));
         detailsBox.AddChild(CreateDetailLabel($"Recipe: {recipe.Id}"));
         detailsBox.AddChild(CreateDetailLabel($"Building: {building?.Id ?? "Unknown"}"));
@@ -196,6 +198,9 @@ public partial class CalculationsView : CenterContainer
         detailsBox.AddChild(CreateDetailLabel("Cost Breakdown:"));
         detailsBox.AddChild(CreateDetailLabel($"  Input Costs: {unitCost.InputCosts:F4}"));
         detailsBox.AddChild(CreateDetailLabel($"  Workforce Cost: {unitCost.WorkforceCost:F4}"));
+
+        AddWorkforceDetails(detailsBox, productionLine, building);
+
         detailsBox.AddChild(CreateDetailLabel($"  Total Cost Per Unit: {unitCost.CostPerUnit:F4}"));
         detailsBox.AddChild(CreateDetailLabel($"  Overall Efficiency: {unitCost.OverallEfficiency:P2}"));
         detailsBox.AddChild(CreateDetailLabel(""));
@@ -229,6 +234,188 @@ public partial class CalculationsView : CenterContainer
         container.AddChild(spacer);
 
         return container;
+    }
+
+    private void LoadWorkforceConfigs()
+    {
+        if (_sessionManager?.Session?.CurrentWorkspace == null)
+            return;
+
+        var workforceConfigs = _sessionManager.Session.CurrentWorkspace.WorkforceConfigs;
+        if (workforceConfigs == null || workforceConfigs.Count == 0)
+            return;
+
+        var sectionTitle = new Label();
+        sectionTitle.Text = "=== Workforce Configurations ===";
+        sectionTitle.AddThemeColorOverride("font_color", new Color(1.0f, 1.0f, 0.5f));
+        _calculationsContainer?.AddChild(sectionTitle);
+
+        var spacer1 = new Control();
+        spacer1.CustomMinimumSize = new Vector2(0, 5);
+        _calculationsContainer?.AddChild(spacer1);
+
+        foreach (var (configName, config) in workforceConfigs)
+        {
+            var workforceItem = CreateWorkforceConfigItem(config);
+            _calculationsContainer?.AddChild(workforceItem);
+        }
+
+        var spacer2 = new Control();
+        spacer2.CustomMinimumSize = new Vector2(0, 10);
+        _calculationsContainer?.AddChild(spacer2);
+
+        var productionLinesTitle = new Label();
+        productionLinesTitle.Text = "=== Production Lines ===";
+        productionLinesTitle.AddThemeColorOverride("font_color", new Color(1.0f, 1.0f, 0.5f));
+        _calculationsContainer?.AddChild(productionLinesTitle);
+
+        var spacer3 = new Control();
+        spacer3.CustomMinimumSize = new Vector2(0, 5);
+        _calculationsContainer?.AddChild(spacer3);
+    }
+
+    private Control CreateWorkforceConfigItem(WorkforceTypeConfig config)
+    {
+        var container = new VBoxContainer();
+        container.AddThemeConstantOverride("separation", 0);
+        container.CustomMinimumSize = new Vector2(0, 40);
+
+        var summaryPanel = new PanelContainer();
+        summaryPanel.CustomMinimumSize = new Vector2(0, 40);
+        var summaryBox = new HBoxContainer();
+        summaryPanel.AddChild(summaryBox);
+
+        var expandButton = new Button();
+        expandButton.Text = "▶";
+        expandButton.CustomMinimumSize = new Vector2(30, 0);
+        summaryBox.AddChild(expandButton);
+
+        var nameLabel = new Label();
+        nameLabel.Text = config.Name;
+        nameLabel.CustomMinimumSize = new Vector2(250, 0);
+        summaryBox.AddChild(nameLabel);
+
+        var typeLabel = new Label();
+        typeLabel.Text = config.WorkforceType.ToString();
+        typeLabel.CustomMinimumSize = new Vector2(150, 0);
+        summaryBox.AddChild(typeLabel);
+
+        var costPerWorkerLabel = new Label();
+        var costPerMinute = CalculateWorkforceConfigCost(config);
+        var costPerDay = costPerMinute * 60 * 24;
+        costPerWorkerLabel.Text = $"Cost: {costPerDay:F2}/day per worker";
+        costPerWorkerLabel.CustomMinimumSize = new Vector2(250, 0);
+        summaryBox.AddChild(costPerWorkerLabel);
+
+        var detailsContainer = new VBoxContainer();
+        detailsContainer.Visible = false;
+        detailsContainer.AddThemeConstantOverride("separation", 5);
+
+        var detailsPanel = new PanelContainer();
+        var detailsBox = new VBoxContainer();
+        detailsPanel.AddChild(detailsBox);
+
+        detailsBox.AddChild(CreateDetailLabel($"Configuration: {config.Name}"));
+        detailsBox.AddChild(CreateDetailLabel($"Workforce Type: {config.WorkforceType}"));
+        detailsBox.AddChild(CreateDetailLabel(""));
+        detailsBox.AddChild(CreateDetailLabel("Material Consumption (per 100 workers per 24 hours):"));
+
+        foreach (var consumption in config.MaterialConsumption)
+        {
+            var material = _sessionManager?.Session?.GameData?.Materials.GetValueOrDefault(consumption.MaterialId);
+            var materialName = material?.Name ?? consumption.MaterialId;
+
+            var price = ResolveWorkforceMaterialPrice(consumption);
+            var totalCostPer100WorkersPer24Hours = consumption.QuantityPer100WorkersPer24Hours * price;
+
+            detailsBox.AddChild(CreateDetailLabel($"  {materialName}: {consumption.QuantityPer100WorkersPer24Hours:F2} units @ {price:F4} = {totalCostPer100WorkersPer24Hours:F4}"));
+        }
+
+        detailsBox.AddChild(CreateDetailLabel(""));
+        detailsBox.AddChild(CreateDetailLabel($"Cost per worker per minute: {costPerMinute:F6}"));
+        detailsBox.AddChild(CreateDetailLabel($"Cost per worker per day: {costPerDay:F4}"));
+
+        detailsContainer.AddChild(detailsPanel);
+
+        expandButton.Pressed += () =>
+        {
+            detailsContainer.Visible = !detailsContainer.Visible;
+            expandButton.Text = detailsContainer.Visible ? "▼" : "▶";
+        };
+
+        container.AddChild(summaryPanel);
+        container.AddChild(detailsContainer);
+
+        var spacer = new Control();
+        spacer.CustomMinimumSize = new Vector2(0, 10);
+        container.AddChild(spacer);
+
+        return container;
+    }
+
+    private decimal CalculateWorkforceConfigCost(WorkforceTypeConfig config)
+    {
+        decimal totalCostPer100WorkersPer24Hours = 0;
+
+        foreach (var consumption in config.MaterialConsumption)
+        {
+            var price = ResolveWorkforceMaterialPrice(consumption);
+            totalCostPer100WorkersPer24Hours += consumption.QuantityPer100WorkersPer24Hours * price;
+        }
+
+        return totalCostPer100WorkersPer24Hours / 100m / (24m * 60m);
+    }
+
+    private decimal ResolveWorkforceMaterialPrice(WorkforceMaterialConsumption consumption)
+    {
+        if (_sessionManager?.Session == null)
+            return 0;
+
+        var calculations = _sessionManager.Session.Calculations;
+
+        if (calculations.TryGetValue(consumption.MaterialId, out var unitCost))
+        {
+            return unitCost.CostPerUnit;
+        }
+
+        return 0;
+    }
+
+    private void AddWorkforceDetails(VBoxContainer detailsBox, ProductionLine productionLine, Building? building)
+    {
+        if (building == null || _sessionManager?.Session?.CurrentWorkspace == null)
+            return;
+
+        var workforce = productionLine.WorkforceOverride ?? building.DefaultWorkforce;
+        if (workforce.Count == 0)
+            return;
+
+        var workforceConfigs = _sessionManager.Session.CurrentWorkspace.WorkforceConfigs;
+        var workforceConfigMapping = productionLine.WorkforceConfigMapping;
+
+        detailsBox.AddChild(CreateDetailLabel("    Workforce:"));
+
+        foreach (var worker in workforce)
+        {
+            string configName = "Not configured";
+
+            if (workforceConfigMapping != null &&
+                workforceConfigMapping.TryGetValue(worker.WorkforceType, out var mappedConfigName))
+            {
+                configName = mappedConfigName;
+            }
+            else
+            {
+                var fallbackConfig = workforceConfigs.Values
+                    .FirstOrDefault(c => c.WorkforceType == worker.WorkforceType);
+                if (fallbackConfig != null)
+                {
+                    configName = $"{fallbackConfig.Name} (fallback)";
+                }
+            }
+
+            detailsBox.AddChild(CreateDetailLabel($"      {worker.Count}x {worker.WorkforceType} → {configName}"));
+        }
     }
 
     private Label CreateDetailLabel(string text)
