@@ -290,6 +290,8 @@ public class WorkspaceSession
                 });
             }
 
+            _isCalculating = false;
+
             if (!result.IsSuccess)
             {
                 FireSessionStateChanged(IsInitialized, false, "Calculation completed with errors");
@@ -301,6 +303,8 @@ public class WorkspaceSession
         }
         catch (Exception ex)
         {
+            _isCalculating = false;
+
             CalculationError?.Invoke(this, new CalculationErrorEventArgs
             {
                 ErrorMessage = "Calculation failed",
@@ -308,10 +312,6 @@ public class WorkspaceSession
             });
 
             FireSessionStateChanged(IsInitialized, false, "Calculation failed");
-        }
-        finally
-        {
-            _isCalculating = false;
         }
     }
 
