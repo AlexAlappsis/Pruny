@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c5642tjofrwx"]
 
-[ext_resource type="Script" path="res://scripts/UI/Components/ProductionLineEditor.cs" id="1_production_line_editor"]
+[ext_resource type="Script" uid="uid://b5nb0obod87h7" path="res://scripts/UI/Components/ProductionLineEditor.cs" id="1_production_line_editor"]
 
 [node name="ProductionLineEditor" type="VBoxContainer"]
 script = ExtResource("1_production_line_editor")
@@ -24,9 +24,6 @@ text = "Delete Line"
 layout_mode = 2
 text = "ID: "
 
-[node name="HSeparator" type="HSeparator" parent="."]
-layout_mode = 2
-
 [node name="EfficiencyContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
@@ -36,9 +33,6 @@ text = "▶ Efficiency Modifiers"
 
 [node name="Content" type="VBoxContainer" parent="EfficiencyContainer"]
 visible = false
-layout_mode = 2
-
-[node name="HSeparator2" type="HSeparator" parent="."]
 layout_mode = 2
 
 [node name="InputPricesContainer" type="VBoxContainer" parent="."]
@@ -52,9 +46,6 @@ text = "▶ Input Price Sources"
 visible = false
 layout_mode = 2
 
-[node name="HSeparator3" type="HSeparator" parent="."]
-layout_mode = 2
-
 [node name="OutputPricesContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
@@ -66,9 +57,6 @@ text = "▶ Output Price Sources"
 visible = false
 layout_mode = 2
 
-[node name="HSeparator4" type="HSeparator" parent="."]
-layout_mode = 2
-
 [node name="WorkforceOverrideContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
@@ -78,9 +66,6 @@ text = "▶ Workforce Override (Not Implemented)"
 
 [node name="Content" type="VBoxContainer" parent="WorkforceOverrideContainer"]
 visible = false
-layout_mode = 2
-
-[node name="HSeparator5" type="HSeparator" parent="."]
 layout_mode = 2
 
 [node name="OutputOverridesContainer" type="VBoxContainer" parent="."]
