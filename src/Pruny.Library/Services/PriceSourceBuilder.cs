@@ -34,10 +34,14 @@ public class PriceSourceBuilder
 
     private void RegisterCustomPrices(PriceSourceRegistry registry, Workspace workspace)
     {
+        System.Diagnostics.Debug.WriteLine($"PriceSourceBuilder: Registering custom prices, count: {workspace.CustomPrices.Count}");
+
         foreach (var (materialId, sources) in workspace.CustomPrices)
         {
+            System.Diagnostics.Debug.WriteLine($"  Material: {materialId}, sources: {sources.Count}");
             foreach (var (sourceId, price) in sources)
             {
+                System.Diagnostics.Debug.WriteLine($"    Registering {materialId} / {sourceId} = {price}");
                 registry.RegisterPrice(materialId, sourceId, price);
             }
         }

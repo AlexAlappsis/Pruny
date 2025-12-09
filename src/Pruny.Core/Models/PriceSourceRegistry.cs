@@ -13,11 +13,41 @@ public class PriceSourceRegistry
 
     public decimal GetPrice(string materialId, PriceSource source)
     {
-        if (_prices.TryGetValue(materialId, out var sources) &&
-            sources.TryGetValue(source.SourceIdentifier, out var price))
+        System.Diagnostics.Debug.WriteLine($"PriceRegistry.GetPrice: materialId={materialId}, type={source.Type}, sourceIdentifier={source.SourceIdentifier}");
+
+        if (source.Type == PriceSourceType.Custom)
         {
-            return ApplyAdjustments(price, source.Adjustments);
+            if (decimal.TryParse(source.SourceIdentifier, out var customPrice))
+            {
+                System.Diagnostics.Debug.WriteLine($"  Custom price parsed: {customPrice}");
+                return ApplyAdjustments(customPrice, source.Adjustments);
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine($"  Failed to parse custom price: {source.SourceIdentifier}");
+                return 0m;
+            }
         }
+
+        if (_prices.TryGetValue(materialId, out var sources))
+        {
+            System.Diagnostics.Debug.WriteLine($"  Found material, available sources: {string.Join(", ", sources.Keys)}");
+
+            if (sources.TryGetValue(source.SourceIdentifier, out var price))
+            {
+                System.Diagnostics.Debug.WriteLine($"  Found source, price={price}");
+                return ApplyAdjustments(price, source.Adjustments);
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine($"  Source not found");
+            }
+        }
+        else
+        {
+            System.Diagnostics.Debug.WriteLine($"  Material not found in registry");
+        }
+
         return 0m;
     }
 
