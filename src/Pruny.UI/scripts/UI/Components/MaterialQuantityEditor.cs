@@ -98,6 +98,9 @@ public partial class MaterialQuantityItem : HBoxContainer
     private SpinBox? _quantitySpinBox;
     private Button? _deleteButton;
 
+    private string? _pendingMaterialId;
+    private decimal? _pendingQuantity;
+
     public MaterialQuantityItem(SessionManager? sessionManager)
     {
         _sessionManager = sessionManager;
@@ -140,28 +143,44 @@ public partial class MaterialQuantityItem : HBoxContainer
         _deleteButton = new Button { Text = "Remove" };
         _deleteButton.Pressed += OnDeletePressed;
         AddChild(_deleteButton);
+
+        if (_pendingMaterialId != null)
+        {
+            _materialDropdown.SetSelectedValue(_pendingMaterialId);
+            _pendingMaterialId = null;
+        }
+
+        if (_pendingQuantity.HasValue)
+        {
+            _quantitySpinBox.Value = (double)_pendingQuantity.Value;
+            _pendingQuantity = null;
+        }
     }
 
     public void SetMaterialId(string materialId)
     {
         if (_materialDropdown != null)
             _materialDropdown.SetSelectedValue(materialId);
+        else
+            _pendingMaterialId = materialId;
     }
 
     public string GetMaterialId()
     {
-        return _materialDropdown?.GetSelectedValue() ?? "";
+        return _materialDropdown?.GetSelectedValue() ?? _pendingMaterialId ?? "";
     }
 
     public void SetQuantity(decimal quantity)
     {
         if (_quantitySpinBox != null)
             _quantitySpinBox.Value = (double)quantity;
+        else
+            _pendingQuantity = quantity;
     }
 
     public decimal GetQuantity()
     {
-        return _quantitySpinBox?.Value != null ? (decimal)_quantitySpinBox.Value : 0m;
+        return _quantitySpinBox?.Value != null ? (decimal)_quantitySpinBox.Value : (_pendingQuantity ?? 0m);
     }
 
     private void OnDeletePressed()

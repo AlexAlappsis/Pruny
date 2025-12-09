@@ -112,10 +112,12 @@ public partial class ProductionLineEditor : VBoxContainer
 
     private void SetupOutputOverridesEditor()
     {
+        GD.Print("ProductionLineEditor: SetupOutputOverridesEditor called");
         var scene = GD.Load<PackedScene>("res://scenes/UI/Components/MaterialQuantityEditor.tscn");
         _outputOverridesEditor = scene.Instantiate<MaterialQuantityEditor>();
         _outputOverridesEditor.ItemsChanged += OnOutputOverridesChanged;
         _outputOverridesContent?.AddChild(_outputOverridesEditor);
+        GD.Print("ProductionLineEditor: OutputOverridesEditor created and added");
     }
 
     private void SetupToggleButtons()
@@ -135,14 +137,29 @@ public partial class ProductionLineEditor : VBoxContainer
 
     private void OnRecipeSelected(string recipeId)
     {
+        GD.Print($"ProductionLineEditor: OnRecipeSelected called with {recipeId}");
+
         if (_sessionManager?.Session?.GameData == null)
             return;
 
         if (!_sessionManager.Session.GameData.Recipes.TryGetValue(recipeId, out var recipe))
             return;
 
+        GD.Print($"  Recipe found, has {recipe.Outputs.Count} outputs");
+        GD.Print($"  _pendingLineToLoad is null: {_pendingLineToLoad == null}");
+
+        if (_pendingLineToLoad != null)
+        {
+            ApplyPendingOutputOverrides();
+        }
+
         RebuildInputPriceSelectors(recipe.Inputs);
         UpdateOutputPriceSelectors();
+
+        if (_pendingLineToLoad != null)
+        {
+            ApplyPendingPriceSources();
+        }
 
         if (recipe.Outputs.Count == 0)
         {
@@ -155,11 +172,6 @@ public partial class ProductionLineEditor : VBoxContainer
         else
         {
             _outputOverridesToggleButton?.RemoveThemeColorOverride("font_color");
-        }
-
-        if (_pendingLineToLoad != null)
-        {
-            ApplyPendingLineData();
         }
     }
 
@@ -248,6 +260,16 @@ public partial class ProductionLineEditor : VBoxContainer
 
         _pendingLineToLoad = line;
 
+        GD.Print($"ProductionLineEditor: SetProductionLine called for {_lineId}");
+        GD.Print($"  OutputOverrides: {line.OutputOverrides?.Count ?? 0} items");
+        if (line.OutputOverrides != null)
+        {
+            foreach (var item in line.OutputOverrides)
+            {
+                GD.Print($"    - {item.MaterialId}: {item.Quantity}");
+            }
+        }
+
         if (_recipeSelector != null)
         {
             _recipeSelector.SelectRecipe(line.RecipeId);
@@ -255,10 +277,34 @@ public partial class ProductionLineEditor : VBoxContainer
         }
     }
 
-    private void ApplyPendingLineData()
+    private void ApplyPendingOutputOverrides()
     {
         if (_pendingLineToLoad == null)
+        {
+            GD.Print("ProductionLineEditor: ApplyPendingOutputOverrides - no pending line");
             return;
+        }
+
+        GD.Print($"ProductionLineEditor: ApplyPendingOutputOverrides called");
+        GD.Print($"  OutputOverrides to apply: {_pendingLineToLoad.OutputOverrides?.Count ?? 0} items");
+
+        GD.Print($"  _outputOverridesEditor is null: {_outputOverridesEditor == null}");
+        if (_outputOverridesEditor != null)
+        {
+            _outputOverridesEditor.SetItems(_pendingLineToLoad.OutputOverrides);
+            GD.Print($"  After SetItems, editor has: {_outputOverridesEditor.GetItems()?.Count ?? 0} items");
+        }
+    }
+
+    private void ApplyPendingPriceSources()
+    {
+        if (_pendingLineToLoad == null)
+        {
+            GD.Print("ProductionLineEditor: ApplyPendingPriceSources - no pending line");
+            return;
+        }
+
+        GD.Print($"ProductionLineEditor: ApplyPendingPriceSources called");
 
         foreach (var kvp in _pendingLineToLoad.InputPriceSources)
         {
@@ -271,8 +317,6 @@ public partial class ProductionLineEditor : VBoxContainer
             if (_outputPriceSelectors.TryGetValue(kvp.Key, out var selector))
                 selector.SetPriceSource(kvp.Value);
         }
-
-        _outputOverridesEditor?.SetItems(_pendingLineToLoad.OutputOverrides);
 
         _pendingLineToLoad = null;
     }

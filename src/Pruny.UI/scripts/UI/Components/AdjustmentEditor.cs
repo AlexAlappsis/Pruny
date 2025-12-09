@@ -14,6 +14,8 @@ public partial class AdjustmentEditor : HBoxContainer
     private SpinBox? _valueInput;
     private Button? _deleteButton;
 
+    private Adjustment? _pendingAdjustment;
+
     public override void _Ready()
     {
         _typeDropdown = GetNode<OptionButton>("TypeDropdown");
@@ -26,6 +28,12 @@ public partial class AdjustmentEditor : HBoxContainer
         _typeDropdown.ItemSelected += OnTypeSelected;
         _valueInput.ValueChanged += OnValueChanged;
         _deleteButton.Pressed += OnDeletePressed;
+
+        if (_pendingAdjustment != null)
+        {
+            SetAdjustment(_pendingAdjustment);
+            _pendingAdjustment = null;
+        }
     }
 
     private void SetupTypeDropdown()
@@ -47,9 +55,14 @@ public partial class AdjustmentEditor : HBoxContainer
 
     public void SetAdjustment(Adjustment adjustment)
     {
-        _typeDropdown?.Select((int)adjustment.Type);
-        if (_valueInput != null)
-            _valueInput.Value = (double)adjustment.Value;
+        if (_typeDropdown == null || _valueInput == null)
+        {
+            _pendingAdjustment = adjustment;
+            return;
+        }
+
+        _typeDropdown.Select((int)adjustment.Type);
+        _valueInput.Value = (double)adjustment.Value;
     }
 
     public Adjustment GetAdjustment()
