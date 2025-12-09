@@ -29,12 +29,13 @@ public partial class EfficiencyModifiersEditor : VBoxContainer
         var label = new Label { Text = "Modifier:" };
         row.AddChild(label);
 
+        var displayValue = value * 100m;
         var spinBox = new SpinBox
         {
-            MinValue = -100,
+            MinValue = 0,
             MaxValue = 500,
             Step = 0.01,
-            Value = (double)value,
+            Value = (double)displayValue,
             CustomMinimumSize = new Vector2(150, 0)
         };
         row.AddChild(spinBox);
@@ -71,7 +72,9 @@ public partial class EfficiencyModifiersEditor : VBoxContainer
         foreach (var row in _modifierRows)
         {
             var spinBox = row.GetChild<SpinBox>(1);
-            modifiers.Add((decimal)spinBox.Value);
+            var displayValue = (decimal)spinBox.Value;
+            var storageValue = displayValue / 100m;
+            modifiers.Add(storageValue);
         }
 
         return modifiers;

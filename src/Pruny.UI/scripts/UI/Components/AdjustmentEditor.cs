@@ -62,7 +62,11 @@ public partial class AdjustmentEditor : HBoxContainer
         }
 
         _typeDropdown.Select((int)adjustment.Type);
-        _valueInput.Value = (double)adjustment.Value;
+
+        var displayValue = adjustment.Type == AdjustmentType.Percentage
+            ? adjustment.Value * 100m
+            : adjustment.Value;
+        _valueInput.Value = (double)displayValue;
     }
 
     public Adjustment GetAdjustment()
@@ -70,10 +74,17 @@ public partial class AdjustmentEditor : HBoxContainer
         if (_typeDropdown == null || _valueInput == null)
             throw new InvalidOperationException("AdjustmentEditor not initialized");
 
+        var type = (AdjustmentType)_typeDropdown.Selected;
+        var displayValue = (decimal)_valueInput.Value;
+
+        var storageValue = type == AdjustmentType.Percentage
+            ? displayValue / 100m
+            : displayValue;
+
         return new Adjustment
         {
-            Type = (AdjustmentType)_typeDropdown.Selected,
-            Value = (decimal)_valueInput.Value
+            Type = type,
+            Value = storageValue
         };
     }
 
