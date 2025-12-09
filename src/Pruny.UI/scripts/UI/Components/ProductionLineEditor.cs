@@ -18,6 +18,9 @@ public partial class ProductionLineEditor : VBoxContainer
 
     private Label? _lineIdLabel;
 
+    private Button? _collapseToggleButton;
+    private Control? _detailsContainer;
+
     private VBoxContainer? _efficiencyContainer;
     private Button? _efficiencyToggleButton;
     private VBoxContainer? _efficiencyContent;
@@ -81,6 +84,7 @@ public partial class ProductionLineEditor : VBoxContainer
         SetupEfficiencyEditor();
         SetupOutputOverridesEditor();
         SetupToggleButtons();
+        SetupCollapseButton();
 
         _deleteButton.Pressed += OnDeletePressed;
 
@@ -91,6 +95,51 @@ public partial class ProductionLineEditor : VBoxContainer
             var pendingLine = _pendingLineToLoad;
             _pendingLineToLoad = null;
             SetProductionLine(pendingLine);
+        }
+    }
+
+    private void SetupCollapseButton()
+    {
+        _collapseToggleButton = new Button
+        {
+            Text = "▶ Expand All",
+            CustomMinimumSize = new Vector2(0, 30)
+        };
+        _collapseToggleButton.Pressed += OnMainTogglePressed;
+
+        var index = _lineIdLabel?.GetIndex() ?? 1;
+        AddChild(_collapseToggleButton);
+        MoveChild(_collapseToggleButton, (int)index + 1);
+
+        _efficiencyContainer!.Visible = false;
+        _inputPricesContainer!.Visible = false;
+        _outputPricesContainer!.Visible = false;
+        _workforceOverrideContainer!.Visible = false;
+        _outputOverridesContainer!.Visible = false;
+    }
+
+    private void OnMainTogglePressed()
+    {
+        if (_detailsContainer == null)
+        {
+            _detailsContainer = GetNode<Control>("EfficiencyContainer")?.GetParent() as Control;
+        }
+
+        if (_detailsContainer != null)
+        {
+            var isVisible = _efficiencyContainer?.Visible ?? true;
+            var newVisibility = !isVisible;
+
+            _efficiencyContainer!.Visible = newVisibility;
+            _inputPricesContainer!.Visible = newVisibility;
+            _outputPricesContainer!.Visible = newVisibility;
+            _workforceOverrideContainer!.Visible = newVisibility;
+            _outputOverridesContainer!.Visible = newVisibility;
+
+            if (_collapseToggleButton != null)
+            {
+                _collapseToggleButton.Text = newVisibility ? "▼ Collapse All" : "▶ Expand All";
+            }
         }
     }
 
@@ -361,6 +410,9 @@ public partial class ProductionLineEditor : VBoxContainer
 
     public override void _ExitTree()
     {
+        if (_collapseToggleButton != null)
+            _collapseToggleButton.Pressed -= OnMainTogglePressed;
+
         if (_deleteButton != null)
             _deleteButton.Pressed -= OnDeletePressed;
 
