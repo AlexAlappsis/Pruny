@@ -195,6 +195,10 @@ public partial class CalculationsView : CenterContainer
         detailsBox.AddChild(CreateDetailLabel($"Recipe: {recipe.Id}"));
         detailsBox.AddChild(CreateDetailLabel($"Building: {building?.Id ?? "Unknown"}"));
         detailsBox.AddChild(CreateDetailLabel(""));
+
+        AddProductionMetrics(detailsBox, productionLine, recipe, unitCost);
+
+        detailsBox.AddChild(CreateDetailLabel(""));
         detailsBox.AddChild(CreateDetailLabel("Cost Breakdown:"));
         detailsBox.AddChild(CreateDetailLabel($"  Input Costs: {unitCost.InputCosts:F4}"));
         detailsBox.AddChild(CreateDetailLabel($"  Workforce Cost: {unitCost.WorkforceCost:F4}"));
@@ -389,6 +393,45 @@ public partial class CalculationsView : CenterContainer
         {
             GD.Print($"  Error getting price: {ex.Message}");
             return 0;
+        }
+    }
+
+    private void AddProductionMetrics(VBoxContainer detailsBox, ProductionLine productionLine, Recipe recipe, UnitCost unitCost)
+    {
+        var adjustedDuration = recipe.DurationMinutes / unitCost.OverallEfficiency;
+        var runsPerDay = (24m * 60m) / adjustedDuration;
+
+        detailsBox.AddChild(CreateDetailLabel("Production Metrics:"));
+        detailsBox.AddChild(CreateDetailLabel($"  Base Duration: {FormatDuration(recipe.DurationMinutes)}"));
+        detailsBox.AddChild(CreateDetailLabel($"  Adjusted Duration: {FormatDuration(adjustedDuration)} (with {unitCost.OverallEfficiency:P2} efficiency)"));
+        detailsBox.AddChild(CreateDetailLabel($"  Runs per day: {runsPerDay:F2}"));
+        detailsBox.AddChild(CreateDetailLabel(""));
+
+        var effectiveOutputs = productionLine.OutputOverrides ?? recipe.Outputs;
+
+        detailsBox.AddChild(CreateDetailLabel("Yields:"));
+        foreach (var output in effectiveOutputs)
+        {
+            var material = _sessionManager?.Session?.GameData?.Materials.GetValueOrDefault(output.MaterialId);
+            var materialName = material?.Name ?? output.MaterialId;
+            var yieldPerDay = output.Quantity * runsPerDay;
+
+            detailsBox.AddChild(CreateDetailLabel($"  {materialName}: {output.Quantity:F2} per run, {yieldPerDay:F2} per day"));
+        }
+    }
+
+    private string FormatDuration(decimal minutes)
+    {
+        var hours = (int)(minutes / 60m);
+        var remainingMinutes = minutes % 60m;
+
+        if (hours > 0)
+        {
+            return $"{hours}:{remainingMinutes:00.00}";
+        }
+        else
+        {
+            return $"0:{remainingMinutes:00.00}";
         }
     }
 
