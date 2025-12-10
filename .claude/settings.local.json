@@ -7,7 +7,8 @@
       "Bash(dotnet add:*)",
       "Bash(del srcPruny.LibraryClass1.cs)",
       "Bash(rm:*)",
-      "Bash(dotnet build:*)"
+      "Bash(dotnet build:*)",
+      "Bash(git log:*)"
     ],
     "deny": [],
     "ask": []
