@@ -4,7 +4,7 @@ using Pruny.Core.Models;
 
 public class CalculationEngine : ICalculationEngine
 {
-    public CalculationResult CalculateUnitCosts(
+    public CalculationResult CalculateProductionLines(
         List<ProductionLine> productionLines,
         Dictionary<string, Recipe> recipes,
         Dictionary<string, Building> buildings,
@@ -37,12 +37,12 @@ public class CalculationEngine : ICalculationEngine
                     continue;
                 }
 
-                var unitCosts = CalculateProductionLineUnitCosts(
-                    line, recipe, building, workforceConfigs, priceRegistry, result.UnitCosts);
+                var productionLineCalculations = CalculateProductionLine(
+                    line, recipe, building, workforceConfigs, priceRegistry, result.ProductionLineCalculations);
 
-                foreach (var unitCost in unitCosts)
+                foreach (var productionLineCalculation in productionLineCalculations)
                 {
-                    result.UnitCosts[unitCost.MaterialId] = unitCost;
+                    result.ProductionLineCalculations[productionLineCalculation.ProductionLineId] = productionLineCalculation;
                 }
 
                 result.RecalculatedLineIds.Add(lineId);
@@ -60,13 +60,13 @@ public class CalculationEngine : ICalculationEngine
         return result;
     }
 
-    private List<UnitCost> CalculateProductionLineUnitCosts(
+    private List<ProductionLineCalculation> CalculateProductionLine(
         ProductionLine line,
         Recipe recipe,
         Building building,
         Dictionary<string, WorkforceTypeConfig> workforceConfigs,
         PriceSourceRegistry priceRegistry,
-        Dictionary<string, UnitCost> previousUnitCosts)
+        Dictionary<string, ProductionLineCalculation> previousUnitCosts)
     {
         var workforce = line.WorkforceOverride ?? building.DefaultWorkforce;
         var workforceEfficiency = CalculateWorkforceEfficiency(workforce, building.DefaultWorkforce);
@@ -98,7 +98,7 @@ public class CalculationEngine : ICalculationEngine
                 profitPer24Hours = profitPerRun * runsPerDay;
             }
 
-            return new UnitCost
+            return new ProductionLineCalculation
             {
                 MaterialId = output.MaterialId,
                 ProductionLineId = line.Id,
@@ -144,7 +144,7 @@ public class CalculationEngine : ICalculationEngine
         Dictionary<string, WorkforceTypeConfig> workforceConfigs,
         decimal durationMinutes,
         PriceSourceRegistry priceRegistry,
-        Dictionary<string, UnitCost> previousUnitCosts)
+        Dictionary<string, ProductionLineCalculation> previousUnitCosts)
     {
         decimal totalCost = 0;
 
@@ -176,7 +176,7 @@ public class CalculationEngine : ICalculationEngine
     private decimal CalculateWorkerTypeCostPerMinute(
         WorkforceTypeConfig workerTypeConfig,
         PriceSourceRegistry priceRegistry,
-        Dictionary<string, UnitCost> previousUnitCosts)
+        Dictionary<string, ProductionLineCalculation> previousUnitCosts)
     {
         decimal totalCostPer100WorkersPer24Hours = 0;
 
@@ -201,7 +201,7 @@ public class CalculationEngine : ICalculationEngine
         ProductionLine line,
         Recipe recipe,
         PriceSourceRegistry priceRegistry,
-        Dictionary<string, UnitCost> previousUnitCosts)
+        Dictionary<string, ProductionLineCalculation> previousUnitCosts)
     {
         decimal totalInputCost = 0;
 
@@ -218,13 +218,13 @@ public class CalculationEngine : ICalculationEngine
         string materialId,
         Dictionary<string, PriceSource> priceSources,
         PriceSourceRegistry priceRegistry,
-        Dictionary<string, UnitCost> previousUnitCosts)
+        Dictionary<string, ProductionLineCalculation> previousUnitCosts)
     {
         if (!priceSources.TryGetValue(materialId, out var priceSource))
             return 0m;
 
         if (priceSource.Type == PriceSourceType.ProductionLine &&
-            previousUnitCosts.TryGetValue(materialId, out var unitCost))
+            previousUnitCosts.TryGetValue(priceSource.SourceIdentifier, out var unitCost))
         {
             return unitCost.CostPerUnit;
         }

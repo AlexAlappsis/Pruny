@@ -4,7 +4,7 @@ using Pruny.Core.Models;
 
 public interface ICalculationEngine
 {
-    CalculationResult CalculateUnitCosts(
+    CalculationResult CalculateProductionLines(
         List<ProductionLine> productionLines,
         Dictionary<string, Recipe> recipes,
         Dictionary<string, Building> buildings,

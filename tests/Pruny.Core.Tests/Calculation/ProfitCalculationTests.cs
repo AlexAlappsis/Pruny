@@ -48,7 +48,7 @@ public class ProfitCalculationTests
         priceRegistry.RegisterPrice("MAT1", "custom-MAT1", 100m);
         priceRegistry.RegisterPrice("OUT1", "custom-OUT1", 300m);
 
-        var result = engine.CalculateUnitCosts(
+        var result = engine.CalculateProductionLines(
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
@@ -57,7 +57,7 @@ public class ProfitCalculationTests
         );
 
         result.IsSuccess.Should().BeTrue();
-        var unitCost = result.UnitCosts["OUT1"];
+        var unitCost = result.ProductionLineCalculations["LINE1"];
 
         unitCost.OutputPrice.Should().Be(300m);
         unitCost.CostPerUnit.Should().Be(200m);
@@ -106,7 +106,7 @@ public class ProfitCalculationTests
         priceRegistry.RegisterPrice("MAT1", "custom-MAT1", 100m);
         priceRegistry.RegisterPrice("OUT1", "custom-OUT1", 300m);
 
-        var result = engine.CalculateUnitCosts(
+        var result = engine.CalculateProductionLines(
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
@@ -115,7 +115,7 @@ public class ProfitCalculationTests
         );
 
         result.IsSuccess.Should().BeTrue();
-        var unitCost = result.UnitCosts["OUT1"];
+        var unitCost = result.ProductionLineCalculations["LINE1"];
 
         var profitPerUnit = 300m - 200m;
         var profitPerRun = profitPerUnit * 5m;
@@ -165,7 +165,7 @@ public class ProfitCalculationTests
         priceRegistry.RegisterPrice("MAT1", "custom-MAT1", 100m);
         priceRegistry.RegisterPrice("OUT1", "custom-OUT1", 300m);
 
-        var result = engine.CalculateUnitCosts(
+        var result = engine.CalculateProductionLines(
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
@@ -174,7 +174,7 @@ public class ProfitCalculationTests
         );
 
         result.IsSuccess.Should().BeTrue();
-        var unitCost = result.UnitCosts["OUT1"];
+        var unitCost = result.ProductionLineCalculations["LINE1"];
 
         var profitPerUnit = 300m - 200m;
         var profitPerRun = profitPerUnit * 5m;
@@ -227,7 +227,7 @@ public class ProfitCalculationTests
         priceRegistry.RegisterPrice("MAT1", "custom-MAT1", 100m);
         priceRegistry.RegisterPrice("OUT1", "custom-OUT1", 300m);
 
-        var result = engine.CalculateUnitCosts(
+        var result = engine.CalculateProductionLines(
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
@@ -236,7 +236,7 @@ public class ProfitCalculationTests
         );
 
         result.IsSuccess.Should().BeTrue();
-        var unitCost = result.UnitCosts["OUT1"];
+        var unitCost = result.ProductionLineCalculations["LINE1"];
 
         var adjustedDuration = 60m / 2.0m;
         var runsPerDay = 24m * 60m / adjustedDuration;
@@ -285,7 +285,7 @@ public class ProfitCalculationTests
         var priceRegistry = new PriceSourceRegistry();
         priceRegistry.RegisterPrice("OUT1", "custom-OUT1", 0m);
 
-        var result = engine.CalculateUnitCosts(
+        var result = engine.CalculateProductionLines(
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
@@ -294,7 +294,7 @@ public class ProfitCalculationTests
         );
 
         result.IsSuccess.Should().BeTrue();
-        var unitCost = result.UnitCosts["OUT1"];
+        var unitCost = result.ProductionLineCalculations["LINE1"];
 
         unitCost.OutputPrice.Should().BeNull();
         unitCost.ProfitPerUnit.Should().BeNull();
@@ -344,7 +344,7 @@ public class ProfitCalculationTests
         priceRegistry.RegisterPrice("MAT1", "custom-MAT1", 100m);
         priceRegistry.RegisterPrice("OUT1", "custom-OUT1", 500m);
 
-        var result = engine.CalculateUnitCosts(
+        var result = engine.CalculateProductionLines(
             new List<ProductionLine> { productionLine },
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
@@ -353,7 +353,7 @@ public class ProfitCalculationTests
         );
 
         result.IsSuccess.Should().BeTrue();
-        var unitCost = result.UnitCosts["OUT1"];
+        var unitCost = result.ProductionLineCalculations["LINE1"];
 
         unitCost.CostPerUnit.Should().Be(1000m);
         unitCost.ProfitPerUnit.Should().Be(-500m);

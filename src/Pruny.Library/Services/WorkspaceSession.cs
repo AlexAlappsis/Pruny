@@ -15,7 +15,7 @@ public class WorkspaceSession
     private GameData? _gameData;
     private MarketPriceData? _marketData;
     private PriceSourceRegistry? _priceRegistry;
-    private Dictionary<string, UnitCost> _calculations = new();
+    private Dictionary<string, ProductionLineCalculation> _calculations = new();
     private bool _isCalculating;
 
     public WorkspaceSession(ICalculationEngine? calculationEngine = null, IMarketDataProvider? marketDataProvider = null)
@@ -46,7 +46,7 @@ public class WorkspaceSession
 
     public MarketPriceData? MarketData => _marketData;
 
-    public IReadOnlyDictionary<string, UnitCost> Calculations => _calculations;
+    public IReadOnlyDictionary<string, ProductionLineCalculation> Calculations => _calculations;
 
     public PriceSourceRegistry? PriceRegistry => _priceRegistry;
 
@@ -273,14 +273,14 @@ public class WorkspaceSession
         {
             var workforceConfigs = WorkspaceManager.CurrentWorkspace.WorkforceConfigs ?? new();
 
-            var result = _calculationEngine.CalculateUnitCosts(
+            var result = _calculationEngine.CalculateProductionLines(
                 WorkspaceManager.CurrentWorkspace.ProductionLines,
                 _gameData.Recipes,
                 _gameData.Buildings,
                 workforceConfigs,
                 _priceRegistry);
 
-            _calculations = result.UnitCosts;
+            _calculations = result.ProductionLineCalculations;
 
             foreach (var error in result.Errors)
             {

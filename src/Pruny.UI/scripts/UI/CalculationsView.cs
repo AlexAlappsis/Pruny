@@ -83,14 +83,14 @@ public partial class CalculationsView : CenterContainer
         }
 
         int itemsAdded = 0;
-        foreach (var (materialId, unitCost) in calculations)
+        foreach (var (productionLineId, unitCost) in calculations)
         {
-            GD.Print($"CalculationsView: Processing materialId: {materialId}, productionLineId: {unitCost.ProductionLineId}");
+            GD.Print($"CalculationsView: Processing productionLineId: {productionLineId}, materialId: {unitCost.MaterialId}");
 
-            var productionLine = workspace.ProductionLines.FirstOrDefault(pl => pl.Id == unitCost.ProductionLineId);
+            var productionLine = workspace.ProductionLines.FirstOrDefault(pl => pl.Id == productionLineId);
             if (productionLine == null)
             {
-                GD.Print($"CalculationsView: Production line not found for {unitCost.ProductionLineId}");
+                GD.Print($"CalculationsView: Production line not found for {productionLineId}");
                 continue;
             }
 
@@ -120,7 +120,7 @@ public partial class CalculationsView : CenterContainer
         SetStatus("");
     }
 
-    private Control CreateCalculationItem(ProductionLine productionLine, UnitCost unitCost, Core.Models.Material material, Recipe recipe, Building? building)
+    private Control CreateCalculationItem(ProductionLine productionLine, ProductionLineCalculation unitCost, Core.Models.Material material, Recipe recipe, Building? building)
     {
         var container = new VBoxContainer();
         container.AddThemeConstantOverride("separation", 0);
@@ -396,7 +396,7 @@ public partial class CalculationsView : CenterContainer
         }
     }
 
-    private void AddProductionMetrics(VBoxContainer detailsBox, ProductionLine productionLine, Recipe recipe, UnitCost unitCost)
+    private void AddProductionMetrics(VBoxContainer detailsBox, ProductionLine productionLine, Recipe recipe, ProductionLineCalculation unitCost)
     {
         var adjustedDuration = recipe.DurationMinutes / unitCost.OverallEfficiency;
         var runsPerDay = (24m * 60m) / adjustedDuration;

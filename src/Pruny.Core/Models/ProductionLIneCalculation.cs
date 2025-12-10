@@ -1,6 +1,6 @@
 namespace Pruny.Core.Models;
 
-public class UnitCost
+public class ProductionLineCalculation
 {
     public required string MaterialId { get; init; }
     public required string ProductionLineId { get; init; }

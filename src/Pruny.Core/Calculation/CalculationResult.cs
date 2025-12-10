@@ -4,7 +4,7 @@ using Pruny.Core.Models;
 
 public class CalculationResult
 {
-    public Dictionary<string, UnitCost> UnitCosts { get; init; } = new();
+    public Dictionary<string, ProductionLineCalculation> ProductionLineCalculations { get; init; } = new();
     public HashSet<string> RecalculatedLineIds { get; init; } = new();
     public List<string> Errors { get; init; } = new();
     public List<string> Warnings { get; init; } = new();
