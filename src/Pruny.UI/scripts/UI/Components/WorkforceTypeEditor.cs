@@ -23,6 +23,7 @@ public partial class WorkforceTypeEditor : VBoxContainer
 
     private List<MaterialConsumptionEditor> _materialEditors = new();
     private WorkforceTypeConfig? _pendingConfig;
+    private string _configId = Guid.NewGuid().ToString();
 
     public override void _Ready()
     {
@@ -101,6 +102,7 @@ public partial class WorkforceTypeEditor : VBoxContainer
             return;
         }
 
+        _configId = config.Id;
         _nameInput.Text = config.Name;
 
         var typeIndex = (int)config.WorkforceType;
@@ -130,6 +132,7 @@ public partial class WorkforceTypeEditor : VBoxContainer
 
         return new WorkforceTypeConfig
         {
+            Id = _configId,
             Name = _nameInput.Text,
             WorkforceType = workforceType,
             MaterialConsumption = _materialEditors.Select(e => e.GetConsumption()).ToList()
@@ -158,6 +161,8 @@ public partial class WorkforceTypeEditor : VBoxContainer
     {
         var scene = GD.Load<PackedScene>("res://scenes/UI/Components/MaterialConsumptionEditor.tscn");
         var editor = scene.Instantiate<MaterialConsumptionEditor>();
+
+        editor.SetWorkforceConfigId(_configId);
 
         editor.ConsumptionChanged += (_) => EmitWorkforceTypeChanged();
         editor.DeleteRequested += () =>

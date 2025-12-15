@@ -17,6 +17,7 @@ public partial class MaterialConsumptionEditor : GridContainer
 
     private SessionManager? _sessionManager;
     private WorkforceMaterialConsumption? _pendingConsumption;
+    private string? _workforceConfigId;
 
     public override void _Ready()
     {
@@ -55,6 +56,12 @@ public partial class MaterialConsumptionEditor : GridContainer
         _quantityInput.Value = 0;
     }
 
+    public void SetWorkforceConfigId(string workforceConfigId)
+    {
+        _workforceConfigId = workforceConfigId;
+        UpdatePriceSourceContext();
+    }
+
     private void PopulateMaterialDropdown()
     {
         if (_materialDropdown == null || _sessionManager?.Session?.GameData == null)
@@ -70,6 +77,18 @@ public partial class MaterialConsumptionEditor : GridContainer
             .ToList();
 
         _materialDropdown.SetItems(materials);
+    }
+
+    private void UpdatePriceSourceContext()
+    {
+        if (_priceSourceSelector == null || string.IsNullOrEmpty(_workforceConfigId))
+            return;
+
+        var materialId = GetSelectedMaterialId();
+        if (!string.IsNullOrEmpty(materialId))
+        {
+            _priceSourceSelector.SetContext(_workforceConfigId, materialId);
+        }
     }
 
     public void SetConsumption(WorkforceMaterialConsumption consumption)
@@ -112,6 +131,7 @@ public partial class MaterialConsumptionEditor : GridContainer
 
     private void OnMaterialSelected(string materialId)
     {
+        UpdatePriceSourceContext();
         EmitConsumptionChanged();
     }
 

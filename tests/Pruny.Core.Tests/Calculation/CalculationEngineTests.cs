@@ -70,6 +70,7 @@ public class CalculationEngineTests
                 "pioneer-basic",
                 new()
                 {
+                    Id = "WF1",
                     Name = "pioneer-basic",
                     WorkforceType = WorkforceType.PIONEER,
                     MaterialConsumption = new List<WorkforceMaterialConsumption>
@@ -166,6 +167,7 @@ public class CalculationEngineTests
                 "pioneer-basic",
                 new()
                 {
+                    Id = "WF1",
                     Name = "pioneer-basic",
                     WorkforceType = WorkforceType.PIONEER,
                     MaterialConsumption = new List<WorkforceMaterialConsumption>()
@@ -236,6 +238,7 @@ public class CalculationEngineTests
                 "pioneer-basic",
                 new()
                 {
+                    Id = "WF1",
                     Name = "pioneer-basic",
                     WorkforceType = WorkforceType.PIONEER,
                     MaterialConsumption = new List<WorkforceMaterialConsumption>()

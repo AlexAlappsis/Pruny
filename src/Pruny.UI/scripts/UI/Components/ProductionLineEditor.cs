@@ -265,6 +265,7 @@ public partial class ProductionLineEditor : VBoxContainer
 
             var scene = GD.Load<PackedScene>("res://scenes/UI/Components/PriceSourceSelector.tscn");
             var selector = scene.Instantiate<PriceSourceSelector>();
+            selector.SetContext(_lineId, input.MaterialId);
             _inputPricesContent?.AddChild(selector);
 
             _inputPriceSelectors[input.MaterialId] = selector;
@@ -285,6 +286,7 @@ public partial class ProductionLineEditor : VBoxContainer
 
             var scene = GD.Load<PackedScene>("res://scenes/UI/Components/PriceSourceSelector.tscn");
             var selector = scene.Instantiate<PriceSourceSelector>();
+            selector.SetContext(_lineId, output.MaterialId);
             _outputPricesContent?.AddChild(selector);
 
             _outputPriceSelectors[output.MaterialId] = selector;

@@ -48,6 +48,7 @@ public class EfficiencyCalculationTests
                 "pioneer-basic",
                 new()
                 {
+                    Id = "WF1",
                     Name = "pioneer-basic",
                     WorkforceType = WorkforceType.PIONEER,
                     MaterialConsumption = new List<WorkforceMaterialConsumption>()
@@ -117,6 +118,7 @@ public class EfficiencyCalculationTests
                 "pioneer-basic",
                 new()
                 {
+                    Id = "WF1",
                     Name = "pioneer-basic",
                     WorkforceType = WorkforceType.PIONEER,
                     MaterialConsumption = new List<WorkforceMaterialConsumption>()
@@ -186,6 +188,7 @@ public class EfficiencyCalculationTests
                 "pioneer-basic",
                 new()
                 {
+                    Id = "WF1",
                     Name = "pioneer-basic",
                     WorkforceType = WorkforceType.PIONEER,
                     MaterialConsumption = new List<WorkforceMaterialConsumption>()
@@ -257,6 +260,7 @@ public class EfficiencyCalculationTests
                 "pioneer-basic",
                 new()
                 {
+                    Id = "WF1",
                     Name = "pioneer-basic",
                     WorkforceType = WorkforceType.PIONEER,
                     MaterialConsumption = new List<WorkforceMaterialConsumption>()
@@ -266,6 +270,7 @@ public class EfficiencyCalculationTests
                 "settler-basic",
                 new()
                 {
+                    Id = "WF2",
                     Name = "settler-basic",
                     WorkforceType = WorkforceType.SETTLER,
                     MaterialConsumption = new List<WorkforceMaterialConsumption>()
@@ -333,6 +338,7 @@ public class EfficiencyCalculationTests
                 "pioneer-basic",
                 new()
                 {
+                    Id = "WF1",
                     Name = "pioneer-basic",
                     WorkforceType = WorkforceType.PIONEER,
                     MaterialConsumption = new List<WorkforceMaterialConsumption>()
@@ -402,6 +408,7 @@ public class EfficiencyCalculationTests
                 "pioneer-basic",
                 new()
                 {
+                    Id = "WF1",
                     Name = "pioneer-basic",
                     WorkforceType = WorkforceType.PIONEER,
                     MaterialConsumption = new List<WorkforceMaterialConsumption>()
@@ -473,6 +480,7 @@ public class EfficiencyCalculationTests
                 "pioneer-basic",
                 new()
                 {
+                    Id = "WF1",
                     Name = "pioneer-basic",
                     WorkforceType = WorkforceType.PIONEER,
                     MaterialConsumption = new List<WorkforceMaterialConsumption>()

@@ -21,6 +21,8 @@ public partial class PriceSourceSelector : GridContainer
     private SessionManager? _sessionManager;
     private PriceSource? _currentPriceSource;
     private List<AdjustmentEditor> _adjustmentEditors = new();
+    private string? _contextId;
+    private string? _materialId;
 
     public override void _Ready()
     {
@@ -94,6 +96,12 @@ public partial class PriceSourceSelector : GridContainer
             _addAdjustmentButton.Pressed += AddAdjustment;
     }
 
+    public void SetContext(string contextId, string materialId)
+    {
+        _contextId = contextId;
+        _materialId = materialId;
+    }
+
     public void SetPriceSource(PriceSource priceSource)
     {
         _currentPriceSource = priceSource;
@@ -149,9 +157,19 @@ public partial class PriceSourceSelector : GridContainer
         {
             PriceSourceType.Api => BuildApiSourceIdentifier(),
             PriceSourceType.ProductionLine => GetProductionLineIdentifier(),
-            PriceSourceType.Custom => _customSourceInput?.Text ?? "Custom",
+            PriceSourceType.Custom => BuildCustomSourceIdentifier(),
             _ => throw new ArgumentException($"Unknown price source type: {type}")
         };
+    }
+
+    private string BuildCustomSourceIdentifier()
+    {
+        if (string.IsNullOrEmpty(_contextId) || string.IsNullOrEmpty(_materialId))
+        {
+            return _customSourceInput?.Text ?? "Custom";
+        }
+
+        return $"{_contextId}-{_materialId}";
     }
 
     private string BuildApiSourceIdentifier()
