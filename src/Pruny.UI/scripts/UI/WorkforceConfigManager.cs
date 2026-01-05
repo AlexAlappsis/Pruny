@@ -134,6 +134,12 @@ public partial class WorkforceConfigManager : CenterContainer
         _customPrices[materialId][sourceId] = price;
 
         GD.Print($"WorkforceConfigManager: Custom price updated - {materialId} / {sourceId} = {price}");
+
+        if (_sessionManager?.Session?.PriceRegistry != null)
+        {
+            _sessionManager.Session.PriceRegistry.RegisterPrice(materialId, sourceId, price);
+            GD.Print($"WorkforceConfigManager: Updated price registry with new custom price");
+        }
     }
 
     private void ClearWorkforceTypes()
