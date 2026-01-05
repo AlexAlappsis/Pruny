@@ -5,6 +5,8 @@ namespace Pruny.UI.Components;
 
 public partial class ProductionLineEditor : VBoxContainer
 {
+    public event Action<string, string, decimal>? CustomPriceChanged;
+
     [Signal]
     public delegate void DeleteRequestedEventHandler();
 
@@ -266,6 +268,10 @@ public partial class ProductionLineEditor : VBoxContainer
             var scene = GD.Load<PackedScene>("res://scenes/UI/Components/PriceSourceSelector.tscn");
             var selector = scene.Instantiate<PriceSourceSelector>();
             selector.SetContext(_lineId, input.MaterialId);
+            selector.CustomPriceValueChanged += (price) =>
+            {
+                CustomPriceChanged?.Invoke(_lineId, input.MaterialId, price);
+            };
             _inputPricesContent?.AddChild(selector);
 
             _inputPriceSelectors[input.MaterialId] = selector;
@@ -287,6 +293,10 @@ public partial class ProductionLineEditor : VBoxContainer
             var scene = GD.Load<PackedScene>("res://scenes/UI/Components/PriceSourceSelector.tscn");
             var selector = scene.Instantiate<PriceSourceSelector>();
             selector.SetContext(_lineId, output.MaterialId);
+            selector.CustomPriceValueChanged += (price) =>
+            {
+                CustomPriceChanged?.Invoke(_lineId, output.MaterialId, price);
+            };
             _outputPricesContent?.AddChild(selector);
 
             _outputPriceSelectors[output.MaterialId] = selector;
@@ -298,6 +308,19 @@ public partial class ProductionLineEditor : VBoxContainer
         if (_sessionManager?.Session?.GameData?.Materials.TryGetValue(materialId, out var material) == true)
             return material.Name;
         return materialId;
+    }
+
+    public void SetCustomPriceForMaterial(string materialId, decimal price)
+    {
+        if (_inputPriceSelectors.TryGetValue(materialId, out var inputSelector))
+        {
+            inputSelector.SetCustomPrice(price);
+        }
+
+        if (_outputPriceSelectors.TryGetValue(materialId, out var outputSelector))
+        {
+            outputSelector.SetCustomPrice(price);
+        }
     }
 
     public void SetProductionLine(ProductionLine line)

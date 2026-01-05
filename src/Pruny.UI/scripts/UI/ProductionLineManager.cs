@@ -19,6 +19,7 @@ public partial class ProductionLineManager : CenterContainer
     private Label? _statusLabel;
 
     private List<Components.ProductionLineEditor> _productionLineEditors = new();
+    private Dictionary<string, Dictionary<string, decimal>> _customPrices = new();
 
     public override void _Ready()
     {
@@ -68,6 +69,7 @@ public partial class ProductionLineManager : CenterContainer
         ClearProductionLines();
 
         var productionLines = _sessionManager.Session.CurrentWorkspace.ProductionLines;
+        _customPrices = _sessionManager.Session.CurrentWorkspace.CustomPrices ?? new();
 
         if (productionLines.Count == 0)
         {
@@ -78,9 +80,22 @@ public partial class ProductionLineManager : CenterContainer
         foreach (var line in productionLines)
         {
             var editor = CreateProductionLineEditor();
-            editor.SetProductionLine(line);
+
             _productionLineEditors.Add(editor);
             _productionLinesContainer?.AddChild(editor);
+
+            editor.SetProductionLine(line);
+
+            foreach (var (materialId, sources) in _customPrices)
+            {
+                foreach (var (sourceId, price) in sources)
+                {
+                    if (sourceId.StartsWith(line.Id))
+                    {
+                        editor.SetCustomPriceForMaterial(materialId, price);
+                    }
+                }
+            }
         }
 
         SetStatus("");
@@ -98,6 +113,7 @@ public partial class ProductionLineManager : CenterContainer
         var scene = GD.Load<PackedScene>("res://scenes/UI/Components/ProductionLineEditor.tscn");
         var editor = scene.Instantiate<Components.ProductionLineEditor>();
 
+        editor.CustomPriceChanged += OnCustomPriceChanged;
         editor.DeleteRequested += () =>
         {
             _productionLineEditors.Remove(editor);
@@ -105,6 +121,25 @@ public partial class ProductionLineManager : CenterContainer
         };
 
         return editor;
+    }
+
+    private void OnCustomPriceChanged(string lineId, string materialId, decimal price)
+    {
+        if (!_customPrices.ContainsKey(materialId))
+        {
+            _customPrices[materialId] = new Dictionary<string, decimal>();
+        }
+
+        var sourceId = $"{lineId}-{materialId}";
+        _customPrices[materialId][sourceId] = price;
+
+        GD.Print($"ProductionLineManager: Custom price updated - {materialId} / {sourceId} = {price}");
+
+        if (_sessionManager?.Session?.PriceRegistry != null)
+        {
+            _sessionManager.Session.PriceRegistry.RegisterPrice(materialId, sourceId, price);
+            GD.Print($"ProductionLineManager: Updated price registry with new custom price");
+        }
     }
 
     private void ClearProductionLines()
@@ -132,7 +167,11 @@ public partial class ProductionLineManager : CenterContainer
             var productionLines = _productionLineEditors.Select(e => e.GetProductionLine()).ToList();
 
             _sessionManager.Session.WorkspaceManager.ApplyChanges(
-                ws => ws.ProductionLines = productionLines,
+                ws =>
+                {
+                    ws.ProductionLines = productionLines;
+                    ws.CustomPrices = _customPrices;
+                },
                 "Production lines updated");
 
             _sessionManager.Session.RecalculateAll();
