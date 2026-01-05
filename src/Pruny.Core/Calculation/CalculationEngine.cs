@@ -248,24 +248,26 @@ public class CalculationEngine : ICalculationEngine
         decimal overallEfficiency,
         out decimal adjustedDuration)
     {
+        var baseRunsPerDay = (24m * 60m) / baseDurationMinutes;
         var roundedOutputs = new List<RecipeItem>();
         decimal totalAdditionalTime = 0;
 
         foreach (var output in outputs)
         {
-            var roundedQuantity = Math.Ceiling(output.Quantity);
-            var delta = roundedQuantity - output.Quantity;
+            var outputPerRun = output.Quantity / baseRunsPerDay;
+            var roundedOutputPerRun = Math.Ceiling(outputPerRun);
+            var delta = roundedOutputPerRun - outputPerRun;
 
-            if (delta > 0 && output.Quantity > 0)
+            if (delta > 0 && outputPerRun > 0)
             {
-                var additionalTimeForThisOutput = baseDurationMinutes * delta / output.Quantity;
+                var additionalTimeForThisOutput = baseDurationMinutes * delta / outputPerRun;
                 totalAdditionalTime += additionalTimeForThisOutput;
             }
 
             roundedOutputs.Add(new RecipeItem
             {
                 MaterialId = output.MaterialId,
-                Quantity = roundedQuantity
+                Quantity = roundedOutputPerRun
             });
         }
 

@@ -586,7 +586,14 @@ public class CalculationEngineTests
 
         calculation.MaterialId.Should().Be("ORE");
 
-        calculation.OutputQuantity.Should().Be(15m);
-        calculation.AdjustedDurationMinutes.Should().BeApproximately(378.947368421m, 0.001m);
+        var baseRunsPerDay = 1440m / 360m;
+        var outputPerRun = 14.25m / baseRunsPerDay;
+        var roundedOutputPerRun = Math.Ceiling(outputPerRun);
+        var delta = roundedOutputPerRun - outputPerRun;
+        var additionalTime = 360m * delta / outputPerRun;
+        var expectedDuration = 360m + additionalTime;
+
+        calculation.OutputQuantity.Should().Be(4m);
+        calculation.AdjustedDurationMinutes.Should().BeApproximately(expectedDuration, 0.001m);
     }
 }
