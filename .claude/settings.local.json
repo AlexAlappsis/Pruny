@@ -8,7 +8,9 @@
       "Bash(del srcPruny.LibraryClass1.cs)",
       "Bash(rm:*)",
       "Bash(dotnet build:*)",
-      "Bash(git log:*)"
+      "Bash(git log:*)",
+      "Bash(dotnet run:*)",
+      "Bash(Select-String -Pattern \"PriceSourceBuilder\")"
     ],
     "deny": [],
     "ask": []

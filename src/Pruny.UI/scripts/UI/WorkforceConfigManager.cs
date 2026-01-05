@@ -19,6 +19,7 @@ public partial class WorkforceConfigManager : CenterContainer
     private Label? _statusLabel;
 
     private List<Components.WorkforceTypeEditor> _workforceTypeEditors = new();
+    private Dictionary<string, Dictionary<string, decimal>> _customPrices = new();
 
     public override void _Ready()
     {
@@ -68,6 +69,7 @@ public partial class WorkforceConfigManager : CenterContainer
         ClearWorkforceTypes();
 
         var workforceConfigs = _sessionManager.Session.CurrentWorkspace.WorkforceConfigs;
+        _customPrices = _sessionManager.Session.CurrentWorkspace.CustomPrices ?? new();
 
         if (workforceConfigs == null || workforceConfigs.Count == 0)
         {
@@ -78,9 +80,22 @@ public partial class WorkforceConfigManager : CenterContainer
         foreach (var workforceTypeConfig in workforceConfigs.Values)
         {
             var editor = CreateWorkforceTypeEditor();
-            editor.SetWorkforceTypeConfig(workforceTypeConfig);
+
             _workforceTypeEditors.Add(editor);
             _workforceTypesContainer?.AddChild(editor);
+
+            editor.SetWorkforceTypeConfig(workforceTypeConfig);
+
+            foreach (var (materialId, sources) in _customPrices)
+            {
+                foreach (var (sourceId, price) in sources)
+                {
+                    if (sourceId.StartsWith(workforceTypeConfig.Id))
+                    {
+                        editor.SetCustomPriceForMaterial(materialId, price);
+                    }
+                }
+            }
         }
 
         SetStatus("");
@@ -98,6 +113,7 @@ public partial class WorkforceConfigManager : CenterContainer
         var scene = GD.Load<PackedScene>("res://scenes/UI/Components/WorkforceTypeEditor.tscn");
         var editor = scene.Instantiate<Components.WorkforceTypeEditor>();
 
+        editor.CustomPriceChanged += OnCustomPriceChanged;
         editor.DeleteRequested += () =>
         {
             _workforceTypeEditors.Remove(editor);
@@ -105,6 +121,19 @@ public partial class WorkforceConfigManager : CenterContainer
         };
 
         return editor;
+    }
+
+    private void OnCustomPriceChanged(string configId, string materialId, decimal price)
+    {
+        if (!_customPrices.ContainsKey(materialId))
+        {
+            _customPrices[materialId] = new Dictionary<string, decimal>();
+        }
+
+        var sourceId = $"{configId}-{materialId}";
+        _customPrices[materialId][sourceId] = price;
+
+        GD.Print($"WorkforceConfigManager: Custom price updated - {materialId} / {sourceId} = {price}");
     }
 
     private void ClearWorkforceTypes()
@@ -137,7 +166,11 @@ public partial class WorkforceConfigManager : CenterContainer
             }
 
             _sessionManager.Session.WorkspaceManager.ApplyChanges(
-                ws => ws.WorkforceConfigs = workforceConfigs,
+                ws =>
+                {
+                    ws.WorkforceConfigs = workforceConfigs;
+                    ws.CustomPrices = _customPrices;
+                },
                 "Workforce configuration updated");
 
             _sessionManager.Session.RecalculateAll();

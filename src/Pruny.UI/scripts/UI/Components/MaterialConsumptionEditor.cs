@@ -6,6 +6,7 @@ namespace Pruny.UI.Components;
 public partial class MaterialConsumptionEditor : GridContainer
 {
     public event Action<WorkforceMaterialConsumption>? ConsumptionChanged;
+    public event Action<string, string, decimal>? CustomPriceChanged;
 
     [Signal]
     public delegate void DeleteRequestedEventHandler();
@@ -18,6 +19,7 @@ public partial class MaterialConsumptionEditor : GridContainer
     private SessionManager? _sessionManager;
     private WorkforceMaterialConsumption? _pendingConsumption;
     private string? _workforceConfigId;
+    private decimal _pendingCustomPrice = 0;
 
     public override void _Ready()
     {
@@ -36,6 +38,7 @@ public partial class MaterialConsumptionEditor : GridContainer
         _materialDropdown.ItemSelected += OnMaterialSelected;
         _quantityInput.ValueChanged += OnQuantityChanged;
         _priceSourceSelector.PriceSourceChanged += OnPriceSourceChanged;
+        _priceSourceSelector.CustomPriceValueChanged += OnCustomPriceValueChanged;
         _deleteButton.Pressed += OnDeletePressed;
 
         if (_pendingConsumption != null)
@@ -99,9 +102,39 @@ public partial class MaterialConsumptionEditor : GridContainer
             return;
         }
 
+        _materialDropdown.ItemSelected -= OnMaterialSelected;
+        _quantityInput.ValueChanged -= OnQuantityChanged;
+        _priceSourceSelector.PriceSourceChanged -= OnPriceSourceChanged;
+
         SelectMaterial(consumption.MaterialId);
         _quantityInput.Value = (double)consumption.QuantityPer100WorkersPer24Hours;
         _priceSourceSelector.SetPriceSource(consumption.PriceSource);
+
+        UpdatePriceSourceContext();
+
+        _materialDropdown.ItemSelected += OnMaterialSelected;
+        _quantityInput.ValueChanged += OnQuantityChanged;
+        _priceSourceSelector.PriceSourceChanged += OnPriceSourceChanged;
+    }
+
+    public void SetCustomPrice(decimal price)
+    {
+        GD.Print($"MaterialConsumptionEditor.SetCustomPrice called with price={price}, _priceSourceSelector null? {_priceSourceSelector == null}");
+        _pendingCustomPrice = price;
+        if (_priceSourceSelector != null)
+        {
+            _priceSourceSelector.SetCustomPrice(price);
+            GD.Print($"  Set custom price on selector, value now: {_priceSourceSelector.GetCustomPrice()}");
+        }
+        else
+        {
+            GD.Print($"  Selector null, stored as pending");
+        }
+    }
+
+    public decimal GetCustomPrice()
+    {
+        return _priceSourceSelector?.GetCustomPrice() ?? _pendingCustomPrice;
     }
 
     public WorkforceMaterialConsumption GetConsumption()
@@ -145,6 +178,18 @@ public partial class MaterialConsumptionEditor : GridContainer
         EmitConsumptionChanged();
     }
 
+    private void OnCustomPriceValueChanged(decimal price)
+    {
+        if (string.IsNullOrEmpty(_workforceConfigId))
+            return;
+
+        var materialId = GetSelectedMaterialId();
+        if (string.IsNullOrEmpty(materialId))
+            return;
+
+        CustomPriceChanged?.Invoke(_workforceConfigId, materialId, price);
+    }
+
     private void OnDeletePressed()
     {
         EmitSignal(SignalName.DeleteRequested);
@@ -162,7 +207,10 @@ public partial class MaterialConsumptionEditor : GridContainer
         if (_quantityInput != null)
             _quantityInput.ValueChanged -= OnQuantityChanged;
         if (_priceSourceSelector != null)
+        {
             _priceSourceSelector.PriceSourceChanged -= OnPriceSourceChanged;
+            _priceSourceSelector.CustomPriceValueChanged -= OnCustomPriceValueChanged;
+        }
         if (_deleteButton != null)
             _deleteButton.Pressed -= OnDeletePressed;
     }

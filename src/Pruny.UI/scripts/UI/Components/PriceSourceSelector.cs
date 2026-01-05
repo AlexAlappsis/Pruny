@@ -6,10 +6,13 @@ namespace Pruny.UI.Components;
 public partial class PriceSourceSelector : GridContainer
 {
     public event Action<PriceSource>? PriceSourceChanged;
+    public event Action<decimal>? CustomPriceValueChanged;
 
     private OptionButton? _typeDropdown;
     private Control? _sourceInputContainer;
-    private LineEdit? _customSourceInput;
+    private HBoxContainer? _customPriceContainer;
+    private Label? _customPriceLabel;
+    private SpinBox? _customPriceInput;
     private HBoxContainer? _apiSourceContainer;
     private OptionButton? _exchangeDropdown;
     private OptionButton? _priceTypeDropdown;
@@ -23,6 +26,7 @@ public partial class PriceSourceSelector : GridContainer
     private List<AdjustmentEditor> _adjustmentEditors = new();
     private string? _contextId;
     private string? _materialId;
+    private decimal _customPriceValue = 0;
 
     public override void _Ready()
     {
@@ -45,13 +49,24 @@ public partial class PriceSourceSelector : GridContainer
 
     private void SetupSourceInputContainers()
     {
-        _customSourceInput = new LineEdit
+        _customPriceContainer = new HBoxContainer { Visible = false };
+        _sourceInputContainer?.AddChild(_customPriceContainer);
+
+        _customPriceLabel = new Label
         {
-            PlaceholderText = "Custom price name",
-            Visible = false
+            Text = "Price:"
         };
-        _sourceInputContainer?.AddChild(_customSourceInput);
-        _customSourceInput.TextChanged += (_) => EmitPriceSourceChanged();
+        _customPriceContainer.AddChild(_customPriceLabel);
+
+        _customPriceInput = new SpinBox
+        {
+            MinValue = 0,
+            MaxValue = 999999,
+            Step = 0.01,
+            Value = 0
+        };
+        _customPriceContainer.AddChild(_customPriceInput);
+        _customPriceInput.ValueChanged += OnCustomPriceValueChanged;
 
         _apiSourceContainer = new HBoxContainer { Visible = false };
         _sourceInputContainer?.AddChild(_apiSourceContainer);
@@ -102,6 +117,24 @@ public partial class PriceSourceSelector : GridContainer
         _materialId = materialId;
     }
 
+    public void SetCustomPrice(decimal price)
+    {
+        _customPriceValue = price;
+        if (_customPriceInput != null)
+            _customPriceInput.Value = (double)price;
+    }
+
+    public decimal GetCustomPrice()
+    {
+        return _customPriceValue;
+    }
+
+    private void OnCustomPriceValueChanged(double value)
+    {
+        _customPriceValue = (decimal)value;
+        CustomPriceValueChanged?.Invoke(_customPriceValue);
+    }
+
     public void SetPriceSource(PriceSource priceSource)
     {
         _currentPriceSource = priceSource;
@@ -127,8 +160,6 @@ public partial class PriceSourceSelector : GridContainer
                 break;
 
             case PriceSourceType.Custom:
-                if (_customSourceInput != null)
-                    _customSourceInput.Text = priceSource.SourceIdentifier;
                 break;
         }
 
@@ -166,7 +197,7 @@ public partial class PriceSourceSelector : GridContainer
     {
         if (string.IsNullOrEmpty(_contextId) || string.IsNullOrEmpty(_materialId))
         {
-            return _customSourceInput?.Text ?? "Custom";
+            return "Custom";
         }
 
         return $"{_contextId}-{_materialId}";
@@ -202,8 +233,8 @@ public partial class PriceSourceSelector : GridContainer
 
     private void UpdateSourceInputVisibility(PriceSourceType type)
     {
-        if (_customSourceInput != null)
-            _customSourceInput.Visible = type == PriceSourceType.Custom;
+        if (_customPriceContainer != null)
+            _customPriceContainer.Visible = type == PriceSourceType.Custom;
 
         if (_apiSourceContainer != null)
             _apiSourceContainer.Visible = type == PriceSourceType.Api;

@@ -6,6 +6,7 @@ namespace Pruny.UI.Components;
 public partial class WorkforceTypeEditor : VBoxContainer
 {
     public event Action<WorkforceTypeConfig>? WorkforceTypeChanged;
+    public event Action<string, string, decimal>? CustomPriceChanged;
 
     [Signal]
     public delegate void DeleteRequestedEventHandler();
@@ -122,6 +123,35 @@ public partial class WorkforceTypeEditor : VBoxContainer
         }
     }
 
+    public void SetCustomPriceForMaterial(string materialId, decimal price)
+    {
+        GD.Print($"WorkforceTypeEditor.SetCustomPriceForMaterial: materialId={materialId}, price={price}, editor count={_materialEditors.Count}");
+        foreach (var editor in _materialEditors)
+        {
+            var consumption = editor.GetConsumption();
+            GD.Print($"  Checking editor: materialId={consumption.MaterialId}, type={consumption.PriceSource.Type}");
+            if (consumption.MaterialId == materialId && consumption.PriceSource.Type == PriceSourceType.Custom)
+            {
+                GD.Print($"    Match! Setting custom price to {price}");
+                editor.SetCustomPrice(price);
+            }
+        }
+    }
+
+    public Dictionary<string, decimal> GetCustomPrices()
+    {
+        var customPrices = new Dictionary<string, decimal>();
+        foreach (var editor in _materialEditors)
+        {
+            var consumption = editor.GetConsumption();
+            if (consumption.PriceSource.Type == PriceSourceType.Custom)
+            {
+                customPrices[consumption.MaterialId] = editor.GetCustomPrice();
+            }
+        }
+        return customPrices;
+    }
+
     public WorkforceTypeConfig GetWorkforceTypeConfig()
     {
         if (_nameInput == null || _workforceTypeDropdown == null)
@@ -165,6 +195,10 @@ public partial class WorkforceTypeEditor : VBoxContainer
         editor.SetWorkforceConfigId(_configId);
 
         editor.ConsumptionChanged += (_) => EmitWorkforceTypeChanged();
+        editor.CustomPriceChanged += (configId, materialId, price) =>
+        {
+            CustomPriceChanged?.Invoke(configId, materialId, price);
+        };
         editor.DeleteRequested += () =>
         {
             _materialEditors.Remove(editor);
