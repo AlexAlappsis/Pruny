@@ -64,7 +64,8 @@ public class EfficiencyCalculationTests
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
             workforceConfigs,
-            priceRegistry
+            priceRegistry,
+            []
         );
 
         result.IsSuccess.Should().BeTrue();
@@ -134,7 +135,8 @@ public class EfficiencyCalculationTests
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
             workforceConfigs,
-            priceRegistry
+            priceRegistry,
+            []
         );
 
         result.IsSuccess.Should().BeTrue();
@@ -204,7 +206,8 @@ public class EfficiencyCalculationTests
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
             workforceConfigs,
-            priceRegistry
+            priceRegistry,
+            []
         );
 
         result.IsSuccess.Should().BeTrue();
@@ -286,7 +289,8 @@ public class EfficiencyCalculationTests
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
             workforceConfigs,
-            priceRegistry
+            priceRegistry,
+            []
         );
 
         result.IsSuccess.Should().BeTrue();
@@ -354,7 +358,8 @@ public class EfficiencyCalculationTests
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
             workforceConfigs,
-            priceRegistry
+            priceRegistry,
+            []
         );
 
         result.IsSuccess.Should().BeTrue();
@@ -424,7 +429,8 @@ public class EfficiencyCalculationTests
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
             workforceConfigs,
-            priceRegistry
+            priceRegistry,
+            []
         );
 
         result.IsSuccess.Should().BeTrue();
@@ -496,7 +502,8 @@ public class EfficiencyCalculationTests
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
             workforceConfigs,
-            priceRegistry
+            priceRegistry,
+            []
         );
 
         result.IsSuccess.Should().BeTrue();

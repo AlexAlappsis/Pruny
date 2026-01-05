@@ -4,6 +4,8 @@ public class ProductionLineCalculation
 {
     public required string MaterialId { get; init; }
     public required string ProductionLineId { get; init; }
+    public required decimal OutputQuantity { get; init; }
+    public required decimal AdjustedDurationMinutes { get; init; }
     public required decimal CostPerUnit { get; init; }
     public required decimal WorkforceCost { get; init; }
     public required decimal InputCosts { get; init; }

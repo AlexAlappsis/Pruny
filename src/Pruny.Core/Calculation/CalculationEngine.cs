@@ -9,7 +9,8 @@ public class CalculationEngine : ICalculationEngine
         Dictionary<string, Recipe> recipes,
         Dictionary<string, Building> buildings,
         Dictionary<string, WorkforceTypeConfig> workforceConfigs,
-        PriceSourceRegistry priceRegistry)
+        PriceSourceRegistry priceRegistry,
+        HashSet<string> buildingsRequiringWholeUnitRounding)
     {
         var result = new CalculationResult();
 
@@ -38,7 +39,7 @@ public class CalculationEngine : ICalculationEngine
                 }
 
                 var productionLineCalculations = CalculateProductionLine(
-                    line, recipe, building, workforceConfigs, priceRegistry, result.ProductionLineCalculations);
+                    line, recipe, building, workforceConfigs, priceRegistry, result.ProductionLineCalculations, buildingsRequiringWholeUnitRounding);
 
                 foreach (var productionLineCalculation in productionLineCalculations)
                 {
@@ -66,18 +67,25 @@ public class CalculationEngine : ICalculationEngine
         Building building,
         Dictionary<string, WorkforceTypeConfig> workforceConfigs,
         PriceSourceRegistry priceRegistry,
-        Dictionary<string, ProductionLineCalculation> previousUnitCosts)
+        Dictionary<string, ProductionLineCalculation> previousUnitCosts,
+        HashSet<string> buildingsRequiringWholeUnitRounding)
     {
         var workforce = line.WorkforceOverride ?? building.DefaultWorkforce;
         var workforceEfficiency = CalculateWorkforceEfficiency(workforce, building.DefaultWorkforce);
         var overallEfficiency = CalculateOverallEfficiency(workforceEfficiency, line.AdditionalEfficiencyModifiers);
         var adjustedDuration = recipe.DurationMinutes / overallEfficiency;
 
+        var effectiveOutputs = line.OutputOverrides ?? recipe.Outputs;
+
+        if (buildingsRequiringWholeUnitRounding.Contains(recipe.BuildingId))
+        {
+            effectiveOutputs = ApplyWholeUnitRounding(effectiveOutputs, recipe.DurationMinutes, overallEfficiency, out adjustedDuration);
+        }
+
         var workforceCost = CalculateWorkforceCost(workforce, line.WorkforceConfigMapping, workforceConfigs, adjustedDuration, priceRegistry, previousUnitCosts);
         var inputCosts = CalculateInputCosts(line, recipe, priceRegistry, previousUnitCosts);
         var totalCost = workforceCost + inputCosts;
 
-        var effectiveOutputs = line.OutputOverrides ?? recipe.Outputs;
         var totalOutputQuantity = effectiveOutputs.Sum(o => o.Quantity);
 
         return effectiveOutputs.Select(output =>
@@ -102,6 +110,8 @@ public class CalculationEngine : ICalculationEngine
             {
                 MaterialId = output.MaterialId,
                 ProductionLineId = line.Id,
+                OutputQuantity = output.Quantity,
+                AdjustedDurationMinutes = adjustedDuration,
                 CostPerUnit = costPerUnit,
                 WorkforceCost = workforceCost / totalOutputQuantity,
                 InputCosts = inputCosts / totalOutputQuantity,
@@ -230,5 +240,36 @@ public class CalculationEngine : ICalculationEngine
         }
 
         return priceRegistry.GetPrice(materialId, priceSource);
+    }
+
+    private List<RecipeItem> ApplyWholeUnitRounding(
+        List<RecipeItem> outputs,
+        decimal baseDurationMinutes,
+        decimal overallEfficiency,
+        out decimal adjustedDuration)
+    {
+        var roundedOutputs = new List<RecipeItem>();
+        decimal totalAdditionalTime = 0;
+
+        foreach (var output in outputs)
+        {
+            var roundedQuantity = Math.Ceiling(output.Quantity);
+            var delta = roundedQuantity - output.Quantity;
+
+            if (delta > 0 && output.Quantity > 0)
+            {
+                var additionalTimeForThisOutput = baseDurationMinutes * delta / output.Quantity;
+                totalAdditionalTime += additionalTimeForThisOutput;
+            }
+
+            roundedOutputs.Add(new RecipeItem
+            {
+                MaterialId = output.MaterialId,
+                Quantity = roundedQuantity
+            });
+        }
+
+        adjustedDuration = (baseDurationMinutes + totalAdditionalTime) / overallEfficiency;
+        return roundedOutputs;
     }
 }

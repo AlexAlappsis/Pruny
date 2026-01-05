@@ -278,7 +278,8 @@ public class WorkspaceSession
                 _gameData.Recipes,
                 _gameData.Buildings,
                 workforceConfigs,
-                _priceRegistry);
+                _priceRegistry,
+                _gameData.BuildingsRequiringWholeUnitRounding);
 
             _calculations = result.ProductionLineCalculations;
 

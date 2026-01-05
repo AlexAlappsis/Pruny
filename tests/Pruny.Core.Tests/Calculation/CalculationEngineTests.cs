@@ -101,7 +101,8 @@ public class CalculationEngineTests
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
             workforceConfigs,
-            priceRegistry
+            priceRegistry,
+            []
         );
 
         result.IsSuccess.Should().BeTrue();
@@ -184,7 +185,8 @@ public class CalculationEngineTests
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
             workforceConfigs,
-            priceRegistry
+            priceRegistry,
+            []
         );
 
         result.IsSuccess.Should().BeTrue();
@@ -254,7 +256,8 @@ public class CalculationEngineTests
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
             workforceConfigs,
-            priceRegistry
+            priceRegistry,
+            []
         );
 
         result.IsSuccess.Should().BeTrue();
@@ -321,7 +324,8 @@ public class CalculationEngineTests
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
             workforceConfigs,
-            priceRegistry
+            priceRegistry,
+            []
         );
 
         result.IsSuccess.Should().BeTrue();
@@ -378,7 +382,8 @@ public class CalculationEngineTests
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
             workforceConfigs,
-            priceRegistry
+            priceRegistry,
+            []
         );
 
         result.IsSuccess.Should().BeTrue();
@@ -435,7 +440,8 @@ public class CalculationEngineTests
             new Dictionary<string, Recipe> { { "RCP1", recipe } },
             new Dictionary<string, Building> { { "BLD1", building } },
             workforceConfigs,
-            priceRegistry
+            priceRegistry,
+            []
         );
 
         result.IsSuccess.Should().BeTrue();
@@ -519,11 +525,68 @@ public class CalculationEngineTests
             new Dictionary<string, Recipe> { { "RCP1", recipe1 }, { "RCP2", recipe2 } },
             new Dictionary<string, Building> { { "BLD1", building } },
             workforceConfigs,
-            priceRegistry
+            priceRegistry,
+            []
         );
 
         result.IsSuccess.Should().BeTrue();
         result.ProductionLineCalculations["LINE1"].CostPerUnit.Should().Be(100m);
         result.ProductionLineCalculations["LINE2"].CostPerUnit.Should().Be(100m);
+    }
+
+    [Fact]
+    public void CalculateProductionLines_WithWholeUnitRounding_RoundsOutputsAndAdjustsDuration()
+    {
+        var engine = new CalculationEngine();
+
+        var building = new Building
+        {
+            Id = "COL",
+            Name = "Collector",
+            DefaultWorkforce = []
+        };
+
+        var recipe = new Recipe
+        {
+            Id = "COL-to-",
+            BuildingId = "COL",
+            Inputs = [],
+            Outputs = [],
+            DurationMinutes = 360m
+        };
+
+        var productionLine = new ProductionLine
+        {
+            Id = "LINE1",
+            RecipeId = "COL-to-",
+            InputPriceSources = new Dictionary<string, PriceSource>(),
+            OutputPriceSources = new Dictionary<string, PriceSource>
+            {
+                { "ORE", new PriceSource { Type = PriceSourceType.Custom, SourceIdentifier = "custom-ORE", Adjustments = [] } }
+            },
+            OutputOverrides = [new() { MaterialId = "ORE", Quantity = 14.25m }],
+            AdditionalEfficiencyModifiers = []
+        };
+
+        var workforceConfigs = new Dictionary<string, WorkforceTypeConfig>();
+        var priceRegistry = new PriceSourceRegistry();
+        priceRegistry.RegisterPrice("ORE", "custom-ORE", 100m);
+
+        var result = engine.CalculateProductionLines(
+            [productionLine],
+            new Dictionary<string, Recipe> { { "COL-to-", recipe } },
+            new Dictionary<string, Building> { { "COL", building } },
+            workforceConfigs,
+            priceRegistry,
+            ["COL"]
+        );
+
+        result.IsSuccess.Should().BeTrue();
+        var calculation = result.ProductionLineCalculations["LINE1"];
+
+        calculation.MaterialId.Should().Be("ORE");
+
+        calculation.OutputQuantity.Should().Be(15m);
+        calculation.AdjustedDurationMinutes.Should().BeApproximately(378.947368421m, 0.001m);
     }
 }

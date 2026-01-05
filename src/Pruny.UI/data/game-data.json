@@ -13844,6 +13844,7 @@
 	  "Name": "SETTLER"
 	}
   },
+  "BuildingsRequiringWholeUnitRounding": ["COL", "EXT", "RIG"],
   "Version": "apidata-import",
   "LoadedAt": "2025-11-27T02:35:07.0588754+00:00"
 }

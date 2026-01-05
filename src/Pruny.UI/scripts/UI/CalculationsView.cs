@@ -398,26 +398,21 @@ public partial class CalculationsView : CenterContainer
 
     private void AddProductionMetrics(VBoxContainer detailsBox, ProductionLine productionLine, Recipe recipe, ProductionLineCalculation unitCost)
     {
-        var adjustedDuration = recipe.DurationMinutes / unitCost.OverallEfficiency;
-        var runsPerDay = (24m * 60m) / adjustedDuration;
+        var runsPerDay = (24m * 60m) / unitCost.AdjustedDurationMinutes;
 
         detailsBox.AddChild(CreateDetailLabel("Production Metrics:"));
         detailsBox.AddChild(CreateDetailLabel($"  Base Duration: {FormatDuration(recipe.DurationMinutes)}"));
-        detailsBox.AddChild(CreateDetailLabel($"  Adjusted Duration: {FormatDuration(adjustedDuration)} (with {unitCost.OverallEfficiency:P2} efficiency)"));
+        detailsBox.AddChild(CreateDetailLabel($"  Adjusted Duration: {FormatDuration(unitCost.AdjustedDurationMinutes)} (with {unitCost.OverallEfficiency:P2} efficiency)"));
         detailsBox.AddChild(CreateDetailLabel($"  Runs per day: {runsPerDay:F2}"));
         detailsBox.AddChild(CreateDetailLabel(""));
 
-        var effectiveOutputs = productionLine.OutputOverrides ?? recipe.Outputs;
-
         detailsBox.AddChild(CreateDetailLabel("Yields:"));
-        foreach (var output in effectiveOutputs)
-        {
-            var material = _sessionManager?.Session?.GameData?.Materials.GetValueOrDefault(output.MaterialId);
-            var materialName = material?.Name ?? output.MaterialId;
-            var yieldPerDay = output.Quantity * runsPerDay;
 
-            detailsBox.AddChild(CreateDetailLabel($"  {materialName}: {output.Quantity:F2} per run, {yieldPerDay:F2} per day"));
-        }
+        var material = _sessionManager?.Session?.GameData?.Materials.GetValueOrDefault(unitCost.MaterialId);
+        var materialName = material?.Name ?? unitCost.MaterialId;
+        var yieldPerDay = unitCost.OutputQuantity * runsPerDay;
+
+        detailsBox.AddChild(CreateDetailLabel($"  {materialName}: {unitCost.OutputQuantity:F2} per run, {yieldPerDay:F2} per day"));
     }
 
     private string FormatDuration(decimal minutes)

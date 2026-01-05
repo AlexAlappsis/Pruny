@@ -9,5 +9,6 @@ public interface ICalculationEngine
         Dictionary<string, Recipe> recipes,
         Dictionary<string, Building> buildings,
         Dictionary<string, WorkforceTypeConfig> workforceConfigs,
-        PriceSourceRegistry priceRegistry);
+        PriceSourceRegistry priceRegistry,
+        HashSet<string> buildingsRequiringWholeUnitRounding);
 }
