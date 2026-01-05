@@ -119,16 +119,10 @@ public partial class MaterialConsumptionEditor : GridContainer
 
     public void SetCustomPrice(decimal price)
     {
-        GD.Print($"MaterialConsumptionEditor.SetCustomPrice called with price={price}, _priceSourceSelector null? {_priceSourceSelector == null}");
         _pendingCustomPrice = price;
         if (_priceSourceSelector != null)
         {
             _priceSourceSelector.SetCustomPrice(price);
-            GD.Print($"  Set custom price on selector, value now: {_priceSourceSelector.GetCustomPrice()}");
-        }
-        else
-        {
-            GD.Print($"  Selector null, stored as pending");
         }
     }
 

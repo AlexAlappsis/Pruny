@@ -17,8 +17,6 @@ public partial class CalculationsView : CenterContainer
 
     public override void _Ready()
     {
-        GD.Print("CalculationsView: _Ready called");
-
         _mainUI = GetParent()?.GetParent()?.GetParent() as MainUI;
         _sessionManager = GetNode<SessionManager>("/root/SessionManager");
 
@@ -26,18 +24,12 @@ public partial class CalculationsView : CenterContainer
         {
             GD.PrintErr("CalculationsView: Could not find MainUI in parent chain");
         }
-        else
-        {
-            GD.Print("CalculationsView: Found MainUI");
-        }
 
         if (_sessionManager?.Session == null)
         {
             GD.PrintErr("CalculationsView: SessionManager or Session not available");
             return;
         }
-
-        GD.Print("CalculationsView: SessionManager and Session found");
 
         SetupUI();
         LoadCalculations();
@@ -57,11 +49,8 @@ public partial class CalculationsView : CenterContainer
 
     private void LoadCalculations()
     {
-        GD.Print("CalculationsView: LoadCalculations started");
-
         if (_sessionManager?.Session?.CurrentWorkspace == null)
         {
-            GD.Print("CalculationsView: No workspace loaded");
             SetStatus("No workspace loaded", new Color(1, 0.3f, 0.3f));
             return;
         }
@@ -72,8 +61,6 @@ public partial class CalculationsView : CenterContainer
         var gameData = _sessionManager.Session.GameData;
         var workspace = _sessionManager.Session.CurrentWorkspace;
 
-        GD.Print($"CalculationsView: Found {calculations.Count} calculations");
-
         LoadWorkforceConfigs();
 
         if (calculations.Count == 0)
@@ -82,41 +69,31 @@ public partial class CalculationsView : CenterContainer
             return;
         }
 
-        int itemsAdded = 0;
         foreach (var (productionLineId, unitCost) in calculations)
         {
-            GD.Print($"CalculationsView: Processing productionLineId: {productionLineId}, materialId: {unitCost.MaterialId}");
-
             var productionLine = workspace.ProductionLines.FirstOrDefault(pl => pl.Id == productionLineId);
             if (productionLine == null)
             {
-                GD.Print($"CalculationsView: Production line not found for {productionLineId}");
                 continue;
             }
 
             if (gameData?.Recipes.TryGetValue(productionLine.RecipeId, out var recipe) != true)
             {
-                GD.Print($"CalculationsView: Recipe not found: {productionLine.RecipeId}");
                 continue;
             }
 
             if (gameData?.Materials.TryGetValue(unitCost.MaterialId, out var material) != true)
             {
-                GD.Print($"CalculationsView: Material not found: {unitCost.MaterialId}");
                 continue;
             }
 
             Building? building = null;
             gameData?.Buildings.TryGetValue(recipe.BuildingId, out building);
 
-            GD.Print($"CalculationsView: Creating item for {material.Name}");
             var calculationItem = CreateCalculationItem(productionLine, unitCost, material!, recipe!, building);
             _calculationsContainer?.AddChild(calculationItem);
-            itemsAdded++;
-            GD.Print($"CalculationsView: Item added, total: {itemsAdded}");
         }
 
-        GD.Print($"CalculationsView: Total items added: {itemsAdded}");
         SetStatus("");
     }
 
@@ -374,24 +351,19 @@ public partial class CalculationsView : CenterContainer
     {
         if (_sessionManager?.Session?.PriceRegistry == null)
         {
-            GD.Print($"ResolveWorkforceMaterialPrice: PriceRegistry is null for {consumption.MaterialId}");
             return 0;
         }
 
         var priceRegistry = _sessionManager.Session.PriceRegistry;
-        GD.Print($"ResolveWorkforceMaterialPrice: Looking up {consumption.MaterialId}");
-        GD.Print($"  PriceSource Type: {consumption.PriceSource.Type}");
-        GD.Print($"  PriceSource SourceIdentifier: {consumption.PriceSource.SourceIdentifier}");
 
         try
         {
             var price = priceRegistry.GetPrice(consumption.MaterialId, consumption.PriceSource);
-            GD.Print($"  Found price: {price}");
             return price;
         }
         catch (Exception ex)
         {
-            GD.Print($"  Error getting price: {ex.Message}");
+            GD.PrintErr($"CalculationsView: Error getting price for {consumption.MaterialId}: {ex.Message}");
             return 0;
         }
     }

@@ -125,14 +125,11 @@ public partial class WorkforceTypeEditor : VBoxContainer
 
     public void SetCustomPriceForMaterial(string materialId, decimal price)
     {
-        GD.Print($"WorkforceTypeEditor.SetCustomPriceForMaterial: materialId={materialId}, price={price}, editor count={_materialEditors.Count}");
         foreach (var editor in _materialEditors)
         {
             var consumption = editor.GetConsumption();
-            GD.Print($"  Checking editor: materialId={consumption.MaterialId}, type={consumption.PriceSource.Type}");
             if (consumption.MaterialId == materialId && consumption.PriceSource.Type == PriceSourceType.Custom)
             {
-                GD.Print($"    Match! Setting custom price to {price}");
                 editor.SetCustomPrice(price);
             }
         }

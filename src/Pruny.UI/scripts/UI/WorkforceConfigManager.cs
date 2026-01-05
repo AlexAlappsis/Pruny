@@ -133,12 +133,9 @@ public partial class WorkforceConfigManager : CenterContainer
         var sourceId = $"{configId}-{materialId}";
         _customPrices[materialId][sourceId] = price;
 
-        GD.Print($"WorkforceConfigManager: Custom price updated - {materialId} / {sourceId} = {price}");
-
         if (_sessionManager?.Session?.PriceRegistry != null)
         {
             _sessionManager.Session.PriceRegistry.RegisterPrice(materialId, sourceId, price);
-            GD.Print($"WorkforceConfigManager: Updated price registry with new custom price");
         }
     }
 
@@ -182,7 +179,6 @@ public partial class WorkforceConfigManager : CenterContainer
             _sessionManager.Session.RecalculateAll();
 
             SetStatus("Workforce configuration applied successfully!", new Color(0.3f, 1, 0.3f));
-            GD.Print("WorkforceConfigManager: Configuration applied and recalculated");
 
             GetTree().CreateTimer(1.5).Timeout += () => _mainUI?.LoadDashboard();
         }

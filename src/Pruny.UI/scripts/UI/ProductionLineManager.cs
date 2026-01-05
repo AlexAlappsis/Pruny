@@ -133,12 +133,9 @@ public partial class ProductionLineManager : CenterContainer
         var sourceId = $"{lineId}-{materialId}";
         _customPrices[materialId][sourceId] = price;
 
-        GD.Print($"ProductionLineManager: Custom price updated - {materialId} / {sourceId} = {price}");
-
         if (_sessionManager?.Session?.PriceRegistry != null)
         {
             _sessionManager.Session.PriceRegistry.RegisterPrice(materialId, sourceId, price);
-            GD.Print($"ProductionLineManager: Updated price registry with new custom price");
         }
     }
 
@@ -177,7 +174,6 @@ public partial class ProductionLineManager : CenterContainer
             _sessionManager.Session.RecalculateAll();
 
             SetStatus("Production lines applied successfully!", new Color(0.3f, 1, 0.3f));
-            GD.Print("ProductionLineManager: Configuration applied and recalculated");
 
             GetTree().CreateTimer(1.5).Timeout += () => _mainUI?.LoadDashboard();
         }
