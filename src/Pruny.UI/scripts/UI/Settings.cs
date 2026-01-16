@@ -34,7 +34,7 @@ public partial class Settings : CenterContainer
             _apiKeyInput = GetNode<LineEdit>("VBoxContainer/ScrollContainer/SettingsContainer/ApiKeyInput");
             _timeoutInput = GetNode<SpinBox>("VBoxContainer/ScrollContainer/SettingsContainer/TimeoutInput");
             _retriesInput = GetNode<SpinBox>("VBoxContainer/ScrollContainer/SettingsContainer/RetriesInput");
-            _defaultWorkspaceDropdown = GetNode<OptionButton>("VBoxContainer/ScrollContainer/SettingsContainer/DefaultWorkspaceDropdown");
+            _defaultWorkspaceDropdown = GetNode<OptionButton>("VBoxContainer/ScrollContainer/SettingsContainer/LastUsedWorkspaceDropdown");
             _saveButton = GetNode<Button>("VBoxContainer/ButtonsContainer/SaveButton");
             _cancelButton = GetNode<Button>("VBoxContainer/ButtonsContainer/CancelButton");
             _statusLabel = GetNode<Label>("VBoxContainer/StatusLabel");
@@ -94,7 +94,7 @@ public partial class Settings : CenterContainer
 
         if (_defaultWorkspaceDropdown != null)
         {
-            if (string.IsNullOrWhiteSpace(config.DefaultWorkspace))
+            if (string.IsNullOrWhiteSpace(config.LastUsedWorkspace))
             {
                 _defaultWorkspaceDropdown.Selected = 0;
             }
@@ -104,7 +104,7 @@ public partial class Settings : CenterContainer
                 if (sessionManager?.DataManager != null)
                 {
                     var workspaces = sessionManager.DataManager.ListWorkspaces();
-                    var index = System.Array.FindIndex(workspaces, w => w == config.DefaultWorkspace);
+                    var index = System.Array.FindIndex(workspaces, w => w == config.LastUsedWorkspace);
                     _defaultWorkspaceDropdown.Selected = index >= 0 ? index + 1 : 0;
                 }
             }
@@ -134,7 +134,7 @@ public partial class Settings : CenterContainer
                 var selectedIndex = _defaultWorkspaceDropdown.Selected;
                 if (selectedIndex == 0)
                 {
-                    config.DefaultWorkspace = null;
+                    config.LastUsedWorkspace = null;
                 }
                 else
                 {
@@ -144,7 +144,7 @@ public partial class Settings : CenterContainer
                         var workspaces = sessionManager.DataManager.ListWorkspaces();
                         if (selectedIndex - 1 < workspaces.Length)
                         {
-                            config.DefaultWorkspace = workspaces[selectedIndex - 1];
+                            config.LastUsedWorkspace = workspaces[selectedIndex - 1];
                         }
                     }
                 }

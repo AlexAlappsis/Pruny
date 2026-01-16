@@ -88,7 +88,7 @@ public partial class SessionManager : Node
             _dataManager?.LoadGameData();
             GD.Print("SessionManager: Game data loaded on startup");
 
-            TryAutoLoadDefaultWorkspace();
+            TryAutoLoadLastUsedWorkspace();
         }
         catch (FileNotFoundException ex)
         {
@@ -113,11 +113,11 @@ public partial class SessionManager : Node
         }
     }
 
-    private void TryAutoLoadDefaultWorkspace()
+    private void TryAutoLoadLastUsedWorkspace()
     {
         var config = AppConfig.Instance;
 
-        if (string.IsNullOrWhiteSpace(config.DefaultWorkspace))
+        if (string.IsNullOrWhiteSpace(config.LastUsedWorkspace))
         {
             GD.Print("SessionManager: No default workspace configured");
             return;
@@ -125,17 +125,17 @@ public partial class SessionManager : Node
 
         try
         {
-            GD.Print($"SessionManager: Attempting to auto-load default workspace '{config.DefaultWorkspace}'");
-            _dataManager?.LoadWorkspace(config.DefaultWorkspace);
-            GD.Print($"SessionManager: Default workspace '{config.DefaultWorkspace}' loaded successfully");
+            GD.Print($"SessionManager: Attempting to auto-load default workspace '{config.LastUsedWorkspace}'");
+            _dataManager?.LoadWorkspace(config.LastUsedWorkspace);
+            GD.Print($"SessionManager: Default workspace '{config.LastUsedWorkspace}' loaded successfully");
         }
         catch (FileNotFoundException)
         {
-            GD.Print($"SessionManager: Default workspace '{config.DefaultWorkspace}' not found, continuing without workspace");
+            GD.Print($"SessionManager: Default workspace '{config.LastUsedWorkspace}' not found, continuing without workspace");
         }
         catch (InvalidDataException ex)
         {
-            GD.PrintErr($"SessionManager: Default workspace '{config.DefaultWorkspace}' is corrupt - {ex.Message}");
+            GD.PrintErr($"SessionManager: Default workspace '{config.LastUsedWorkspace}' is corrupt - {ex.Message}");
             GD.PrintErr("SessionManager: Continuing without workspace");
         }
         catch (Exception ex)

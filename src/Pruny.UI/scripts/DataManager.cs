@@ -55,6 +55,9 @@ public class DataManager
         {
             _session.LoadWorkspace(workspaceJson);
             GD.Print($"DataManager: Workspace loaded successfully - {filename}");
+
+            _config.LastUsedWorkspace = filename;
+            _config.Save();
         }
         catch (Exception ex)
         {
