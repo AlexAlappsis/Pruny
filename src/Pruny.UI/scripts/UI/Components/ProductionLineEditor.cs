@@ -19,6 +19,11 @@ public partial class ProductionLineEditor : VBoxContainer
     private Button? _deleteButton;
 
     private Label? _lineIdLabel;
+    private LineEdit? _nameInput;
+    private Button? _groupsButton;
+    private PopupPanel? _groupsPopup;
+    private VBoxContainer? _groupsCheckboxContainer;
+    private List<string> _selectedGroupIds = new();
 
     private Button? _collapseToggleButton;
     private Control? _detailsContainer;
@@ -62,6 +67,8 @@ public partial class ProductionLineEditor : VBoxContainer
         _deleteButton = GetNode<Button>("HeaderContainer/DeleteButton");
 
         _lineIdLabel = GetNode<Label>("LineIdLabel");
+        _nameInput = GetNode<LineEdit>("NameContainer/NameInput");
+        _groupsButton = GetNode<Button>("GroupsContainer/GroupsButton");
 
         _efficiencyContainer = GetNode<VBoxContainer>("EfficiencyContainer");
         _efficiencyToggleButton = GetNode<Button>("EfficiencyContainer/ToggleButton");
@@ -89,6 +96,7 @@ public partial class ProductionLineEditor : VBoxContainer
         SetupOutputOverridesEditor();
         SetupToggleButtons();
         SetupCollapseButton();
+        SetupGroupsSelector();
 
         _deleteButton.Pressed += OnDeletePressed;
 
@@ -187,6 +195,125 @@ public partial class ProductionLineEditor : VBoxContainer
         _outputPricesToggleButton!.Pressed += () => ToggleSection(_outputPricesContent!, _outputPricesToggleButton!);
         _workforceToggleButton!.Pressed += () => ToggleSection(_workforceContent!, _workforceToggleButton!);
         _outputOverridesToggleButton!.Pressed += () => ToggleSection(_outputOverridesContent!, _outputOverridesToggleButton!);
+    }
+
+    private void SetupGroupsSelector()
+    {
+        if (_groupsButton == null) return;
+
+        _groupsButton.Pressed += OnGroupsButtonPressed;
+        UpdateGroupsButtonText();
+
+        _groupsPopup = new PopupPanel();
+        _groupsPopup.Size = new Vector2I(300, 200);
+
+        var popupContent = new VBoxContainer();
+        _groupsPopup.AddChild(popupContent);
+
+        var titleLabel = new Label { Text = "Select Groups:" };
+        popupContent.AddChild(titleLabel);
+
+        var scrollContainer = new ScrollContainer
+        {
+            CustomMinimumSize = new Vector2(280, 150)
+        };
+        popupContent.AddChild(scrollContainer);
+
+        _groupsCheckboxContainer = new VBoxContainer();
+        scrollContainer.AddChild(_groupsCheckboxContainer);
+
+        AddChild(_groupsPopup);
+    }
+
+    private void OnGroupsButtonPressed()
+    {
+        if (_groupsPopup == null || _groupsCheckboxContainer == null) return;
+
+        RebuildGroupCheckboxes();
+
+        var globalPos = _groupsButton!.GlobalPosition;
+        _groupsPopup.Position = new Vector2I((int)globalPos.X, (int)(globalPos.Y + _groupsButton.Size.Y));
+        _groupsPopup.Popup();
+    }
+
+    private void RebuildGroupCheckboxes()
+    {
+        if (_groupsCheckboxContainer == null) return;
+
+        foreach (var child in _groupsCheckboxContainer.GetChildren())
+            child.QueueFree();
+
+        var groups = _sessionManager?.Session?.CurrentWorkspace?.ProductionLineGroups;
+        if (groups == null || groups.Count == 0)
+        {
+            var noGroupsLabel = new Label { Text = "(No groups available)" };
+            _groupsCheckboxContainer.AddChild(noGroupsLabel);
+            return;
+        }
+
+        foreach (var group in groups)
+        {
+            var checkbox = new CheckBox
+            {
+                Text = group.Name,
+                ButtonPressed = _selectedGroupIds.Contains(group.Id)
+            };
+            checkbox.SetMeta("group_id", group.Id);
+            checkbox.Toggled += (toggled) => OnGroupCheckboxToggled(group.Id, toggled);
+            _groupsCheckboxContainer.AddChild(checkbox);
+        }
+    }
+
+    private void OnGroupCheckboxToggled(string groupId, bool toggled)
+    {
+        if (toggled && !_selectedGroupIds.Contains(groupId))
+        {
+            _selectedGroupIds.Add(groupId);
+        }
+        else if (!toggled && _selectedGroupIds.Contains(groupId))
+        {
+            _selectedGroupIds.Remove(groupId);
+        }
+        UpdateGroupsButtonText();
+    }
+
+    private void UpdateGroupsButtonText()
+    {
+        if (_groupsButton == null) return;
+
+        if (_selectedGroupIds.Count == 0)
+        {
+            _groupsButton.Text = "Groups: None";
+        }
+        else
+        {
+            var groups = _sessionManager?.Session?.CurrentWorkspace?.ProductionLineGroups;
+            if (groups == null)
+            {
+                _groupsButton.Text = $"Groups: {_selectedGroupIds.Count} selected";
+            }
+            else
+            {
+                var names = groups
+                    .Where(g => _selectedGroupIds.Contains(g.Id))
+                    .Select(g => g.Name)
+                    .ToList();
+                _groupsButton.Text = names.Count > 2
+                    ? $"Groups: {names.Count} selected"
+                    : $"Groups: {string.Join(", ", names)}";
+            }
+        }
+    }
+
+    public void SetGroupIds(List<string> groupIds)
+    {
+        _selectedGroupIds = new List<string>(groupIds);
+        UpdateGroupsButtonText();
+    }
+
+    public List<string> GetGroupIds()
+    {
+        return new List<string>(_selectedGroupIds);
     }
 
     private void ToggleSection(Control content, Button button)
@@ -364,6 +491,11 @@ public partial class ProductionLineEditor : VBoxContainer
             _lineIdLabel.Text = $"ID: {_lineId}";
         }
 
+        if (_nameInput != null)
+        {
+            _nameInput.Text = line.Name ?? "";
+        }
+
         _pendingLineToLoad = line;
 
         GD.Print($"ProductionLineEditor: SetProductionLine called for {_lineId}");
@@ -448,9 +580,14 @@ public partial class ProductionLineEditor : VBoxContainer
         if (outputOverrides?.Count == 0)
             outputOverrides = null;
 
+        var name = _nameInput?.Text;
+        if (string.IsNullOrWhiteSpace(name))
+            name = null;
+
         return new ProductionLine
         {
             Id = _lineId,
+            Name = name,
             RecipeId = recipeId,
             WorkforceOverride = _workforceEditor?.GetWorkforceOverride(),
             WorkforceConfigMapping = _workforceEditor?.GetWorkforceConfigMapping(),
@@ -476,5 +613,8 @@ public partial class ProductionLineEditor : VBoxContainer
 
         if (_recipeSelector != null)
             _recipeSelector.RecipeSelected -= OnRecipeSelected;
+
+        if (_groupsButton != null)
+            _groupsButton.Pressed -= OnGroupsButtonPressed;
     }
 }

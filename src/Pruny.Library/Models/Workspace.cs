@@ -11,6 +11,7 @@ public class Workspace
     public DateTimeOffset LastModifiedAt { get; set; }
     public DateTimeOffset? MarketDataFetchedAt { get; set; }
     public List<ProductionLine> ProductionLines { get; set; } = new();
+    public List<ProductionLineGroup> ProductionLineGroups { get; set; } = new();
     public Dictionary<string, Dictionary<string, decimal>> CustomPrices { get; set; } = new();
     public Dictionary<string, WorkforceTypeConfig> WorkforceConfigs { get; set; } = new();
 }

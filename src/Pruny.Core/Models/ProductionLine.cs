@@ -3,6 +3,7 @@ namespace Pruny.Core.Models;
 public class ProductionLine
 {
     public required string Id { get; init; }
+    public string? Name { get; init; }
     public required string RecipeId { get; init; }
     public List<WorkforceRequirement>? WorkforceOverride { get; init; }
     public Dictionary<WorkforceType, string>? WorkforceConfigMapping { get; init; }

@@ -20,6 +20,11 @@ public partial class ProductionLineManager : CenterContainer
 
     private List<Components.ProductionLineEditor> _productionLineEditors = new();
     private Dictionary<string, Dictionary<string, decimal>> _customPrices = new();
+    private List<ProductionLineGroup> _groups = new();
+
+    private VBoxContainer? _groupsManagementContainer;
+    private VBoxContainer? _groupsListContainer;
+    private Button? _addGroupButton;
 
     public override void _Ready()
     {
@@ -56,6 +61,130 @@ public partial class ProductionLineManager : CenterContainer
         _addProductionLineButton.Pressed += OnAddProductionLinePressed;
         _saveButton.Pressed += OnSavePressed;
         _cancelButton.Pressed += OnCancelPressed;
+
+        SetupGroupsManagement();
+    }
+
+    private void SetupGroupsManagement()
+    {
+        _groupsManagementContainer = new VBoxContainer();
+
+        var titleLabel = new Label { Text = "Production Line Groups:" };
+        _groupsManagementContainer.AddChild(titleLabel);
+
+        _groupsListContainer = new VBoxContainer();
+        _groupsManagementContainer.AddChild(_groupsListContainer);
+
+        var addGroupRow = new HBoxContainer();
+        _addGroupButton = new Button { Text = "Add New Group" };
+        _addGroupButton.Pressed += OnAddGroupPressed;
+        addGroupRow.AddChild(_addGroupButton);
+        _groupsManagementContainer.AddChild(addGroupRow);
+
+        var separator = new HSeparator();
+        _groupsManagementContainer.AddChild(separator);
+
+        var insertIndex = _scrollContainer?.GetIndex() ?? 2;
+        _mainContainer?.AddChild(_groupsManagementContainer);
+        _mainContainer?.MoveChild(_groupsManagementContainer, (int)insertIndex);
+    }
+
+    private void LoadGroups()
+    {
+        var workspaceGroups = _sessionManager?.Session?.CurrentWorkspace?.ProductionLineGroups;
+        _groups = workspaceGroups?.Select(g => new ProductionLineGroup
+        {
+            Id = g.Id,
+            Name = g.Name,
+            ProductionLineIds = new List<string>(g.ProductionLineIds)
+        }).ToList() ?? new();
+
+        RebuildGroupsUI();
+    }
+
+    private void RebuildGroupsUI()
+    {
+        if (_groupsListContainer == null) return;
+
+        foreach (var child in _groupsListContainer.GetChildren())
+            child.QueueFree();
+
+        foreach (var group in _groups)
+        {
+            var row = CreateGroupRow(group);
+            _groupsListContainer.AddChild(row);
+        }
+    }
+
+    private HBoxContainer CreateGroupRow(ProductionLineGroup group)
+    {
+        var row = new HBoxContainer();
+
+        var nameInput = new LineEdit
+        {
+            Text = group.Name,
+            CustomMinimumSize = new Vector2(200, 0),
+            PlaceholderText = "Group name"
+        };
+        nameInput.TextChanged += (newText) => group.Name = newText;
+        row.AddChild(nameInput);
+
+        var deleteButton = new Button { Text = "Delete" };
+        deleteButton.Pressed += () =>
+        {
+            _groups.Remove(group);
+            row.QueueFree();
+        };
+        row.AddChild(deleteButton);
+
+        return row;
+    }
+
+    private void OnAddGroupPressed()
+    {
+        var newGroup = new ProductionLineGroup
+        {
+            Id = Guid.NewGuid().ToString(),
+            Name = $"Group {_groups.Count + 1}"
+        };
+        _groups.Add(newGroup);
+
+        var row = CreateGroupRow(newGroup);
+        _groupsListContainer?.AddChild(row);
+    }
+
+    private List<ProductionLineGroup> BuildGroupsFromEditors(List<ProductionLine> productionLines)
+    {
+        var updatedGroups = new List<ProductionLineGroup>();
+
+        foreach (var group in _groups)
+        {
+            var newGroup = new ProductionLineGroup
+            {
+                Id = group.Id,
+                Name = group.Name,
+                ProductionLineIds = new List<string>()
+            };
+            updatedGroups.Add(newGroup);
+        }
+
+        for (int i = 0; i < _productionLineEditors.Count && i < productionLines.Count; i++)
+        {
+            var editor = _productionLineEditors[i];
+            var lineId = productionLines[i].Id;
+            var selectedGroupIds = editor.GetGroupIds();
+
+            foreach (var groupId in selectedGroupIds)
+            {
+                var group = updatedGroups.FirstOrDefault(g => g.Id == groupId);
+                if (group != null && !group.ProductionLineIds.Contains(lineId))
+                {
+                    group.ProductionLineIds.Add(lineId);
+                }
+            }
+        }
+
+        return updatedGroups;
     }
 
     private void LoadProductionLines()
@@ -67,6 +196,7 @@ public partial class ProductionLineManager : CenterContainer
         }
 
         ClearProductionLines();
+        LoadGroups();
 
         var productionLines = _sessionManager.Session.CurrentWorkspace.ProductionLines;
         _customPrices = _sessionManager.Session.CurrentWorkspace.CustomPrices ?? new();
@@ -85,6 +215,12 @@ public partial class ProductionLineManager : CenterContainer
             _productionLinesContainer?.AddChild(editor);
 
             editor.SetProductionLine(line);
+
+            var groupIds = _groups
+                .Where(g => g.ProductionLineIds.Contains(line.Id))
+                .Select(g => g.Id)
+                .ToList();
+            editor.SetGroupIds(groupIds);
 
             foreach (var (materialId, sources) in _customPrices)
             {
@@ -162,11 +298,13 @@ public partial class ProductionLineManager : CenterContainer
         try
         {
             var productionLines = _productionLineEditors.Select(e => e.GetProductionLine()).ToList();
+            var updatedGroups = BuildGroupsFromEditors(productionLines);
 
             _sessionManager.Session.WorkspaceManager.ApplyChanges(
                 ws =>
                 {
                     ws.ProductionLines = productionLines;
+                    ws.ProductionLineGroups = updatedGroups;
                     ws.CustomPrices = _customPrices;
                 },
                 "Production lines updated");
@@ -243,5 +381,7 @@ public partial class ProductionLineManager : CenterContainer
             _saveButton.Pressed -= OnSavePressed;
         if (_cancelButton != null)
             _cancelButton.Pressed -= OnCancelPressed;
+        if (_addGroupButton != null)
+            _addGroupButton.Pressed -= OnAddGroupPressed;
     }
 }

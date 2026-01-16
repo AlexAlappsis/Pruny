@@ -24,6 +24,29 @@ text = "Delete Line"
 layout_mode = 2
 text = "ID: "
 
+[node name="NameContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="NameContainer"]
+layout_mode = 2
+text = "Name (optional):"
+
+[node name="NameInput" type="LineEdit" parent="NameContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Enter a friendly name for this production line"
+
+[node name="GroupsContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="GroupsLabel" type="Label" parent="GroupsContainer"]
+layout_mode = 2
+text = "Groups:"
+
+[node name="GroupsButton" type="Button" parent="GroupsContainer"]
+layout_mode = 2
+text = "Groups: None"
+
 [node name="EfficiencyContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 

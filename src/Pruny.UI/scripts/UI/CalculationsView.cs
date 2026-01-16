@@ -69,32 +69,111 @@ public partial class CalculationsView : CenterContainer
             return;
         }
 
-        foreach (var (productionLineId, unitCost) in calculations)
+        var groups = workspace.ProductionLineGroups ?? new List<ProductionLineGroup>();
+        var allGroupedLineIds = groups.SelectMany(g => g.ProductionLineIds).ToHashSet();
+
+        foreach (var group in groups)
         {
-            var productionLine = workspace.ProductionLines.FirstOrDefault(pl => pl.Id == productionLineId);
-            if (productionLine == null)
+            var groupSection = CreateGroupSection(group.Name, group.ProductionLineIds, calculations, gameData, workspace);
+            if (groupSection != null)
             {
-                continue;
+                _calculationsContainer?.AddChild(groupSection);
             }
+        }
 
-            if (gameData?.Recipes.TryGetValue(productionLine.RecipeId, out var recipe) != true)
+        var ungroupedLineIds = workspace.ProductionLines
+            .Where(pl => !allGroupedLineIds.Contains(pl.Id))
+            .Select(pl => pl.Id)
+            .ToList();
+
+        if (ungroupedLineIds.Count > 0)
+        {
+            var ungroupedSection = CreateGroupSection("Ungrouped", ungroupedLineIds, calculations, gameData, workspace);
+            if (ungroupedSection != null)
             {
-                continue;
+                _calculationsContainer?.AddChild(ungroupedSection);
             }
-
-            if (gameData?.Materials.TryGetValue(unitCost.MaterialId, out var material) != true)
-            {
-                continue;
-            }
-
-            Building? building = null;
-            gameData?.Buildings.TryGetValue(recipe.BuildingId, out building);
-
-            var calculationItem = CreateCalculationItem(productionLine, unitCost, material!, recipe!, building);
-            _calculationsContainer?.AddChild(calculationItem);
         }
 
         SetStatus("");
+    }
+
+    private Control? CreateGroupSection(
+        string groupName,
+        List<string> productionLineIds,
+        IReadOnlyDictionary<string, ProductionLineCalculation> calculations,
+        Pruny.Library.Models.GameData? gameData,
+        Pruny.Library.Models.Workspace workspace)
+    {
+        var matchingCalculations = new List<(ProductionLine line, ProductionLineCalculation calc, Core.Models.Material material, Recipe recipe, Building? building)>();
+
+        foreach (var lineId in productionLineIds)
+        {
+            if (!calculations.TryGetValue(lineId, out var unitCost))
+                continue;
+
+            var productionLine = workspace.ProductionLines.FirstOrDefault(pl => pl.Id == lineId);
+            if (productionLine == null)
+                continue;
+
+            if (gameData?.Recipes.TryGetValue(productionLine.RecipeId, out var recipe) != true)
+                continue;
+
+            if (gameData?.Materials.TryGetValue(unitCost.MaterialId, out var material) != true)
+                continue;
+
+            Building? building = null;
+            gameData!.Buildings.TryGetValue(recipe.BuildingId, out building);
+
+            matchingCalculations.Add((productionLine, unitCost, material!, recipe!, building));
+        }
+
+        if (matchingCalculations.Count == 0)
+            return null;
+
+        var container = new VBoxContainer();
+        container.AddThemeConstantOverride("separation", 0);
+
+        var headerRow = new HBoxContainer();
+
+        var expandButton = new Button
+        {
+            Text = "▶",
+            CustomMinimumSize = new Vector2(30, 0)
+        };
+        headerRow.AddChild(expandButton);
+
+        var groupLabel = new Label
+        {
+            Text = $"=== {groupName} ({matchingCalculations.Count}) ===",
+        };
+        groupLabel.AddThemeColorOverride("font_color", new Color(0.5f, 1.0f, 0.5f));
+        headerRow.AddChild(groupLabel);
+
+        container.AddChild(headerRow);
+
+        var contentContainer = new VBoxContainer();
+        contentContainer.Visible = false;
+
+        foreach (var (line, calc, material, recipe, building) in matchingCalculations)
+        {
+            var calculationItem = CreateCalculationItem(line, calc, material, recipe, building);
+            contentContainer.AddChild(calculationItem);
+        }
+
+        container.AddChild(contentContainer);
+
+        expandButton.Pressed += () =>
+        {
+            contentContainer.Visible = !contentContainer.Visible;
+            expandButton.Text = contentContainer.Visible ? "▼" : "▶";
+        };
+
+        var spacer = new Control();
+        spacer.CustomMinimumSize = new Vector2(0, 10);
+        container.AddChild(spacer);
+
+        return container;
     }
 
     private Control CreateCalculationItem(ProductionLine productionLine, ProductionLineCalculation unitCost, Core.Models.Material material, Recipe recipe, Building? building)
@@ -113,14 +192,21 @@ public partial class CalculationsView : CenterContainer
         expandButton.CustomMinimumSize = new Vector2(30, 0);
         summaryBox.AddChild(expandButton);
 
+        var lineNameLabel = new Label();
+        lineNameLabel.Text = string.IsNullOrWhiteSpace(productionLine.Name)
+            ? productionLine.Id
+            : productionLine.Name;
+        lineNameLabel.CustomMinimumSize = new Vector2(150, 0);
+        summaryBox.AddChild(lineNameLabel);
+
         var materialLabel = new Label();
         materialLabel.Text = material.Name;
-        materialLabel.CustomMinimumSize = new Vector2(200, 0);
+        materialLabel.CustomMinimumSize = new Vector2(150, 0);
         summaryBox.AddChild(materialLabel);
 
         var recipeLabel = new Label();
         recipeLabel.Text = $"{recipe.Id} ({building?.Id ?? "Unknown"})";
-        recipeLabel.CustomMinimumSize = new Vector2(250, 0);
+        recipeLabel.CustomMinimumSize = new Vector2(200, 0);
         summaryBox.AddChild(recipeLabel);
 
         var costLabel = new Label();
@@ -167,7 +253,10 @@ public partial class CalculationsView : CenterContainer
         var detailsBox = new VBoxContainer();
         detailsPanel.AddChild(detailsBox);
 
-        detailsBox.AddChild(CreateDetailLabel($"Production Line ID: {productionLine.Id}"));
+        var lineDisplayName = string.IsNullOrWhiteSpace(productionLine.Name)
+            ? productionLine.Id
+            : $"{productionLine.Name} ({productionLine.Id})";
+        detailsBox.AddChild(CreateDetailLabel($"Production Line: {lineDisplayName}"));
         detailsBox.AddChild(CreateDetailLabel($"Material: {material.Name} ({material.Id})"));
         detailsBox.AddChild(CreateDetailLabel($"Recipe: {recipe.Id}"));
         detailsBox.AddChild(CreateDetailLabel($"Building: {building?.Id ?? "Unknown"}"));

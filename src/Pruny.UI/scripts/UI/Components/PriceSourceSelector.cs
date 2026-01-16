@@ -286,7 +286,10 @@ public partial class PriceSourceSelector : GridContainer
         for (int i = 0; i < productionLines.Count; i++)
         {
             var line = productionLines[i];
-            _productionLineDropdown.AddItem(line.Id, i);
+            var displayText = string.IsNullOrWhiteSpace(line.Name)
+                ? line.Id
+                : $"{line.Name} ({line.Id})";
+            _productionLineDropdown.AddItem(displayText, i);
             _productionLineDropdown.SetItemMetadata(i, line.Id);
         }
     }
