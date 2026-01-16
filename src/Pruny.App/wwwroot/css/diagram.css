@@ -1,0 +1,59 @@
+/* Diagram container */
+.diagram-container {
+    width: 100%;
+    height: 100%;
+    background-color: #1e1e1e;
+    /* Darker bg for diagram */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Custom Node Styles */
+.node {
+    background-color: #252526;
+    border: 1px solid #484850;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    color: #e0e0e0;
+    min-width: 180px;
+    display: flex;
+    flex-direction: column;
+}
+
+.node.selected {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(100, 108, 255, 0.3);
+}
+
+.node-header {
+    background-color: #333333;
+    padding: 8px 12px;
+    border-bottom: 1px solid #484850;
+    font-weight: bold;
+    border-radius: 4px 4px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.node-content {
+    padding: 12px;
+}
+
+.node-ports {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 8px 8px 8px;
+}
+
+.port {
+    width: 12px;
+    height: 12px;
+    background-color: #888;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.port:hover {
+    background-color: var(--accent-color);
+}

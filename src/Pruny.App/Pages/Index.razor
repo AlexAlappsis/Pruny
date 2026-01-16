@@ -1,0 +1,110 @@
+@page "/"
+@inject Pruny.App.Services.BlazorSessionManager SessionManager
+@inject NavigationManager nav
+
+<PageTitle>Dashboard</PageTitle>
+
+<h1>Dashboard</h1>
+
+<p>Welcome to Pruny.</p>
+
+<div class="actions mb-4">
+    <button class="btn btn-primary" @onclick="OnCreateNew">Create New Workspace</button>
+</div>
+
+@if (workspaces == null)
+{
+    <p>Loading workspaces...</p>
+}
+else if (workspaces.Length == 0)
+{
+    <p>No workspaces found. Create one to get started.</p>
+}
+else
+{
+    <div class="card-grid">
+        @foreach (var ws in workspaces)
+        {
+            <div class="card">
+                <h3>@ws</h3>
+                <button class="btn btn-secondary" @onclick="() => OnLoad(ws)">Load</button>
+            </div>
+        }
+    </div>
+}
+
+<style>
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+    .card {
+        background: #2d2d30;
+        padding: 1.5rem;
+        border-radius: 8px;
+        border: 1px solid #3e3e42;
+    }
+    .btn {
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    .btn-primary { background-color: var(--accent-color); color: white; }
+    .btn-secondary { background-color: #3e3e42; color: white; }
+    .mb-4 { margin-bottom: 1.5rem; }
+</style>
+
+@code {
+    private string[]? workspaces;
+
+    protected override void OnInitialized()
+    {
+        LoadList();
+    }
+
+    private void LoadList()
+    {
+        workspaces = SessionManager.ListWorkspaces();
+    }
+
+    private void OnCreateNew()
+    {
+        // For simplicity, just auto-create one with a timestamp/guid name
+        // Real app would show a dialog.
+        var name = $"Workspace {DateTime.Now:yyyy-MM-dd HHmm}";
+        try
+        {
+            SessionManager.CreateNewWorkspace(name);
+            // Navigate to production editor
+            nav.NavigateTo("production");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error creating workspace: {ex}");
+        }
+    }
+
+    private void OnLoad(string filename)
+    {
+        try
+        {
+            // Ensure GameData is loaded first
+            SessionManager.LoadGameData(); 
+            // Note: LoadGameData should be idempotent or checks existing. 
+            // My impl checks file existence but reloads. 
+            // Realistically we load GameData once on startup or here.
+            
+            SessionManager.LoadWorkspace(filename);
+            nav.NavigateTo("production");
+        }
+        catch (Exception ex)
+        {
+             Console.WriteLine($"Error loading workspace: {ex}");
+             // Show error (in a real app)
+        }
+    }
+}

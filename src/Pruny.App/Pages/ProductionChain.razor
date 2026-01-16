@@ -1,0 +1,118 @@
+@page "/production"
+@using Blazor.Diagrams
+@using Blazor.Diagrams.Core.Geometry
+@using Blazor.Diagrams.Core.Models
+@using Blazor.Diagrams.Components
+@using Pruny.App.Components
+@inject Pruny.App.Services.BlazorSessionManager SessionManager
+
+<PageTitle>Production Chain</PageTitle>
+
+<div class="production-editor">
+    <div class="toolbar">
+        <button class="btn btn-sm btn-secondary" @onclick="AutoLayout">Auto Layout</button>
+        <span class="separator">|</span>
+        <button class="btn btn-sm btn-secondary" @onclick="ZoomIn">+</button>
+        <button class="btn btn-sm btn-secondary" @onclick="ZoomOut">-</button>
+    </div>
+
+    <div class="diagram-wrapper">
+         <CascadingValue Value="Diagram">
+            <DiagramCanvas>
+                <Widgets>
+                    @* <NavigatorWidget Width="200" Height="150" Style="position: absolute; bottom: 15px; right: 15px; background-color: white; border: 1px solid black;" /> *@
+                </Widgets>
+            </DiagramCanvas>
+        </CascadingValue>
+    </div>
+</div>
+
+<style>
+    .production-editor {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .toolbar {
+        height: 40px;
+        background-color: #333;
+        border-bottom: 1px solid #444;
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        gap: 0.5rem;
+    }
+
+    .diagram-wrapper {
+        flex: 1;
+        background-color: #1e1e1e;
+        overflow: hidden; /* Canvas handles scrolling/panning */
+    }
+
+    .btn-sm {
+        padding: 2px 8px;
+        font-size: 0.85rem;
+    }
+</style>
+
+@code {
+    private BlazorDiagram Diagram { get; set; } = null!;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        // Initialize with defaults for now to fix build
+        Diagram = new BlazorDiagram();
+        
+        // Register custom node widget
+        Diagram.RegisterComponent<ProductionNodeModel, Pruny.App.Components.ProductionNodeWidget>();
+
+        LoadProductionLines();
+    }
+
+    private void LoadProductionLines()
+    {
+        Diagram.Nodes.Clear();
+        Diagram.Links.Clear();
+
+        var workspace = SessionManager.Session?.CurrentWorkspace;
+        if (workspace == null) return;
+        
+        // Simple grid layout for now
+        int x = 100;
+        int y = 100;
+        int cols = 3;
+        int i = 0;
+
+        foreach (var line in workspace.ProductionLines)
+        {
+            var node = new ProductionNodeModel(line, new Point(x, y));
+            
+            // Try to find calculation
+            if (SessionManager.Session?.Calculations.TryGetValue(line.Id, out var calc) == true)
+            {
+                node.Calculation = calc;
+            }
+
+            Diagram.Nodes.Add(node);
+
+            x += 300;
+            i++;
+            if (i % cols == 0)
+            {
+                x = 100;
+                y += 200;
+            }
+        }
+    }
+
+    private void AutoLayout()
+    {
+        // Will implement auto layout later
+    }
+
+    private void ZoomIn() => Diagram.SetZoom(Diagram.Zoom + 0.1);
+    private void ZoomOut() => Diagram.SetZoom(Diagram.Zoom - 0.1);
+}

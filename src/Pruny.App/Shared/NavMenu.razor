@@ -1,0 +1,53 @@
+<div class="top-row pl-4 navbar navbar-dark">
+    <a class="navbar-brand" href="">Pruny</a>
+</div>
+
+<div class="nav-scrollable">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-dashboard" aria-hidden="true"></span> Dashboard
+            </NavLink>
+        </div>
+         <div class="nav-item px-3">
+            <NavLink class="nav-link" href="production">
+                <span class="oi oi-list" aria-hidden="true"></span> Production Chain
+            </NavLink>
+        </div>
+    </nav>
+</div>
+
+<style>
+    .navbar-brand {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+        padding: 1rem;
+        display: block;
+    }
+    
+    .nav-item {
+        margin-bottom: 0.5rem;
+    }
+
+    .nav-link {
+        color: #d4d4d4;
+        text-decoration: none;
+        display: block;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        transition: background-color 0.2s;
+    }
+
+    .nav-link:hover {
+        background-color: #3e3e42;
+        color: white;
+    }
+
+    .nav-link.active {
+        background-color: #37373d;
+        color: white;
+        border-left: 3px solid var(--accent-color);
+    }
+</style>
