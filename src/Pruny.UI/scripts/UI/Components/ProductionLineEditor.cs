@@ -207,6 +207,13 @@ public partial class ProductionLineEditor : VBoxContainer
         _groupsPopup = new PopupPanel();
         _groupsPopup.Size = new Vector2I(300, 200);
 
+        var panelStyle = new StyleBoxFlat();
+        panelStyle.BgColor = new Color(0.15f, 0.15f, 0.15f);
+        panelStyle.SetBorderWidthAll(1);
+        panelStyle.BorderColor = new Color(0.4f, 0.4f, 0.4f);
+        panelStyle.SetContentMarginAll(8);
+        _groupsPopup.AddThemeStyleboxOverride("panel", panelStyle);
+
         var popupContent = new VBoxContainer();
         _groupsPopup.AddChild(popupContent);
 
