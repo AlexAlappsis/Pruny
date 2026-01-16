@@ -39,6 +39,7 @@ public partial class ProductionLineEditor : VBoxContainer
     private VBoxContainer? _workforceOverrideContainer;
     private Button? _workforceToggleButton;
     private VBoxContainer? _workforceContent;
+    private WorkforceEditor? _workforceEditor;
 
     private VBoxContainer? _outputOverridesContainer;
     private Button? _outputOverridesToggleButton;
@@ -84,6 +85,7 @@ public partial class ProductionLineEditor : VBoxContainer
 
         SetupRecipeSelector();
         SetupEfficiencyEditor();
+        SetupWorkforceEditor();
         SetupOutputOverridesEditor();
         SetupToggleButtons();
         SetupCollapseButton();
@@ -161,6 +163,13 @@ public partial class ProductionLineEditor : VBoxContainer
         _efficiencyContent?.AddChild(_efficiencyEditor);
     }
 
+    private void SetupWorkforceEditor()
+    {
+        var scene = GD.Load<PackedScene>("res://scenes/UI/Components/WorkforceEditor.tscn");
+        _workforceEditor = scene.Instantiate<WorkforceEditor>();
+        _workforceContent?.AddChild(_workforceEditor);
+    }
+
     private void SetupOutputOverridesEditor()
     {
         GD.Print("ProductionLineEditor: SetupOutputOverridesEditor called");
@@ -206,9 +215,11 @@ public partial class ProductionLineEditor : VBoxContainer
 
         RebuildInputPriceSelectors(recipe.Inputs);
         UpdateOutputPriceSelectors();
+        UpdateWorkforceEditor(recipe);
 
         if (_pendingLineToLoad != null)
         {
+            ApplyPendingWorkforceSettings();
             ApplyPendingPriceSources();
         }
 
@@ -224,6 +235,27 @@ public partial class ProductionLineEditor : VBoxContainer
         {
             _outputOverridesToggleButton?.RemoveThemeColorOverride("font_color");
         }
+    }
+
+    private void UpdateWorkforceEditor(Recipe recipe)
+    {
+        if (_workforceEditor == null || _sessionManager?.Session?.GameData == null)
+            return;
+
+        if (!_sessionManager.Session.GameData.Buildings.TryGetValue(recipe.BuildingId, out var building))
+            return;
+
+        _workforceEditor.SetBuildingWorkforce(building.DefaultWorkforce);
+    }
+
+    private void ApplyPendingWorkforceSettings()
+    {
+        if (_pendingLineToLoad == null || _workforceEditor == null)
+            return;
+
+        _workforceEditor.SetWorkforceSettings(
+            _pendingLineToLoad.WorkforceOverride,
+            _pendingLineToLoad.WorkforceConfigMapping);
     }
 
     private void OnOutputOverridesChanged()
@@ -420,7 +452,8 @@ public partial class ProductionLineEditor : VBoxContainer
         {
             Id = _lineId,
             RecipeId = recipeId,
-            WorkforceOverride = null,
+            WorkforceOverride = _workforceEditor?.GetWorkforceOverride(),
+            WorkforceConfigMapping = _workforceEditor?.GetWorkforceConfigMapping(),
             OutputOverrides = outputOverrides,
             InputPriceSources = inputPriceSources,
             OutputPriceSources = outputPriceSources,

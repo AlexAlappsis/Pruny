@@ -62,7 +62,7 @@ layout_mode = 2
 
 [node name="ToggleButton" type="Button" parent="WorkforceOverrideContainer"]
 layout_mode = 2
-text = "▶ Workforce Override (Not Implemented)"
+text = "▶ Workforce Settings"
 
 [node name="Content" type="VBoxContainer" parent="WorkforceOverrideContainer"]
 visible = false
